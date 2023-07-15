@@ -2,19 +2,13 @@
 
 namespace vector_engine
 {
+template<class V>
 class vector2d
 {
-	private:
-		double i,j;
-	public:
-		vector2d();
-		vector2d(double, double);
-		vector2d operator+(vector2d);
-		vector2d operator-(vector2d);
-		vector2d operator*(vector2d);
-		vector2d vector_input();
-		double chk_number ();
-		void print(vector2d);
-		void multi_print(vector2d);
+    private:
+    V* x_coordinate, y_coordinate;
+    public:
+    vector2d(V*,V*);
+    vector2d operator+(V*);
 };
 }
