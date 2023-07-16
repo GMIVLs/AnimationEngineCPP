@@ -1,0 +1,5 @@
+CompileFlags:
+  Add:
+    - -I/Users/gmbp/Desktop/devCode/cppDev/AnimationEngineCPP/src/lib/veclib
+    - -L /Users/gmbp/Desktop/devCode/cppDev/AnimationEngineCPP/src/lib/veclib
+
