@@ -1,4 +1,9 @@
 #pragma once
+namespace vector_engine {
+class vector2d {
+private:
+  double i, j;
+
 
 namespace vector_engine
 {
@@ -11,4 +16,4 @@ class vector2d
     vector2d(V*,V*);
     vector2d operator+(V*);
 };
-}
+} // namespace vector_engine

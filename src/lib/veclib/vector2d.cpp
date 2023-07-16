@@ -1,6 +1,6 @@
-#include<iostream>
-#include"vector2d.h"
+
 using namespace std;
+
 
 namespace vector_engine
 {
@@ -22,3 +22,6 @@ namespace vector_engine
         delete (y_coordinate);
     }
 }
+
+
+
