@@ -1,84 +1,81 @@
-#include <iostream>
-#include <limits>
+//
+//  vector2d.cpp
+//  vector2d
+//
+//  Created by Mohammed A. Alameedi on 7/17/23.
+//
+
 #include "vector2d.h"
 
-using namespace std;
-using namespace vector_engine;
-
-vector2d::vector2d(double i, double j) {
-    this->i = i;
-    this->j = j;
+template<class Ttype>
+vector2d<Ttype>::vector2d(Ttype x_coord, Ttype y_coord)
+{
+    this->x_coord = x_coord;
+    this->y_coord = y_coord;
 }
 
-vector2d vector2d::operator+(vector2d v) {
-    vector2d c(0,0);
-    c.i = this->i + v.i;
-    c.j = this->j + v.j;
-    return c;
+template<class Ttype>
+vector2d<Ttype>::~vector2d()
+{
+    
 }
 
-vector2d vector2d::operator-(vector2d v) {
-    vector2d c(0,0);
-    c.i = this->i - v.i;
-    c.j = this->j - v.j;
-    return c;
+template<class Ttype>
+void vector2d<Ttype>::set_x(Ttype x_coord)
+{
+    this->x_coord = x_coord;
 }
 
-vector2d vector2d::operator*(vector2d v) {
-    vector2d c(0.0,0.0);
-    c.i = this->i * v.j;
-    c.j = this->j * v.i;
-    return c;
+template<class Ttype>
+void vector2d<Ttype>::set_y(Ttype y_coord)
+{
+    this->y_coord = y_coord;
 }
 
-vector2d vector2d::vector_input() {
-    vector2d c(0.0,0.0);
-    cout << "Please Enter Your Vector:" << endl;
-    try {
-        c.i = chk_number();
-        c.j = chk_number();
-    }
-    catch(...) {
-        cout << "Error Occurred" << endl;
-        exit(3);
-    }
-    return c;
+template<class Ttype>
+Ttype vector2d<Ttype>::get_x() const
+{
+    return x_coord;
 }
 
-double vector2d::chk_number () {
-    double number;
-    while(true) {
-        cin >> number;
-        if(cin.fail()) {
-            cout << "Enter a Valid Number Please..." << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cin >> number;
-        }
-        if (!cin.fail()) {
-            break;
-        }
-    }
-    return number;
+template<class Ttype>
+Ttype vector2d<Ttype>::get_y() const
+{
+    return y_coord;
 }
 
-/**
- * @brief This function adds two integers.
- *
- This is a print function is working under the class vector2d
- * Detailed description of the function.
- *
- * @param a The first integer.
- * @param b The second integer.
- * @return The sum of a and b.
- */
-void vector2d::print(vector2d d) {
-  if (d.j > 0)
-    cout << "This Vector is: " << d.i << "i+" << d.j << "j" << endl;
-  else if (d.j < 0)
-    cout << "This Vector is: " << d.i << "i" << d.j << "j" << endl;
+template<class Ttype>
+vector2d<Ttype> vector2d<Ttype>::operator+(vector2d<Ttype> vect)
+{
+    return vector2d<Ttype>(this->x_coord+vect.x_coord,this->y_coord+vect.y_coord);
 }
 
-void vector2d::multi_print(vector2d d) {
-    cout <<"This Vector is: " << d.i-d.j <<"k" << endl;
+template<class Ttype>
+vector2d<Ttype> vector2d<Ttype>::operator-(vector2d<Ttype> vect)
+{
+    return vector2d<Ttype>(this->x_coord-vect.x_coord,this->y_coord-vect.y_coord);
+}
+
+template<class Ttype>
+vector2d<Ttype> vector2d<Ttype>::operator*(Ttype scaler)
+{
+    return vector2d<Ttype>(this->x_coord*scaler,this->y_coord*scaler);
+}
+
+template<class Ttype>
+vector2d<Ttype> vector2d<Ttype>::add(vector2d<Ttype> vect)
+{
+    return vector2d<Ttype>(this->x_coord+vect.x_coord,this->y_coord+vect.y_coord);
+}
+
+template<class Ttype>
+vector2d<Ttype> vector2d<Ttype>::sub(vector2d<Ttype> vect)
+{
+    return vector2d<Ttype>(this->x_coord-vect.x_coord,this->y_coord-vect.y_coord);
+}
+
+template<class Ttype>
+vector2d<Ttype> vector2d<Ttype>::multi(Ttype scaler)
+{
+    return vector2d<Ttype>(this->x_coord*scaler,this->y_coord*scaler);
 }
