@@ -10,6 +10,8 @@ compile_commands.json
 .dir-locals.el
 Makefile
 .envrc
+*.pdf
+.cache/
 
 # Compiled Object files
 *.slo

@@ -13,11 +13,13 @@ vector2d<Ttype>::vector2d(Ttype x_coord, Ttype y_coord)
     this->x_coord = x_coord;
     this->y_coord = y_coord;
 }
-
+/*
+    function temp
+*/
 template<class Ttype>
 vector2d<Ttype>::~vector2d()
 {
-    
+
 }
 
 template<class Ttype>
