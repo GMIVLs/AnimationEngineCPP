@@ -3,15 +3,19 @@
 - __General Notes__:
     - Do not use standard namespace like:
       
-    '''cpp
+    ''' cpp
     
         using namespace std;
+        
     '''
     
      in head of your code or at the begging header-file, consider use the specific one like
     
-    '''cpp
+    ''' cpp
+        
         using std::cout;
+        using std::vector;
+        
     '''
     ...etc.
     - Consider not use endl at end of cout especially in a loop because its flush the buffer and take extra time, consider use '\n'.
