@@ -2,15 +2,16 @@
 ## __Keep these notes in mind when write code in cpp__.
 - __General Notes__:
     - Do not use standard namespace like:
+      
+    '''cpp
     
-    '''c++
-    using namespace std;
+        using namespace std;
     '''
     
      in head of your code or at the begging header-file, consider use the specific one like
     
-    '''c++
-    using std::cout;
+    '''cpp
+        using std::cout;
     '''
     ...etc.
     - Consider not use endl at end of cout especially in a loop because its flush the buffer and take extra time, consider use '\n'.
