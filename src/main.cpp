@@ -1,5 +1,7 @@
 #include "lib/veclib/vector2d.h"
 #include <SDL2/SDL.h>
+//#include <SDL2/SDL_image.h>
+// #include <SDL2/SDL_image.h>
 #include <algorithm>
 #include <iostream>
 /****************************************************
@@ -7,7 +9,7 @@
 //  https://wiki.libsdl.org/SDL_RenderDrawLine     */
 //  SDL2 Library is up and running with MacOSX    */
 /****************************************************/
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   if (SDL_Init(SDL_INIT_VIDEO) == 0) {
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;

@@ -34,4 +34,3 @@ private:
     Ttype y_coord;
 };
 #endif /* vector2d_h */
-
