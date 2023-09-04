@@ -207,3 +207,172 @@ const char *string_literal_lifetimes() {
     return "string literals";
 }
 ```
+
+11. Using **structured bindings**. Here we have a map of color names to their hex values. Then we just loop over all the pairs and print out the name and hex value. It would be a lot more readable if we could refer to these things as name and hex rather that pair.first and pair.second. Well, that's exactly what a structured binding lets us do. We grab the pair by reference. Then, the structured binding introduce name and hex as names for the first and second elements of the pair. Structured bindings can also be used with your own types if the members are public. The names get assigned to the variables according to the order of their declarations.
+
+> Consider not using structured bindings
+> Instead, use two parameters with loop.
+
+```c++
+void loop_map_items() {
+    std::unordered_map<std::string, std::string> colors = {
+        {"RED", "#FF0000"},
+        {"GREEN", "#00FF00"},
+        {"BLUE", "#0000FF"}
+    };
+    for (const auto &pair: colors){
+        std::cout << "name: " << pair.first << ", hex" << pair.second << '\n';
+    }
+}
+
+void loop_map_items() {
+    std::unordered_map<std::string, std::string> colors = {
+        {"RED", "#FF0000"},
+        {"GREEN", "#00FF00"},
+        {"BLUE", "#0000FF"}
+    };
+    for (const auto &[name, hex]: colors){
+        std::cout << "name: " << name << ", hex" << hex << '\n';
+    }
+}
+```
+
+also structured bindings.
+
+```c++
+struct S {
+    int a;
+    std::string s;
+};
+S get_S();
+void use_S() {
+    const auto [name_for_a, name_for_s] = get_S();
+}
+```
+
+12. Out-params instead of returning a struct, using multiple out parameters when you want to return multiple things from a function. Instead, create a basic struct and give those things names. Then, you can return the multiple values that you wanted to by returning the struct instead. The caller can even make it look like it was multiple values returned by using structured bindings.
+
+> Consider, not use function return multiple things.
+> Instead, use struct and give those things names.
+
+```c++
+void get_values_out_params(const int n, int &out1, int &out2) {
+    // do stuff
+    out1 = n;
+    out2 = n+1;
+}
+
+struct Values {
+    int x, y;
+};
+
+Values
+get_values_return_struct(const int n) {
+    return {n, n+1};
+}
+
+void use_values(){
+    auto [x, y] = get_values_return_struct(2);
+}
+```
+
+13. Doing work at runtime that could have been done at compile time. Here's a function that gives the formula for the sum of the first n integers. Sometimes, the parameters might be know at compile-time and you could do the calculation ahead of time. Go ahead and let the compiler know that it's totally fine to compute this ahead of time.
+
+> Consider, not doing work at runtime
+> that can done on compile time.
+
+```c++
+int sum_of_1_to_n(const int n) {
+    return n * (n+1) / 2;
+}
+
+void uses_sum() {
+    const int limit = 1000;
+    auto triangle_n = sum_of_1_to_n(limit);
+    // use triangle_n...
+}
+```
+
+```c++
+constexpr int sum_of_1_to_n(const int n) {
+    return n * (n+1) / 2;
+}
+```
+
+14. Forgetting to mark destructors virtual. If a derived class gets deleted through a pointer to this base class, then the derived class destructor will not be called only the base classes destructor will be called. Here, I have a class that derives from the base that doesn't have a virtual destructor. This function expects a pointer to the base class. It uses some base functionality and then deletes the pointer when it's done. This will happen automatically since I'm using a unique pointer. But the same would be true if you just took in a normal pointer and then manually called delete. If you pass a pointer to an instance of this derived type, then the wrong destructor gets called at the end. To make sure the correct destructor is called even through a pointer to a base class, you need to make the function virtual. It's also good practice to explicitly mark the derived classes destructor as override.
+
+> Be carefull to mark destructor of,
+> pointer class virtually.
+
+```c++
+class BaseWithNonvirtualDestructor {
+public:
+    void foo() {
+        std::cout << "do foo\n";
+    }
+    ~BaseWithNonvirtualDestructor() {
+        std::cout << "called base destructor\n";
+    }
+};
+
+class Derived : public BaseWithNonvirtualDestructor {
+public:
+    ~Derived() {
+        std::cout << "called derived destructor\n";
+    }
+};
+void consume_base(std::unique_ptr<BaseWithNonvirtualDestructor> p) {
+    p->foo();
+    // deletes p when done
+}
+```
+to ensure that the correct destructor called
+```c++
+class BaseWithNonvirtualDestructor {
+public:
+    void foo() {
+        std::cout << "do foo\n";
+    }
+    virtual ~BaseWithNonvirtualDestructor() {
+        std::cout << "called base destructor\n";
+    }
+};
+
+class Derived : public BaseWithNonvirtualDestructor {
+public:
+    ~Derived() override {
+        std::cout << "called derived destructor\n";
+    }
+};
+void consume_base(std::unique_ptr<BaseWithNonvirtualDestructor> p) {
+    p->foo();
+    // deletes p when done
+}
+```
+
+15. Thinking that class members are initalized in the order they appear in the initializer list. Reading left to right this looks fine. The actual order that members are initialized in is the order that they're declared in. First, we initialize end as start plus size but this m start is garbage. It hasn't been initialized yet. We can of course fix this by declaring start first instead. Or, since start is also a parameter to the function, we could just define the end variable in terms of the start parameter
+
+```c++
+class View {
+public:
+    View(char *start, std::size_t size) : m_start{start}, m_end{m_start + size} {
+
+    }
+private:
+    char *m_end;
+    char *m_start;
+};
+```
+correct this by
+
+```c++
+class View {
+public:
+    View(char *start, std::size_t size) : m_start{start}, m_end{m_start + size} {
+
+    }
+private:
+    char *m_start;
+    char *m_end;
+};
+```
