@@ -376,3 +376,126 @@ private:
     char *m_end;
 };
 ```
+
+16. Not realizing there's a difference between default and value initialization, x and x2 are default initialized. They contain garbage until you put something into them, y, y2 and y3 are value initialized. They are guaranteed to contain the value zero, z, on the other hand, is neither default nor value initialized. This is a function declaration. Even if it's a tiny bit less efficient, initializing your values is almost always a good idea. The same kind of thing goes if you have an aggregate or array type. In the first two cases, n and m are zero and S is the empty string. Notice that, even with default initialization, the empty string did still get initialized. That's because for both default and value initialization if you define a default constructor, it will be called.
+
+```c++
+void default_vs_value_initialization() {
+    int x;
+    int *x2 = new int;
+
+    int y{};
+    int *y2 = new int{};
+    int *y3 = new int{};
+
+    int z();
+}
+```
+
+```c++
+struct S {
+    int n, m;
+    std::string s;
+};
+void default_vs_value_initialization() {
+    S x;
+    S *x2 = new S;
+
+    S y{};
+    S *y2 = new S{};
+    S *y3 = new S();
+}
+```
+
+17. Overuse of **magic numbers**. Introducing a basic constant in your code can make it many times more readable. The compiler is going to optimize it away anyway. Just give it a good name.
+
+```c++
+float energy(float m) {
+    return m * 299792458.0 * 299792458.0;
+}
+
+float energy(float m) {
+    constexpr float SPEED_OF_LIGHT = 299792458.0;
+    return m * SPEED_OF_LIGHT * SPEED_OF_LIGHT;
+}
+```
+
+18. Attempting to **add or remove elements** from a container while looping over it. Well, doing that is sometimes just necessary but what I mean is noobs often do it incorrectly. Wer'e trying to put a copy of the vector at the end of the vector. Adding or removing an element to the vector may invalidate the iterators to the vector. For example, push_back might need to resize the vector and move all the elements to a new location. After moving the contents of the vector to a new location, you can't expect the end pointer to be the same. You would run into the exact same issue. In fact, it's probably clearer why you would run into this issue if you used iterators directly. This is a case where using a loop index actually does solve the problem. It doesn't matter if the contents of your vector get moved somewhere else the ith element is still the ith element.
+
+```c++
+void modify_while_iterating() {
+    std::vector<int> v{1, 2, 3, 4};
+
+    for (auto x : v){
+        v.push_back(x);
+    }
+
+    for (auto x: v) {
+        std::cout << x;
+    }
+    std::cout << '\n';
+}
+
+void modify_while_iterating() {
+    std::vector<int> v{1, 2, 3, 4};
+
+    for (auto it = v.begin(), end = v.end() ; it != end; ++i) {
+        v.push_back(*it);
+    }
+
+    for (auto x: v) {
+        std::cout << x;
+    }
+    std::cout << '\n';
+    }
+
+    void modify_while_iterating() {
+    std::vector<int> v{1, 2, 3, 4};
+
+    const std::size_t size = v.size();
+    for (std::size_t i = 0; i < size; ++i)
+        v.push_back(v[i]);
+
+    for (auto x: v) {
+        std::cout << x;
+    }
+    std::cout << '\n';
+}
+```
+
+19. Returning a **moved local variable**. I totally get where you're come from. A vector can be a large object and you don't want to make a copy of it. So, you go ahead and try to move it out. If you had just tried to return v directly, there would have been no copy and no move. In this situation, that's because of return value optimization. But what if the compiler can't do return value optimization. In all cases, the move is unnecessary. The compiler always knows that it can move a local variable. But in some cases, this actively prevents return value optimization. So, that's why this is one of the few rules where I can say you should just never do this.
+
+```c++
+std::vector<int> make_vector(const int n) {
+    std::vector<int> v{1, 2, 3, 4, 5};
+
+    // do whatever with vector
+
+    return std::move(v); // or return v;
+}
+
+std::vector<int> make_vector(const int n) {
+    std::vector<int> v{1, 2, 3, 4, 5};
+    std::vector<int> w{1, 2};
+
+    if (n == 0)
+        return std::move(v);
+    else
+        return std::move(w);
+}
+```
+
+20. Thinking that **move actually moves something**. Here is an implementation of standard move. The full templated definition might be a bit much to take in all at once. So, let's take a look just at the int case. Move takes in an int lvalue reference, static casts it to an rvalue reference and returns it. The exact same thing happens in the or value overload. It just static casts to an rvalue and returns it. A more accurate name for move is probably something like cast to rvalue.
+
+```c++
+template<typename T>
+constexpr std::remove_reference_t<T> &&
+move(T &&value) noexcept {
+    return static_cast<std::remove_reference_t<T> &&>(value);
+}
+
+constexpr int&&
+move(int &value) noexcept {
+    return static_cast<int &&>(value);
+}
+```
