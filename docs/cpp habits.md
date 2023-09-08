@@ -499,3 +499,157 @@ move(int &value) noexcept {
     return static_cast<int &&>(value);
 }
 ```
+
+21. Thinking that evaluation order is guaranteed to be left to right. Here's a famous example, we have a string that says, "but I have heard it works even if you don't believe in it". We replace the first four characters with the empty string. Then, we find even and replace it with only. Then, we find don't and delete it. With this reasoning, we should end up with: "I have heard it works only if you believe in it". But prior to C++ 17, the compiler is actually allowed to compute any sub-expression in any order. So theoretically, it could find the location of even first and then replace the first four characters making that location off by four. So, then when the second replace happens it would replace these four characters with only and you can see how this goes on you don't get the result you expected. Well, the good news is that as of C++ 17, this example is guaranteed. If yoiu have a.b, then a is guaranteed to be evaluated before b is. However, even in C++ 20, the order that function arguments are evaluated is still not guaranteed left to right. This wouldn't matter much if a b and c were pure function. But, if a b and c have side effects, then the order that they're called in might actually make a difference.
+
+```c++
+void function_evaluation_order_not_guaranteed() {
+    std::string s = "but i have heard it works even if you don't believe in it";
+
+    s.replace(0, 4, "")
+        .replace(s.find("even"), 4, "only")
+        .replace(s.find("don't"), 6, "");
+
+    std::string expected = "but i have heard it works even if you don't believe in it";
+}
+
+int a();
+int b();
+int c();
+int g(int, int, int);
+
+void function_evaluation_order_not_guaranteed() {
+    g(a(), b(), c());
+}
+```
+
+22. Using totally **unnecessary heap allocations** when a stack allocation would have been fine. Here, we create two customer records on the heap. Then, we do some work and then we end up deleting those variables at the end of function. The question we should ask ourselves is: Did this really need to be a heap allocation?
+There's a good chance it would have been fine if we just stack-allocated them. So, let's just say for the sake of argument that these objects are too big and you really do want them on the heap.
+> Don't use heap allocations when,
+> it's not really needed.
+> Heap allocations is slower than
+> Stack-allocations.
+
+```c++
+
+struct Record {
+    int id;
+    std::string name;
+};
+
+void unnecessary_heap_allocations() {
+    Record *customer = new Record{0, "James"};
+    Record *other = new Record{1, "Someone"};
+
+    // do work ...
+
+    delete customer;
+    delete other;
+}
+
+struct Record {
+    int id;
+    std::string name;
+};
+
+void unnecessary_heap_allocations() {
+    Record customer{0, "James"};
+    Record other{1, "Someone"};
+
+    // do work ...
+}
+```
+
+23. Not using **unique pointer and shared pointer** to do your heap allocations. What happens if an exception gets thrown in the middle here?
+Then, these deletes never occur and the memory is leaked. When you want to make sure that a resource is cleaned up, you need to put that cleanup code in a destructor. So, why don't we make a class that holds a pointer, and then in its destructor it deletes that pointer. Well, that's exactly what _unique_ptr_ does. You can give it a heap-allocated pointer and when it goes out of scope, it deletes is. A _shared pointer_ on the other hand uses a **reference-counting scheme**, similar to what you might have in a language like Python. When the reference count hits zero at the last shared pointer goes out of scope that shared pointer is in charge of the deletion. This scheme is much more expensive because reference incrementing and decrementing have to be done atomically.
+
+> Consider using unique_ptr and shared_ptr.
+> to ensure not going to leaked  memory.
+
+```c++
+
+struct Record {
+    int id;
+    std::string name;
+};
+
+void unnecessary_heap_allocations() {
+    Record *customer = new Record{0, "James"};
+    Record *other = new Record{1, "Someone"};
+
+    // do work  EXCEPTION <----
+
+    delete customer; // not worked and memory leaked
+    delete other; // same
+}
+
+struct Record {
+    int id;
+    std::string name;
+};
+
+void unnecessary_heap_allocations() {
+    auto customer = std::unique_ptr<Record>(new Record{0, "James"});
+    auto other = std::unique_ptr<Record>(new Record{1, "Someone"});
+
+    // do work  EXCEPTION <----
+}
+
+void unnecessary_heap_allocations() {
+    auto customer = std::shared_ptr<Record>(new Record{0, "James"});
+    auto other = std::shared_ptr<Record>(new Record{1, "Someone"});
+
+    // do work  EXCEPTION <----
+}
+```
+
+24. **Constructing a unique or shared pointer** directly instead of using make unique or make shared. make_unique and make_shared will pass your arguments directly to the constructor of your object.
+
+```c++
+
+struct Record {
+    int id;
+    std::string name;
+
+    Record(int id, std::string name) : id{id}, name{name} {}
+};
+
+void necessary_heap_allocations() {
+    auto customer = std::make_unique<Record>(0, "James");
+    auto other = std::make_shared<Record>(1, "Someone");
+
+    // do work  EXCEPTION <----
+}
+```
+
+25. Any use of **new** or **delete**. There's no reason to rewrite functionality that already exists. Here, I'm trying to manage the memory of some resource and then delete it when it's done. That's already what a unique pointer does. Don't try to couple the purpose of your class to the idea of ownership of an object. That's a completely separate issue. Unique pointer and shared pointer together cover pretty much every valid use of new or delete.
+
+```c++
+
+struct SomeResource {};
+
+class Widget {
+public:
+    widget() : meta{new SomeResource{}} {
+        // whatever
+    }
+    virtual ~Widget() {
+        delete meta;
+    }
+
+private:
+    SomeResource *meta;
+};
+
+struct SomeResource {};
+
+class Widget {
+public:
+    widget() : meta{std::make_unique<SomeResource>()} {
+        // whatever
+    }
+
+private:
+    std::unique_ptr<SomeResource> meta;
+};
+```
