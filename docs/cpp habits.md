@@ -653,3 +653,125 @@ private:
     std::unique_ptr<SomeResource> meta;
 };
 ```
+
+26. Any kind of attempt to do **manual resource management**. Thsi is pretty much the same story as with new and delete. If you find yourself manually freeing closing or releasing any kind of resource, then look to see if there's a class that does that automatically. By the way, this idea of having resource automatically close in a destructor is called RAII. It stands for **Resource Acquisition** Is Initialization. But it really has more to do with ensuring taht resources are released upon destruction.
+> Consider looking for a class that
+> automatically manage resource like RAII.
+
+```c++
+void read_from_a_file(char *name) {
+    FILE *fp = fopen(name, "r");
+    // ... work with file, EXCEPTION?
+    fclose(fp);
+}
+
+void read_from_a_file(char *name) {
+    std::ifstream input{name}; // RAII
+
+    // file will be closed
+}
+```
+
+27. Thinking that **raw pointers** are shomehow bad. Here's a basic max function. This function is just reading from the pointers. It doesn't care at all who's in charge of deleting them. If your function doesn't have anything to do with the ownership of the objects in question, then there's no need to use smart pointers. The convention is that raw pointers don't own what they're pointing to. And this should not be confused with the const-ness of the pointer. This add function adds the source into the destination. But this function is not in charge of the lifetime of either of the pointers. Of course, if you're interoperating with C code, code is not going to share this convention. A C-function might very well return some heap-allocated memory to you that it expects you to delete. Be careful though, if you've got a pointer with malloc you need to delete it with free. You can't just let unique try to delete it with the built-in delete. You can still use a unique pointer though. You just need to define your own deleter which uses free.
+
+```c++
+std::shared_ptr<int>
+max(std::shared_ptr<int> a, std::shared_ptr<int> b) {
+    return *a > *b ? a: b;
+}
+
+const int *
+max(const int *a, const int *b) {
+    return *a > *b ? a: b;
+}
+
+void add(int *dst, const int *src) {
+    *dst += *src;
+}
+
+char *some_c_function();
+
+void do_work() {
+    char *p = some_c_function();
+}
+
+int *some_c_function();
+
+void do_work() {
+    auto data = std::unique_ptr<int>(some_c_function());
+}
+
+int *some_c_function();
+
+struct FreeDeleter
+{
+    void operator()(void* X) {free(x)}
+};
+
+void do_work() {
+    auto data = std::unique_ptr<int, FreeDeleter>(some_c_function());
+}
+```
+
+28. Returning a **shared pointer** when you aren't sure the object is going to be shared. If a caller got a unique pointer, it's cheap and easy to convert it into a shared pointer if that's what they really need. They could even directly assign the unique pointer return value to a shared pointer. But if you return to them a shared pointer in the first place, the damage would already be done if all they really wanted was a unique pointer.
+
+```c++
+struct Pizza {...
+};
+
+std::shared_ptr<Pizza>
+make_shared_pepperoni_pizza(float diameter) {
+    std::vector<std::string> toppings = {"red sauce", "cheese", "pepperoni"};
+    return std::make_shared<Pizza>(diameter, std::move(toppings)); // why shared?
+}
+
+void convert_unique_to_shared_is_easy_and_cheap() {
+    auto Pizza = make_unique_pepperoni_pizza(16.0f);
+    std::shared_ptr<Pizza> shared_pizza = std::move(pizza);
+}
+
+void convert_unique_to_shared_is_easy_and_cheap() {
+    std::shared_ptr<Pizza> shared_pizza = make_unique_pepperoni_pizza(16.0f);
+}
+```
+
+29. Thinking that shared pointer is **thread-safe**. The reference counting part of the shared pointer is theard-safe. Here, I make a shared resource and pass it off to two worker threads. Because the reference counting is thread-safe, there's no danger that the object will fail to be deleted or be deleted twice. However, it's only the reference counting part that's atomic. This part here where we're accessing the x variable and the resource is not atomic and there's no locks. This is a plain old date race of two threads trying to modify the same memory. If you wnat to fix the data race, you need to fix it the way you'd fix any other data race.
+
+```c++
+struct Resource {
+    int x{};
+};
+
+void worker(std::shared_ptr<Resource> noisy) {
+    for (int i = 0; i < 50000; ++i)
+        noisy->x++;
+}
+
+void shared_ptr_is_NOT_threadsafe() {
+    auto r = std::make_shared<Resource>();
+    std::jthread t2(worker, r);
+    std::jthread t1(worker, r);
+    r.reset();
+}
+```
+
+30. Confusing a **const pointer with a pointer to const**. The concept of a const pointer versus pointer to const is pretty simple. But, a lot of newbies struggle to remember how to tell the difference between them symtacticlly. The rule is that const applies to whatever is immediatelly to its left. Unless it's leftmost thing, in which it applies to the thing to its right. So here, the cost applies to the int, not to the pointer. Here, the const applies to the int, not to the int.
+
+```c++
+void const_pointer_vs_pointer_to_const() {
+    int x = 0;
+    int y = 0;
+
+    const int *ptr1 = &x;
+    int const *ptr2 = &x;
+    int *const ptr3 = &x;
+}
+```
+
+31. Ignoring **compiler warnings**. Ignoring them or turning them off very frequently leads to undefined behavior.
+> don't ignore any compiler message.
+
+I hope you enjoyed this list of newbie C++ habits. As always thank you very much for take time and enjoy them.
+
+### _REFERENCES_
+1. [youtube](https://www.youtube.com/watch?v=i_wDa2AS_8w)
