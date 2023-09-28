@@ -18,48 +18,42 @@ Or use
 cmake -DCMAKE_BUILD_TYPE=Debug -S . -B build/debug && cd ./build/debug/ && make && ./main && ../../
 ```
 
-- This command will run the project with `release` mode and with optimization level `3`.
+<!-- - This command will run the project with `release` mode and with optimization level `3`. -->
 
-```sh
-cmake -DCMAKE_BUILD_TYPE=Release -S . -B build/release && cd ./build/release/ && make && ./main && ../../
-```
+<!-- ```sh -->
+<!-- cmake -DCMAKE_BUILD_TYPE=Release -S . -B build/release && cd ./build/release/ && make && ./main && ../../ -->
+<!-- ``` -->
 
-### clangd server
+<!-- ### clangd server -->
 
-Every build module using `cmake` you need to remove the simlink of
-`compile_commands.json` and create a new simlink to know about the new module
-or added `c++` files that you added.
+<!-- Every build module using `cmake` you need to remove the simlink of -->
+<!-- `compile_commands.json` and create a new simlink to know about the new module -->
+<!-- or added `c++` files that you added. -->
 
-```sh
-rm compile_commands.json && ln -s build/debug/compile_commands.json compile_commands.json
-```
+<!-- ```sh -->
+<!-- rm compile_commands.json && ln -s build/debug/compile_commands.json compile_commands.json -->
+<!-- ``` -->
 
-## Previous build for project intialization
+<!-- ## Previous build for project intialization -->
+<!-- The following command for running the project at first time without any dependencies or modules. -->
 
-The following command for running the project at first time without any dependencies or modules.
+<!-- ### In Debugging Mode -->
+<!-- ```sh -->
+<!-- cmake -DCMAKE_BUILD_TYPE=Debug -S . -B build/debug -->
+<!-- ``` -->
 
-### In Debugging Mode
+<!-- ### In Release Mode -->
+<!-- ```sh -->
+<!-- cmake -DCMAKE_BUILD_TYPE=Release -S . -B build/release -->
+<!-- ``` -->
 
-```sh
-cmake -DCMAKE_BUILD_TYPE=Debug -S . -B build/debug
-```
+<!-- ## How to build and Run CLI -->
+<!-- ### In Debugging Mode -->
+<!-- ```sh -->
+<!-- clang++ -std=c++17 -Wall -Wextra -g -o build/Debug/main src/main.cpp && build/debug/main -->
+<!-- ``` -->
 
-### In Release Mode
-
-```sh
-cmake -DCMAKE_BUILD_TYPE=Release -S . -B build/release
-```
-
-## How to build and Run CLI
-
-### In Debugging Mode
-
-```sh
-clang++ -std=c++17 -Wall -Wextra -g -o build/Debug/main src/main.cpp && build/debug/main
-```
-
-### In Release Mode
-
-```sh
-clang++ -std=c++17 -O3 -o build/Release/main src/main.cpp && build/release/main
-```
+<!-- ### In Release Mode -->
+<!-- ```sh -->
+<!-- clang++ -std=c++17 -O3 -o build/Release/main src/main.cpp && build/release/main -->
+<!-- ``` -->

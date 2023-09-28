@@ -62,6 +62,7 @@ void train_model(const std::vector<int> &data, auto &model){
         model.update(x);
 }
 ```
+
 4. Using a **loop** when **standard algorith** already exists to do what you're trying to do. There's some simple thing that you want to do like find the index of the first positive number in vector. It's so simple though you decided to just write it by yourself. Instead, consider if there's an algorithm that already does what you're to do. In this case, we can use **std::find_if** to find where the first positive element is.
 > First, looking for standard algorithm,
 > to do what you need.
