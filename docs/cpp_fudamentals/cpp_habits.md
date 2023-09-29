@@ -1,12 +1,24 @@
 # Habits You Need to Ditch in C++
 
+
+<!-- vim-markdown-toc Marked -->
+
+* [**Introduction**](#**introduction**)
+* [_REFERENCES_](#_references_)
+
+<!-- vim-markdown-toc -->
+
 ---
 
-#### **Introduction**
+## **Introduction**
 
-Welcome to the list of newbie C++ habits, C++ is an incredibly complex language with a lot of history, so whether you need to get actual programming with you really needs to look out for these things or whether you just want to improve your code a little bit, **_let's get started._**
+Welcome to the list of newbie C++ habits, C++ is an incredibly complex language
+with a lot of history, so whether you need to get actual programming with you
+really needs to look out for these things or whether you just want to improve
+your code a little bit, **_let's get started._**
 
 1. Using Namespace std, people generally use it to save typing like **cout** instead of **std::cout** or **string** instead of **std::string**. If it's limited to just a single function that might not be that bad but, let's be honest it's usually used at the global level even worse, if you do this in a header file then you also force this choice upon every one uses your code.
+
    > Please don't do this in a header file.
    > Consider just using the names that you,
    > actually use.
@@ -787,6 +799,6 @@ void const_pointer_vs_pointer_to_const() {
 
 I hope you enjoyed this list of newbie C++ habits. As always thank you very much for take time and enjoy them.
 
-### _REFERENCES_
+## _REFERENCES_
 
 1. [youtube](https://www.youtube.com/watch?v=i_wDa2AS_8w)

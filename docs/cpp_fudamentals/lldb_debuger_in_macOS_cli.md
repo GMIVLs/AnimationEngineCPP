@@ -1,10 +1,17 @@
 # LLDB Debugger in MacOS for CPP - Using lldb command line
 
-### keywords
+<!-- vim-markdown-toc GitLab -->
 
-#debug, #cpp , #lldb, #cli, #debugging,
-Part of [[CPP Concepts#Debugging in CPP]]
+* [Content](#content)
+* [Example Project](#example-project)
+    * [Step-1 Build your binary](#step-1-build-your-binary)
+    * [Step-2 Running the LLDB](#step-2-running-the-lldb)
+    * [Step-3 Set a breakpoint](#step-3-set-a-breakpoint)
+    * [Setup-4 Run again](#setup-4-run-again)
+* [Other command line for lldb very much useful](#other-command-line-for-lldb-very-much-useful)
+* [References](#references)
 
+<!-- vim-markdown-toc -->
 ## Content
 
 How to run a debugging in command line using the `lldb` which is used to
@@ -18,7 +25,14 @@ an example to make it easy to be used later.
 
 ### Step-1 Build your binary
 
-- [x] It is very important to use the flag `-g` for your complier, later I discovered that if you don't use it the setting breakpoint for the `lldb` will not work. Its crucial to add this flag > When you don't compile with the `-g` flag, the generated binary lacks all this essential debug information. Consequently, trying to set a breakpoint on a specific line of source code would be meaningless to the debugger, as it wouldn't have the mapping from that line to a specific location in the binary. That's why you encounter issues when trying to debug a binary that hasn't been compiled with debug information.
+- [x] It is very important to use the flag `-g` for your complier, later I
+      discovered that if you don't use it the setting breakpoint for the `lldb` will
+      not work. Its crucial to add this flag > When you don't compile with the `-g`
+      flag, the generated binary lacks all this essential debug information.
+      Consequently, trying to set a breakpoint on a specific line of source code
+      would be meaningless to the debugger, as it wouldn't have the mapping from that
+      line to a specific location in the binary. That's why you encounter issues when
+      trying to debug a binary that hasn't been compiled with debug information.
 
 ```sh
 clang++ -std=c++17 -g ./src/main.cpp -o ./build/debug/main && ./build/debug/main
