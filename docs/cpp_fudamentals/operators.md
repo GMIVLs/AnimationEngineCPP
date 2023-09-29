@@ -25,11 +25,11 @@ The `::` symbol in C++ is known as the "scope resolution operator". Here's a tab
 Here's a continuation of the table, now including all of C++'s binary operators:
 
 | **Operator** | **Usage** | **Description**                                                                                                | **Example**                              | **Command/Effect**                                                 |
-| ------------ | --------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------ | --------------- | ------------------ | ---------------------------------- |
+| ------------ | --------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------ |
 | `<<`         | `x << n`  | **Left Shift**: Shifts the bits of `x` to the left by `n` positions. Rightmost `n` bits are filled with zeros. | `int x = 5; int result = x << 2; // 20`  | `0101` shifted left by 2 positions becomes `10100`                 |
 | `>>`         | `x >> n`  | **Right Shift**: Shifts bits of `x` to the right by `n` positions. Behavior depends on sign of `x` and type.   | `int x = 20; int result = x >> 2; // 5`  | `10100` shifted right by 2 positions becomes `0101`                |
 | `&`          | `x & y`   | **Bitwise AND**: Performs a bitwise AND operation on the operands.                                             | `int result = 5 & 3; // result is 1`     | `0101` AND `0011` results in `0001`                                |
-| `            | `         | `x                                                                                                             | y`                                       | **Bitwise OR**: Performs a bitwise OR operation on the operands.   | `int result = 5 | 3; // result is 7` | `0101` OR `0011` results in `0111` |
+| `\|`         | `x \| y`  | **Bitwise OR**: Performs a bitwise OR operation on the operands.                                               | `int result = 5 \| 3; // result is 7`    | `0101` OR `0011` results in `0111`                                 |
 | `^`          | `x ^ y`   | **Bitwise XOR**: Performs a bitwise exclusive OR operation on the operands.                                    | `int result = 5 ^ 3; // result is 6`     | `0101` XOR `0011` results in `0110`                                |
 | `~`          | `~x`      | **Bitwise NOT**: Flips all the bits of the operand.                                                            | `int result = ~5; // platform-dependent` | Flips each bit of `0101`, result might be `1010` for an 8-bit int. |
 | `+`          | `x + y`   | **Addition**: Adds two numbers.                                                                                | `int result = 5 + 3; // result is 8`     | Adds 5 and 3, results in 8                                         |
@@ -37,6 +37,13 @@ Here's a continuation of the table, now including all of C++'s binary operators:
 | `*`          | `x * y`   | **Multiplication**: Multiplies two numbers.                                                                    | `int result = 5 * 3; // result is 15`    | Multiplies 5 by 3, results in 15                                   |
 | `/`          | `x / y`   | **Division**: Divides the first operand by the second.                                                         | `int result = 5 / 3; // result is 1`     | Divides 5 by 3, results in 1 (integer division)                    |
 | `%`          | `x % y`   | **Modulo**: Returns the remainder of the division of the first operand by the second.                          | `int result = 5 % 3; // result is 2`     | Divides 5 by 3, remainder is 2                                     |
+
+**Notes**:
+
+1. **Division by Zero**: Both the `/` and `%` operators will cause undefined behavior if the second operand is zero.
+2. **Bitwise Operations**: The bitwise operations (`&`, `|`, `^`, `~`, `<<`, `>>`) operate on the individual bits of their operands.
+3. **Signedness**: The behavior of the shift operators and the `~` operator can vary depending on whether the operands are signed or unsigned. Always be cautious and understand the context in which you're using them.
+4. **Operator Overloading**: C++ allows user-defined types (e.g., classes) to provide custom implementations for these operators. This means they can perform different operations when used with objects of those types.
 
 **Notes**:
 
