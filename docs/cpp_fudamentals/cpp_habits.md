@@ -799,6 +799,9 @@ void const_pointer_vs_pointer_to_const() {
 
 I hope you enjoyed this list of newbie C++ habits. As always thank you very much for take time and enjoy them.
 
+
+
+
 ## _REFERENCES_
 
 1. [youtube](https://www.youtube.com/watch?v=i_wDa2AS_8w)

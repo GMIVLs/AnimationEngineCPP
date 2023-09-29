@@ -1,4 +1,5 @@
 # Build Type in CPP
+
 keyword: static, dynamic, framework
 
 Here's a table that compares dynamic libraries and static libraries in various aspects:
@@ -34,6 +35,37 @@ Here's a table that compares dynamic libraries and static libraries in various a
 - **Note**: The "Compilation Time" aspect is a general observation and the actual
   compilation time can vary based on the size of the library, the number of
   dependencies, and the specific system and build setup.
+
+## More details
+
+**Static Linking** and **Dynamic Linking** are two processes of collecting and
+combining multiple object files to form a single executable.
+
+1. In **static linking**, all library routines used by a program are copied
+   into the program's binary file during the linking phase. This makes the
+   executable file self-contained, it can run independently without any external
+   dependencies. But the disadvantage is the larger file size and possible
+   duplication of code if multiple programs use the same library.
+2. In **dynamic linking**, the linker doesn't copy the library routines into
+   the executable file. Instead, references to the library routines are made in
+   the executable file. The actual linking happens at runtime when both the
+   executable and the library are in memory. Dynamic linking reduces the size of
+   the executable and allows library routines to be shared among multiple
+   programs, reducing memory usage.
+
+- The extension for libraries and executable files differ depending on the
+  operating system.
+  - **Windows**: Static libraries usually have a `.lib` extension and dynamic
+    libraries use the `.dll` (Dynamic Link Library) extension. Executables
+    typically have `.exe` extensions.
+  - **Linux**: Static libraries typically have a `.a` (archive) extension, and
+    dynamic libraries have a `.so` (shared object) extension. Executables don't
+    have a required extension in Linux.
+  - **Mac**: Static libraries typically have a `.a` extension, and dynamic
+    libraries have a `.dylib` extension. Similar to Linux, executables don't have
+    a required extension in macOS.
+
+These are just the usual conventions. It's possible to configure the build process to use other extensions or even no extensions at all.
 
 ## Hello World library - both as static and dyanmic
 
@@ -134,7 +166,7 @@ offering a structure and foundation for building applications.
    Apple devices with the power of Swift.
 3. **Desktop Development**: Qt is a free and open-source widget toolkit for
    creating GUIs as well as cross-platform applications that run on various
-software and hardware platforms.
+   software and hardware platforms.
 
 ### Using Frameworks in CMakeLists.txt
 
@@ -165,7 +197,7 @@ g++ main.cpp -F /path/to/framework/directory -framework MyFramework -o my_app
 ```
 
 - In the above, `-F` specifies the path to search for frameworks and
-`-framework` is used to link against a specific framework.
+  `-framework` is used to link against a specific framework.
 
 ### Features, Usages, and Common Practices for Frameworks:
 
@@ -190,9 +222,187 @@ g++ main.cpp -F /path/to/framework/directory -framework MyFramework -o my_app
 | **SceneKit/SpriteKit** | Graphics rendering and animation infrastructure for creating 3D (SceneKit) and 2D (SpriteKit) graphics. | Game development and 3D/2D graphics on macOS/iOS.                      |
 
 - Frameworks serve as a foundational layer or a scaffold upon which developers
-build their applications. They provide a consistent and structured way to build
-applications, enabling developers to focus on the unique aspects of their
-application rather than the repetitive or common functionalities.
+  build their applications. They provide a consistent and structured way to build
+  applications, enabling developers to focus on the unique aspects of their
+  application rather than the repetitive or common functionalities.
 
+## Static Linking vs Dynamic Linking
 
+Static linking and dynamic linking are two methods of linking libraries to an
+application. Each method has its pros and cons, and the choice between them
+often depends on the specific requirements of the application or the
+preferences of the developer. Here's a comparison between static and dynamic
+linking, along with the file extensions associated with each for macOS,
+Windows, and Linux:
 
+## Static Linking:
+
+#### Advantages:
+
+1. **Portability**: The application can run on any system without needing
+   external libraries since all dependencies are included within the
+   executable.
+2. **Simplified Distribution**: No need to manage and ship shared libraries
+   separately.
+3. **Stable Versioning**: Your application will always use the version of the
+   library it was linked with, avoiding potential issues with incompatible
+   library updates.
+
+#### Disadvantages:
+
+1. **Larger Executable Size**: All required library code is embedded in the
+   application, making the binary size larger.
+2. **No Shared Memory**: Multiple applications using the same library can't
+   share a single in-memory copy of the library.
+3. **Update Difficulties**: To update a library, you have to recompile and
+   redistribute the entire application.
+
+#### File Extensions:
+
+- **macOS**: `.a` (archive libraries)
+- **Windows**: `.lib` (when used as a static library)
+- **Linux**: `.a`
+
+## Dynamic Linking:
+
+#### Advantages:
+
+1. **Smaller Executable Size**: The application only includes references to
+   external shared libraries, not the library code itself.
+2. **Shared Memory**: Multiple applications can share a single in-memory copy
+   of the library, saving memory.
+3. **Easier Updates**: Library updates can be made without needing to recompile
+   applications that use them, as long as the library remains
+   backward-compatible.
+
+#### Disadvantages:
+
+1. **Dependency Management**: The application requires external shared
+   libraries to run. If a required library is missing or incompatible, the
+   application will fail to start.
+2. **Versioning Issues**: If an application expects a specific version of a
+   library and the system has a different, incompatible version, the
+   application might not work correctly.
+3. **Potential Security Risks**: If an attacker replaces the shared library
+   with a malicious version, applications using that library could be
+   compromised.
+
+#### File Extensions:
+
+- **macOS**: `.dylib`
+- **Windows**: `.dll` (Dynamic Link Library)
+- **Linux**: `.so` (Shared Object)
+
+In summary, the choice between static and dynamic linking will depend on the
+specific needs of your project. If you prioritize a self-contained, portable
+application without external dependencies, static linking might be the way to
+go. On the other hand, if you want a smaller executable size and easier library
+updates, dynamic linking could be a better choice.
+
+#### Can youy create simple library and link it using static then dynamicc?
+
+Here's a step-by-step guide on creating a simple library, followed by
+instructions on how to link it both statically and dynamically, specifically
+for macOS:
+
+### 1. Creating the Library:
+
+Let's create a simple library that provides a function to square a number.
+
+**mathlib.h**:
+
+```c
+#ifndef MATHLIB_H
+#define MATHLIB_H
+
+int square(int x);
+
+#endif
+```
+
+**mathlib.c**:
+
+```c
+#include "mathlib.h"
+
+int square(int x) {
+    return x * x;
+}
+```
+
+### 2. Static Linking:
+
+Compile the source file to an object file, then create a static library:
+
+```bash
+gcc -c mathlib.c -o mathlib.o
+ar rcs libmathlib.a mathlib.o
+```
+
+This will produce a static library file named `libmathlib.a`.
+
+Now, let's create a simple program that uses the library.
+
+**main.c**:
+
+```c
+#include <stdio.h>
+#include "mathlib.h"
+
+int main() {
+    printf("Square of 5: %d\n", square(5));
+    return 0;
+}
+```
+
+Compile the main program and link it with the static library:
+
+```bash
+gcc main.c -L. -lmathlib -o main
+```
+
+Run the program:
+
+```bash
+./main
+```
+
+This should output `Square of 5: 25`.
+
+### 3. Dynamic Linking:
+
+To create a dynamic library:
+
+```bash
+gcc -shared -o libmathlib.dylib mathlib.c
+```
+
+This will produce a dynamic library named `libmathlib.dylib`.
+
+Compile the main program and link it with the dynamic library:
+
+```bash
+gcc main.c -L. -lmathlib -o main
+```
+
+Before running the program, you need to ensure the OS knows where to find your
+dynamic library. You can temporarily set the library path as:
+
+```bash
+export DYLD_LIBRARY_PATH=.:$DYLD_LIBRARY_PATH
+```
+
+Run the program:
+
+```bash
+./main
+```
+
+Again, this should output `Square of 5: 25`.
+
+Remember, static libraries (`.a` files) include the library's code directly in
+the application, resulting in a standalone executable. Dynamic libraries
+(`.dylib` files), on the other hand, are separate files that the application
+loads at runtime, which means they need to be accessible to the application
+either via standard library paths or through paths like `DYLD_LIBRARY_PATH` for
+macOS.

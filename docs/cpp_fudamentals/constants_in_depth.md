@@ -3,6 +3,8 @@
 <!-- vim-markdown-toc GitLab -->
 
 * [Examples](#examples)
+* [What are the differences of](#what-are-the-differences-of)
+    * [Changing the memeory address of each in the example above](#changing-the-memeory-address-of-each-in-the-example-above)
 
 <!-- vim-markdown-toc -->
 
@@ -73,3 +75,93 @@ char const * my_string = "This is as close to a string primitive as you can get"
   behavior, meaning it may work on some compilers and crash on others. It's good
   practice to always use `const` with string literals to avoid this undefined
   behavior.
+
+## What are the differences of
+
+Now lets examine the `types of constant` as shown in the code below.
+
+```cpp
+const char* const NAME = "Bruce Sutherland";
+const char* BOOK = "Learn C++ Game Development";
+char* const YEAR = "2014";
+```
+
+The code you've provided involves pointers and `const` qualifiers. Let's break
+down each line and understand the output differences:
+
+```cpp
+const char* const NAME = "Bruce Sutherland";
+```
+
+Here, `NAME` is a constant pointer to a constant character (C-style string). This means:
+
+- You cannot modify the memory pointed to by `NAME`.
+- You cannot modify the value of `NAME` itself (i.e., you cannot make it point to a different memory location).
+- The string "Bruce Sutherland" is stored in read-only memory.
+
+```cpp
+const char* BOOK = "Learn C++ Game Development";
+```
+
+Here, `BOOK` is a pointer to a constant character (C-style string). This means:
+
+- You cannot modify the memory pointed to by `BOOK`.
+- You can change the value of `BOOK` to point to a different C-style string.
+- The string "Learn C++ Game Development" is stored in read-only memory.
+
+```cpp
+char* const YEAR = "2014";
+```
+
+Here, `YEAR` is a constant pointer to a character (C-style string). This means:
+
+- You can modify the memory pointed to by `YEAR`.
+- You cannot modify the value of `YEAR` itself (i.e., you cannot make it point to a different memory location).
+- The string "2014" is stored in read-only memory.
+
+In summary:
+
+- `NAME` and `BOOK` are both constant pointers to constant characters, so you
+  cannot modify the memory they point to, and you cannot change their values.
+- `YEAR` is a constant pointer to a character, so you can modify the memory it
+  points to, but you cannot change its value (i.e., you cannot make it point to a
+  different memory location).
+
+Please note that attempting to modify read-only memory can lead to undefined behavior and crashes.
+
+### Changing the memeory address of each in the example above
+
+Let's go through each case and see how we can modify the memory
+address or the value for each scenario.
+
+1. **`const char* const NAME = "Bruce Sutherland";`**
+   Since both the pointer and the pointed-to data are constants, you cannot
+   change either the memory address or the value directly. However, you can
+   achieve similar behavior by using an array and `strcpy` function to copy the
+   content:
+
+```cpp
+const char newName[] = "John Smith";
+strcpy(const_cast<char*>(NAME), newName);
+```
+
+2. **`const char* BOOK = "Learn C++ Game Development";`**
+   You can change the pointer's memory address to point to a different C-style string:
+
+```cpp
+const char newBook[] = "Programming Concepts";
+BOOK = newBook;
+```
+
+3. **`char* const YEAR = "2014";`**
+   You can modify the memory content but not the memory address (as it's a constant pointer). To change the value:
+
+```cpp
+YEAR[0] = '2'; // Change '2' from "2014" to "2014"
+```
+
+Please be aware that modifying read-only memory (as in the first case) or
+changing the memory address of a string literal (as in the second case) can
+lead to undefined behavior and should be done with caution. It's generally
+safer to use mutable data structures or `std::string` for scenarios where you
+need to modify strings.

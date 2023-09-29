@@ -126,6 +126,36 @@ various keywords used:
   related to class definitions. There are many other C++ keywords and
   class-related features not shown here.
 
+## How to allow the constructor to accept assignment for x and y and if not then they will be zero?
+
+You can modify the constructor of the `Vector2D` class to accept default
+arguments which would be `0` in case the user doesn't provide any. Here's how
+to do it:
+
+```cpp
+template <class T>
+class Vector2D {
+public:
+    T x, y;
+    Vector2D(T x = T(), T y = T()) : x(x), y(y) {}  // Constructor with default arguments
+
+    // remaining class methods...
+};
+```
+
+Now you can create `Vector2D` objects in several ways:
+
+```cpp
+Vector2D<float> vec1;  // x and y are 0.0f
+Vector2D<float> vec2(1.2f);  // x is 1.2f, y is 0.0f
+Vector2D<float> vec3(1.2f, 3.4f);  // x is 1.2f, y is 3.4f
+```
+
+In the code above, `T()` is used to provide a default value for the type `T`.
+For numeric types like `int`, `float`, `double` etc., `T()` gives `0` or `0.0f`
+etc. It gives an empty string for `std::string`, and so on. It's essentially
+the same as default-constructing an instance of the type `T`.
+
 ## Typical Class with all possible keywords
 
 ```cpp

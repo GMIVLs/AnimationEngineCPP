@@ -12,6 +12,208 @@
 
 <!-- markdown-toc end -->
 
+## String in cpp all methods
+
+In C++, the `string` class is a part of the Standard Library, defined in the
+header file `<string>`. It represents a sequence of characters and provides
+various methods to manipulate and query strings. The `string` class simplifies
+many of the complexities of working with raw C-style character arrays.
+
+Here's an overview of the `string` class in C++, including its methods and common ways to use it:
+
+### **Construction**:
+
+- Default constructor: `string()`
+- Copy constructor: `string(const string& str)`
+- Substring constructor: `string(const string& str, size_t pos, size_t len = npos)`
+- From C-string: `string(const char* s)`
+- Repeat character: `string(size_t n, char c)`
+
+### **Element Access**:
+
+- `at(size_t pos)`: Returns character at the specified position.
+- `operator[]`: Access character at a specified position.
+- `front()`: Returns the first character.
+- `back()`: Returns the last character.
+- `c_str()`: Returns a C-style character string.
+- `data()`: Returns a pointer to the string data.
+
+### **Modifiers**:
+
+- `append()`: Append string.
+- `push_back()`: Append character.
+- `assign()`: Assign new content to the string.
+- `insert()`: Insert content.
+- `erase()`: Erase characters.
+- `replace()`: Replace part of the string.
+- `swap()`: Swap string values.
+- `pop_back()`: Deletes the last character.
+
+### **Capacity**:
+
+- `size()` or `length()`: Return length.
+- `resize()`: Change the size.
+- `capacity()`: Returns the size of allocated storage.
+- `reserve()`: Request a change in capacity.
+- `clear()`: Clears the string.
+- `empty()`: Checks if the string is empty.
+- `shrink_to_fit()`: Reduces memory usage by freeing unused memory.
+
+### **Operations**:
+
+- `substr()`: Returns a substring.
+- `copy()`: Copy sequence of characters from string.
+- `c_str()`: Returns a null-terminated character sequence.
+- `find()`: Find content in string.
+- `rfind()`: Find last occurrence of content in string.
+- `find_first_of()`: Find character in string.
+- `find_last_of()`: Find the last character in string.
+- `find_first_not_of()`: Find character not in string.
+- `find_last_not_of()`: Find the last character not in the string.
+- `compare()`: Compare strings.
+
+### **Relational Operators**:
+
+Strings can be compared using relational operators like `==`, `!=`, `<`, `<=`, `>`, and `>=`.
+
+### **Iterators**:
+
+- `begin()`: Returns an iterator pointing to the first character.
+- `end()`: Returns an iterator pointing to the past-the-end character.
+- `rbegin()`, `rend()`: Reverse iterators.
+- `cbegin()`, `cend()`, `crbegin()`, `crend()`: Constant iterators.
+
+### **Numeric Conversions**:
+
+- `stoi()`: Convert string to integer.
+- `stol()`, `stoll()`: Convert string to long and long long.
+- `stof()`, `stod()`, `stold()`: Convert string to float, double, and long double.
+- `to_string()`: Convert numeric types to string.
+
+### **Allocator**:
+
+- `get_allocator()`: Returns the allocator object.
+
+### **Member Constants**:
+
+- `npos`: Represents the maximum size of the string, used for "until the end of the string" in various methods.
+
+### Common Usage Patterns:
+
+1. **String Concatenation**:
+
+   ```cpp
+   string hello = "Hello";
+   string world = " World!";
+   string greeting = hello + world;
+   ```
+
+2. **String Iteration**:
+
+   ```cpp
+   for(char c : greeting) {
+       cout << c;
+   }
+   ```
+
+3. **Substrings and Searching**:
+
+   ```cpp
+   size_t pos = greeting.find("World");
+   string sub = greeting.substr(pos, 5);
+   ```
+
+4. **Conversion**:
+   ```cpp
+   string numStr = "12345";
+   int num = stoi(numStr);
+   ```
+
+This overview covers most of the string class's capabilities in C++. However,
+the best way to fully understand and grasp its depth is to refer to the
+official documentation or a C++ reference and try out various methods and
+operations for yourself.
+
+## Explain the char and sting lateral in general
+
+Certainly! Let's delve into string literals and character literals in C++.
+
+### Character Literals:
+
+A character literal represents a single character and is enclosed in single
+quotes. In C++, a character literal has type `char`.
+
+Examples:
+
+- `'a'`
+- `'1'`
+- `'%'`
+
+There are also some special character literals called escape sequences:
+
+- `'\n'`: Newline
+- `'\t'`: Tab
+- `'\r'`: Carriage return
+- `'\''`: Single quote
+- `'\"'`: Double quote
+- `'\0'`: Null character
+- `'\b'`: Backspace
+
+#### Wide and Unicode Character Literals:
+
+- `wchar_t` is used for wide character literals and is prefixed by `L`, e.g.,
+  `L'Z'`.
+- C++11 introduced `char16_t` for UTF-16 encoded characters with prefix `u`,
+  e.g., `u'Z'` and `char32_t` for UTF-32 encoded characters with prefix `U`,
+  e.g., `U'Z'`.
+
+### String Literals:
+
+A string literal is a sequence of characters surrounded by double quotes. The
+compiler appends a null character (`'\0'`) to every string literal, making it a
+null-terminated string.
+
+Examples:
+
+- `"Hello, World!"`
+- `"C++ Programming"`
+- `"12345"`
+
+Similar to character literals, string literals also support escape sequences:
+
+- `"This is a string with a newline character.\n"`
+
+#### Raw String Literals:
+
+C++11 introduced raw string literals that allow you to write string literals
+without escaping characters. This is particularly useful for regex patterns,
+path specifications, or any multi-line string content. They are denoted by `R`
+and surrounded by `"( )"`.
+
+Example:
+
+- `R"(This is a "raw" string. No need to escape the "double quotes".)"`
+- `R"(C:\Path\To\Directory)"` (notice no need to double backslash)
+
+#### Wide and Unicode String Literals:
+
+- Wide string literals use `wchar_t` and are prefixed by `L`, e.g., `L"Hello"`.
+- UTF-8 string literals (C++11) use `char` and are prefixed by `u8`, e.g., `u8"Hello"`.
+- UTF-16 string literals use `char16_t` and are prefixed by `u`, e.g., `u"Hello"`.
+- UTF-32 string literals use `char32_t` and are prefixed by `U`, e.g., `U"Hello"`.
+
+### Distinction Between String Literals and `std::string`:
+
+It's crucial to understand that string literals (e.g., `"Hello"`) are of type `const char[]`. On the other hand, the `std::string` type from the C++ Standard Library is a class designed to handle strings, providing many utility functions. They can be implicitly converted, so you often see them being used interchangeably:
+
+```cpp
+#include <string>
+
+std::string str = "This is a string literal assigned to a std::string object.";
+```
+
+In the example above, the string literal `"This is a string literal assigned to a std::string object."` is automatically converted to a `std::string` object.
+
 ## Types of string - Commonly used
 
 Extended table for `string` in `C++`.
@@ -156,3 +358,218 @@ Certainly, let's ensure the table is comprehensive. I'll add a few more scenario
 
 - This table should now provide a comprehensive overview of the different ways
   you can represent and work with strings in C++.
+
+## Libraries dealing with string
+
+| Library                                        | Description                                                                                  |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| **Boost.StringAlgo & Boost.StringView**        | Part of the Boost library, they offer functions and classes for string manipulations.        |
+| **ICU (International Components for Unicode)** | A comprehensive library for Unicode support, text processing, regular expressions, and more. |
+| **UTF8-CPP**                                   | Header-only library for encoding and decoding UTF-8 strings.                                 |
+| **fmt (previously cppformat/fmtlib)**          | Modern string formatting library, an alternative to printf and sprintf.                      |
+| **RE2**                                        | Highly efficient, memory-safe regular expression library.                                    |
+| **CTRE (Compile Time Regular Expressions)**    | Allows for regex matching at compile-time for potential performance benefits.                |
+| **abseil (from Google)**                       | Collection of C++ libraries with utilities for string operations among others.               |
+
+## What is char\* argv[] is there another way to declare this ?
+
+The expression `char* argv[]` is used in the main function of a C++ program to
+represent the command line arguments passed to the program. Here, `argv` is an
+array of pointers to `char`, where each pointer points to a null-terminated
+string (a C-style string). The size of the array is determined by the number of
+arguments passed to the program (including the program name itself).
+
+The declaration `char* argv[]` can also be written as `char** argv`. These two
+declarations are equivalent in this context. Here's how:
+
+- `char* argv[]` is an array of `char` pointers.
+- `char** argv` is a pointer to a `char` pointer, and it can also point to an array of `char` pointers.
+
+In both cases, `argv` can be indexed like an array to access the individual
+command-line arguments, and these arguments can be accessed as null-terminated
+strings. So, you can declare the main function with either of these equivalent
+forms:
+
+```cpp
+int main(int argc, char* argv[]) { /* ... */ }
+```
+
+or
+
+```cpp
+int main(int argc, char** argv) { /* ... */ }
+```
+
+In both cases, `argc` is the count of command-line arguments, and `argv` is an
+array of the arguments themselves as C-style strings.
+
+## Can you loop over these both show me an example ?
+
+Sure, here's an example of how you can loop over `argv` using either `char*
+argv[]` or `char** argv`. Both examples do exactly the same thing: they print
+each command-line argument on a separate line.
+
+1. Using `char* argv[]`:
+
+```cpp
+#include <iostream>
+
+int main(int argc, char* argv[]) {
+    for (int i = 0; i < argc; i++) {
+        std::cout << "Argument " << i << ": " << argv[i] << std::endl;
+    }
+    return 0;
+}
+```
+
+2. Using `char** argv`:
+
+```cpp
+#include <iostream>
+
+int main(int argc, char** argv) {
+    for (int i = 0; i < argc; i++) {
+        std::cout << "Argument " << i << ": " << argv[i] << std::endl;
+    }
+    return 0;
+}
+```
+
+- In both cases, if you run the program with some command-line arguments, it
+  will print each argument along with its position in the `argv` array.
+- The `argc` is the number of command-line arguments (including the name of the
+  program itself as the first argument), and `argv` is an array of those
+  arguments as C-style strings. This is why we can use a loop to go through each
+  argument in the `argv` array, from `argv[0]` (which is the program name) to
+  `argv[argc-1]` (which is the last command-line argument).
+
+### More Examples
+
+Sure, here are several ways to create a string of characters in C++, including using C-style methods:
+
+1. Using C++ Standard Library:
+
+```cpp
+#include <string>
+
+std::string str1 = "Hello, World!";
+std::string str2("C++ Strings");
+```
+
+2. Using C-style character array (null-terminated string):
+
+```cpp
+char cstr1[] = "Hello, C-style!";
+char cstr2[12] = "C-Strings";
+```
+
+3. Using string concatenation:
+
+```cpp
+std::string concat = str1 + " " + str2;
+```
+
+4. Using C-style string functions:
+
+```cpp
+char cstr3[50];
+strcpy(cstr3, "Copying C-string");
+
+char cstr4[50];
+sprintf(cstr4, "Formatted %s", "C-string");
+```
+
+5. Using string literals:
+
+```cpp
+const char* str_literal = "String Literal";
+```
+
+While C-style strings are familiar, they can be error-prone due
+to issues like buffer overflows. Using `std::string` from the C++ Standard
+Library is safer and more flexible.
+
+### More Examples
+
+```cpp
+#include <iostream>
+#include <cstring>
+
+// Function to modify and return the updated string
+char* appendText(char* input, const char* additional) {
+    int inputLength = strlen(input);
+    int additionalLength = strlen(additional);
+
+    char* result = new char[inputLength + additionalLength + 1];
+
+    strcpy(result, input);
+    strcat(result, additional);
+
+    return result;
+}
+
+int main() {
+    const char* initialText = "Hello, ";
+    const char* additionalText = "World!";
+
+    char* updatedText = appendText(const_cast<char*>(initialText), additionalText);
+
+    std::cout << updatedText << std::endl;
+
+    delete[] updatedText; // Don't forget to free the memory
+
+    return 0;
+}
+
+```
+
+- Achieving the same thing using String class
+
+```cpp
+#include <iostream>
+#include <string>
+
+// Function to modify and return the updated string
+std::string appendText(const std::string& input, const std::string& additional) {
+    return input + additional;
+}
+
+int main() {
+    std::string initialText = "Hello, ";
+    std::string additionalText = "World!";
+
+    std::string updatedText = appendText(initialText, additionalText);
+
+    std::cout << updatedText << std::endl;
+
+    return 0;
+}
+```
+
+## Example
+
+```cpp
+#include <iostream>
+#include <string>
+
+std::string* myFunction(std::string* my_str);
+
+int main() {
+    int example[5];
+
+    std::string s = "This is my string";
+    std::string* ptr = &s;
+
+    for (int i = 0; i < 5; i++) {
+        std::cout << "We are printing the array -> [" << example[i] << "]" << std::endl;
+        std::cout << *myFunction(ptr) << "\n";
+    }
+
+    return 0;
+}
+
+std::string* myFunction(std::string* my_str) {
+    *my_str = *my_str + " -> World!!";
+    return my_str;
+}
+```

@@ -6,8 +6,13 @@
     * [Common keywords in C++](#common-keywords-in-c++)
 * [Standard Library in C++](#standard-library-in-c++)
 * [Other Concepts](#other-concepts)
+* [What are the uses of C++ static keyword](#what-are-the-uses-of-c++-static-keyword)
+* [Is it bad to intialize variables with Null inside the function signature?](#is-it-bad-to-intialize-variables-with-null-inside-the-function-signature?)
+* [What is static keyword?](#what-is-static-keyword?)
+* [What is itoa and other similar keywords ?](#what-is-itoa-and-other-similar-keywords-?)
 
 <!-- vim-markdown-toc -->
+
 ## Introduction
 
 ### Common keywords in C++
@@ -110,5 +115,184 @@ always, while these tables provide a guideline, the application of these
 concepts requires a deeper understanding of the specific problem and context in
 real-world scenarios.
 
+## What are the uses of C++ static keyword
 
+The `static` keyword in C++ has several different uses depending on the context
+it's used in. Here are the primary uses of the `static` keyword:
 
+1. **Static Variables in Functions**:
+
+   - When used inside a function, the `static` keyword applied to a local
+     variable makes that variable retain its value across multiple function
+     calls. It's initialized only once, when the program starts, and its value
+     persists between function calls.
+
+2. **Static Variables in Classes/Structs**:
+
+   - Inside a class or struct, the `static` keyword applied to a member
+     variable makes it shared among all instances of that class or struct. It's
+     also sometimes referred to as a "class variable" or "static member."
+
+3. **Static Member Functions**:
+
+   - A member function declared as `static` belongs to the class itself, not to
+     any instance of the class. It can be called without creating an instance of
+     the class and operates on class-level data.
+
+4. **Static Local Functions**:
+
+   - A local function declared as `static` is only accessible within the
+     translation unit (source file) it's defined in. It can't be linked to from
+     other translation units.
+
+5. **Static Data Members in Classes (C++17 and later)**:
+
+   - Starting from C++17, static data members of classes can be defined inside
+     the class and must be initialized outside the class definition. They are
+     shared among all instances of the class and can be useful for maintaining
+     class-level information.
+
+6. **Static Assertions (C++11 and later)**:
+
+   - In C++11 and later, the `static_assert` keyword is used to perform
+     compile-time assertions. It helps ensure that certain conditions are met at
+     compile time, or it triggers a compilation error.
+
+7. **Static Initialization Order (C++ Static Initialization Fiasco)**:
+   - The order in which global or static objects are initialized across
+     different translation units isn't guaranteed. This can lead to
+     initialization order problems, often referred to as the "static
+     initialization order fiasco." Techniques like the Singleton pattern or using
+     local static variables inside functions can help mitigate these issues.
+
+These are some of the main uses of the `static` keyword in C++. Each use serves
+a specific purpose and contributes to different aspects of the language, such
+as variable lifetime, member functions, memory management, and compile-time
+checks.
+
+## Is it bad to intialize variables with Null inside the function signature?
+
+In C++, it's perfectly fine to provide default values for function parameters.
+This allows for a function to be called with fewer arguments than it has
+parameters, and in such cases, the missing arguments are initialized to their
+corresponding default values.
+
+But, it's important to note that the way you provide these default values might
+differ based on the type of parameter. For instance, you would typically
+initialize a pointer with `nullptr` (not `NULL`, which is more of a C-style),
+an integer with 0, and so on.
+
+Here's an example:
+
+```cpp
+void foo(int* ptr = nullptr, int val = 0) {
+    // Your code here
+}
+```
+
+In this case, if you call `foo()` without any arguments, `ptr` will be
+`nullptr` and `val` will be `0`. Also, while this can make your code more
+flexible, it can also make it harder to understand if not used judiciously, as
+it's not immediately clear when looking at a function call what values the
+missing arguments will have. So, it's generally a good idea to use default
+arguments sparingly and only when it really makes sense to do so.
+
+## What is static keyword?
+
+The `static` keyword in C++ has different meanings depending on the context in
+which it's used.
+
+**1. Inside a function:** If a variable is declared as `static` inside a
+function, it maintains its value between function calls. Normally, a local
+variable in a function is destroyed as soon as the function ends. But a static
+local variable remains in memory while the program is running. For example:
+
+```cpp
+void count() {
+    static int calls = 0;  // this variable will not be destroyed after the function ends
+    calls++;
+    cout << "This function has been called " << calls << " times.\n";
+}
+```
+
+**2. Outside of a function (at file scope):** When `static` is used in the
+global scope (outside all functions), it means that the variable or function
+with this keyword is only visible in the file it is declared in, not in other
+files, even if you include the header of the file. This can be used to hide
+implementation details of a module.
+
+```cpp
+static int hiddenVariable;  // this variable cannot be accessed from other files
+
+static void hiddenFunction() {  // this function cannot be accessed from other files
+    // implementation
+}
+```
+
+**3. Inside a class:** When `static` is used in a class:
+
+- For member variables: A `static` member variable is shared by all objects of
+  the class, i.e., all objects of the class will have the same value for this
+  variable. It is not tied to a particular object of the class but rather belongs
+  to the class itself.
+
+```cpp
+class MyClass {
+public:
+    static int sharedVariable;
+};
+// Define and initialize static member outside the class
+int MyClass::sharedVariable = 0;
+```
+
+- For member functions: A `static` member function can be called even without
+  an object of the class, and it can only access `static` member variables of the
+  class (since it does not have an object context).
+
+```cpp
+class MyClass {
+public:
+    static int sharedVariable;
+
+    static void modifySharedVariable(int newVal) {
+        sharedVariable = newVal;
+    }
+};
+// Define and initialize static member outside the class
+int MyClass::sharedVariable = 0;
+```
+
+Here, `MyClass::modifySharedVariable(5);` would be a valid call even without
+any `MyClass` object.
+
+## What is itoa and other similar keywords ?
+
+The `itoa` function is a standard library function in C (not included in C++)
+that converts an integer to a string. `itoa` stands for "integer to ASCII".
+It's often found in older C code and non-standard C++ code. Its prototype is:
+
+```c
+char* itoa(int value, char* str, int base);
+```
+
+Here, `value` is the integer that you want to convert to a string. `str` is the
+string buffer where the converted string will be stored, and `base` is the
+number base for the conversion.
+
+For equivalent functionality in C++, you can use the `std::to_string` function,
+which converts various data types to a string, like so:
+
+```cpp
+std::string str = std::to_string(12345);
+```
+
+Similar to `itoa`, there are a number of other functions that convert different types to strings in C:
+
+1. `ltoa`: Converts a long integer to a string.
+2. `ultoa`: Converts an unsigned long integer to a string.
+3. `lltoa`: Converts a long long integer to a string.
+4. `ulltoa`: Converts an unsigned long long integer to a string.
+
+In C++, you can use `std::to_string` for these conversions as well. It is
+overloaded to support `int`, `long`, `long long`, `unsigned long`, `unsigned
+long long`, `float`, `double`, and `long double`.

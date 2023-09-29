@@ -6,6 +6,8 @@
 * [How to loop over a list-array-vector](#how-to-loop-over-a-list-array-vector)
 * [C++ Standard Library for Several Containers](#c++-standard-library-for-several-containers)
 * [How to create an array in C++](#how-to-create-an-array-in-c++)
+* [what is {} for element storing is it a set or array or what](#what-is-{}-for-element-storing-is-it-a-set-or-array-or-what)
+* [Declare an array](#declare-an-array)
 
 <!-- vim-markdown-toc -->
 
@@ -138,3 +140,115 @@ methods:
   heap-allocated memory to prevent memory leaks.
 - **Safety**: Using modern C++ containers is recommended for most use-cases due
   to their safety, flexibility, and the functionalities they provide.
+
+## what is {} for element storing is it a set or array or what
+
+In C++, `{}` is known as the list initialization (or uniform initialization)
+syntax. It was introduced in C++11 to initialize objects.
+
+- When you see something like this:
+
+```cpp
+int arr[] = {1, 2, 3};
+```
+
+`{1, 2, 3}` is an initializer list which is being used to initialize the array `arr`.
+
+Similarly, when you see:
+
+```cpp
+std::vector<int> vec = {1, 2, 3};
+```
+
+`{1, 2, 3}` is an initializer list which is being used to initialize the vector `vec`.
+
+So, `{}` is not a data type, but a way to initialize objects of various types
+such as arrays, vectors, sets, etc. The actual type of the data being stored
+depends on the type of the object being initialized.
+
+In the case of:
+
+```cpp
+std::vector<std::vector<int>> matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+```
+
+Here, `{1, 2, 3}`, `{4, 5, 6}`, and `{7, 8, 9}` are initializer lists being
+used to initialize the inner vectors, and the outer `{...}` is an initializer
+list to initialize the outer vector. This results in a 2D vector, which you can
+think of as a matrix.
+
+## Declare an array
+
+C++ provides various ways to declare a list (or a sequence) of elements. Here
+are some common ones:
+
+1. **C-style Array**: An array is a simple, fixed-size list that contains
+   elements of the same type.
+
+   ```cpp
+   int arr[3] = {1, 2, 3};  // Array of 3 integers
+   ```
+
+2. **std::array**: It's a container in the Standard Library that encapsulates
+   fixed size arrays. It's more efficient and safer than C-style arrays.
+
+   ```cpp
+   std::array<int, 3> arr = {1, 2, 3};  // Array of 3 integers
+   ```
+
+3. **std::vector**: It's a dynamic array, it can grow and shrink at runtime.
+
+   ```cpp
+   std::vector<int> vec = {1, 2, 3};  // Vector of integers
+   ```
+
+4. **std::list**: It's a doubly-linked list that allows fast insertions and
+   deletions at both its beginning and its end.
+
+   ```cpp
+   std::list<int> lst = {1, 2, 3};  // List of integers
+   ```
+
+5. **std::forward_list**: It's a singly-linked list, and unlike std::list,
+   allows for fast insertions and deletions at its beginning only.
+
+   ```cpp
+   std::forward_list<int> fwd_lst = {1, 2, 3};  // Forward list of integers
+   ```
+
+6. **std::deque**: A double-ended queue that allows fast insertions and
+   deletions at both its beginning and its end.
+
+   ```cpp
+   std::deque<int> dq = {1, 2, 3};  // Deque of integers
+   ```
+
+7. **std::initializer_list**: It's a lightweight array-like container used for
+   list-initialization of objects.
+
+   ```cpp
+   std::initializer_list<int> init_list = {1, 2, 3};  // Initializer list of integers
+   ```
+
+8. **std::set or std::multiset**: They're associative containers that contain
+   sorted sets of unique and non-unique elements, respectively.
+
+   ```cpp
+   std::set<int> set = {1, 2, 3};  // Set of unique integers
+   std::multiset<int> mset = {1, 1, 2, 2, 3, 3};  // Multiset of integers
+   ```
+
+9. **std::unordered_set or std::unordered_multiset**: They're associative
+   containers that contain unsorted sets of unique and non-unique elements,
+   respectively.
+
+   ```cpp
+   std::unordered_set<int> uset = {1, 2, 3};  // Unordered set of unique integers
+   std::unordered_multiset<int> umset = {1, 1, 2, 2, 3, 3};  // Unordered multiset of integers
+   ```
+
+Each of these methods has its use cases, advantages, and drawbacks. Which one you choose depends on the requirements of your specific application.
