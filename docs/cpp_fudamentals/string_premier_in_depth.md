@@ -37,7 +37,7 @@ Extended table for `string` in `C++`.
 - **Safety**: Using modern C++ containers is recommended for most use-cases due
   to their safety, flexibility, and the functionalities they provide.
 
-![String in CPP](./images/M01.jpg)
+![String in CPP](../images/M01.jpg)
 
 ## More details
 

@@ -117,7 +117,7 @@ This table provides a general comparison between static and dynamic libraries in
 - Framework is a bundle, usually in `macOS`, read more about it in the
   `CMake_for_Professional` book.
 
-![Meaning of framework](./images/M02.png)
+![Meaning of framework](../images/M02.png)
 
 ### What is a Framework?
 
