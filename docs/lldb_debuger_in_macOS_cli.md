@@ -7,7 +7,9 @@ Part of [[CPP Concepts#Debugging in CPP]]
 
 ## Content
 
-How to run a debugging in command line using the `lldb` which is used to understand more about how the program is running. I will demonstrate here with an example to make it easy to be used later.
+How to run a debugging in command line using the `lldb` which is used to
+understand more about how the program is running. I will demonstrate here with
+an example to make it easy to be used later.
 
 ## Example Project
 
