@@ -82,6 +82,10 @@ When designing classes in C++, always aim for strong encapsulation, clear interf
 
 ## Demo
 
+- The following code shows that allocation on the heap should be always
+  accompanied by a `destructor` which will free the object in memeory once it
+  goes out of the scope.
+
 ```cpp
 class Entity {
 public:
@@ -90,6 +94,7 @@ public:
 
     std::cout << "Created Entity:" << object_name << std::endl;
   }
+  // This destructor is called once we go out of the scope
   ~Entity() { std::cout << "Destroyed Entity:" << object_name << std::endl; }
 };
 

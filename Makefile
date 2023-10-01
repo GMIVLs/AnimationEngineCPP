@@ -20,12 +20,12 @@ all: debug
 
 debug: link_compile_commands
 	cmake -DCMAKE_BUILD_TYPE=Debug -S . -B build/debug
-	$(MAKE) build/debug -j $(NUMBER_CORES)
+	$(MAKE) -j $(NUMBER_CORES) -C build/debug
 	./build/debug/$(BINARY_NAME)
 
 release: link_compile_commands
 	cmake -DCMAKE_BUILD_TYPE=Release -S . -B build/release
-	$(MAKE) build/release -j $(NUMBER_CORES)
+	$(MAKE) -j $(NUMBER_CORES) build/release
 	./build/debug/$(BINARY_NAME)
 
 # For the clangd language server integration

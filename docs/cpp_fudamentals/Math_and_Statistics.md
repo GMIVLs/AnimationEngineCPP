@@ -1,5 +1,18 @@
 # How to create a matrix on stack
 
+<!-- vim-markdown-toc GitLab -->
+
+* [All matrix elements combination](#all-matrix-elements-combination)
+* [Matrix multiplication and matrix element wise operations](#matrix-multiplication-and-matrix-element-wise-operations)
+* [List libraries to deal with linear algebra and vectors, matrices in cpp](#list-libraries-to-deal-with-linear-algebra-and-vectors-matrices-in-cpp)
+* [How about optimization libraries that has algorithms to maximize the likelihood for login model for example ?](#how-about-optimization-libraries-that-has-algorithms-to-maximize-the-likelihood-for-login-model-for-example-)
+* [Request](#request)
+* [A basic implementation of Linear Regression using Eigen.](#a-basic-implementation-of-linear-regression-using-eigen)
+* [Maximum Likelihood Estimation](#maximum-likelihood-estimation)
+* [Optimization Techniques to Estimate The Maximum Likelihood Parameters](#optimization-techniques-to-estimate-the-maximum-likelihood-parameters)
+
+<!-- vim-markdown-toc -->
+
 In C++, you can create a matrix (2D array) on the stack using fixed sizes. Here's an example:
 
 ```cpp
@@ -261,7 +274,7 @@ such as maximizing the likelihood for a logistic model:
 
 The choice of library depends heavily on the specifics of your problem and your specific use case.
 
-# Request
+## Request
 
 Give me linear regression class that has optimization for estimating the
 parameters assume computing the parameters numerically don’t use other
@@ -485,3 +498,47 @@ would typically want in a machine learning algorithm, such as regularization,
 error checking, or a stopping criterion for the optimization process. It is
 provided as a simple starting point for your own work.
 
+## Optimization Techniques to Estimate The Maximum Likelihood Parameters
+
+There are several optimization techniques that can be used to estimate the
+parameters in a maximum likelihood model. These techniques are designed to find
+the parameters that maximize the likelihood function, often iteratively
+improving the estimates. Here are a few key methods:
+
+1. **Gradient Descent:** This is a first-order iterative optimization algorithm
+   for finding the minimum of a function. In the context of maximum likelihood
+   estimation (MLE), we would find the maximum by using the negative of the
+   function (or equivalently, minimize the negative log-likelihood). It is based
+   on the observation that if a multivariable function is defined and
+   differentiable in a neighborhood of a point, then the function decreases
+   fastest if one goes in the direction of the negative gradient.
+2. **Stochastic Gradient Descent (SGD):** It's a version of gradient descent,
+   but instead of calculating the gradient on the entire dataset, it estimates
+   the gradient on a subset (batch) of data. SGD is useful when dealing with large
+   datasets.
+3. **Newton's Method (also called the Newton-Raphson method):** This method
+   uses the second-order Taylor series expansion to approximate the objective
+   function, leading to faster convergence compared to gradient descent. However,
+   this requires calculation of the second derivative (Hessian matrix), which can
+   be computationally intensive for high-dimensional data.
+4. **Quasi-Newton Methods (BFGS, L-BFGS):** These methods also approximate the
+   objective function using the second-order Taylor series expansion, but they
+   update an estimate of the Hessian matrix iteratively, which is less
+   computationally intensive than directly calculating the Hessian matrix.
+5. **Expectation-Maximization (EM) Algorithm:** This is particularly useful
+   when the model depends on some hidden or latent variables. The EM algorithm
+   iteratively performs an expectation (E) step, which creates a function for the
+   expectation of the log-likelihood evaluated using the current estimate for the
+   parameters, and a maximization (M) step, which computes parameters maximizing
+   the expected log-likelihood found on the E step.
+6. **Conjugate Gradient Method:** This is an algorithm for the numerical
+   solution of particular systems of linear equations, namely those whose
+   matrix is symmetric and positive-definite. The conjugate gradient method is
+   often implemented as an iterative algorithm, applicable to sparse systems that
+   are too large to be handled by a direct implementation or other direct methods
+   such as the Cholesky decomposition.
+
+It should be noted that the best method to use for a given problem depends on
+many factors, including the structure of the likelihood function, the number of
+parameters, the size of the dataset, and the specifics of the computing
+environment.
