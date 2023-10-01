@@ -10,6 +10,14 @@
 
 - Here's a simple table outlining some common data structures in C++ and where
   they're typically allocated (heap vs. stack). Note that this table isn't
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+- [C++ Data Structures Types](#c-data-structures-types)
+    - [Common data structures](#common-data-structures)
+    - [Notes](#notes)
+
+<!-- markdown-toc end -->
   exhaustive, but it should give you a good starting point.
 
 | **Data Structure**     | **Allocation**                                                                  | **Description**                                                   | **Small Example**                          |
