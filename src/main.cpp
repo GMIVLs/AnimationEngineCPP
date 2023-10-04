@@ -1,5 +1,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include <cstdlib> // <- Added for getenv
+#include <iostream>
 
 int main(int argc, char *argv[]) {
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -33,10 +35,12 @@ int main(int argc, char *argv[]) {
     SDL_Quit();
     return 1;
   }
+  // Get the PROJECT_DIR environment variable value
+  const char *projectDir = getenv("PROJECT_DIR");
+  // Construct the path to the image
+  std::string imagePath = std::string(projectDir) + "/assets/M01.png";
 
-  SDL_Texture *texture = IMG_LoadTexture(
-      renderer,
-      "/Users/gmbp/Desktop/devCode/cppDev/AnimationEngineCPP/assets/M01.png");
+  SDL_Texture *texture = IMG_LoadTexture(renderer, imagePath.c_str());
   if (!texture) {
     SDL_Log("Unable to create texture from image! SDL_image Error: %s\n",
             IMG_GetError());
