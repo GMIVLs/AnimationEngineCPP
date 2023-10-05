@@ -1,5 +1,7 @@
+#include "lib/veclib/Vector_2d.h"
 #include <SDL.h>
 #include <SDL_image.h>
+#include <cmath>
 #include <cstdlib> // <- Added for getenv
 #include <iostream>
 
@@ -71,6 +73,13 @@ int main(int argc, char *argv[]) {
   SDL_DestroyWindow(window);
   IMG_Quit();
   SDL_Quit();
+
+  // Lets add a unit test for the vector
+  // Vector_2d<double> my_vector = Vector_2d(10.0, 10.0);
+  double a = 10.0;
+  double b = 20.0;
+  Vector_2d<double> my_vector(a, b);
+  my_vector.display();
 
   return 0;
 }

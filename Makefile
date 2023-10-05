@@ -9,7 +9,7 @@ BINARY_NAME=main
 NUMBER_CORES=8
 SDL2_DIR = $(HOMEBREW_DIR)/sdl2/2.28.3
 SDL2_IMAGE_DIR = $(HOMEBREW_DIR)/sdl2_image/2.6.3_2
-SOURCES = src/main.cpp src/lib/veclib/vector2d.cpp
+SOURCES = src/main.cpp src/lib/veclib/Vector_2d.cpp
 OUTPUT = build/debug/main
 
 # Phony target since 'runcli' isn't a file
@@ -40,7 +40,7 @@ run: $(OUTPUT)
 	@$(MAKE) link_compile_commands
 
 $(OUTPUT): $(SOURCES)
-	clang++ -std=c++17 \
+	clang++ -v -std=c++17 \
 	-I$(SDL2_DIR)/include/SDL2/ \
 	-I$(SDL2_IMAGE_DIR)/include/SDL2/ \
 	-L$(SDL2_DIR)/lib -lSDL2 \
