@@ -34,7 +34,7 @@ link_compile_commands:
 		rm -f compile_commands.json; \
 	fi
 	ln -s build/debug/compile_commands.json compile_commands.json
-
+# Run Command - will not be maintained, as the project will grow later
 run: $(OUTPUT)
 	./$(OUTPUT)
 	@$(MAKE) link_compile_commands
@@ -71,4 +71,6 @@ help:
 	@echo "\033[32m   make run                       \033[0m   - build and run the project using Clang compiler"
 	@echo "\033[32m   make fetch_sdl2.0_dependencies \033[0m   - install all the SDL2 dependencies including gfx, font, image"
 	@echo "\033[32m   make help                      \033[0m   - show this help message"
+	@echo ""
+	@echo "NOTE: Run Command - will not be maintained, as the project will grow later"
 	@echo "\033[35m ********************************************************\033[0m"
