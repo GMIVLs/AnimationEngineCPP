@@ -1,5 +1,7 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.5)
 project(AnimationEngineCPP CXX)
+# Set compiler flags
+set(CMAKE_CXX_STANDARD 17)
 
 # Recursive find all files and add them to the project
 file(GLOB_RECURSE SOURCES "src/*.cpp")
@@ -38,10 +40,9 @@ if(APPLE)
   list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
   # -----------------------------
 
-  # Set compiler flags
-  set(CMAKE_CXX_STANDARD 17)
   # You can add (-Werror), but it will make the complier more restrictive.
   set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -g")
+  # set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -Wc++11-extensions")
   set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
 
 endif()
