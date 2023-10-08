@@ -90,6 +90,7 @@ Instead of using a raw pointer in C++, we can use the smart pointer concept. Her
 int main(int argc, char **argv)
 {
     std::unique_ptr<Dog> ralf = std::make_unique<Dog>();
+    do_something_with_the_dog(ralf);
     ralf->setName("asdfasdf");
     ralf->speak();
 
@@ -105,8 +106,67 @@ void do_something_with_the_dog(std::unique_ptr<Dog> d) {
 }
 ```
 Would you think that this would work but this is also another problem and it goes against the unique pointer constrcut, if we compile this what's happening here actually passing the value of the unique pointer ralf by value right we are making a copy of the unique pointer and that in itself is not very unique right. I'm now at the same time have two copies of the same pointer and the C++ compiler will not allow me to do that to pass ownership of the object from our main function to do something with the dog function.
-We have to do what is called move we will literally standard move ralf the dog to this function and now this function is responsible for controlling it so if we compile that we get no errors, but when we run this we did crash again and I want to see if you guys understand why we crashed??
+We have to do what is called move we will literally standard move ralf the dog to this function and now this function is responsible for controlling it so if we compile that we get no errors:
+```c++
+int main(int argc, char **argv)
+{
+    std::unique_ptr<Dog> ralf = std::make_unique<Dog>();
+    do_something_with_the_dog(std::move(ralf));
+    ralf->setName("asdfasdf");
+    ralf->speak();
+    return 0;
+}
+```
+but when we run this we did crash again and I want to see if you guys understand why we crashed??
 As I saied before ownership is the idea of who is responsible for destroying the object we moved ownership of ralf to our function do something with the doe then we called setName on ralf and called speak also, and because we did not return ralf object it went out of scope so that C++ smart pointer freed ralf from our code then continued and later on in the code we tried to use function in an object that had been freed and we crashed the program just like befor.
 This first part pointer started to get a little weird right because now essentially every time I want to use a smart pointer I have to say that this is no longer a void function this is a standard unique pointer to a dog, and we're going to say that it returns this and we're going to say that it return d, and we'll say that ralf now equals itself after the move so it does something with the dog what we move ralf into we pull ralf back out and now the program doesn't crash.
+```c++
+std::unique_ptr<Dog> do_something_with_the_dog(std::unique_ptr<Dog> d) { // here
+    d->setName("highhigh");
+    d->speak();
+    return(d); // here is the change
+}
+```
+and change the main function:
+```c++
+int main(int argc, char **argv)
+{
+    std::unique_ptr<Dog> ralf = std::make_unique<Dog>();
+    ralf = do_something_with_the_dog(std::move(ralf)); // here is the change
+    // also can use the get() method
+    // do_something_with_the_dog(ralf.get());
+    ralf->setName("asdfasdf");
+    ralf->speak();
+    return 0;
+}
+```
 It runs twice but this is kind of gross right this code is not very good to look at it's kind of counfusing and typically when you have a function that does something you want to return the result of the thing but if I have to move ralf out of the function every time now every time I want to use a unique pointer it makes it very ugly to do so one way we can deal with this problem with the unique pointer where we have to pass it around and move it and then unmoves it is to use the get method from the unique pointer so the get method in the unique pointer actually returns a raw pointer to the thing that the unique pointer controls.
-You're probably thinking well then doesn't that defeat the entire purpose of the unique pointer and yes it does but what you can do with it, actually there's a couple ways you can work around it to make the unique raw pointer work right so here i say ralf get which again returns the raw pointer to ralf what we can do is in our function that uses that raw pointer we can set the raw pointer to a constant which essentially locks down what the pointer is able to do and it doesn't allow us to modify our class variable now that adds some future complications where now dog speak has to be declared as a const function that guarantees we don't actully modify the class we have to also put that in the 
+You're probably thinking well then doesn't that defeat the entire purpose of the unique pointer and yes it does but what you can do with it, actually there's a couple ways you can work around it to make the unique raw pointer work right so here i say ralf get which again returns the raw pointer to ralf what we can do is in our function that uses that raw pointer we can set the raw pointer to a constant which essentially locks down what the pointer is able to do and it doesn't allow us to modify our class variable now that adds some future complications where now dog speak has to be declared as a const function that guarantees we don't actully modify the class we have to also put that in the declaration right here but with that all done we can go ahead and compile thsi and eventually we can actually use the raw pointer to do certian things with the class while also retaining ownership in the main function now an even easier way to do this is just to treat this that way.
+```c++
+void do_something_with_the_dog(Dog *d) const {
+    d->speak();
+    return;
+}
+```
+I think you should treat it all the time generally which is the use of the other class call a ___shared pointer (std::shared_ptr<Type>)___ so if you have a shared pointer dog d it's a still a void we'll clean up our constants here and then we will also say d setName to asked as this will be not a unique it'll be a make shared and will set this to a shared pointer and then we will just pass ralf and that should work.
+```c++
+void do_something_with_the_dog(std::shared_ptr<Dog> d) {
+    d->setName("hihihihi");
+    d->speak();
+    return;
+}
+// and should use std::shared_ptr in main function
+int main(int argc, char **argv)
+{
+    std::shared_ptr<Dog> ralf = std::make_shared<Dog>();
+    do_something_with_the_dog(ralf); // here is the change
+    ralf->setName("asdfasdf");
+    ralf->speak();
+    return 0;
+}
+```
+What happens here is we essentially create a shared pointer which is a unique pointer that can have multiple copies of itself as we create the second copy of ralf all that happens is that the reference counter inside the shared pointer goes up by one and that reference counter is used here to denote that we have a pointer that now has two places that are using it when d goes out of scope the shared pointer copy that we made is deleted and we still retain ownership of the object here in main then ralf continues and we call the extra functions here and things are good.
+
+## _REFERENCES_
+
+1. [youtube](https://www.youtube.com/watch?v=tSIBKys2eBQ)
