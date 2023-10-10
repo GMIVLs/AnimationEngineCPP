@@ -52,6 +52,12 @@ fetch_sdl2.0_dependencies:
 	chmod +x $(PROJECT_DIR)/tools/fetch_dependencies_if_not_existed_macOS.sh
 	$(PROJECT_DIR)/tools/fetch_dependencies_if_not_existed_macOS.sh
 
+clean:
+	@rm -rf build .cache
+	@rm -rf vcpkg-manifest-install.log \
+		vcpkg_installed CMakeCache.txt \
+		cmake_install.cmake CMakeFiles \
+		compile_commands.json .idea cmake-build-debug
 
 help:
 	@echo "\033[35m ********************************************************\033[0m"
