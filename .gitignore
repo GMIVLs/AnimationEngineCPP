@@ -11,7 +11,7 @@ compile_commands.json
 .envrc
 *.pdf
 .cache/
-
+dependencies/*
 # Compiled Object files
 *.slo
 *.lo
