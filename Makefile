@@ -7,7 +7,7 @@
 # Variables
 BINARY_NAME=main
 NUMBER_CORES=8
-SDL2_DIR = $(HOMEBREW_DIR)/sdl2/2.28.3
+SDL2_DIR = $(HOMEBREW_DIR)/sdl2/2.28.4
 SDL2_IMAGE_DIR = $(HOMEBREW_DIR)/sdl2_image/2.6.3_2
 SOURCES = src/main.cpp src/lib/veclib/Vector_2d.cpp
 OUTPUT = build/debug/main
@@ -57,7 +57,9 @@ clean:
 	@rm -rf vcpkg-manifest-install.log \
 		vcpkg_installed CMakeCache.txt \
 		cmake_install.cmake CMakeFiles \
-		compile_commands.json .idea cmake-build-debug
+		compile_commands.json .idea cmake-build-debug\
+		dependencies
+
 
 help:
 	@echo "\033[35m ********************************************************\033[0m"

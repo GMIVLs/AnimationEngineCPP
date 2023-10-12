@@ -82,3 +82,7 @@ brew info sdl2
 brew info sdl_image
 brew info sdl_gfx
 ```
+or
+```sh
+sdl2-config --version
+```
