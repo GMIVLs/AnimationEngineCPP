@@ -78,8 +78,12 @@ int main(int argc, char *argv[]) {
   // Vector_2d<double> my_vector = Vector_2d(10.0, 10.0);
   double a = 10.0;
   double b = 20.0;
-  Vector_2d<double> my_vector(a, b);
-  my_vector.display();
+  for (size_t i = 0; i < 10; i++) {
+    a = a + i;
+    b = b + i;
+    Vector_2d<double> my_vector(a, b);
+    my_vector.display();
+  }
 
   return 0;
 }
