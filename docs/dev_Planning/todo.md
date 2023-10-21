@@ -18,10 +18,10 @@
 #### 1.2.1 Computional vector
 
 - [x] Finish from your previous constructed class.
-  - [ ] length     : length of a vector in given units.
-  - [ ] magnitude  : (i.e., similar to length)
-  - [ ] normalize  : (vector lentgh = 1 unit)
-  - [ ] rotate     : (accept rotation)
+  - [ ] length : length of a vector in given units.
+  - [ ] magnitude : (i.e., similar to length)
+  - [ ] normalize : (vector lentgh = 1 unit)
+  - [ ] rotate : (accept rotation)
   - [ ] dot product: (scalar value)
   - [ ] orthogonal : (the perpendicular component vector of a given 2d vector)
   - [ ] projection : (the horizontal component vector of a given 2d vector)

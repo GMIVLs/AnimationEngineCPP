@@ -7,8 +7,8 @@
  * https://github/Ghasak/AnimationEngineCPP  *
  * (c) Copyright                             *
  ********************************************/
-#include <iostream>
 #include "Vector_2d.h"
+#include <iostream>
 
 /**
  * Constructor Part of the class Vector_2d
@@ -115,4 +115,3 @@ template <class Ttype> void Vector_2d<Ttype>::display() const {
 template class Vector_2d<int>;    // Integer Instantiation
 template class Vector_2d<double>; // Double Instantiation
 template class Vector_2d<float>;  // Float Instantiation
-
