@@ -1,5 +1,15 @@
 # Heap and Stack
 
+<!-- vim-markdown-toc GitLab -->
+
+* [All methods to clean a heap memory](#all-methods-to-clean-a-heap-memory)
+* [List all data structures in CPP allocated on heap vs on stack](#list-all-data-structures-in-cpp-allocated-on-heap-vs-on-stack)
+* [Keyword New and allocations on the heap](#keyword-new-and-allocations-on-the-heap)
+* [Can I allocate on heap of multi dimensional array without using new keyword.](#can-i-allocate-on-heap-of-multi-dimensional-array-without-using-new-keyword)
+* [Can I allocate on heap primitive data](#can-i-allocate-on-heap-primitive-data)
+
+<!-- vim-markdown-toc -->
+
 ## All methods to clean a heap memory
 
 - Managing dynamically allocated memory (objects on the heap) is crucial in
@@ -185,3 +195,39 @@ This creates a 2D array (in the form of a `std::vector`) on the heap. When
 `vec` goes out of scope, its destructor is called, which automatically frees
 the memory it was using. This helps prevent memory leaks, which can be a common
 issue when manually managing memory.
+
+## Can I allocate on heap primitive data
+
+Yes, you can create primitive types on the heap in C++. However, the syntax you
+provided is incorrect. The correct way to do it is to use the `new` keyword
+followed by the type, and then assign this to a pointer. Here's how you can do
+it:
+
+```c++
+int var = 10;  // This creates an integer on the stack.
+int* var_on_heap = new int(var);  // This creates an integer on the heap, with the value of var.
+```
+
+In this code:
+
+1. `var` is an integer variable that is allocated on the stack and initialized
+   with the value `10`.
+2. `var_on_heap` is a pointer to an integer that is allocated on the heap. The
+   `new` keyword is used to allocate memory on the heap, and the `int(var)`
+   syntax initializes the heap-allocated integer with the value of `var`.
+
+Remember, when you allocate memory on the heap using `new`, you should
+deallocate it using `delete` to prevent memory leaks:
+
+```c++
+delete var_on_heap;  // This deallocates the memory on the heap.
+```
+
+After calling `delete`, the memory that `var_on_heap` points to is deallocated,
+but `var_on_heap` itself still exists and now is a dangling pointer. It's a
+good practice to set `var_on_heap` to `nullptr` after deleting it to prevent
+any future misuse:
+
+```c++
+var_on_heap = nullptr;  // This sets var_on_heap to the null pointer.
+```

@@ -19,13 +19,21 @@ OUTPUT = build/debug/main
 all: debug
 
 debug: link_compile_commands
-	cmake -DCMAKE_BUILD_TYPE=Debug -S . -B build/debug
+	cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake  -S . -B build/debug
 	$(MAKE) -j $(NUMBER_CORES) -C build/debug
 	./build/debug/$(BINARY_NAME)
 
 release: link_compile_commands
-	cmake -DCMAKE_BUILD_TYPE=Release -S . -B build/release
+	cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake  -S . -B build/release
 	$(MAKE) -j $(NUMBER_CORES) build/release
+	./build/debug/$(BINARY_NAME)
+
+debug_using_ninja: link_compile_commands
+	cmake -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja" \
+		-DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
+		-G Ninja -S . \
+		-B ./build/debug
+	/opt/homebrew/bin/ninja -j${NUMBER_CORES} -C build/debug
 	./build/debug/$(BINARY_NAME)
 
 # For the clangd language server integration

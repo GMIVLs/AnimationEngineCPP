@@ -15,6 +15,10 @@ if(NOT CMAKE_BUILD_TYPE)
       CACHE STRING "Choose the type of build (Debug or Release)" FORCE)
 endif()
 
+
+## vcpkg libraries - Logging header
+find_package(glog CONFIG REQUIRED)
+
 # Setting my compling command for clangd language server, offer jump to
 # definition,
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -30,12 +34,17 @@ if(APPLE)
   # Link headers
   target_include_directories(
     main PRIVATE ${CMAKE_SOURCE_DIR}/dependencies/sdl2/include/SDL2
-                 ${CMAKE_SOURCE_DIR}/dependencies/sdl2_image/include/SDL2)
+                 ${CMAKE_SOURCE_DIR}/dependencies/sdl2_image/include/SDL2
+            glog::glog
+    )
   # Link libraries
   target_link_libraries(
     main
     PRIVATE ${CMAKE_SOURCE_DIR}/dependencies/sdl2/lib/libSDL2.dylib
-            ${CMAKE_SOURCE_DIR}/dependencies/sdl2_image/lib/libSDL2_image.dylib)
+            ${CMAKE_SOURCE_DIR}/dependencies/sdl2_image/lib/libSDL2_image.dylib
+            glog::glog
+    )
+
   # -----------------------------
   list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
   # -----------------------------

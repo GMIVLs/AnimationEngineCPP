@@ -1,7 +1,20 @@
 # Animation Engine CPP
 
+<!-- vim-markdown-toc GitLab -->
+
+* [ChangingLog](#changinglog)
+    * [Graphics Architecture Diagram:](#graphics-architecture-diagram)
+* [Prerequisites](#prerequisites)
+    * [Fundamental](#fundamental)
+    * [Graphics libraries](#graphics-libraries)
+    * [development](#development)
+    * [Verfication](#verfication)
+
+<!-- vim-markdown-toc -->
+
 ## ChangingLog
 
+- `2023-10-22 21:38`: Added `glog` library using vcpkg.
 - `2023-09-29 00:00`: Loading image is possible now:
 
   - [x] merge the `cpp_habits.md` done by M,
@@ -19,6 +32,46 @@
   - Create the base for the animation engine in CPP
   - Create branching for each developer
   - Added the `CMakeList.txt` build the project in `debug` and `release` modes
+
+### Graphics Architecture Diagram:
+
+Currently under development is our engine's structure, which may still undergo
+modifications.
+
+```lua
+             ┌───────────────────────────────────────────────────────────┐
+             │           ┌1.──────┐ ┌2.──────┐ ┌3.──────┐                │
+             │           │ Physics│ │ Math   │ │ stats  │                │
+             │           │ Module │ │ Module │ │ Module │                │
+             │           └─────┬──* └─────┬──* └─────┬──*                │
+             │                 │          ▼          │                   │
+             │                 │     ┌4.───────┐     │                   │
+             │                 │     │ Particle│◀────┘                   │
+             │                 └────▶│ Module  │                         │
+             │                       └─────┬───*                         │
+             │                             │                             │
+             │                             ▼                             │
+             │                     ┌5.───────────┐                       │
+             │                     │   Motion    │                       │
+             │                     │    Module   │                       │
+             │                     └─────────────*                       │
+             │                            │                              │
+             │           ┌6.───────────┐  │   ┌7.───────────┐            │
+             │           │  Utilities  │  │   │   Platform  │            │
+             │           │    Module   │  │   │    Module   │            │
+             │           └─────┬───────*  ▼   └─────────────*            │
+             │                 │    ┌8.───────────┐     │                │
+             │                 └──▶ │ Experiments │     │                │
+             │                      │    Module   │◀────┘                │
+             │                      └─────┬───────*                      │
+             │                            ▼                              │
+             │                 ┌───────────────────────┐                 │
+             │                 │       `2d` Canvus     │                 │
+             │                 │    Graphics Display   │                 │
+             │                 └───────────────────────*                 │
+             │                               2D - graphics architecture  │
+             └───────────────────────────────────────────────────────────┘
+```
 
 ## Prerequisites
 
@@ -82,7 +135,9 @@ brew info sdl2
 brew info sdl_image
 brew info sdl_gfx
 ```
+
 or
+
 ```sh
 sdl2-config --version
 ```

@@ -1,0 +1,11 @@
+{
+  "name": "animationenginecpp",
+  "version": "1.0",
+  "dependencies": [
+    {
+      "name": "glog",
+      "version>=": "0.6.0"
+    }
+  ],
+  "builtin-baseline": "4d999187501e852f76457306b35627dbe63895cd"
+}

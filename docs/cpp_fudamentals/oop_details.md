@@ -1,20 +1,21 @@
 # OOP in CPP - Details
 
+<!-- vim-markdown-toc GitLab -->
+
+* [Content](#content)
+    * [Method to create an object from a class](#method-to-create-an-object-from-a-class)
+    * [Methods for creating class in CPP](#methods-for-creating-class-in-cpp)
+    * [Common Code Practice](#common-code-practice)
+* [Demo](#demo)
+* [Components and keywords Premier](#components-and-keywords-premier)
+* [How to allow the constructor to accept assignment for x and y and if not then they will be zero?](#how-to-allow-the-constructor-to-accept-assignment-for-x-and-y-and-if-not-then-they-will-be-zero)
+* [Typical Class with all possible keywords](#typical-class-with-all-possible-keywords)
+* [Static variable with class](#static-variable-with-class)
+* [The Rule of 5 in Class](#the-rule-of-5-in-class)
+
+<!-- vim-markdown-toc -->
+
 ## Content
-
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-
-**Table of Contents**
-
-- [OOP in CPP - Details](#oop-in-cpp---details)
-  - [Content](#content)
-    - [Method to create an object from a class](#method-to-create-an-object-from-a-class)
-    - [Common Code Practice](#common-code-practice)
-  - [Demo](#demo)
-  - [Components and keywords Primer](#components-and-keywords-primer)
-  - [Typical Class with all possible keywords](#typical-class-with-all-possible-keywords)
-
-<!-- markdown-toc end -->
 
 ### Method to create an object from a class
 
@@ -284,3 +285,94 @@ int main() {
     return 0;
 }
 ```
+
+## The Rule of 5 in Class
+
+The Rule of 5 is a guideline in C++ programming that suggests that if a class
+defines any of the following, it should define all five of them to ensure
+resource management is handled correctly and predictably:
+
+1. **Destructor**: Cleans up resources when an object is destroyed.
+2. **Copy Constructor**: Constructs a new object as a copy of an existing
+   object.
+3. **Copy Assignment Operator**: Assigns the contents of an existing object to
+   another object.
+4. **Move Constructor**: Constructs a new object by acquiring the resources of
+   an existing object, instead of copying them.
+5. **Move Assignment Operator**: Assigns the resources of an existing object to
+   another object, instead of copying them.
+
+Here's a simplified example of the Rule of 5 in modern C++:
+
+```cpp
+#include <iostream>
+#include <cstring>
+
+class RuleOfFive {
+public:
+    char* str;  // Resource: dynamically-allocated string
+
+    // Constructor
+    RuleOfFive(const char* val) {
+        str = new char[strlen(val) + 1];
+        strcpy(str, val);
+    }
+
+    // Destructor
+    ~RuleOfFive() {
+        delete[] str;
+    }
+
+    // Copy Constructor
+    RuleOfFive(const RuleOfFive& source) {
+        str = new char[strlen(source.str) + 1];
+        strcpy(str, source.str);
+    }
+
+    // Copy Assignment Operator
+    RuleOfFive& operator=(const RuleOfFive& source) {
+        if (this == &source) {
+            return *this;  // self-assignment guard
+        }
+        delete[] str;  // clean up existing resources
+        str = new char[strlen(source.str) + 1];
+        strcpy(str, source.str);
+        return *this;
+    }
+
+    // Move Constructor
+    RuleOfFive(RuleOfFive&& source) noexcept : str(source.str) {
+        source.str = nullptr;  // source gives up ownership
+    }
+
+    // Move Assignment Operator
+    RuleOfFive& operator=(RuleOfFive&& source) noexcept {
+        if (this == &source) {
+            return *this;  // self-assignment guard
+        }
+        delete[] str;  // clean up existing resources
+        str = source.str;  // acquire resources from source
+        source.str = nullptr;  // source gives up ownership
+        return *this;
+    }
+};
+
+int main() {
+    RuleOfFive obj1("Hello");
+    RuleOfFive obj2 = obj1;  // invokes copy constructor
+    RuleOfFive obj3("World");
+    obj3 = std::move(obj1);  // invokes move assignment operator
+    return 0;
+}
+```
+
+In this example:
+
+- The **constructor** allocates memory for `str` and copies the input string
+  into it.
+- The **destructor** deallocates the memory to prevent memory leaks.
+- The **copy constructor** and **copy assignment operator** make deep copies of
+  the source object to ensure each object has its own copy of the resource.
+- The **move constructor** and **move assignment operator** transfer ownership
+  of the resource from the source object to the target object, without making a
+  copy. This is more efficient when the source object will no longer be used.

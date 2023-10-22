@@ -1,7 +1,8 @@
 # VCPKG Fundamental
 
 - This file is associated with my other graphics engine using `raylib`, as we
-  will use the `sdl2` here in different approach. Check for more details [RaylibEngine](https://github.com/Ghasak/RaylibEngine/tree/main)
+  will use the `sdl2` here in different approach.
+  Check for more details [RaylibEngine](https://github.com/Ghasak/RaylibEngine/tree/main)
 
 ### Introduction to vcpkg
 
@@ -108,11 +109,11 @@ Let's list the main differences between using `vcpkg` globally vs. locally:
 
   ```sh
   vcpkg list
-    glfw3:arm64-osx                                   3.3.8#2             GLFW is a free, Open Source, multi-platform libr...
-    raylib:arm64-osx                                  4.5.0#2             A simple and easy-to-use library to enjoy videog...
-    raylib[use-audio]:arm64-osx                                           Build raylib with audio module
-    vcpkg-cmake-config:arm64-osx                      2022-02-06#1
-    vcpkg-cmake:arm64-osx                             2023-05-04
+    glfw3:arm64-osx                    3.3.8#2       GLFW is a free, Open Source, multi-platform libr...
+    raylib:arm64-osx                   4.5.0#2       A simple and easy-to-use library to enjoy videog...
+    raylib[use-audio]:arm64-osx                      Build raylib with audio module
+    vcpkg-cmake-config:arm64-osx       2022-02-06#1
+    vcpkg-cmake:arm64-osx              2023-05-04
   ```
 
 - You must now configure your `CMakeList.txt` to know the location of these packages at:
@@ -134,6 +135,18 @@ Let's list the main differences between using `vcpkg` globally vs. locally:
 
 ### Packages Installed - Locally (with the project root dir)
 
+1. Generate a new manifiest file
+
+```cpp
+vcpkg new --name animation_engine_cpp --version 1.0
+```
+
+2. Generate a baseline if you add `version` in your manifiest
+
+```cpp
+vcpkg x-update-baseline --add-initial-baseline
+```
+
 Here, we will have the packages within our given project at a directory will
 created automatically called `vcpkg_installed`. We first create this file and
 assume the given manifest file is located at root directory of our given
@@ -145,7 +158,7 @@ project called `vcpkg.json`. Now we follow:
 {
   "name": "raylibengine",
   "version-string": "0.1.0",
-  "builtin-baseline": "db0473513e5dc73ec6b6f431ff05d2f398eea042",
+  "builtin-baseline": "db0473513e5d6f431ff05d2f398e",
   "dependencies": [
     {
       "name": "raylib",
