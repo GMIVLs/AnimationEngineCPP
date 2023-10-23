@@ -24,9 +24,8 @@ int main(int argc, char *argv[]) {
     FLAGS_alsologtostderr = 1;
     FLAGS_log_dir = logDirPath.c_str();
 
-    for (size_t i = 0; i < 5; i++) {
-        std::cout << "Value of i -> { " << i << " }" << std::endl;
-        LOG(INFO) << "This is an informational log message.";
+    for (size_t i = 0; i < 100; i++) {
+        LOG(INFO) << "Value of i -> " << i ;
         //LOG(WARNING) << "This is a warning log message.";
         //LOG(ERROR) << "This is an error log message.";
     }

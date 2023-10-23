@@ -1,9 +1,0 @@
-Log file created at: 2023/10/22 21:33:27
-Running on machine: GMacBookPro.local
-Running duration (h:mm:ss): 0:00:00
-Log line format: [IWEF]yyyymmdd hh:mm:ss.uuuuuu threadid file:line] msg
-I20231022 21:33:27.897338 1145718 main.cpp:29] This is an informational log message.
-I20231022 21:33:27.898257 1145718 main.cpp:29] This is an informational log message.
-I20231022 21:33:27.898272 1145718 main.cpp:29] This is an informational log message.
-I20231022 21:33:27.898283 1145718 main.cpp:29] This is an informational log message.
-I20231022 21:33:27.898293 1145718 main.cpp:29] This is an informational log message.

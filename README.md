@@ -9,6 +9,7 @@
     * [Graphics libraries](#graphics-libraries)
     * [development](#development)
     * [Verfication](#verfication)
+* [Running while in progress](#running-while-in-progress)
 
 <!-- vim-markdown-toc -->
 
@@ -39,38 +40,38 @@ Currently under development is our engine's structure, which may still undergo
 modifications.
 
 ```lua
-             ┌───────────────────────────────────────────────────────────┐
-             │           ┌1.──────┐ ┌2.──────┐ ┌3.──────┐                │
-             │           │ Physics│ │ Math   │ │ stats  │                │
-             │           │ Module │ │ Module │ │ Module │                │
-             │           └─────┬──* └─────┬──* └─────┬──*                │
-             │                 │          ▼          │                   │
-             │                 │     ┌4.───────┐     │                   │
-             │                 │     │ Particle│◀────┘                   │
-             │                 └────▶│ Module  │                         │
-             │                       └─────┬───*                         │
-             │                             │                             │
-             │                             ▼                             │
-             │                     ┌5.───────────┐                       │
-             │                     │   Motion    │                       │
-             │                     │    Module   │                       │
-             │                     └─────────────*                       │
-             │                            │                              │
-             │           ┌6.───────────┐  │   ┌7.───────────┐            │
-             │           │  Utilities  │  │   │   Platform  │            │
-             │           │    Module   │  │   │    Module   │            │
-             │           └─────┬───────*  ▼   └─────────────*            │
-             │                 │    ┌8.───────────┐     │                │
-             │                 └──▶ │ Experiments │     │                │
-             │                      │    Module   │◀────┘                │
-             │                      └─────┬───────*                      │
-             │                            ▼                              │
-             │                 ┌───────────────────────┐                 │
-             │                 │       `2d` Canvus     │                 │
-             │                 │    Graphics Display   │                 │
-             │                 └───────────────────────*                 │
-             │                               2D - graphics architecture  │
-             └───────────────────────────────────────────────────────────┘
+ ┌───────────────────────────────────────────────────────────┐
+ │           ┌1.──────┐ ┌2.──────┐ ┌3.──────┐                │
+ │           │ Physics│ │ Math   │ │ stats  │                │
+ │           │ Module │ │ Module │ │ Module │                │
+ │           └─────┬──* └─────┬──* └─────┬──*                │
+ │                 │          ▼          │                   │
+ │                 │     ┌4.───────┐     │                   │
+ │                 │     │ Particle│◀────┘                   │
+ │                 └────▶│ Module  │                         │
+ │                       └─────┬───*                         │
+ │                             │                             │
+ │                             ▼                             │
+ │                     ┌5.───────────┐                       │
+ │                     │   Motion    │                       │
+ │                     │    Module   │                       │
+ │                     └─────────────*                       │
+ │                            │                              │
+ │           ┌6.───────────┐  │   ┌7.───────────┐            │
+ │           │  Utilities  │  │   │   Platform  │            │
+ │           │    Module   │  │   │    Module   │            │
+ │           └─────┬───────*  ▼   └─────────────*            │
+ │                 │    ┌8.───────────┐     │                │
+ │                 └──▶ │ Experiments │     │                │
+ │                      │    Module   │◀────┘                │
+ │                      └─────┬───────*                      │
+ │                            ▼                              │
+ │                 ┌───────────────────────┐                 │
+ │                 │       `2d` Canvus     │                 │
+ │                 │    Graphics Display   │                 │
+ │                 └───────────────────────*                 │
+ │                               2D - graphics architecture  │
+ └───────────────────────────────────────────────────────────┘
 ```
 
 ## Prerequisites
@@ -124,7 +125,7 @@ You will need several libraries for `development` mode including
 1. Checking the `sdl2` headers
 
 ```sh
-╰─ /opt/homebrew/Cellar/sdl2/2.28.3/bin/sdl2-config --cflags
+/opt/homebrew/Cellar/sdl2/2.28.3/bin/sdl2-config --cflags
 -I/opt/homebrew/Cellar/sdl2/2.28.3/include/SDL2 -D_THREAD_SAFE
 ```
 
@@ -140,4 +141,13 @@ or
 
 ```sh
 sdl2-config --version
+```
+
+## Running while in progress
+
+- Using the `fswatch`cli, while changing any code in the `src` and save, it
+  will be load and run the command from `Makefile`.
+
+```sh
+fswatch -o src/ | xargs -n1 -I{} make all
 ```
