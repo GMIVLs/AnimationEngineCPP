@@ -29,7 +29,7 @@ release: link_compile_commands
 	./build/debug/$(BINARY_NAME)
 
 debug_using_ninja: link_compile_commands
-	cmake -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja" \
+	cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja \
 		-DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
 		-G Ninja -S . \
 		-B ./build/debug
@@ -38,7 +38,7 @@ debug_using_ninja: link_compile_commands
 
 
 release_using_ninja: link_compile_commands
-	cmake -DCMAKE_BUILD_TYPE=Release "-DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja" \
+	cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja \
 		-DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
 		-G Ninja -S . \
 		-B ./build/release

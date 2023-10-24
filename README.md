@@ -151,3 +151,8 @@ sdl2-config --version
 ```sh
 fswatch -o src/ | xargs -n1 -I{} make all
 ```
+
+
+
+
+
