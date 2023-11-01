@@ -9,9 +9,9 @@
 
 static bool OUTPUT_TYPE_ANIMATION = false;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     // Get the PROJECT_DIR environment variable value
-    const char *projectDir = getenv("PROJECT_DIR");
+    const char* projectDir = getenv("PROJECT_DIR");
     if (OUTPUT_TYPE_ANIMATION == true) {
         if (SDL_Init(SDL_INIT_VIDEO) < 0) {
             SDL_Log("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
             return 1;
         }
 
-        SDL_Window *window = SDL_CreateWindow("SDL Image Display", SDL_WINDOWPOS_UNDEFINED,
+        SDL_Window* window = SDL_CreateWindow("SDL Image Display", SDL_WINDOWPOS_UNDEFINED,
                                               SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
         if (!window) {
             SDL_Log("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
             return 1;
         }
 
-        SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+        SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
         if (!renderer) {
             SDL_Log("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
             SDL_DestroyWindow(window);
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
         // Construct the path to the image
         std::string imagePath = std::string(projectDir) + "/assets/M01.png";
 
-        SDL_Texture *texture = IMG_LoadTexture(renderer, imagePath.c_str());
+        SDL_Texture* texture = IMG_LoadTexture(renderer, imagePath.c_str());
         if (!texture) {
             SDL_Log("Unable to create texture from image! SDL_image Error: %s\n", IMG_GetError());
             SDL_DestroyRenderer(renderer);

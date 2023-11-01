@@ -15,5 +15,7 @@ PackConstructorInitializers: Never
 BreakConstructorInitializersBeforeComma: false
 IndentPPDirectives: BeforeHash
 SortIncludes:    Never
+DerivePointerAlignment: false
+PointerAlignment: Left
 ...
 

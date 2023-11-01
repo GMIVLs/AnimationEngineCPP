@@ -1,21 +1,122 @@
 # OOP in CPP - Details
 
-<!-- vim-markdown-toc GitLab -->
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
 
-* [Content](#content)
-    * [Method to create an object from a class](#method-to-create-an-object-from-a-class)
-    * [Methods for creating class in CPP](#methods-for-creating-class-in-cpp)
-    * [Common Code Practice](#common-code-practice)
-* [Demo](#demo)
-* [Components and keywords Premier](#components-and-keywords-premier)
-* [How to allow the constructor to accept assignment for x and y and if not then they will be zero?](#how-to-allow-the-constructor-to-accept-assignment-for-x-and-y-and-if-not-then-they-will-be-zero)
-* [Typical Class with all possible keywords](#typical-class-with-all-possible-keywords)
-* [Static variable with class](#static-variable-with-class)
-* [The Rule of 5 in Class](#the-rule-of-5-in-class)
+- [OOP in CPP - Details](#oop-in-cpp---details)
+    - [Content](#content)
+        - [Method to create an object from a class](#method-to-create-an-object-from-a-class)
+        - [Methods for creating class in CPP](#methods-for-creating-class-in-cpp)
+        - [Common Code Practice](#common-code-practice)
+    - [Demo](#demo)
+    - [Components and keywords Premier](#components-and-keywords-premier)
+    - [How to allow the constructor to accept assignment for x and y and if not then they will be zero?](#how-to-allow-the-constructor-to-accept-assignment-for-x-and-y-and-if-not-then-they-will-be-zero)
+    - [Typical Class with all possible keywords](#typical-class-with-all-possible-keywords)
+    - [Static variable with class](#static-variable-with-class)
+    - [The Rule of 5 in Class](#the-rule-of-5-in-class)
 
-<!-- vim-markdown-toc -->
+<!-- markdown-toc end -->
+
 
 ## Content
+
+Object-oriented programming (OOP) is a programming paradigm that is
+based on the concept of "objects". C++ is one of the most popular languages that
+supports OOP. Here's a summary of the fundamental OOP concepts in C++:
+
+1. **Class and Object**:
+
+   - **Class**: A blueprint for creating objects. It encapsulates data and functions/methods that operate on the data.
+   - **Object**: An instance of a class. It's a self-contained unit that combines both data and the methods to manipulate that data.
+
+     ```cpp
+     class Dog {
+     public:
+         string name;
+         void bark() { cout << name << " barks!"; }
+     };
+
+     Dog myDog;
+     myDog.name = "Buddy";
+     ```
+
+2. **Encapsulation**:
+
+   - Bundling the data (attributes) and the methods (functions) that operate on the data into a single unit, i.e., class.
+   - Provides mechanisms to restrict the access of the object's internal state using `public`, `private`, and `protected` access specifiers.
+     ```cpp
+     class Circle {
+     private:
+         double radius;
+     public:
+         void setRadius(double r) { radius = r; }
+         double getArea() { return 3.14 * radius * radius; }
+     };
+     ```
+
+3. **Inheritance**:
+
+   - Allows a class (derived/child class) to inherit attributes and methods from another class (base/parent class).
+   - Promotes reusability and establishes a relationship between the base and derived class.
+
+     ```cpp
+     class Animal {
+     public:
+         void eat() { cout << "Eating"; }
+     };
+
+     class Dog : public Animal {
+     public:
+         void bark() { cout << "Barking"; }
+     };
+     ```
+
+4. **Polymorphism**:
+
+   - The ability of different classes to be treated as instances of the same class through inheritance.
+   - Two main types in C++:
+
+     - **Compile-time (Static)**: Achieved by function overloading and operator overloading.
+     - **Run-time (Dynamic)**: Achieved using function overriding (when derived class has a definition for one of the base class's functions).
+
+       ```cpp
+       class Animal {
+       public:
+           virtual void sound() { cout << "Animal makes a sound"; }
+       };
+
+       class Dog : public Animal {
+       public:
+           void sound() override { cout << "Dog barks"; }
+       };
+       ```
+
+5. **Abstraction**:
+
+   - Hiding complex reality while exposing only the necessary parts.
+   - Helps in reducing complexity and allows the programmer to focus on interactions at a higher level.
+   - Achieved in C++ using abstract classes and pure virtual functions.
+     ```cpp
+     class AbstractShape {
+     public:
+         virtual double area() = 0;  // Pure virtual function
+     };
+     ```
+
+6. **Association, Aggregation, and Composition**:
+
+   - Various ways to establish relationships between classes.
+     - **Association**: A general binary relationship that describes an activity between two classes.
+     - **Aggregation**: A special form of association, which represents an "ownership" relationship between two classes.
+     - **Composition**: A strong form of aggregation. Represents a "death" relationship between two classes. If the parent class is deleted, then the child class will also be deleted.
+
+7. **Message Passing**:
+   - Objects communicate with one another by sending and receiving information in the form of messages.
+   - In C++, this is done using methods (functions defined inside classes).
+     ```cpp
+     Dog myDog;
+     myDog.bark();  // Sending a 'bark' message to myDog object.
+     ```
 
 ### Method to create an object from a class
 
