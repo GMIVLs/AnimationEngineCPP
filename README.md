@@ -70,7 +70,7 @@ modifications.
  │                 │       `2d` Canvus     │                 │
  │                 │    Graphics Display   │                 │
  │                 └───────────────────────*                 │
- │                               2D - graphics architecture  │
+ │ 2D - graphics architecture                                │
  └───────────────────────────────────────────────────────────┘
 ```
 
@@ -151,8 +151,3 @@ sdl2-config --version
 ```sh
 fswatch -o src/ | xargs -n1 -I{} make all
 ```
-
-
-
-
-
