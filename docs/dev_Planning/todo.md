@@ -27,6 +27,7 @@
   - [ ] projection : (the horizontal component vector of a given 2d vector)
   - [ ] transition : (moving) (moving a vector **origin** from point A to point B)
   - [ ] refelction : given a vector angle create the refelection.
+  - [ ] need for vector print operator (<<).
 
 ##### 1.2.1.1 Requirements
 

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>README.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+</head>
+
+<body>
+
+<h1 id="animation-engine-cpp">Animation Engine CPP</h1>
+<p><a
+href="https://github.com/Ghasak/AnimationEngineCPP/blob/main/LICENSE"><img
+src="https://img.shields.io/badge/License-MIT-blue"
+alt="MIT License" /></a> <a href="https://www.libsdl.org"><img
+src="https://img.shields.io/badge/SDL-2.0-yellow" alt="SDL2.0" /></a> <a
+href="https://clang.llvm.org/docs/ClangFormat.html"><img
+src="https://img.shields.io/badge/clang--format-formatter-red"
+alt="Static Badge" /></a> <a
+href="https://github.com/wkusnierczyk/make"><img
+src="https://img.shields.io/badge/make-C%2B%2B%20Build%20Systems-blue"
+alt="Static Badge" /></a> <a
+href="https://github.com/ninja-build/ninja"><img
+src="https://img.shields.io/badge/Ninja-C%2B%2B%20Build%20Systems-red"
+alt="Static Badge" /></a></p>
+<hr />
+<p><img
+src="https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&amp;logo=c&amp;logoColor=white"
+alt="C" /> <img
+src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&amp;logo=c%2B%2B&amp;logoColor=white"
+alt="C++" /> <img
+src="https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&amp;logo=cmake&amp;logoColor=white"
+alt="CMake" /> <img
+src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&amp;logo=git&amp;logoColor=white"
+alt="Git" /> <img
+src="https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&amp;logo=gnu-bash&amp;logoColor=white"
+alt="Shell Script" /> <img
+src="https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&amp;logo=macos&amp;logoColor=F0F0F0"
+alt="macOS" /> <!-- vim-markdown-toc GitLab --></p>
+<ul>
+<li><a href="#changinglog">ChangingLog</a>
+<ul>
+<li><a href="#graphics-architecture-diagram">Graphics Architecture
+Diagram:</a></li>
+</ul></li>
+<li><a href="#prerequisites">Prerequisites</a>
+<ul>
+<li><a href="#fundamental">Fundamental</a></li>
+<li><a href="#graphics-libraries">Graphics libraries</a></li>
+<li><a href="#development">development</a></li>
+<li><a href="#verfication">Verfication</a></li>
+</ul></li>
+<li><a href="#running-while-in-progress">Running while in
+progress</a></li>
+</ul>
+<!-- vim-markdown-toc -->
+<h2 id="changinglog">ChangingLog</h2>
+<ul>
+<li><p><code>2023-10-22 21:38</code>: Added <code>glog</code> library
+using vcpkg.</p></li>
+<li><p><code>2023-09-29 00:00</code>: Loading image is possible now:</p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" />merge the
+<code>cpp_habits.md</code> done by M,</label></li>
+<li><label><input type="checkbox" checked="" />and updating the
+<code>CMakeList.txt</code> for <code>SDL_image</code>
+extension.</label></li>
+<li><label><input type="checkbox" checked="" />documentation updated for
+several data structures in <code>C++</code>.</label></li>
+</ul></li>
+<li><p><code>2023-09-03 12:48</code>: Starting documentation for the
+tips and tricks in <code>CPP</code>.</p></li>
+<li><p><code>2023-07-16 22:29</code>:</p>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" />Adding script to download
+dependencies.</label></li>
+<li><label><input type="checkbox" checked="" />Provoid documentation for
+the building the project.</label>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" />Create the
+<code>CMakeList.txt</code> for <code>SDL2</code> and all the attached
+dependencies.</label></li>
+</ul></li>
+</ul></li>
+<li><p><code>2023-07-15 02:30</code></p>
+<ul>
+<li>Create the base for the animation engine in CPP</li>
+<li>Create branching for each developer</li>
+<li>Added the <code>CMakeList.txt</code> build the project in
+<code>debug</code> and <code>release</code> modes</li>
+</ul></li>
+</ul>
+<h3 id="graphics-architecture-diagram">Graphics Architecture
+Diagram:</h3>
+<p>Currently under development is our engine’s structure, which may
+still undergo modifications.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode lua"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> ┌───────────────────────────────────────────────────────────┐</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> │           ┌<span class="dv">1.</span>──────┐ ┌<span class="dv">2.</span>──────┐ ┌<span class="dv">3.</span>──────┐                │</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> │           │ <span class="cn">P</span><span class="va">hysics</span>│ │ <span class="cn">M</span><span class="va">ath</span>   │ │ <span class="va">stats</span>  │                │</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> │           │ <span class="cn">M</span><span class="va">odule</span> │ │ <span class="cn">M</span><span class="va">odule</span> │ │ <span class="cn">M</span><span class="va">odule</span> │                │</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> │           └─────┬──<span class="op">*</span> └─────┬──<span class="op">*</span> └─────┬──<span class="op">*</span>                │</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> │                 │          ▼          │                   │</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a> │                 │     ┌<span class="dv">4.</span>───────┐     │                   │</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a> │                 │     │ <span class="cn">P</span><span class="va">article</span>│◀────┘                   │</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a> │                 └────▶│ <span class="cn">M</span><span class="va">odule</span>  │                         │</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a> │                       └─────┬───<span class="op">*</span>                         │</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a> │                             │                             │</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a> │                             ▼                             │</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a> │                     ┌<span class="dv">5.</span>───────────┐                       │</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a> │                     │   <span class="cn">M</span><span class="va">otion</span>    │                       │</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a> │                     │    <span class="cn">M</span><span class="va">odule</span>   │                       │</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a> │                     └─────────────<span class="op">*</span>                       │</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a> │                            │                              │</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a> │           ┌<span class="dv">6.</span>───────────┐  │   ┌<span class="dv">7.</span>───────────┐            │</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a> │           │  <span class="cn">U</span><span class="va">tilities</span>  │  │   │   <span class="cn">P</span><span class="va">latform</span>  │            │</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a> │           │    <span class="cn">M</span><span class="va">odule</span>   │  │   │    <span class="cn">M</span><span class="va">odule</span>   │            │</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a> │           └─────┬───────<span class="op">*</span>  ▼   └─────────────<span class="op">*</span>            │</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a> │                 │    ┌<span class="dv">8.</span>───────────┐     │                │</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a> │                 └──▶ │ <span class="cn">E</span><span class="va">xperiments</span> │     │                │</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a> │                      │    <span class="cn">M</span><span class="va">odule</span>   │◀────┘                │</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a> │                      └─────┬───────<span class="op">*</span>                      │</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a> │                            ▼                              │</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a> │                 ┌───────────────────────┐                 │</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a> │                 │       `<span class="dv">2</span><span class="er">d</span>` <span class="cn">C</span><span class="va">anvus</span>     │                 │</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a> │                 │    <span class="cn">G</span><span class="va">raphics</span> <span class="cn">D</span><span class="va">isplay</span>   │                 │</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a> │                 └───────────────────────<span class="op">*</span>                 │</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a> │ <span class="dv">2</span><span class="er">D</span> <span class="op">-</span> <span class="va">graphics</span> <span class="va">architecture</span>                                │</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a> └───────────────────────────────────────────────────────────┘</span></code></pre></div>
+<h2 id="prerequisites">Prerequisites</h2>
+<h3 id="fundamental">Fundamental</h3>
+<p>If you have a fresh MacBook without any development tools installed,
+including Xcode, you’ll need the following to compile C/C++ code:</p>
+<ul>
+<li>Command Line Tools (CLT) for Xcode: This provides a standalone
+version of the compiler and essential tools without the need for the
+full Xcode IDE. It includes: clang: The C, C++, and Objective-C
+compiler. lldb: The debugger.</li>
+<li>Essential system headers and libraries.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Copy</span> code</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">xcode-select</span> <span class="at">--install</span></span></code></pre></div>
+<ul>
+<li>Homebrew (Optional but Recommended): While not strictly necessary
+for compiling C/C++ code, Homebrew is a package manager for macOS that
+makes it easy to install various software and libraries. It can be very
+useful if you need external libraries for your projects. To install
+Homebrew, you can use:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">&quot;</span></span></code></pre></div>
+<ul>
+<li>CMake (Optional): If you want to use CMake as a build system (as in
+your previous examples), you’d need to install CMake. With Homebrew,
+it’s as easy</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install cmake</span></code></pre></div>
+<h3 id="graphics-libraries">Graphics libraries</h3>
+<ul>
+<li>Run the script
+<code>./tools/fetch_dependencies_if_not_existed_macOS.sh</code> to get
+the <code>SDL2</code> and its extensions up and running.</li>
+</ul>
+<h3 id="development">development</h3>
+<p>You will need several libraries for <code>development</code> mode
+including</p>
+<ol type="1">
+<li>The <code>clang</code> complier which comes with the xcode
+pre-installed with the <code>xcode</code>.</li>
+<li>The <code>clangd</code> the language server, which is also
+pre-installed with the <code>xcode</code>.</li>
+<li>The <code>clang-format</code> for formatting your <code>C/C++</code>
+code using <code>brew install clang-format</code>.</li>
+</ol>
+<h3 id="verfication">Verfication</h3>
+<ol type="1">
+<li>Checking the <code>sdl2</code> headers</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/opt/homebrew/Cellar/sdl2/2.28.3/bin/sdl2-config</span> <span class="at">--cflags</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">-I/opt/homebrew/Cellar/sdl2/2.28.3/include/SDL2</span> <span class="at">-D_THREAD_SAFE</span></span></code></pre></div>
+<ol start="2" type="1">
+<li>Checking the <code>sdl2</code> and all other extenstions
+installed</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> info sdl2</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> info sdl_image</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> info sdl_gfx</span></code></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sdl2-config</span> <span class="at">--version</span></span></code></pre></div>
+<h2 id="running-while-in-progress">Running while in progress</h2>
+<ul>
+<li>Using the <code>fswatch</code>cli, while changing any code in the
+<code>src</code> and save, it will be load and run the command from
+<code>Makefile</code>.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fswatch</span> <span class="at">-o</span> src/ <span class="kw">|</span> <span class="fu">xargs</span> <span class="at">-n1</span> <span class="at">-I{}</span> make all</span></code></pre></div>
+
+</body>
+</html>

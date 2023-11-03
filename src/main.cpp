@@ -1,11 +1,10 @@
 #include "lib/veclib/Vector_2d.h"
 #include <SDL.h>
 #include <SDL_image.h>
-#include <algorithm>
-#include <cmath>
 #include <cstdlib>
 #include <iostream>
 #include <glog/logging.h>
+#include <string>
 
 static bool OUTPUT_TYPE_ANIMATION = false;
 
