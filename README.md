@@ -1,6 +1,5 @@
 # Animation Engine CPP
 
-<<<<<<< HEAD
 [![MIT License](https://img.shields.io/badge/License-MIT-blue)](https://github.com/Ghasak/AnimationEngineCPP/blob/main/LICENSE)
 [![SDL2.0](https://img.shields.io/badge/SDL-2.0-yellow)](https://www.libsdl.org)
 [![Static Badge](https://img.shields.io/badge/clang--format-formatter-red)](https://clang.llvm.org/docs/ClangFormat.html)
@@ -16,23 +15,6 @@
 ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
 ![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0)
 
-||||||| parent of 278da29 (...)
-=======
-[![MIT License](https://img.shields.io/badge/License-MIT-blue)](https://github.com/Ghasak/AnimationEngineCPP/blob/main/LICENSE)
-[![SDL2.0](https://img.shields.io/badge/SDL-2.0-yellow)](https://www.libsdl.org)
-[![Static Badge](https://img.shields.io/badge/clang--format-formatter-red)](https://clang.llvm.org/docs/ClangFormat.html)
-[![Static Badge](https://img.shields.io/badge/cmake-C%2B%2B%20Build%20Systems-purple)](https://cmake.org)
-[![Static Badge](https://img.shields.io/badge/make-C%2B%2B%20Build%20Systems-blue)](https://github.com/wkusnierczyk/make)
-[![Static Badge](https://img.shields.io/badge/Ninja-C%2B%2B%20Build%20Systems-red)](https://github.com/ninja-build/ninja)
-
----
-![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
-![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
-![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0)
-![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
->>>>>>> 278da29 (...)
-<!-- vim-markdown-toc GitLab -->
 
 - [ChangingLog](#changinglog)
   - [Graphics Architecture Diagram:](#graphics-architecture-diagram)
