@@ -7,10 +7,10 @@
 # Variables
 BINARY_NAME=main
 NUMBER_CORES=8
-SDL2_DIR = $(HOMEBREW_DIR)/sdl2/2.28.4
+SDL2_DIR = $(HOMEBREW_DIR)/sdl2/2.28.5
 SDL2_IMAGE_DIR = $(HOMEBREW_DIR)/sdl2_image/2.6.3_2
 SOURCES = src/main.cpp src/lib/veclib/Vector_2d.cpp
-OUTPUT = build/debug/main
+OUTPUT = build/debug/${BINARY_NAME}
 
 # Phony target since 'runcli' isn't a file
 .PHONY: all debug release run
@@ -71,11 +71,15 @@ $(OUTPUT): $(SOURCES)
 	-L$(HOME)vcpkg/packages/glog_arm64-osx/lib -lglog \
 	-o $@ $(SOURCES)
 
+# This will fetch the dependencies and create symbolic links for each attached
+# library.
 fetch_sdl2.0_dependencies:
 	@echo "Running now script to fetch dependencies and link them in the dependencies directory ..."
 	chmod +x $(PROJECT_DIR)/tools/fetch_dependencies_if_not_existed_macOS.sh
 	$(PROJECT_DIR)/tools/fetch_dependencies_if_not_existed_macOS.sh
 
+# Cleaning the build from the current project by deleting both the debug and
+# release directories.
 clean:
 	@rm -rf build .cache
 	@rm -rf vcpkg-manifest-install.log \
@@ -84,7 +88,7 @@ clean:
 		compile_commands.json .idea cmake-build-debug
 
 clean_dependencies:
-	dependencies
+	@rm -rf ./dependencies
 
 
 help:
@@ -110,3 +114,4 @@ help:
 	@echo ""
 	@echo "NOTE: Run Command - will not be maintained, as the project will grow later"
 	@echo "\033[35m ********************************************************\033[0m"
+

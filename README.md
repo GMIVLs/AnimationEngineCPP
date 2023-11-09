@@ -15,7 +15,6 @@
 ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
 ![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0)
 
-
 - [ChangingLog](#changinglog)
   - [Graphics Architecture Diagram:](#graphics-architecture-diagram)
 - [Prerequisites](#prerequisites)
@@ -178,7 +177,6 @@ Adding the following:
    `lldb-mi` should work fine for debugging in `spacemacs`.
 
 ```lisp
-
 (dap-register-debug-template
  "cpptools::Run Configuration-GHASAKII"
  (list :type "cppdbg"
@@ -190,3 +188,8 @@ Adding the following:
        :cwd "${workspaceFolder}"))
 
 ```
+
+## Documentations
+
+I am using in terminal a tool called [cppman](https://github.com/aitjcize/cppman), which give us the ability to navigate between C++98/11/14/17 and 20 manual
+pages of the standard library.

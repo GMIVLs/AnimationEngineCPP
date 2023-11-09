@@ -6,7 +6,7 @@
 #include <glog/logging.h>
 #include <string>
 
-static bool OUTPUT_TYPE_ANIMATION = false;
+static bool OUTPUT_TYPE_ANIMATION = true;
 
 int main(int argc, char* argv[]) {
     // Get the PROJECT_DIR environment variable value
@@ -16,13 +16,11 @@ int main(int argc, char* argv[]) {
             SDL_Log("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
             return 1;
         }
-
         if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
             SDL_Log("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
             SDL_Quit();
             return 1;
         }
-
         SDL_Window* window = SDL_CreateWindow("SDL Image Display", SDL_WINDOWPOS_UNDEFINED,
                                               SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
         if (!window) {
@@ -31,18 +29,16 @@ int main(int argc, char* argv[]) {
             SDL_Quit();
             return 1;
         }
-
         SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
         if (!renderer) {
             SDL_Log("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
             SDL_DestroyWindow(window);
             IMG_Quit();
-            SDL_Quit();
+           SDL_Quit();
             return 1;
         }
         // Construct the path to the image
         std::string imagePath = std::string(projectDir) + "/assets/M01.png";
-
         SDL_Texture* texture = IMG_LoadTexture(renderer, imagePath.c_str());
         if (!texture) {
             SDL_Log("Unable to create texture from image! SDL_image Error: %s\n", IMG_GetError());
@@ -52,17 +48,14 @@ int main(int argc, char* argv[]) {
             SDL_Quit();
             return 1;
         }
-
         bool quit = false;
         SDL_Event e;
-
         while (!quit) {
             while (SDL_PollEvent(&e) != 0) {
                 if (e.type == SDL_QUIT) {
                     quit = true;
                 }
             }
-
             SDL_RenderClear(renderer);
             SDL_RenderCopy(renderer, texture, NULL, NULL);
             SDL_RenderPresent(renderer);
@@ -85,7 +78,6 @@ int main(int argc, char* argv[]) {
         Vector_2d<double> my_vector(a, b);
         my_vector.display();
     }
-
     // Initialize Google's logging library.
     google::InitGoogleLogging(argv[0]);
     // Ensure this is a directory path, not a file path
@@ -95,11 +87,9 @@ int main(int argc, char* argv[]) {
     }
     std::string logDirPath = std::string(projectDir) + "/src/logs";
     std::cout << "Log directory: " << logDirPath << std::endl;
-
     // Set logging flags
     FLAGS_alsologtostderr = 1;
     FLAGS_log_dir = logDirPath.c_str();
-
     for (size_t i = 0; i < 10; i++) {
         LOG(INFO) << "Value of i -> " << i;
         LOG(WARNING) << "Value of i -> " << i;

@@ -14,11 +14,12 @@
     - [Can a Project has several translation units?](#can-a-project-has-several-translation-units)
     - [Header files](#header-files)
     - [Guards for Directives (#include)](#guards-for-directives-include)
-    - [Question -1](#question--1)
-    - [Question -2](#question--2)
-    - [Question -3](#question--3)
-    - [Question -4](#question--4)
-    - [Question -5](#question--5)
+    - [Q&A Sessionn](#qa-sessionn)
+        - [Question -1](#question--1)
+        - [Question -2](#question--2)
+        - [Question -3](#question--3)
+        - [Question -4](#question--4)
+        - [Question -5](#question--5)
 
 <!-- markdown-toc end -->
 
@@ -502,7 +503,9 @@ how many times they were included in different translation units.
 The C++ Standard Library and its headers are designed to be included in multiple
 translation units; it's a fundamental part of supporting modular compilation.
 
-## Question -1
+## Q&A Sessionn
+
+### Question -1
 
 - Explain more about the translation units
   - Is it possible to make two or more translation units in single project? Assume I am calling them all into main.cpp
@@ -566,7 +569,7 @@ g++ main.o lib.o -o my_program
 The `-c` flag tells the compiler to generate object files, and the final line
 without `-c` links the object files into an executable called `my_program`.
 
-## Question -2
+### Question -2
 
 - But I thought if I call lib in main then the result will be a one single big translation unit?
   - It seems there might be a misunderstanding about how the translation unit works
@@ -593,7 +596,7 @@ separate translation units. They are only brought together into a single,
 cohesive program during the linking stage, which is after each translation unit
 has been compiled into an object file.
 
-## Question -3
+### Question -3
 
 Now, can I say in that case that for every CPP file there is a corresponding
 translation unit? If not then what is the reason? Is CPP file can be considered
@@ -622,7 +625,7 @@ the compilation process and doesn't directly correspond to a physical file you
 can see (other than the `.cpp` source file and the resulting `.o` or `.obj`
 object file).
 
-## Question -4
+### Question -4
 
 Is it possible to show the .i files after the pre processor Show me an easy
 hello world example using clang++ command line, and point what kind of flag is
@@ -684,7 +687,7 @@ clang++ -E main.cpp -o main.i
   like `-E`.
 
 
-## Question -5
+### Question -5
 What is the result of main.i show it to me of your previous example?
 - The `.i` file resulting from preprocessing `main.cpp` would contain the entire
   contents of `main.cpp` with all `#include` directives replaced by the actual
