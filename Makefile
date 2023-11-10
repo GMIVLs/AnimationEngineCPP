@@ -16,7 +16,7 @@ OUTPUT = build/debug/${BINARY_NAME}
 .PHONY: all debug release run
 
 
-all: debug
+all: debug_using_ninja
 
 debug: link_compile_commands
 	cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake  -S . -B build/debug

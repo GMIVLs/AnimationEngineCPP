@@ -6,7 +6,11 @@
 #include <glog/logging.h>
 #include <string>
 
-static bool OUTPUT_TYPE_ANIMATION = true;
+#define RED "\033[1;31m"
+#define BLUE "\033[1;32m"
+#define RESET "\033[0m"
+
+static bool OUTPUT_TYPE_ANIMATION = false;
 
 int main(int argc, char* argv[]) {
     // Get the PROJECT_DIR environment variable value
@@ -34,7 +38,7 @@ int main(int argc, char* argv[]) {
             SDL_Log("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
             SDL_DestroyWindow(window);
             IMG_Quit();
-           SDL_Quit();
+            SDL_Quit();
             return 1;
         }
         // Construct the path to the image
@@ -91,9 +95,9 @@ int main(int argc, char* argv[]) {
     FLAGS_alsologtostderr = 1;
     FLAGS_log_dir = logDirPath.c_str();
     for (size_t i = 0; i < 10; i++) {
-        LOG(INFO) << "Value of i -> " << i;
-        LOG(WARNING) << "Value of i -> " << i;
-        LOG(ERROR) << "Value of i -> " << i;
+        LOG(INFO) << RED << __DATE__ << BLUE << " Value of i -> " << RESET << i;
+        // LOG(WARNING) << "Value of i -> " << i;
+        // LOG(ERROR) << "Value of i -> " << i;
     }
 
     return 0;
