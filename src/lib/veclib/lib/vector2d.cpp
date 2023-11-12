@@ -25,6 +25,13 @@ vector2d<Gtype> vector2d<Gtype>::operator+(vector2d<Gtype>& v) {
 }
 
 template <class Gtype>
+vector2d<Gtype> vector2d<Gtype>::operator()(Gtype x_new, Gtype y_new) {
+    this->x = x_new;
+    this->y = y_new;
+    return (*this);
+}
+
+template <class Gtype>
 vector2d<Gtype> vector2d<Gtype>::add(const vector2d<Gtype>& v) {
     return vector2d<Gtype>(this->x + v.x, this->y + v.y);
 }
