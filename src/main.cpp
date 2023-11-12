@@ -1,4 +1,4 @@
-#include "lib/veclib/Vector_2d.h"
+#include "lib/veclib/include/vector2d.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <cstdlib>
@@ -76,10 +76,11 @@ int main(int argc, char* argv[]) {
     // Vector_2d<double> my_vector = Vector_2d(10.0, 10.0);
     double a = 10.0;
     double b = 20.0;
+    vector2d<double> my_vector(a, b);
+
     for (size_t i = 0; i < 10; i++) {
         a = a + i;
         b = b + i;
-        Vector_2d<double> my_vector(a, b);
         my_vector.display();
     }
     // Initialize Google's logging library.
@@ -94,10 +95,20 @@ int main(int argc, char* argv[]) {
     // Set logging flags
     FLAGS_alsologtostderr = 1;
     FLAGS_log_dir = logDirPath.c_str();
-    for (size_t i = 0; i < 10; i++) {
+    for (size_t i = 0; i < 3; i++) {
         LOG(INFO) << RED << __DATE__ << BLUE << " Value of i -> " << RESET << i;
         // LOG(WARNING) << "Value of i -> " << i;
         // LOG(ERROR) << "Value of i -> " << i;
+    }
+
+    vector2d<int> my_vector_2{0, 0};
+    vector2d<int> new_my_vector = vector2d<int>(0, 0);
+
+    for (size_t i = 0; i < 10; i++) {
+        int k = i + 10;
+        new_my_vector.set_x(i);
+        new_my_vector.set_y(k);
+        LOG(INFO) << RED << new_my_vector << RESET;
     }
 
     return 0;

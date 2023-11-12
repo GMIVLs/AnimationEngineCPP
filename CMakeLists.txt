@@ -5,8 +5,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Recursive find all files and add them to the project
 #file(GLOB_RECURSE SOURCES "src/*.cpp")
-# "src/lib/veclib/*.cpp") Adding all the modules for our build:
-set(SOURCES src/main.cpp src/lib/veclib/Vector_2d.cpp)
+#set(SOURCES src/main.cpp src/lib/veclib/Vector_2d.cpp)
+# This will read all the cpp files in the src directory recursively,
+# no need to specifiy one by one.
+file(GLOB_RECURSE SOURCES src/*.cpp)
 
 # Set the build type if not provided
 if(NOT CMAKE_BUILD_TYPE)
