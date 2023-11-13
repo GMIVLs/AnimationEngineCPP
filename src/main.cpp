@@ -5,6 +5,7 @@
 #include <iostream>
 #include <glog/logging.h>
 #include <string>
+#include <vector>
 
 #define RED "\033[1;31m"
 #define BLUE "\033[1;32m"
