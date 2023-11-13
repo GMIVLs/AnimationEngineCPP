@@ -28,6 +28,7 @@
 
 ## ChangingLog
 
+- `2023-11-14 23:00`: Migrated to the GMIVLs
 - `2023-10-22 21:38`: Added `glog` library using vcpkg.
 - `2023-09-29 00:00`: Loading image is possible now:
 
@@ -46,6 +47,15 @@
   - Create the base for the animation engine in CPP
   - Create branching for each developer
   - Added the `CMakeList.txt` build the project in `debug` and `release` modes
+
+
+## To Do
+
+- [ ] How to connect to VGA, to boost and accelrate the work.
+- [ ] Mulit-threading and Async in C++.
+- [ ] Unit Testing for major Animation Engine.
+- [ ] Connect to orginzation developed extensions and libraries.
+- [ ] Doxagen for docuementation.
 
 ### Graphics Architecture Diagram:
 

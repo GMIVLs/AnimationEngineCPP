@@ -9,7 +9,7 @@ BINARY_NAME=main
 NUMBER_CORES=8
 SDL2_DIR = $(HOMEBREW_DIR)/sdl2/2.28.5
 SDL2_IMAGE_DIR = $(HOMEBREW_DIR)/sdl2_image/2.6.3_2
-SOURCES = src/main.cpp src/lib/veclib/Vector_2d.cpp
+SOURCES = src/main.cpp src/lib/veclib/lib/vector2d.cpp ./src/lib/veclib/lib/vect.cpp
 OUTPUT = build/debug/${BINARY_NAME}
 
 # Phony target since 'runcli' isn't a file
