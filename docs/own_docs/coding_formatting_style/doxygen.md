@@ -14,7 +14,41 @@ I run the command inside the project to generate the `dcofig` file and I have
 edited some configurations to match our expected documentation that we will
 generate during the workflow.
 
-## Installing _macOS_
+- this will be generate only once,
+
+```sh
+doxygen -g dconfig
+```
+
+- I also adjusted the dconfig to fit our needs
+
+  1. I added the name of the project, the version and also swithcing YES the inline sources and sources.
+  2. We add the documentations for our functions to be generated, using the follwoing form.
+
+     - You will add the documentation using the `//!` a head of each comment that
+       you will add to a class, method, function, structs ..etc. (see the example
+       below)
+     - Its ok to use other documentation formating such as `///`, `//! ****` blocks, ..etc. not structly to use `//!` only!
+
+```cpp
+//! Add your documentation here in this format
+void my_function(std::string my_string){
+    return std::string("This is just a test ...")
+}
+```
+
+3. For generating the documentation, Run the command:
+
+```sh
+doxygen dconfig ./build/debug/main
+```
+
+- Currently, I used the best configurations for our repo, you can check all the
+  options that I selected by reviewing the "../../dconfig" file.
+
+## Installing doxygen
+
+### macOS
 
 1. Use the following link
 
