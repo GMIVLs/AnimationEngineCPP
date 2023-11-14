@@ -1,0 +1,223 @@
+\chapter{Passing args to methods and functions}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions}{}\label{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions}\index{Passing args to methods and functions@{Passing args to methods and functions}}
+\label{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions_autotoc_md153}%
+\Hypertarget{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions_autotoc_md153}%
+
+
+
+\begin{DoxyItemize}
+\item Content
+\item Request
+\item Examples
+\item Example
+\item Passing of an array of arrays of int 32 using pointers and using references
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions_autotoc_md154}{}\doxysection{\texorpdfstring{Content}{Content}}\label{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions_autotoc_md154}
+
+\begin{DoxyItemize}
+\item Here\textquotesingle{}s a table illustrating the different ways to pass arguments in C++\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-3}
+\endhead
+{\bfseries{By Value}}   &Passes a copy of the value. Original value remains unchanged.   &{\ttfamily void \doxylink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func(int a)} \{...\}} and {\ttfamily \doxylink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func(val)};}    \\\cline{1-3}
+{\bfseries{By Reference}}   &Passes the actual variable itself. Changes in function reflect outside.   &{\ttfamily void func(int \&a) \{...\}} and {\ttfamily \doxylink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func(val)};}    \\\cline{1-3}
+{\bfseries{By Pointer}}   &Passes the address of the variable. Can be used to modify the original.   &{\ttfamily void \doxylink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func(int \texorpdfstring{$\ast$}{*}a)} \{...\}} and {\ttfamily func(\&val);}    \\\cline{1-3}
+{\bfseries{By Const Reference}}   &Passes the variable by reference but prevents modification.   &{\ttfamily void func(const int \&a) \{...\}} and {\ttfamily \doxylink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func(val)};}    \\\cline{1-3}
+{\bfseries{By Const Pointer}}   &Passes the address but prevents modification via the pointer.   &{\ttfamily void \doxylink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func(const int \texorpdfstring{$\ast$}{*}a)} \{...\}} and {\ttfamily func(\&val);}   \\\cline{1-3}
+\end{longtabu}
+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{By Value}}\+: The function gets a copy of the argument. Changes to the argument inside the function don\textquotesingle{}t affect the original value.
+\item {\bfseries{By Reference}}\+: The function gets the actual variable, so changes to the argument inside the function will affect the original value.
+\item {\bfseries{By Pointer}}\+: Similar to passing by reference, but requires de-\/referencing the pointer to access the value. Provides more flexibility (like passing NULL pointers) but can be trickier to use correctly.
+\item {\bfseries{By Const Reference}}\+: Provides the efficiency of passing by reference (especially for large objects) without allowing the function to modify the value.
+\item {\bfseries{By Const Pointer}}\+: Pass the address but prevents you from modifying the value through the pointer. Useful when you want to indicate that the value shouldn\textquotesingle{}t be changed but still need pointer-\/like behavior.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions_autotoc_md155}{}\doxysection{\texorpdfstring{Request}{Request}}\label{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions_autotoc_md155}
+An example in CPP of passing by value and passing by reference and passing by pointer for function and check about the passed variable before and after if u change its state inside the function Lets use simple function to double the value of the passed variable Sure, let\textquotesingle{}s start with a variable {\ttfamily x} and we\textquotesingle{}ll pass it to different functions that attempt to double its value using pass-\/by-\/value, pass-\/by-\/reference, and pass-\/by-\/pointer. We\textquotesingle{}ll print the value of {\ttfamily x} before and after calling each function to see the effect.
+
+Here is the C++ code\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include<iostream>}}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacestd}{std}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Function\ that\ tries\ to\ double\ the\ value\ using\ pass-\/by-\/value}}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{doubleValue}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}})\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ *=\ 2;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Function\ that\ doubles\ the\ value\ using\ pass-\/by-\/reference}}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{doubleRef}}(\textcolor{keywordtype}{int}\ \&\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}})\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ *=\ 2;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Function\ that\ doubles\ the\ value\ using\ pass-\/by-\/pointer}}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{doublePtr}}(\textcolor{keywordtype}{int}\ *\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}})\ \{}
+\DoxyCodeLine{\ \ \ \ *\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ *=\ 2;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ =\ 5;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \textcolor{stringliteral}{"{}Initial\ value\ of\ x:\ "{}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ <<\ \mbox{\hyperlink{class_vector__2d}{endl}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{doubleValue}}(\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \textcolor{stringliteral}{"{}After\ doubleValue,\ x:\ "{}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ <<\ \mbox{\hyperlink{class_vector__2d}{endl}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{doubleRef}}(\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \textcolor{stringliteral}{"{}After\ doubleRef,\ x:\ "{}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ <<\ \mbox{\hyperlink{class_vector__2d}{endl}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ =\ 5;\ \ \textcolor{comment}{//\ reset\ x}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{doublePtr}}(\&\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \textcolor{stringliteral}{"{}After\ doublePtr,\ x:\ "{}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ <<\ \mbox{\hyperlink{class_vector__2d}{endl}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+When you run this program, you will see that {\ttfamily x} is not changed by {\ttfamily double\+Value} (pass-\/by-\/value), because it\textquotesingle{}s working on a copy of {\ttfamily x}. However, {\ttfamily x} is indeed doubled by {\ttfamily double\+Ref} (pass-\/by-\/reference) and {\ttfamily double\+Ptr} (pass-\/by-\/pointer), because they\textquotesingle{}re working on the original {\ttfamily x} itself.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions_autotoc_md156}{}\doxysection{\texorpdfstring{Examples}{Examples}}\label{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions_autotoc_md156}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include<iostream>}}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacestd}{std}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Function\ that\ tries\ to\ double\ the\ value\ using\ pass-\/by-\/value}}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{doubleValue}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}})\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ *=\ 2;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Function\ that\ doubles\ the\ value\ using\ pass-\/by-\/reference}}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{doubleRef}}(\textcolor{keywordtype}{int}\ \&\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}})\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ *=\ 2;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Function\ that\ doubles\ the\ value\ using\ pass-\/by-\/pointer}}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{doublePtr}}(\textcolor{keywordtype}{int}\ *\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}})\ \{}
+\DoxyCodeLine{\ \ \ \ *\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ *=\ 2;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ =\ 5;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \textcolor{stringliteral}{"{}Initial\ value\ of\ x:\ "{}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ <<\ \mbox{\hyperlink{class_vector__2d}{endl}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{doubleValue}}(\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \textcolor{stringliteral}{"{}After\ doubleValue,\ x:\ "{}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ <<\ \mbox{\hyperlink{class_vector__2d}{endl}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{doubleRef}}(\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \textcolor{stringliteral}{"{}After\ doubleRef,\ x:\ "{}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ <<\ \mbox{\hyperlink{class_vector__2d}{endl}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ =\ 5;\ \ \textcolor{comment}{//\ reset\ x}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{doublePtr}}(\&\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \textcolor{stringliteral}{"{}After\ doublePtr,\ x:\ "{}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ <<\ \mbox{\hyperlink{class_vector__2d}{endl}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions_autotoc_md157}{}\doxysection{\texorpdfstring{Example}{Example}}\label{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions_autotoc_md157}
+Sure, let\textquotesingle{}s define a function {\ttfamily double\+Value} that doubles a value.
+
+First, let\textquotesingle{}s look at how to pass a variable by pointer\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{doubleValue}}(\textcolor{keywordtype}{int}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}})\ \{}
+\DoxyCodeLine{\ \ \ \ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}}\ *=\ 2;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ =\ 5;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{doubleValue}}(\&\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Now,\ x\ is\ 10}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item In this example, we are passing the address of the variable {\ttfamily x} to the function. The function then accesses the value at this address using the dereference operator {\ttfamily \texorpdfstring{$\ast$}{*}} and doubles it.
+\end{DoxyItemize}
+
+Now, let\textquotesingle{}s look at how to pass a variable by reference\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{doubleValue}}(\textcolor{keywordtype}{int}\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a2cdcddbeb843fdac6e4b7faa72f7852a}{ref}})\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a2cdcddbeb843fdac6e4b7faa72f7852a}{ref}}\ *=\ 2;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ =\ 5;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{doubleValue}}(\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Now,\ x\ is\ 10}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item In this case, we\textquotesingle{}re passing {\ttfamily x} directly to the function. Inside the function, {\ttfamily ref} behaves as if it was {\ttfamily x} itself, so when we modify {\ttfamily ref}, we are actually modifying {\ttfamily x}. The main difference is that when passing by pointer, you need to handle the address of a variable (which involves using the address-\/of operator {\ttfamily \&} and the dereference operator {\ttfamily \texorpdfstring{$\ast$}{*}}). When passing by reference, you can work with the variable as if it was passed by value, but any changes you make to the parameter will affect the original variable. It\textquotesingle{}s often considered more idiomatic in C++ to pass by reference when you can.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions_autotoc_md158}{}\doxysection{\texorpdfstring{Passing of an array of arrays of int 32 using pointers and using references}{Passing of an array of arrays of int 32 using pointers and using references}}\label{md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions_autotoc_md158}
+In C++, arrays decay to pointers when passed to a function. Therefore, you can\textquotesingle{}t pass a multi-\/dimensional array (an array of arrays) to a function by reference directly as you might expect.
+
+Let\textquotesingle{}s say you have a 2D array with fixed size, you can pass it to a function by reference like this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{processArray}}(\textcolor{keywordtype}{int}\ (\&\mbox{\hyperlink{class_vector__2d}{arr}})[3][3])\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Do\ something\ with\ arr}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a52f38e7d822a46377fde7a02708eedb1}{array}}[3][3]\ =\ \{\ \{1,\ 2,\ 3\},\ \{4,\ 5,\ 6\},\ \{7,\ 8,\ 9\}\ \};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{processArray}}(\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a52f38e7d822a46377fde7a02708eedb1}{array}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+In this example, {\ttfamily process\+Array} takes a reference to a 2D array of ints. The size of the array dimensions (3x3) is part of the function\textquotesingle{}s parameter type. However, passing multi-\/dimensional arrays to functions can become complicated because the size of all but the first dimension must be known at compile-\/time. You could also pass it by pointer like this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{processArray}}(\textcolor{keywordtype}{int}*\ \mbox{\hyperlink{class_vector__2d}{arr}}[3])\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Do\ something\ with\ arr}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a52f38e7d822a46377fde7a02708eedb1}{array}}[3];}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{arr1}}[3]\ =\ \{1,\ 2,\ 3\};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{arr2}}[3]\ =\ \{4,\ 5,\ 6\};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{arr3}}[3]\ =\ \{7,\ 8,\ 9\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a52f38e7d822a46377fde7a02708eedb1}{array}}[0]\ =\ \mbox{\hyperlink{class_vector__2d}{arr1}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a52f38e7d822a46377fde7a02708eedb1}{array}}[1]\ =\ \mbox{\hyperlink{class_vector__2d}{arr2}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a52f38e7d822a46377fde7a02708eedb1}{array}}[2]\ =\ \mbox{\hyperlink{class_vector__2d}{arr3}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{processArray}}(\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a52f38e7d822a46377fde7a02708eedb1}{array}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+In this example, {\ttfamily process\+Array} takes a pointer to an array of int pointers. In many situations, it might be more practical to use a container class like {\ttfamily std\+::array} or {\ttfamily std\+::vector}, as they can be passed to functions by reference more easily and provide other benefits like bounds-\/checking and dynamic resizing (for {\ttfamily std\+::vector}). 

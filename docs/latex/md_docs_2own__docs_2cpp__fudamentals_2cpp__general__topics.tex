@@ -1,0 +1,311 @@
+\chapter{General Topics in CPP}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics}{}\label{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics}\index{General Topics in CPP@{General Topics in CPP}}
+\label{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md51}%
+\Hypertarget{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md51}%
+
+
+
+\begin{DoxyItemize}
+\item Introduction
+\begin{DoxyItemize}
+\item Common keywords in C++
+\end{DoxyItemize}
+\item Standard Library in C++
+\item Other Concepts
+\item What are the uses of C++ static keyword
+\item Is it bad to intialize variables with Null inside the function signature?
+\item What is static keyword?
+\item What is itoa and other similar keywords ?
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md52}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md52}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md53}{}\doxysubsection{\texorpdfstring{Common keywords in C++}{Common keywords in C++}}\label{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md53}
+
+\begin{DoxyItemize}
+\item Creating a table with {\itshape all} commonly used keywords in C++ would be quite extensive. However, I can provide a concise table highlighting some of the most frequently used ones. Here we go\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Keyword}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Small Example}}    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Keyword}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Small Example}}    }\\\cline{1-3}
+\endhead
+{\ttfamily auto}   &Deduces the type of a variable from its initializer.   &{\ttfamily auto x = 42;}    \\\cline{1-3}
+{\ttfamily const}   &Indicates the variable is constant and cannot be changed.   &{\ttfamily const int x = 10;}    \\\cline{1-3}
+{\ttfamily static}   &Indicates a local variable should retain its value between function calls.   &{\ttfamily static int count = 0;}    \\\cline{1-3}
+{\ttfamily extern}   &Declares a variable without defining it (typically for global variables).   &{\ttfamily extern int x;} (Defined elsewhere)    \\\cline{1-3}
+{\ttfamily inline}   &Suggests to the compiler to compile a function inline.   &{\ttfamily inline int add(int a, int b) \{ return a + b; \}}    \\\cline{1-3}
+{\ttfamily virtual}   &Allows a function in a base class to be overridden in a derived class.   &{\ttfamily virtual void display();}    \\\cline{1-3}
+{\ttfamily override}   &Indicates a virtual function should override a virtual function in the base class.   &{\ttfamily void display() override;}    \\\cline{1-3}
+{\ttfamily final}   &Prevents subclasses or virtual method overrides.   &{\ttfamily class Final\+Class final \{\};}    \\\cline{1-3}
+{\ttfamily public}, {\ttfamily private}, {\ttfamily protected}   &Access specifiers in classes or structs.   &{\ttfamily class My\+Class \{ private\+: int x; public\+: int get\+X(); \}}    \\\cline{1-3}
+{\ttfamily class}   &Defines a new type.   &{\ttfamily class My\+Class \{\};}    \\\cline{1-3}
+{\ttfamily struct}   &Similar to {\ttfamily class}, but members are public by default.   &{\ttfamily struct Point \{ int x, y; \};}    \\\cline{1-3}
+{\ttfamily enum}   &Defines an enumeration.   &{\ttfamily enum Color \{ RED, GREEN, BLUE \};}    \\\cline{1-3}
+{\ttfamily namespace}   &Groups a set of global classes, objects, and functions under a single name.   &{\ttfamily namespace My\+Namespace \{ int x; \}}    \\\cline{1-3}
+{\ttfamily typedef}   &Creates an alias for an existing type.   &{\ttfamily typedef long int big\+Int;}    \\\cline{1-3}
+{\ttfamily using}   &Introduces a namespace member, or creates type aliases (alternative to {\ttfamily typedef}).   &{\ttfamily using big\+Int = long int;}    \\\cline{1-3}
+{\ttfamily return}   &Exits a function, optionally returning a value.   &{\ttfamily int add(int a, int b) \{ return a + b; \}}    \\\cline{1-3}
+{\ttfamily if}, {\ttfamily else}   &Conditional branching.   &{\ttfamily if(x \texorpdfstring{$>$}{>} y) \{ /\texorpdfstring{$\ast$}{*}...\texorpdfstring{$\ast$}{*}/ \} else \{ /\texorpdfstring{$\ast$}{*}...\texorpdfstring{$\ast$}{*}/ \}}    \\\cline{1-3}
+{\ttfamily for}, {\ttfamily while}, {\ttfamily do}   &Loop constructs.   &{\ttfamily for(int i = 0; i \texorpdfstring{$<$}{<} 10; ++i) \{ /\texorpdfstring{$\ast$}{*}...\texorpdfstring{$\ast$}{*}/ \}}    \\\cline{1-3}
+{\ttfamily switch}, {\ttfamily case}   &Multi-\/way branching based on a constant-\/expression.   &{\ttfamily switch(x) \{ case 1\+: /\texorpdfstring{$\ast$}{*}...\texorpdfstring{$\ast$}{*}/ break; \}}    \\\cline{1-3}
+{\ttfamily break}, {\ttfamily continue}   &Control the flow inside loops and switch statements.   &{\ttfamily while(true) \{ if(error) break; \}}    \\\cline{1-3}
+{\ttfamily new}, {\ttfamily delete}   &Allocate and deallocate memory dynamically.   &{\ttfamily int\texorpdfstring{$\ast$}{*} p = new int\mbox{[}10\mbox{]}; delete\mbox{[}\mbox{]} p;}    \\\cline{1-3}
+{\ttfamily try}, {\ttfamily catch}, {\ttfamily throw}   &Exception handling constructs.   &{\ttfamily try \{ /\texorpdfstring{$\ast$}{*}...\texorpdfstring{$\ast$}{*}/ \} catch (const std\+::exception\& e) \{ /\texorpdfstring{$\ast$}{*}...\texorpdfstring{$\ast$}{*}/ \}}   \\\cline{1-3}
+\end{longtabu}
+
+
+
+\begin{DoxyItemize}
+\item This table is not exhaustive, as C++ has many keywords. Still, the above captures a good chunk of the commonly used ones. Remember, understanding how and when to use each keyword is essential to writing efficient and clear C++ code.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md54}{}\doxysection{\texorpdfstring{Standard Library in C++}{Standard Library in C++}}\label{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md54}
+
+\begin{DoxyItemize}
+\item An overview table of some of the major components or modules in the C++ standard library and their primary purposes. If you have a specific component in mind, I can then provide more detailed information on it.
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Component}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Primary Purpose}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example Methods/\+Functions}}    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Component}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Primary Purpose}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example Methods/\+Functions}}    }\\\cline{1-3}
+\endhead
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}iostream\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &Input/\+Output stream operations.   &{\ttfamily cin}, {\ttfamily cout}, {\ttfamily cerr}, {\ttfamily clog}    \\\cline{1-3}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}string\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &String manipulation and operations.   &{\ttfamily \doxylink{_s_d_l__opengl__glext_8h_ab9c919755bde3b34349e23a32b4e0fa7}{length()}}, {\ttfamily substr()}, {\ttfamily find()}, {\ttfamily replace()}    \\\cline{1-3}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}vector\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &Dynamic array implementation.   &{\ttfamily push\+\_\+back()}, {\ttfamily pop\+\_\+back()}, {\ttfamily \doxylink{_s_d_l__opengl__glext_8h_a9f139c614d49f2a707b6037305b0fec0}{size()}}, {\ttfamily at()}    \\\cline{1-3}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}list\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &Double-\/linked list implementation.   &{\ttfamily push\+\_\+front()}, {\ttfamily pop\+\_\+front()}, {\ttfamily \doxylink{_s_d_l__opengl__glext_8h_a9f139c614d49f2a707b6037305b0fec0}{size()}}    \\\cline{1-3}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}map\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &Associative container -\/ stores key-\/value pairs.   &{\ttfamily insert()}, {\ttfamily find()}, {\ttfamily begin()}, {\ttfamily \doxylink{_s_d_l__opengl_8h_a432111147038972f06e049e18a837002}{end()}}    \\\cline{1-3}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}set\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &Collection of unique keys.   &{\ttfamily insert()}, {\ttfamily find()}, {\ttfamily begin()}, {\ttfamily \doxylink{_s_d_l__opengl_8h_a432111147038972f06e049e18a837002}{end()}}    \\\cline{1-3}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}algorithm\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &Collection of algorithms for operations like searching, sorting, manipulating ranges, etc.   &{\ttfamily sort()}, {\ttfamily find()}, {\ttfamily copy()}, {\ttfamily for\+\_\+each()}    \\\cline{1-3}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}thread\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &Multi-\/threading operations.   &{\ttfamily thread}, {\ttfamily join()}, {\ttfamily detach()}    \\\cline{1-3}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}mutex\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &Synchronization primitives like mutexes.   &{\ttfamily lock()}, {\ttfamily unlock()}, {\ttfamily try\+\_\+lock()}    \\\cline{1-3}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}memory\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &Memory management utilities like smart pointers.   &{\ttfamily make\+\_\+shared()}, {\ttfamily make\+\_\+unique()}, {\ttfamily allocator}    \\\cline{1-3}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}chrono\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &Date and time utilities and high-\/resolution timers.   &{\ttfamily system\+\_\+clock}, {\ttfamily duration}, {\ttfamily time\+\_\+point}    \\\cline{1-3}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}fstream\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &File stream operations for reading/writing files.   &{\ttfamily ifstream}, {\ttfamily ofstream}, {\ttfamily getline()}, {\ttfamily write()}    \\\cline{1-3}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}cmath\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &Mathematical operations and functions.   &{\ttfamily sqrt()}, {\ttfamily sin()}, {\ttfamily cos()}, {\ttfamily tan()}    \\\cline{1-3}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily \texorpdfstring{$<$}{<}numeric\texorpdfstring{$>$}{>}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}   &Numeric operations for sequences.   &{\ttfamily iota()}, {\ttfamily accumulate()}, {\ttfamily inner\+\_\+product()}    \\\cline{1-3}
+...   &...   &...   \\\cline{1-3}
+\end{longtabu}
+
+
+
+\begin{DoxyItemize}
+\item This table only scratches the surface. There are many more headers and functionalities in the C++ standard library. If you\textquotesingle{}re interested in a specific module or need more in-\/depth information about a particular component, please let me know!
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md55}{}\doxysection{\texorpdfstring{Other Concepts}{Other Concepts}}\label{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md55}
+Certainly! Let\textquotesingle{}s delve into some other key C++ concepts\+:
+
+{\bfseries{1. Scope and Storage Duration}}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Concept}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Scope}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Code Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Usages}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Best Practices}}    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Concept}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Scope}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Code Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Usages}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Best Practices}}    }\\\cline{1-6}
+\endhead
+{\bfseries{Local Variables}}   &Block-\/scope   &Exist only within the block (e.\+g., function) where they\textquotesingle{}re defined.   &{\ttfamily \{ int x = 10; \}}   &Function parameters, loop variables.   &Limit their use to their intended scope.    \\\cline{1-6}
+{\bfseries{Global Variables}}   &File-\/scope   &Accessible from the point of declaration to the end of the file.   &{\ttfamily int global\+Var = 100;}   &Constants, shared resources.   &Use sparingly; prefer class encapsulation.    \\\cline{1-6}
+{\bfseries{Static Variables}}   &Block-\/scope   &Retain their value between function calls.   &{\ttfamily void \doxylink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func()} \{ static int count = 0; \}}   &Counting function calls, singletons.   &Understand their lifetime extends to program termination.    \\\cline{1-6}
+{\bfseries{Namespace Variables}}   &Namespace-\/scope   &Variables declared within a namespace. Access scope is controlled by namespace.   &{\ttfamily namespace My\+NS \{ int var = 42; \}}   &Grouping related variables and functions.   &Use to avoid global variable pollution.   \\\cline{1-6}
+\end{longtabu}
+
+
+{\bfseries{2. Function Types and Binding}}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Concept}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Code Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Usages}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Best Practices}}    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Concept}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Code Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Usages}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Best Practices}}    }\\\cline{1-6}
+\endhead
+{\bfseries{Regular Function}}   &Early Binding   &Standard function, binding to a call at compile-\/time.   &{\ttfamily void \doxylink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func()} \{ ... \}}   &General-\/purpose functions.   &Use for most scenarios where polymorphism isn\textquotesingle{}t required.    \\\cline{1-6}
+{\bfseries{Virtual Function}}   &Late Binding   &Declared in a base class and can be overridden by derived classes. Binding occurs at run-\/time.   &{\ttfamily virtual void \doxylink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func()} \{ ... \}}   &Polymorphism, object-\/oriented programming.   &Declare as {\ttfamily override} in derived classes for clarity.    \\\cline{1-6}
+{\bfseries{Inline Function}}   &Early Binding   &Suggests to the compiler to expand the function inline, avoiding function-\/call overhead.   &{\ttfamily inline void fast\+Func() \{ ... \}}   &Performance-\/critical, small functions.   &Use judiciously; not all marked get inlined.    \\\cline{1-6}
+{\bfseries{Lambda Function}}   &Early Binding   &Anonymous function objects, often used for short-\/lived operations.   &{\ttfamily auto lambda = \mbox{[}\mbox{]}(int x) \{ return x\texorpdfstring{$\ast$}{*}x; \};}   &STL algorithms, short callbacks.   &Keep lambdas concise; avoid long or complex lambdas.   \\\cline{1-6}
+\end{longtabu}
+
+
+{\bfseries{3. Type Qualifiers}}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Concept}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Qualifier}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Code Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Usages}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Best Practices}}    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Concept}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Qualifier}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Code Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Usages}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Best Practices}}    }\\\cline{1-6}
+\endhead
+{\bfseries{const}}   &{\ttfamily const}   &Denotes that the value of the variable shouldn\textquotesingle{}t change after initialization.   &{\ttfamily const int x = 10;}   &Immutable variables, function parameters.   &Use to indicate and enforce immutability.    \\\cline{1-6}
+{\bfseries{volatile}}   &{\ttfamily volatile}   &Indicates that a variable can be changed externally, preventing the compiler from optimizing it.   &{\ttfamily volatile int counter;}   &Hardware registers, signal handlers.   &Use sparingly; mostly for low-\/level programming.    \\\cline{1-6}
+{\bfseries{mutable}}   &{\ttfamily mutable}   &Allows a member of an object to be modified even if the object is a {\ttfamily const} object.   &{\ttfamily class My\+Class \{ mutable int cache; \};}   &Cache variables, lazy evaluation inside const methods.   &Use judiciously; understand its implications.   \\\cline{1-6}
+\end{longtabu}
+
+
+These tables give a high-\/level view of some essential concepts in C++. As always, while these tables provide a guideline, the application of these concepts requires a deeper understanding of the specific problem and context in real-\/world scenarios.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md56}{}\doxysection{\texorpdfstring{What are the uses of C++ static keyword}{What are the uses of C++ static keyword}}\label{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md56}
+The {\ttfamily static} keyword in C++ has several different uses depending on the context it\textquotesingle{}s used in. Here are the primary uses of the {\ttfamily static} keyword\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Static Variables in Functions}}\+:
+\begin{DoxyItemize}
+\item When used inside a function, the {\ttfamily static} keyword applied to a local variable makes that variable retain its value across multiple function calls. It\textquotesingle{}s initialized only once, when the program starts, and its value persists between function calls.
+\end{DoxyItemize}
+\item {\bfseries{Static Variables in Classes/\+Structs}}\+:
+\begin{DoxyItemize}
+\item Inside a class or struct, the {\ttfamily static} keyword applied to a member variable makes it shared among all instances of that class or struct. It\textquotesingle{}s also sometimes referred to as a "{}class variable"{} or "{}static member."{}
+\end{DoxyItemize}
+\item {\bfseries{Static Member Functions}}\+:
+\begin{DoxyItemize}
+\item A member function declared as {\ttfamily static} belongs to the class itself, not to any instance of the class. It can be called without creating an instance of the class and operates on class-\/level data.
+\end{DoxyItemize}
+\item {\bfseries{Static Local Functions}}\+:
+\begin{DoxyItemize}
+\item A local function declared as {\ttfamily static} is only accessible within the translation unit (source file) it\textquotesingle{}s defined in. It can\textquotesingle{}t be linked to from other translation units.
+\end{DoxyItemize}
+\item {\bfseries{Static Data Members in Classes (C++17 and later)}}\+:
+\begin{DoxyItemize}
+\item Starting from C++17, static data members of classes can be defined inside the class and must be initialized outside the class definition. They are shared among all instances of the class and can be useful for maintaining class-\/level information.
+\end{DoxyItemize}
+\item {\bfseries{Static Assertions (C++11 and later)}}\+:
+\begin{DoxyItemize}
+\item In C++11 and later, the {\ttfamily static\+\_\+assert} keyword is used to perform compile-\/time assertions. It helps ensure that certain conditions are met at compile time, or it triggers a compilation error.
+\end{DoxyItemize}
+\item {\bfseries{Static Initialization Order (C++ Static Initialization Fiasco)}}\+:
+\begin{DoxyItemize}
+\item The order in which global or static objects are initialized across different translation units isn\textquotesingle{}t guaranteed. This can lead to initialization order problems, often referred to as the "{}static      initialization order fiasco."{} Techniques like the Singleton pattern or using local static variables inside functions can help mitigate these issues.
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+These are some of the main uses of the {\ttfamily static} keyword in C++. Each use serves a specific purpose and contributes to different aspects of the language, such as variable lifetime, member functions, memory management, and compile-\/time checks.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md57}{}\doxysection{\texorpdfstring{Is it bad to intialize variables with Null inside the function signature?}{Is it bad to intialize variables with Null inside the function signature?}}\label{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md57}
+In C++, it\textquotesingle{}s perfectly fine to provide default values for function parameters. This allows for a function to be called with fewer arguments than it has parameters, and in such cases, the missing arguments are initialized to their corresponding default values.
+
+But, it\textquotesingle{}s important to note that the way you provide these default values might differ based on the type of parameter. For instance, you would typically initialize a pointer with {\ttfamily nullptr} (not {\ttfamily NULL}, which is more of a C-\/style), an integer with 0, and so on.
+
+Here\textquotesingle{}s an example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{foo}}(\textcolor{keywordtype}{int}*\ ptr\ =\ \textcolor{keyword}{nullptr},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a26942fd2ed566ef553eae82d2c109c8f}{val}}\ =\ 0)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Your\ code\ here}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+In this case, if you call {\ttfamily foo()} without any arguments, {\ttfamily ptr} will be {\ttfamily nullptr} and {\ttfamily val} will be {\ttfamily 0}. Also, while this can make your code more flexible, it can also make it harder to understand if not used judiciously, as it\textquotesingle{}s not immediately clear when looking at a function call what values the missing arguments will have. So, it\textquotesingle{}s generally a good idea to use default arguments sparingly and only when it really makes sense to do so.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md58}{}\doxysection{\texorpdfstring{What is static keyword?}{What is static keyword?}}\label{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md58}
+The {\ttfamily static} keyword in C++ has different meanings depending on the context in which it\textquotesingle{}s used.
+
+{\bfseries{1. Inside a function\+:}} If a variable is declared as {\ttfamily static} inside a function, it maintains its value between function calls. Normally, a local variable in a function is destroyed as soon as the function ends. But a static local variable remains in memory while the program is running. For example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a619bc20e8198de3bd3f3d7fc34de66b2}{count}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{calls}}\ =\ 0;\ \ \textcolor{comment}{//\ this\ variable\ will\ not\ be\ destroyed\ after\ the\ function\ ends}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{calls}}++;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \textcolor{stringliteral}{"{}This\ function\ has\ been\ called\ "{}}\ <<\ \mbox{\hyperlink{class_vector__2d}{calls}}\ <<\ \textcolor{stringliteral}{"{}\ times.\(\backslash\)n"{}};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+{\bfseries{2. Outside of a function (at file scope)\+:}} When {\ttfamily static} is used in the global scope (outside all functions), it means that the variable or function with this keyword is only visible in the file it is declared in, not in other files, even if you include the header of the file. This can be used to hide implementation details of a module.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{hiddenVariable}};\ \ \textcolor{comment}{//\ this\ variable\ cannot\ be\ accessed\ from\ other\ files}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{hiddenFunction}}()\ \{\ \ \textcolor{comment}{//\ this\ function\ cannot\ be\ accessed\ from\ other\ files}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ implementation}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+{\bfseries{3. Inside a class\+:}} When {\ttfamily static} is used in a class\+:
+
+
+\begin{DoxyItemize}
+\item For member variables\+: A {\ttfamily static} member variable is shared by all objects of the class, i.\+e., all objects of the class will have the same value for this variable. It is not tied to a particular object of the class but rather belongs to the class itself.
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{MyClass}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{sharedVariable}};}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{\textcolor{comment}{//\ Define\ and\ initialize\ static\ member\ outside\ the\ class}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{MyClass::sharedVariable}}\ =\ 0;}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item For member functions\+: A {\ttfamily static} member function can be called even without an object of the class, and it can only access {\ttfamily static} member variables of the class (since it does not have an object context).
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{MyClass}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{sharedVariable}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{modifySharedVariable}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{newVal}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d}{sharedVariable}}\ =\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{newVal}};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{\textcolor{comment}{//\ Define\ and\ initialize\ static\ member\ outside\ the\ class}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{MyClass::sharedVariable}}\ =\ 0;}
+
+\end{DoxyCode}
+
+
+Here, {\ttfamily My\+Class\+::modify\+Shared\+Variable(5);} would be a valid call even without any {\ttfamily My\+Class} object.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md59}{}\doxysection{\texorpdfstring{What is itoa and other similar keywords ?}{What is itoa and other similar keywords ?}}\label{md_docs_2own__docs_2cpp__fudamentals_2cpp__general__topics_autotoc_md59}
+The {\ttfamily itoa} function is a standard library function in C (not included in C++) that converts an integer to a string. {\ttfamily itoa} stands for "{}integer to ASCII"{}. It\textquotesingle{}s often found in older C code and non-\/standard C++ code. Its prototype is\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_vector__2d}{itoa}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac783c2a5a0d42f36a33959f6a34ae0ba}{value}},\ \textcolor{keywordtype}{char}*\ str,\ \textcolor{keywordtype}{int}\ base);}
+
+\end{DoxyCode}
+
+
+Here, {\ttfamily value} is the integer that you want to convert to a string. {\ttfamily str} is the string buffer where the converted string will be stored, and {\ttfamily base} is the number base for the conversion.
+
+For equivalent functionality in C++, you can use the {\ttfamily std\+::to\+\_\+string} function, which converts various data types to a string, like so\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::string\ str\ =\ std::to\_string(12345);}
+
+\end{DoxyCode}
+
+
+Similar to {\ttfamily itoa}, there are a number of other functions that convert different types to strings in C\+:
+
+
+\begin{DoxyEnumerate}
+\item {\ttfamily ltoa}\+: Converts a long integer to a string.
+\item {\ttfamily ultoa}\+: Converts an unsigned long integer to a string.
+\item {\ttfamily lltoa}\+: Converts a long long integer to a string.
+\item {\ttfamily ulltoa}\+: Converts an unsigned long long integer to a string.
+\end{DoxyEnumerate}
+
+In C++, you can use {\ttfamily std\+::to\+\_\+string} for these conversions as well. It is overloaded to support {\ttfamily int}, {\ttfamily long}, {\ttfamily long long}, {\ttfamily unsigned long}, {\ttfamily unsigned long long}, {\ttfamily float}, {\ttfamily double}, and {\ttfamily long double}. 

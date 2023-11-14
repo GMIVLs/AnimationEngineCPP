@@ -1,0 +1,68 @@
+\doxysection{vect.\+h}
+\hypertarget{vect_8h_source}{}\label{vect_8h_source}\index{src/lib/veclib/include/vect.h@{src/lib/veclib/include/vect.h}}
+\mbox{\hyperlink{vect_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00001}00001\ \textcolor{comment}{//\ ////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00002}00002\ \textcolor{comment}{//\ This\ class\ is\ part\ of\ the\ Graphic\ //}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00003}00003\ \textcolor{comment}{//\ engine\ using\ the\ c++\ with\ the\ SDL\ //}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00004}00004\ \textcolor{comment}{//\ libraray.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00005}00005\ \textcolor{comment}{//\ vect.h\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00006}00006\ \textcolor{comment}{//\ is\ a\ header\ file\ for\ the\ vector\ \ \ //}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00007}00007\ \textcolor{comment}{//\ math,\ this\ file\ contain\ a\ define\ \ //}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00008}00008\ \textcolor{comment}{//\ of\ vect\ class\ define\ some\ methods\ //}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00009}00009\ \textcolor{comment}{//\ that\ will\ inherited\ by\ other\ lib\ \ //}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00010}00010\ \textcolor{comment}{//\ in\ the\ engine\ like\ vector\ 2d\ \&\ 3d\ //}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00013}00013\ \textcolor{preprocessor}{\#ifndef\ \_VECT\_H\_}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00014}00014\ \textcolor{preprocessor}{\#define\ \_VECT\_H\_}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00015}00015\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00016}00016\ \textcolor{comment}{//\ vector\ base\ class\ definition}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00017}00017\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <ostream>}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00019}00019\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Gtype>}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00020}\mbox{\hyperlink{classvect}{00020}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classvect}{vect}}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00022}\mbox{\hyperlink{classvect_af97f31bc0797400c3b49dbed3d2e3d59}{00022}}\ \ \ \textcolor{keyword}{friend}\ std::ostream\&\ \mbox{\hyperlink{classvect_af97f31bc0797400c3b49dbed3d2e3d59}{operator<<}}(std::ostream\&\ \mbox{\hyperlink{class_vector__2d}{os}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classvect}{vect}}\&\ \mbox{\hyperlink{class_vector__2d}{v}})}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00023}00023\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00024}00024\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_vector__2d}{v}}.verbose)}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00025}00025\ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d}{os}}\ <<\ \textcolor{stringliteral}{"{}Vector:["{}}\ <<\ \mbox{\hyperlink{class_vector__2d}{v}}.id\ <<\ \textcolor{stringliteral}{"{}]\ "{}}\ <<\ \mbox{\hyperlink{class_vector__2d}{v}}.\mbox{\hyperlink{class_vector__2d_a2660b1213401f6f3c527f7730e40768f}{get\_x}}()\ <<\ \textcolor{stringliteral}{"{}i+"{}}\ <<\ \mbox{\hyperlink{class_vector__2d}{v}}.\mbox{\hyperlink{class_vector__2d_a6af1a998b02c0824221a15b408b483c6}{get\_y}}()\ <<\ \textcolor{stringliteral}{"{}j"{}};}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00027}00027\ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d}{os}}\ <<\ \textcolor{stringliteral}{"{}Vector:["{}}\ <<\ \mbox{\hyperlink{class_vector__2d}{v}}.id\ <<\ \textcolor{stringliteral}{"{}]\ <"{}}\ <<\ \mbox{\hyperlink{class_vector__2d}{v}}.\mbox{\hyperlink{class_vector__2d_a2660b1213401f6f3c527f7730e40768f}{get\_x}}()\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ \mbox{\hyperlink{class_vector__2d}{v}}.\mbox{\hyperlink{class_vector__2d_a6af1a998b02c0824221a15b408b483c6}{get\_y}}()\ <<\ \textcolor{stringliteral}{"{}>"{}};}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vector__2d}{os}};}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00029}00029\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00031}00031\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00032}00032\ \ \ \textcolor{comment}{//\ class\ constructors\ definitaion}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00033}00033\ \ \ \mbox{\hyperlink{classvect_af8a59fd708674ad6d79c54cb279d5b31}{vect}}();}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00034}00034\ \ \ \mbox{\hyperlink{classvect_af8a59fd708674ad6d79c54cb279d5b31}{vect}}(\mbox{\hyperlink{class_vector__2d}{Gtype}},\ \mbox{\hyperlink{class_vector__2d}{Gtype}});}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00036}00036\ \ \ \textcolor{comment}{//\ class\ destructor\ definition}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00037}00037\ \ \ \mbox{\hyperlink{classvect_a6256be7b9418d5b3e16e797b4c05ca0b}{\string~vect}}();}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00039}00039\ \ \ \textcolor{comment}{//\ public\ getters\ methods\ for\ x\ and\ y}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00040}00040\ \ \ \mbox{\hyperlink{class_vector__2d}{Gtype}}\ \mbox{\hyperlink{classvect_a28dae28426c8b3099ca1160ded96cf48}{get\_x}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00041}00041\ \ \ \mbox{\hyperlink{class_vector__2d}{Gtype}}\ \mbox{\hyperlink{classvect_a22418e611197617a458af27daf7cf63d}{get\_y}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00042}00042\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classvect_a3409daae2bda08359cab8c89cbe430c1}{get\_counter}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00043}00043\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classvect_a01b065b6eaff62ad0e2efd5550ec9a31}{get\_id}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00045}00045\ \ \ \textcolor{comment}{//\ public\ setters\ methods\ for\ x\ and\ y}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00046}00046\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvect_a37ac4372aad5cd60e35148b0383ac559}{set\_x}}(\mbox{\hyperlink{class_vector__2d}{Gtype}});}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00047}00047\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvect_a9e482851669cb5f55b3f4f2cc9b1fe59}{set\_y}}(\mbox{\hyperlink{class_vector__2d}{Gtype}});}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00048}00048\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvect_a98dcdc433dd377649f43468040b4638d}{set\_active}}();}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00049}00049\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvect_a2c046968c9870527cdebc2833551eb26}{set\_id}}(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00051}00051\ \ \ \textcolor{comment}{//\ virtual\ display\ method\ may\ re-\/}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00052}00052\ \ \ \textcolor{comment}{//\ define\ by\ other\ vectors\ class}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00053}00053\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classvect_a2b02955dd1fc6a10c4679488ada262d2}{display}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00055}00055\ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00056}\mbox{\hyperlink{classvect_a560226a3857849efc856f86a1f7b81b1}{00056}}\ \ \ \mbox{\hyperlink{class_vector__2d}{Gtype}}\ \mbox{\hyperlink{class_vector__2d}{x}}\{\};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ x\ coordinate\ of\ the\ vector}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00057}\mbox{\hyperlink{classvect_a9faef4c4aa3691eebd4efd8ddf3e20c5}{00057}}\ \ \ \mbox{\hyperlink{class_vector__2d}{Gtype}}\ \mbox{\hyperlink{class_vector__2d}{y}}\{\};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ y\ coordinate\ of\ the\ vector}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00058}\mbox{\hyperlink{classvect_a041bc6ed53f6636baa528cb465d0aba6}{00058}}\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classvect_a041bc6ed53f6636baa528cb465d0aba6}{counter}};\ \ \textcolor{comment}{//\ Created\ Objects\ Counter}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00059}\mbox{\hyperlink{classvect_a51dfe693dabe222bee670b2f51b8dcb9}{00059}}\ \ \ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\{0\};}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00060}\mbox{\hyperlink{classvect_ac2ce1b8bf3cfd55d15835b5d6081393c}{00060}}\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classvect_ac2ce1b8bf3cfd55d15835b5d6081393c}{verbose}}\{\textcolor{keyword}{false}\};\ \ \textcolor{comment}{//\ var\ to\ indicate\ object\ active\ or\ inactive}}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00061}00061\ \};}
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{vect_8h_source_l00063}00063\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ !\_VECT\_H\_}}
+
+\end{DoxyCode}

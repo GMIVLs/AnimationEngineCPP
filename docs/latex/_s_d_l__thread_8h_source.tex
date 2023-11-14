@@ -1,0 +1,186 @@
+\doxysection{SDL\+\_\+thread.\+h}
+\hypertarget{_s_d_l__thread_8h_source}{}\label{_s_d_l__thread_8h_source}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_thread.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_thread.h}}
+\mbox{\hyperlink{_s_d_l__thread_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00002}00002\ \textcolor{comment}{\ \ Simple\ DirectMedia\ Layer}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00003}00003\ \textcolor{comment}{\ \ Copyright\ (C)\ 1997-\/2023\ Sam\ Lantinga\ <slouken@libsdl.org>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00005}00005\ \textcolor{comment}{\ \ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00006}00006\ \textcolor{comment}{\ \ warranty.\ \ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00007}00007\ \textcolor{comment}{\ \ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00008}00008\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00009}00009\ \textcolor{comment}{\ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00010}00010\ \textcolor{comment}{\ \ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00011}00011\ \textcolor{comment}{\ \ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00013}00013\ \textcolor{comment}{\ \ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00014}00014\ \textcolor{comment}{\ \ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00015}00015\ \textcolor{comment}{\ \ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00016}00016\ \textcolor{comment}{\ \ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00017}00017\ \textcolor{comment}{\ \ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00018}00018\ \textcolor{comment}{\ \ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00019}00019\ \textcolor{comment}{\ \ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00020}00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00022}00022\ \textcolor{preprocessor}{\#ifndef\ SDL\_thread\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00023}00023\ \textcolor{preprocessor}{\#define\ SDL\_thread\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00031}00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__stdinc_8h}{SDL\_stdinc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__error_8h}{SDL\_error.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00034}00034\ \textcolor{comment}{/*\ Thread\ synchronization\ primitives\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00035}00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__atomic_8h}{SDL\_atomic.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00036}00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__mutex_8h}{SDL\_mutex.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00038}00038\ \textcolor{preprocessor}{\#if\ (defined(\_\_WIN32\_\_)\ ||\ defined(\_\_GDK\_\_))\ \&\&\ !defined(\_\_WINRT\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00039}00039\ \textcolor{preprocessor}{\#include\ <process.h>}\ \textcolor{comment}{/*\ \_beginthreadex()\ and\ \_endthreadex()\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00040}00040\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00041}00041\ \textcolor{preprocessor}{\#if\ defined(\_\_OS2\_\_)\ }\textcolor{comment}{/*\ for\ \_beginthread()\ and\ \_endthread()\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00042}00042\ \textcolor{preprocessor}{\#ifndef\ \_\_EMX\_\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00043}00043\ \textcolor{preprocessor}{\#include\ <process.h>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00044}00044\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00045}00045\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00046}00046\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00047}00047\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00049}00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{begin__code_8h}{begin\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00050}00050\ \textcolor{comment}{/*\ Set\ up\ for\ C\ function\ definitions,\ even\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00051}00051\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00052}00052\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00053}00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00055}00055\ \textcolor{comment}{/*\ The\ SDL\ thread\ structure,\ defined\ in\ SDL\_thread.c\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00056}00056\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{SDL\_Thread}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00057}\mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{00057}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{SDL\_Thread}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{SDL\_Thread}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00059}00059\ \textcolor{comment}{/*\ The\ SDL\ thread\ ID\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00060}\mbox{\hyperlink{_s_d_l__thread_8h_ac4db699531ce9f18f5a8547aa988b88e}{00060}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{_s_d_l__thread_8h_ac4db699531ce9f18f5a8547aa988b88e}{SDL\_threadID}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00062}00062\ \textcolor{comment}{/*\ Thread\ local\ storage\ ID,\ 0\ is\ the\ invalid\ ID\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00063}\mbox{\hyperlink{_s_d_l__thread_8h_a07ce005c35ad6ac377d6124db7296026}{00063}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__thread_8h_a07ce005c35ad6ac377d6124db7296026}{SDL\_TLSID}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00075}\mbox{\hyperlink{_s_d_l__thread_8h_acce8dea56f6b307fadd2949b64e3ebda}{00075}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00076}\mbox{\hyperlink{_s_d_l__thread_8h_acce8dea56f6b307fadd2949b64e3ebdaa48d887edbfc7842abdabcec6900d3878}{00076}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__thread_8h_acce8dea56f6b307fadd2949b64e3ebdaa48d887edbfc7842abdabcec6900d3878}{SDL\_THREAD\_PRIORITY\_LOW}},}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00077}\mbox{\hyperlink{_s_d_l__thread_8h_acce8dea56f6b307fadd2949b64e3ebdaac3a2f7a29f4c8fe11dca0ea258b07dae}{00077}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__thread_8h_acce8dea56f6b307fadd2949b64e3ebdaac3a2f7a29f4c8fe11dca0ea258b07dae}{SDL\_THREAD\_PRIORITY\_NORMAL}},}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00078}\mbox{\hyperlink{_s_d_l__thread_8h_acce8dea56f6b307fadd2949b64e3ebdaaac5ff8423acdebf3b43c279b8ec2ae0d}{00078}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__thread_8h_acce8dea56f6b307fadd2949b64e3ebdaaac5ff8423acdebf3b43c279b8ec2ae0d}{SDL\_THREAD\_PRIORITY\_HIGH}},}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00079}00079\ \ \ \ \ \mbox{\hyperlink{_s_d_l__thread_8h_acce8dea56f6b307fadd2949b64e3ebdaa334bcf64dc27f8dbc1aa661a494ee8ca}{SDL\_THREAD\_PRIORITY\_TIME\_CRITICAL}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00080}\mbox{\hyperlink{_s_d_l__thread_8h_acce8dea56f6b307fadd2949b64e3ebdaa334bcf64dc27f8dbc1aa661a494ee8ca}{00080}}\ \}\ \mbox{\hyperlink{_s_d_l__thread_8h_acce8dea56f6b307fadd2949b64e3ebda}{SDL\_ThreadPriority}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00088}\mbox{\hyperlink{_s_d_l__thread_8h_a35d10c50423c326b20abea6a486f53e0}{00088}}\ \textcolor{keyword}{typedef}\ int\ (\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ *\ \mbox{\hyperlink{_s_d_l__thread_8h_a35d10c50423c326b20abea6a486f53e0}{SDL\_ThreadFunction}})\ (\textcolor{keywordtype}{void}\ *\mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00091}00091\ \textcolor{preprocessor}{\#if\ (defined(\_\_WIN32\_\_)\ ||\ defined(\_\_GDK\_\_))\ \&\&\ !defined(\_\_WINRT\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00112}00112\ \textcolor{preprocessor}{\#define\ SDL\_PASSED\_BEGINTHREAD\_ENDTHREAD}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00114}00114\ \textcolor{keyword}{typedef}\ uintptr\_t\ (\_\_cdecl\ *\ pfnSDL\_CurrentBeginThread)}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void}\ *,\ unsigned,\ unsigned\ (\_\_stdcall\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func}})(\textcolor{keywordtype}{void}\ *),}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *\ \textcolor{comment}{/*arg*/},\ \textcolor{keywordtype}{unsigned},\ \textcolor{keywordtype}{unsigned}\ *\ \textcolor{comment}{/*\ threadID\ */});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00117}00117\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}}\ (\_\_cdecl\ *\ pfnSDL\_CurrentEndThread)\ (\textcolor{keywordtype}{unsigned}\ code);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00119}00119\ \textcolor{preprocessor}{\#ifndef\ SDL\_beginthread}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00120}00120\ \textcolor{preprocessor}{\#define\ SDL\_beginthread\ \_beginthreadex}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00121}00121\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00122}00122\ \textcolor{preprocessor}{\#ifndef\ SDL\_endthread}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00123}00123\ \textcolor{preprocessor}{\#define\ SDL\_endthread\ \_endthreadex}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00124}00124\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00126}00126\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{SDL\_Thread}}\ *\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00127}00127\ \mbox{\hyperlink{_s_d_l__thread_8h_ac36c70a33975a8c9399962f8ac310377}{SDL\_CreateThread}}(\mbox{\hyperlink{_s_d_l__thread_8h_a35d10c50423c326b20abea6a486f53e0}{SDL\_ThreadFunction}}\ fn,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}},\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}},}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pfnSDL\_CurrentBeginThread\ pfnBeginThread,}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pfnSDL\_CurrentEndThread\ pfnEndThread);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00131}00131\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{SDL\_Thread}}\ *\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00132}00132\ \mbox{\hyperlink{_s_d_l__thread_8h_a9ab0d63052abb2afdbb14042cee4dbdf}{SDL\_CreateThreadWithStackSize}}(\mbox{\hyperlink{_s_d_l__thread_8h_a35d10c50423c326b20abea6a486f53e0}{SDL\_ThreadFunction}}\ fn,}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ stacksize,\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}},}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pfnSDL\_CurrentBeginThread\ pfnBeginThread,}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pfnSDL\_CurrentEndThread\ pfnEndThread);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00138}00138\ \textcolor{preprocessor}{\#if\ defined(SDL\_CreateThread)\ \&\&\ SDL\_DYNAMIC\_API}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00139}00139\ \textcolor{preprocessor}{\#undef\ SDL\_CreateThread}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00140}00140\ \textcolor{preprocessor}{\#define\ SDL\_CreateThread(fn,\ name,\ data)\ SDL\_CreateThread\_REAL(fn,\ name,\ data,\ (pfnSDL\_CurrentBeginThread)SDL\_beginthread,\ (pfnSDL\_CurrentEndThread)SDL\_endthread)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00141}00141\ \textcolor{preprocessor}{\#undef\ SDL\_CreateThreadWithStackSize}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00142}00142\ \textcolor{preprocessor}{\#define\ SDL\_CreateThreadWithStackSize(fn,\ name,\ stacksize,\ data)\ SDL\_CreateThreadWithStackSize\_REAL(fn,\ name,\ stacksize,\ data,\ (pfnSDL\_CurrentBeginThread)SDL\_beginthread,\ (pfnSDL\_CurrentEndThread)SDL\_endthread)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00143}00143\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00144}00144\ \textcolor{preprocessor}{\#define\ SDL\_CreateThread(fn,\ name,\ data)\ SDL\_CreateThread(fn,\ name,\ data,\ (pfnSDL\_CurrentBeginThread)SDL\_beginthread,\ (pfnSDL\_CurrentEndThread)SDL\_endthread)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00145}00145\ \textcolor{preprocessor}{\#define\ SDL\_CreateThreadWithStackSize(fn,\ name,\ stacksize,\ data)\ SDL\_CreateThreadWithStackSize(fn,\ name,\ stacksize,\ data,\ (pfnSDL\_CurrentBeginThread)SDL\_beginthread,\ (pfnSDL\_CurrentEndThread)SDL\_endthread)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00146}00146\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00148}00148\ \textcolor{preprocessor}{\#elif\ defined(\_\_OS2\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00149}00149\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00150}00150\ \textcolor{comment}{\ *\ just\ like\ the\ windows\ case\ above:\ \ We\ compile\ SDL2}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00151}00151\ \textcolor{comment}{\ *\ into\ a\ dll\ with\ Watcom's\ runtime\ statically\ linked.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00152}00152\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00153}00153\ \textcolor{preprocessor}{\#define\ SDL\_PASSED\_BEGINTHREAD\_ENDTHREAD}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00155}00155\ \textcolor{keyword}{typedef}\ int\ (*pfnSDL\_CurrentBeginThread)(\mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}}\ (*\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func}})(\textcolor{keywordtype}{void}\ *),\ \textcolor{keywordtype}{void}\ *,\ \textcolor{keywordtype}{unsigned},\ \textcolor{keywordtype}{void}\ *\ \textcolor{comment}{/*arg*/});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00156}00156\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}}\ (*pfnSDL\_CurrentEndThread)(\mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00158}00158\ \textcolor{preprocessor}{\#ifndef\ SDL\_beginthread}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00159}00159\ \textcolor{preprocessor}{\#define\ SDL\_beginthread\ \_beginthread}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00160}00160\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00161}00161\ \textcolor{preprocessor}{\#ifndef\ SDL\_endthread}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00162}00162\ \textcolor{preprocessor}{\#define\ SDL\_endthread\ \_endthread}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00163}00163\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00165}00165\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{SDL\_Thread}}\ *\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00166}00166\ \mbox{\hyperlink{_s_d_l__thread_8h_ac36c70a33975a8c9399962f8ac310377}{SDL\_CreateThread}}(\mbox{\hyperlink{_s_d_l__thread_8h_a35d10c50423c326b20abea6a486f53e0}{SDL\_ThreadFunction}}\ fn,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}},\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}},}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pfnSDL\_CurrentBeginThread\ pfnBeginThread,}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pfnSDL\_CurrentEndThread\ pfnEndThread);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00169}00169\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{SDL\_Thread}}\ *\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00170}00170\ \mbox{\hyperlink{_s_d_l__thread_8h_a9ab0d63052abb2afdbb14042cee4dbdf}{SDL\_CreateThreadWithStackSize}}(\mbox{\hyperlink{_s_d_l__thread_8h_a35d10c50423c326b20abea6a486f53e0}{SDL\_ThreadFunction}}\ fn,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ stacksize,\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}},}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pfnSDL\_CurrentBeginThread\ pfnBeginThread,}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pfnSDL\_CurrentEndThread\ pfnEndThread);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00174}00174\ \textcolor{preprocessor}{\#if\ defined(SDL\_CreateThread)\ \&\&\ SDL\_DYNAMIC\_API}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00175}00175\ \textcolor{preprocessor}{\#undef\ SDL\_CreateThread}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00176}00176\ \textcolor{preprocessor}{\#define\ SDL\_CreateThread(fn,\ name,\ data)\ SDL\_CreateThread\_REAL(fn,\ name,\ data,\ (pfnSDL\_CurrentBeginThread)SDL\_beginthread,\ (pfnSDL\_CurrentEndThread)SDL\_endthread)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00177}00177\ \textcolor{preprocessor}{\#undef\ SDL\_CreateThreadWithStackSize}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00178}00178\ \textcolor{preprocessor}{\#define\ SDL\_CreateThreadWithStackSize(fn,\ name,\ stacksize,\ data)\ SDL\_CreateThreadWithStackSize\_REAL(fn,\ name,\ stacksize,\ data,\ (pfnSDL\_CurrentBeginThread)SDL\_beginthread,\ (pfnSDL\_CurrentEndThread)SDL\_endthread)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00179}00179\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00180}00180\ \textcolor{preprocessor}{\#define\ SDL\_CreateThread(fn,\ name,\ data)\ SDL\_CreateThread(fn,\ name,\ data,\ (pfnSDL\_CurrentBeginThread)SDL\_beginthread,\ (pfnSDL\_CurrentEndThread)SDL\_endthread)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00181}00181\ \textcolor{preprocessor}{\#define\ SDL\_CreateThreadWithStackSize(fn,\ name,\ stacksize,\ data)\ SDL\_CreateThreadWithStackSize(fn,\ name,\ stacksize,\ data,\ (pfnSDL\_CurrentBeginThread)SDL\_beginthread,\ (pfnSDL\_CurrentEndThread)SDL\_endthread)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00182}00182\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00184}00184\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00207}00207\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{SDL\_Thread}}\ *\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00208}\mbox{\hyperlink{_s_d_l__thread_8h_ac36c70a33975a8c9399962f8ac310377}{00208}}\ \mbox{\hyperlink{_s_d_l__thread_8h_ac36c70a33975a8c9399962f8ac310377}{SDL\_CreateThread}}(\mbox{\hyperlink{_s_d_l__thread_8h_a35d10c50423c326b20abea6a486f53e0}{SDL\_ThreadFunction}}\ fn,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}},\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00253}00253\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{SDL\_Thread}}\ *\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00254}\mbox{\hyperlink{_s_d_l__thread_8h_a9ab0d63052abb2afdbb14042cee4dbdf}{00254}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a9ab0d63052abb2afdbb14042cee4dbdf}{SDL\_CreateThreadWithStackSize}}(\mbox{\hyperlink{_s_d_l__thread_8h_a35d10c50423c326b20abea6a486f53e0}{SDL\_ThreadFunction}}\ fn,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ stacksize,\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00256}00256\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00272}\mbox{\hyperlink{_s_d_l__thread_8h_a5c1e3618f2be2e3af69d615055defa5a}{00272}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a5c1e3618f2be2e3af69d615055defa5a}{SDL\_GetThreadName}}(\mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{SDL\_Thread}}\ *thread);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00290}\mbox{\hyperlink{_s_d_l__thread_8h_a341933eef1470789de20b05c1392b9ae}{00290}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__thread_8h_ac4db699531ce9f18f5a8547aa988b88e}{SDL\_threadID}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a341933eef1470789de20b05c1392b9ae}{SDL\_ThreadID}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00307}\mbox{\hyperlink{_s_d_l__thread_8h_a0bf5d93ed5cb25ea59307472c62c66db}{00307}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__thread_8h_ac4db699531ce9f18f5a8547aa988b88e}{SDL\_threadID}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a0bf5d93ed5cb25ea59307472c62c66db}{SDL\_GetThreadID}}(\mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{SDL\_Thread}}\ *\ thread);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00308}00308\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00322}\mbox{\hyperlink{_s_d_l__thread_8h_adf4da9c0e6a6833bef9741344b09699d}{00322}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__thread_8h_adf4da9c0e6a6833bef9741344b09699d}{SDL\_SetThreadPriority}}(\mbox{\hyperlink{_s_d_l__thread_8h_acce8dea56f6b307fadd2949b64e3ebda}{SDL\_ThreadPriority}}\ priority);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00357}\mbox{\hyperlink{_s_d_l__thread_8h_ac96743626ed21d2cdb0868a23cca9705}{00357}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__thread_8h_ac96743626ed21d2cdb0868a23cca9705}{SDL\_WaitThread}}(\mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{SDL\_Thread}}\ *\ thread,\ \textcolor{keywordtype}{int}\ *status);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00358}00358\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00393}\mbox{\hyperlink{_s_d_l__thread_8h_af90602c51ef5a62f26ed9931af484906}{00393}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__thread_8h_af90602c51ef5a62f26ed9931af484906}{SDL\_DetachThread}}(\mbox{\hyperlink{_s_d_l__thread_8h_a97cd1dc60cea74b74273affb1a974db5}{SDL\_Thread}}\ *\ thread);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00394}00394\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00408}\mbox{\hyperlink{_s_d_l__thread_8h_ac7ed1ec8dec5b902da25b60da2b728fa}{00408}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a07ce005c35ad6ac377d6124db7296026}{SDL\_TLSID}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__thread_8h_ac7ed1ec8dec5b902da25b60da2b728fa}{SDL\_TLSCreate}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00409}00409\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00422}\mbox{\hyperlink{_s_d_l__thread_8h_a1915755c7215e59e1b218b9b94dbf8fd}{00422}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ *\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a1915755c7215e59e1b218b9b94dbf8fd}{SDL\_TLSGet}}(\mbox{\hyperlink{_s_d_l__thread_8h_a07ce005c35ad6ac377d6124db7296026}{SDL\_TLSID}}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00423}00423\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00447}\mbox{\hyperlink{_s_d_l__thread_8h_a807c8306201205c7c3ac0cb34ac7cd77}{00447}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__thread_8h_a807c8306201205c7c3ac0cb34ac7cd77}{SDL\_TLSSet}}(\mbox{\hyperlink{_s_d_l__thread_8h_a07ce005c35ad6ac377d6124db7296026}{SDL\_TLSID}}\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac783c2a5a0d42f36a33959f6a34ae0ba}{value}},\ \textcolor{keywordtype}{void}\ (\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ *destructor)(\textcolor{keywordtype}{void}*));}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00448}00448\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00454}\mbox{\hyperlink{_s_d_l__thread_8h_addd72a8ba431ef92685bbc9c89c5c67c}{00454}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__thread_8h_addd72a8ba431ef92685bbc9c89c5c67c}{SDL\_TLSCleanup}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00455}00455\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00456}00456\ \textcolor{comment}{/*\ Ends\ C\ function\ definitions\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00457}00457\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00458}00458\ \}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00459}00459\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00460}00460\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{close__code_8h}{close\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00461}00461\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00462}00462\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_thread\_h\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00463}00463\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__thread_8h_source_l00464}00464\ \textcolor{comment}{/*\ vi:\ set\ ts=4\ sw=4\ expandtab:\ */}}
+
+\end{DoxyCode}

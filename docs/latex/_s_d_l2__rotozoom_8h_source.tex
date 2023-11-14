@@ -1,0 +1,123 @@
+\doxysection{SDL2\+\_\+rotozoom.\+h}
+\hypertarget{_s_d_l2__rotozoom_8h_source}{}\label{_s_d_l2__rotozoom_8h_source}\index{/opt/homebrew/Cellar/sdl2\_gfx/1.0.4/include/SDL2/SDL2\_rotozoom.h@{/opt/homebrew/Cellar/sdl2\_gfx/1.0.4/include/SDL2/SDL2\_rotozoom.h}}
+\mbox{\hyperlink{_s_d_l2__rotozoom_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00001}00001\ \textcolor{comment}{/*\ \ }}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00002}00002\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00003}00003\ \textcolor{comment}{SDL2\_rotozoom.c:\ rotozoomer,\ zoomer\ and\ shrinker\ for\ 32bit\ or\ 8bit\ surfaces}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00005}00005\ \textcolor{comment}{Copyright\ (C)\ 2012-\/2014\ \ Andreas\ Schiffler}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00006}00006\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00007}00007\ \textcolor{comment}{This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00008}00008\ \textcolor{comment}{warranty.\ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00009}00009\ \textcolor{comment}{arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00010}00010\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00011}00011\ \textcolor{comment}{Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00012}00012\ \textcolor{comment}{including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00013}00013\ \textcolor{comment}{freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00014}00014\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00015}00015\ \textcolor{comment}{1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00016}00016\ \textcolor{comment}{claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00017}00017\ \textcolor{comment}{in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00018}00018\ \textcolor{comment}{appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00019}00019\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00020}00020\ \textcolor{comment}{2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00021}00021\ \textcolor{comment}{misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00022}00022\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00023}00023\ \textcolor{comment}{3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00024}00024\ \textcolor{comment}{distribution.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00025}00025\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00026}00026\ \textcolor{comment}{Andreas\ Schiffler\ -\/-\/\ aschiffler\ at\ ferzkopp\ dot\ net}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00027}00027\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00028}00028\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00030}00030\ \textcolor{preprocessor}{\#ifndef\ \_SDL2\_rotozoom\_h}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00031}00031\ \textcolor{preprocessor}{\#define\ \_SDL2\_rotozoom\_h}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00033}00033\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00035}00035\ \textcolor{comment}{/*\ Set\ up\ for\ C\ function\ definitions,\ even\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00036}00036\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00037}00037\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00038}00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00040}00040\ \textcolor{preprocessor}{\#ifndef\ M\_PI}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00041}\mbox{\hyperlink{_s_d_l2__rotozoom_8h_ae71449b1cc6e6250b91f539153a7a0d3}{00041}}\ \textcolor{preprocessor}{\#define\ M\_PI\ \ \ \ 3.1415926535897932384626433832795}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00042}00042\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00044}00044\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l_8h}{SDL.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00046}00046\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/\ Defines\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00051}\mbox{\hyperlink{_s_d_l2__rotozoom_8h_a6541cd06edcce77d8a6f1c6350c988af}{00051}}\ \textcolor{preprocessor}{\#define\ SMOOTHING\_OFF\ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00056}\mbox{\hyperlink{_s_d_l2__rotozoom_8h_abeb6ae7618fcb315d0399fe65849a2e8}{00056}}\ \textcolor{preprocessor}{\#define\ SMOOTHING\_ON\ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00058}00058\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/\ Function\ Prototypes\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00060}00060\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00061}00061\ \textcolor{preprocessor}{\#\ \ if\ defined(DLL\_EXPORT)\ \&\&\ !defined(LIBSDL2\_GFX\_DLL\_IMPORT)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00062}00062\ \textcolor{preprocessor}{\#\ \ \ \ define\ SDL2\_ROTOZOOM\_SCOPE\ \_\_declspec(dllexport)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00063}00063\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00064}00064\ \textcolor{preprocessor}{\#\ \ \ \ ifdef\ LIBSDL2\_GFX\_DLL\_IMPORT}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00065}00065\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SDL2\_ROTOZOOM\_SCOPE\ \_\_declspec(dllimport)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00066}00066\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00067}00067\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00068}00068\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00069}00069\ \textcolor{preprocessor}{\#ifndef\ SDL2\_ROTOZOOM\_SCOPE}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00070}\mbox{\hyperlink{_s_d_l2__rotozoom_8h_ab3316f8a2f78ed696bbe0242c75b6ee7}{00070}}\ \textcolor{preprocessor}{\#\ \ define\ SDL2\_ROTOZOOM\_SCOPE\ extern}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00071}00071\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00073}00073\ \ \ \ \ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00074}00074\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00075}00075\ \textcolor{comment}{\ \ \ \ Rotozoom\ functions}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00076}00076\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00077}00077\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00079}\mbox{\hyperlink{_s_d_l2__rotozoom_8h_a6a5573d553a90abfb9c6de31c6326dab}{00079}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l2__rotozoom_8h_ab3316f8a2f78ed696bbe0242c75b6ee7}{SDL2\_ROTOZOOM\_SCOPE}}\ \mbox{\hyperlink{struct_s_d_l___surface}{SDL\_Surface}}\ *\mbox{\hyperlink{_s_d_l2__rotozoom_8h_a6a5573d553a90abfb9c6de31c6326dab}{rotozoomSurface}}(\mbox{\hyperlink{struct_s_d_l___surface}{SDL\_Surface}}\ *\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a2a98ddb6f79ec1048ff9e15cdd2422ba}{src}},\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a9e06c1f76a20fed54ca742cd25cb02c4}{angle}},\ \textcolor{keywordtype}{double}\ zoom,\ \textcolor{keywordtype}{int}\ smooth);}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00081}\mbox{\hyperlink{_s_d_l2__rotozoom_8h_a85c88ad53ae9208146cc7edc0833254d}{00081}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l2__rotozoom_8h_ab3316f8a2f78ed696bbe0242c75b6ee7}{SDL2\_ROTOZOOM\_SCOPE}}\ \mbox{\hyperlink{struct_s_d_l___surface}{SDL\_Surface}}\ *\mbox{\hyperlink{_s_d_l2__rotozoom_8h_a85c88ad53ae9208146cc7edc0833254d}{rotozoomSurfaceXY}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00082}00082\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{struct_s_d_l___surface}{SDL\_Surface}}\ *\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a2a98ddb6f79ec1048ff9e15cdd2422ba}{src}},\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a9e06c1f76a20fed54ca742cd25cb02c4}{angle}},\ \textcolor{keywordtype}{double}\ zoomx,\ \textcolor{keywordtype}{double}\ zoomy,\ \textcolor{keywordtype}{int}\ smooth);}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00085}\mbox{\hyperlink{_s_d_l2__rotozoom_8h_a9097c513174e2d97603292c08a9db923}{00085}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l2__rotozoom_8h_ab3316f8a2f78ed696bbe0242c75b6ee7}{SDL2\_ROTOZOOM\_SCOPE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_s_d_l2__rotozoom_8h_a9097c513174e2d97603292c08a9db923}{rotozoomSurfaceSize}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a9a82cf3caff84cabc4598e2619faac17}{width}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_aa352f2804b9902ac30769c00dde75d5f}{height}},\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a9e06c1f76a20fed54ca742cd25cb02c4}{angle}},\ \textcolor{keywordtype}{double}\ zoom,\ \textcolor{keywordtype}{int}\ *dstwidth,}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ *dstheight);}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00088}\mbox{\hyperlink{_s_d_l2__rotozoom_8h_aa0126562efa572575e3962fe51d69e7c}{00088}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l2__rotozoom_8h_ab3316f8a2f78ed696bbe0242c75b6ee7}{SDL2\_ROTOZOOM\_SCOPE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_s_d_l2__rotozoom_8h_aa0126562efa572575e3962fe51d69e7c}{rotozoomSurfaceSizeXY}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00089}00089\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a9a82cf3caff84cabc4598e2619faac17}{width}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_aa352f2804b9902ac30769c00dde75d5f}{height}},\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a9e06c1f76a20fed54ca742cd25cb02c4}{angle}},\ \textcolor{keywordtype}{double}\ zoomx,\ \textcolor{keywordtype}{double}\ zoomy,\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ *dstwidth,\ \textcolor{keywordtype}{int}\ *dstheight);}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00092}00092\ \ \ \ \ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00093}00093\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00094}00094\ \textcolor{comment}{\ \ \ \ Zooming\ functions}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00095}00095\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00096}00096\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00098}\mbox{\hyperlink{_s_d_l2__rotozoom_8h_a908c167a105d74d8a771ecfe029d03a8}{00098}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l2__rotozoom_8h_ab3316f8a2f78ed696bbe0242c75b6ee7}{SDL2\_ROTOZOOM\_SCOPE}}\ \mbox{\hyperlink{struct_s_d_l___surface}{SDL\_Surface}}\ *\mbox{\hyperlink{_s_d_l2__rotozoom_8h_a908c167a105d74d8a771ecfe029d03a8}{zoomSurface}}(\mbox{\hyperlink{struct_s_d_l___surface}{SDL\_Surface}}\ *\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a2a98ddb6f79ec1048ff9e15cdd2422ba}{src}},\ \textcolor{keywordtype}{double}\ zoomx,\ \textcolor{keywordtype}{double}\ zoomy,\ \textcolor{keywordtype}{int}\ smooth);}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00100}\mbox{\hyperlink{_s_d_l2__rotozoom_8h_a87a121da75a099fd980295c759a7005d}{00100}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l2__rotozoom_8h_ab3316f8a2f78ed696bbe0242c75b6ee7}{SDL2\_ROTOZOOM\_SCOPE}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_s_d_l2__rotozoom_8h_a87a121da75a099fd980295c759a7005d}{zoomSurfaceSize}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a9a82cf3caff84cabc4598e2619faac17}{width}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_aa352f2804b9902ac30769c00dde75d5f}{height}},\ \textcolor{keywordtype}{double}\ zoomx,\ \textcolor{keywordtype}{double}\ zoomy,\ \textcolor{keywordtype}{int}\ *dstwidth,\ \textcolor{keywordtype}{int}\ *dstheight);}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00102}00102\ \ \ \ \ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00103}00103\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00104}00104\ \textcolor{comment}{\ \ \ \ Shrinking\ functions}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00105}00105\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00106}00106\ \textcolor{comment}{\ \ \ \ */}\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00108}\mbox{\hyperlink{_s_d_l2__rotozoom_8h_ac19a85174c3bc202d62ab112e752fccc}{00108}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l2__rotozoom_8h_ab3316f8a2f78ed696bbe0242c75b6ee7}{SDL2\_ROTOZOOM\_SCOPE}}\ \mbox{\hyperlink{struct_s_d_l___surface}{SDL\_Surface}}\ *\mbox{\hyperlink{_s_d_l2__rotozoom_8h_ac19a85174c3bc202d62ab112e752fccc}{shrinkSurface}}(\mbox{\hyperlink{struct_s_d_l___surface}{SDL\_Surface}}\ *\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a2a98ddb6f79ec1048ff9e15cdd2422ba}{src}},\ \textcolor{keywordtype}{int}\ factorx,\ \textcolor{keywordtype}{int}\ factory);}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00110}00110\ \ \ \ \ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00111}00111\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00112}00112\ \textcolor{comment}{\ \ \ \ Specialized\ rotation\ functions}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00113}00113\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00114}00114\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00116}\mbox{\hyperlink{_s_d_l2__rotozoom_8h_ad01481193e22c671e691a2b625333331}{00116}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l2__rotozoom_8h_ab3316f8a2f78ed696bbe0242c75b6ee7}{SDL2\_ROTOZOOM\_SCOPE}}\ \mbox{\hyperlink{struct_s_d_l___surface}{SDL\_Surface}}*\ \mbox{\hyperlink{_s_d_l2__rotozoom_8h_ad01481193e22c671e691a2b625333331}{rotateSurface90Degrees}}(\mbox{\hyperlink{struct_s_d_l___surface}{SDL\_Surface}}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a2a98ddb6f79ec1048ff9e15cdd2422ba}{src}},\ \textcolor{keywordtype}{int}\ numClockwiseTurns);}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00118}00118\ \ \ \ \ \textcolor{comment}{/*\ Ends\ C\ function\ definitions\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00119}00119\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00120}00120\ \}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00121}00121\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l2__rotozoom_8h_source_l00123}00123\ \textcolor{preprocessor}{\#endif\ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ \_SDL2\_rotozoom\_h\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

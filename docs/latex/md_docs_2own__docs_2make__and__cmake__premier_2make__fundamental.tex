@@ -1,0 +1,28 @@
+\chapter{Make Fundamental}
+\hypertarget{md_docs_2own__docs_2make__and__cmake__premier_2make__fundamental}{}\label{md_docs_2own__docs_2make__and__cmake__premier_2make__fundamental}\index{Make Fundamental@{Make Fundamental}}
+\label{md_docs_2own__docs_2make__and__cmake__premier_2make__fundamental_autotoc_md237}%
+\Hypertarget{md_docs_2own__docs_2make__and__cmake__premier_2make__fundamental_autotoc_md237}%
+ \hypertarget{md_docs_2own__docs_2make__and__cmake__premier_2make__fundamental_autotoc_md238}{}\doxysection{\texorpdfstring{Make flags -\/ most common}{Make flags - most common}}\label{md_docs_2own__docs_2make__and__cmake__premier_2make__fundamental_autotoc_md238}
+
+\begin{DoxyItemize}
+\item When using make, the -\/j 8 flag specifies that up to 8 jobs (or commands) should be run simultaneously, which can speed up the build process on multi-\/core systems. In addition to the -\/j flag, there are several other flags and options that can be useful depending on your needs\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/k\ or\ -\/-\/keep-\/going:\ Continue\ as\ much\ as\ possible\ after\ encountering\ an\ error.\ This\ can\ be\ useful\ when\ you\ want\ to\ see\ all\ the\ errors\ in\ one\ go,\ rather\ than\ fixing\ one\ at\ a\ time.}
+\DoxyCodeLine{-\/C\ <dir>\ or\ -\/-\/directory=<dir>:\ Change\ to\ the\ directory\ <dir>\ before\ reading\ the\ makefiles.}
+\DoxyCodeLine{-\/f\ <file>\ or\ -\/-\/file=<file>:\ Use\ <file>\ as\ the\ makefile.\ This\ can\ be\ useful\ if\ your\ makefile\ has\ a\ non-\/standard\ name.}
+\DoxyCodeLine{-\/n\ or\ -\/-\/just-\/print:\ Print\ the\ commands\ that\ would\ be\ executed,\ but\ do\ not\ actually\ execute\ them.\ This\ is\ useful\ for\ debugging\ makefiles.}
+\DoxyCodeLine{-\/s\ or\ -\/-\/silent:\ Do\ not\ print\ the\ commands\ as\ they\ are\ executed\ (silent\ mode).}
+\DoxyCodeLine{-\/B\ or\ -\/-\/always-\/make:\ Unconditionally\ make\ all\ targets,\ regardless\ of\ whether\ they\ appear\ to\ be\ up-\/to-\/date.}
+\DoxyCodeLine{-\/i\ or\ -\/-\/ignore-\/errors:\ Continue\ to\ build\ other\ targets\ even\ if\ a\ command\ encounters\ an\ error.}
+\DoxyCodeLine{-\/q\ or\ -\/-\/question:\ Do\ not\ run\ any\ commands\ or\ print\ anything;\ just\ return\ an\ exit\ status\ that\ indicates\ whether\ the\ specified\ targets\ are\ already\ up-\/to-\/date.}
+\DoxyCodeLine{-\/w\ or\ -\/-\/print-\/directory:\ Print\ a\ message\ indicating\ the\ current\ directory\ before\ and\ after\ other\ processing.\ This\ can\ be\ useful\ when\ recursive\ invocations\ of\ make\ are\ used.}
+\DoxyCodeLine{-\/o\ <file>\ or\ -\/-\/old-\/file=<file>:\ Consider\ <file>\ as\ very\ old\ and\ don't\ remake\ it\ unless\ its\ dependencies\ are\ newer\ than\ it.}
+\DoxyCodeLine{-\/I\ <dir>\ or\ -\/-\/include-\/dir=<dir>:\ Specifies\ a\ directory\ to\ search\ for\ included\ makefiles.}
+\DoxyCodeLine{-\/-\/no-\/builtin-\/rules:\ Disable\ all\ built-\/in\ implicit\ rules.}
+\DoxyCodeLine{-\/-\/warn-\/undefined-\/variables:\ Warn\ when\ an\ undefined\ variable\ is\ referenced.}
+
+\end{DoxyCode}
+ 

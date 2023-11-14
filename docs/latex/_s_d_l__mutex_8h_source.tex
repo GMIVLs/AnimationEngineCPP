@@ -1,0 +1,193 @@
+\doxysection{SDL\+\_\+mutex.\+h}
+\hypertarget{_s_d_l__mutex_8h_source}{}\label{_s_d_l__mutex_8h_source}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_mutex.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_mutex.h}}
+\mbox{\hyperlink{_s_d_l__mutex_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00002}00002\ \textcolor{comment}{\ \ Simple\ DirectMedia\ Layer}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00003}00003\ \textcolor{comment}{\ \ Copyright\ (C)\ 1997-\/2023\ Sam\ Lantinga\ <slouken@libsdl.org>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00005}00005\ \textcolor{comment}{\ \ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00006}00006\ \textcolor{comment}{\ \ warranty.\ \ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00007}00007\ \textcolor{comment}{\ \ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00008}00008\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00009}00009\ \textcolor{comment}{\ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00010}00010\ \textcolor{comment}{\ \ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00011}00011\ \textcolor{comment}{\ \ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00013}00013\ \textcolor{comment}{\ \ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00014}00014\ \textcolor{comment}{\ \ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00015}00015\ \textcolor{comment}{\ \ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00016}00016\ \textcolor{comment}{\ \ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00017}00017\ \textcolor{comment}{\ \ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00018}00018\ \textcolor{comment}{\ \ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00019}00019\ \textcolor{comment}{\ \ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00020}00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00022}00022\ \textcolor{preprocessor}{\#ifndef\ SDL\_mutex\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00023}00023\ \textcolor{preprocessor}{\#define\ SDL\_mutex\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00031}00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__stdinc_8h}{SDL\_stdinc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__error_8h}{SDL\_error.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00034}00034\ \textcolor{comment}{/******************************************************************************/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00035}00035\ \textcolor{comment}{/*\ Enable\ thread\ safety\ attributes\ only\ with\ clang.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00036}00036\ \textcolor{comment}{\ *\ The\ attributes\ can\ be\ safely\ erased\ when\ compiling\ with\ other\ compilers.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00037}00037\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00038}00038\ \textcolor{preprocessor}{\#if\ defined(SDL\_THREAD\_SAFETY\_ANALYSIS)\ \&\&\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00039}00039\ \textcolor{preprocessor}{\ \ \ \ defined(\_\_clang\_\_)\ \&\&\ (!defined(SWIG))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00040}00040\ \textcolor{preprocessor}{\#define\ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(x)\ \ \ \_\_attribute\_\_((x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00041}00041\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00042}\mbox{\hyperlink{_s_d_l__mutex_8h_ab3c03b432fec86063d584f31fc810efb}{00042}}\ \textcolor{preprocessor}{\#define\ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(x)\ \ \ }\textcolor{comment}{/*\ no-\/op\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00043}00043\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00045}\mbox{\hyperlink{_s_d_l__mutex_8h_a70b6303c151a95bdd033d9685fc12493}{00045}}\ \textcolor{preprocessor}{\#define\ SDL\_CAPABILITY(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00046}00046\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(capability(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00048}\mbox{\hyperlink{_s_d_l__mutex_8h_a45cd15a2195c2dcdc589deff2e9926a2}{00048}}\ \textcolor{preprocessor}{\#define\ SDL\_SCOPED\_CAPABILITY\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00049}00049\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(scoped\_lockable)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00051}\mbox{\hyperlink{_s_d_l__mutex_8h_a9a90a520403e736f84b7837427aa6263}{00051}}\ \textcolor{preprocessor}{\#define\ SDL\_GUARDED\_BY(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00052}00052\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(guarded\_by(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00054}\mbox{\hyperlink{_s_d_l__mutex_8h_a13f31eaa0f73959b93f9599117f54ebc}{00054}}\ \textcolor{preprocessor}{\#define\ SDL\_PT\_GUARDED\_BY(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00055}00055\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(pt\_guarded\_by(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00057}\mbox{\hyperlink{_s_d_l__mutex_8h_aee469af24694b03e445fc603bde7d1ab}{00057}}\ \textcolor{preprocessor}{\#define\ SDL\_ACQUIRED\_BEFORE(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00058}00058\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(acquired\_before(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00060}\mbox{\hyperlink{_s_d_l__mutex_8h_af536ab2d5bc366dba742a4241969d5f0}{00060}}\ \textcolor{preprocessor}{\#define\ SDL\_ACQUIRED\_AFTER(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00061}00061\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(acquired\_after(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00063}\mbox{\hyperlink{_s_d_l__mutex_8h_a349efc002b392e757e2b2a56f4687f73}{00063}}\ \textcolor{preprocessor}{\#define\ SDL\_REQUIRES(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00064}00064\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(requires\_capability(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00066}\mbox{\hyperlink{_s_d_l__mutex_8h_a4cb6dc23d858bfaadf906462a6b5bc79}{00066}}\ \textcolor{preprocessor}{\#define\ SDL\_REQUIRES\_SHARED(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00067}00067\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(requires\_shared\_capability(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00069}\mbox{\hyperlink{_s_d_l__mutex_8h_a068ace07dbfb746436d3c03673b4f8fb}{00069}}\ \textcolor{preprocessor}{\#define\ SDL\_ACQUIRE(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00070}00070\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(acquire\_capability(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00072}\mbox{\hyperlink{_s_d_l__mutex_8h_a31ca6632bae6422f25e24db9ef66b6cd}{00072}}\ \textcolor{preprocessor}{\#define\ SDL\_ACQUIRE\_SHARED(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00073}00073\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(acquire\_shared\_capability(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00075}\mbox{\hyperlink{_s_d_l__mutex_8h_acca008c2a7bed5dea3a950f80134a781}{00075}}\ \textcolor{preprocessor}{\#define\ SDL\_RELEASE(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00076}00076\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(release\_capability(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00078}\mbox{\hyperlink{_s_d_l__mutex_8h_a9bae6bd098b1476356faf4b511c4b849}{00078}}\ \textcolor{preprocessor}{\#define\ SDL\_RELEASE\_SHARED(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00079}00079\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(release\_shared\_capability(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00081}\mbox{\hyperlink{_s_d_l__mutex_8h_a5ca43c17a557cf8c9033b9922e68537b}{00081}}\ \textcolor{preprocessor}{\#define\ SDL\_RELEASE\_GENERIC(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00082}00082\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(release\_generic\_capability(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00084}\mbox{\hyperlink{_s_d_l__mutex_8h_a0df0a8038b0220f070fa4a81aa340859}{00084}}\ \textcolor{preprocessor}{\#define\ SDL\_TRY\_ACQUIRE(x,\ y)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00085}00085\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(try\_acquire\_capability(x,\ y))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00087}\mbox{\hyperlink{_s_d_l__mutex_8h_a22d43e26bb3944260e27cfd5a481637e}{00087}}\ \textcolor{preprocessor}{\#define\ SDL\_TRY\_ACQUIRE\_SHARED(x,\ y)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00088}00088\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(try\_acquire\_shared\_capability(x,\ y))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00090}\mbox{\hyperlink{_s_d_l__mutex_8h_ace21f1d0bdbf05436aa089bcc3a46c14}{00090}}\ \textcolor{preprocessor}{\#define\ SDL\_EXCLUDES(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00091}00091\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(locks\_excluded(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00093}\mbox{\hyperlink{_s_d_l__mutex_8h_a556bcb3575a6f8cb32a271c82dc63722}{00093}}\ \textcolor{preprocessor}{\#define\ SDL\_ASSERT\_CAPABILITY(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00094}00094\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(assert\_capability(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00096}\mbox{\hyperlink{_s_d_l__mutex_8h_a3eda33c61bdb66f2132e708b678ceb9b}{00096}}\ \textcolor{preprocessor}{\#define\ SDL\_ASSERT\_SHARED\_CAPABILITY(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00097}00097\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(assert\_shared\_capability(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00099}\mbox{\hyperlink{_s_d_l__mutex_8h_a65848612a6172351aca1d7ac6a285649}{00099}}\ \textcolor{preprocessor}{\#define\ SDL\_RETURN\_CAPABILITY(x)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00100}00100\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(lock\_returned(x))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00102}\mbox{\hyperlink{_s_d_l__mutex_8h_a617b4906fd737636813dd68d54f72952}{00102}}\ \textcolor{preprocessor}{\#define\ SDL\_NO\_THREAD\_SAFETY\_ANALYSIS\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00103}00103\ \textcolor{preprocessor}{\ \ SDL\_THREAD\_ANNOTATION\_ATTRIBUTE\_\_(no\_thread\_safety\_analysis)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00105}00105\ \textcolor{comment}{/******************************************************************************/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00108}00108\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{begin__code_8h}{begin\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00109}00109\ \textcolor{comment}{/*\ Set\ up\ for\ C\ function\ definitions,\ even\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00110}00110\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00111}00111\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00112}00112\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00118}\mbox{\hyperlink{_s_d_l__mutex_8h_a1214610634c24465d7c50149752791a9}{00118}}\ \textcolor{preprocessor}{\#define\ SDL\_MUTEX\_TIMEDOUT\ \ 1}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00123}\mbox{\hyperlink{_s_d_l__mutex_8h_abd2bc8605242c50341362ada961dc914}{00123}}\ \textcolor{preprocessor}{\#define\ SDL\_MUTEX\_MAXWAIT\ \ \ (\string~(Uint32)0)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00129}00129\ \textcolor{comment}{/*\ @\{\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00131}00131\ \textcolor{comment}{/*\ The\ SDL\ mutex\ structure,\ defined\ in\ SDL\_sysmutex.c\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00132}00132\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{_s_d_l__mutex_8h_ac085162a7cfb9ebd63e2d05d33c03c17}{SDL\_mutex}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00133}\mbox{\hyperlink{_s_d_l__mutex_8h_ac085162a7cfb9ebd63e2d05d33c03c17}{00133}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{_s_d_l__mutex_8h_ac085162a7cfb9ebd63e2d05d33c03c17}{SDL\_mutex}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_ac085162a7cfb9ebd63e2d05d33c03c17}{SDL\_mutex}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00155}\mbox{\hyperlink{_s_d_l__mutex_8h_a9a47396fe7d67160eb74ef071e1ef668}{00155}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_ac085162a7cfb9ebd63e2d05d33c03c17}{SDL\_mutex}}\ *\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_a9a47396fe7d67160eb74ef071e1ef668}{SDL\_CreateMutex}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00173}\mbox{\hyperlink{_s_d_l__mutex_8h_ab7575e7c87dcd570b4f1664bba24a24b}{00173}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_ab7575e7c87dcd570b4f1664bba24a24b}{SDL\_LockMutex}}(\mbox{\hyperlink{_s_d_l__mutex_8h_ac085162a7cfb9ebd63e2d05d33c03c17}{SDL\_mutex}}\ *\ \mbox{\hyperlink{_s_d_l__mutex_8h_a0e2ae8dca74d9f6c2bbe87030b9e7a0c}{mutex}})\ \mbox{\hyperlink{_s_d_l__mutex_8h_a068ace07dbfb746436d3c03673b4f8fb}{SDL\_ACQUIRE}}(\mbox{\hyperlink{_s_d_l__mutex_8h_a0e2ae8dca74d9f6c2bbe87030b9e7a0c}{mutex}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00174}\mbox{\hyperlink{_s_d_l__mutex_8h_a3ce486805b5c21574466d3d93c908597}{00174}}\ \textcolor{preprocessor}{\#define\ SDL\_mutexP(m)\ \ \ SDL\_LockMutex(m)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00196}\mbox{\hyperlink{_s_d_l__mutex_8h_a0e2ae8dca74d9f6c2bbe87030b9e7a0c}{00196}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_a86b9690ecda945f6db7d69dba15f5540}{SDL\_TryLockMutex}}(\mbox{\hyperlink{_s_d_l__mutex_8h_ac085162a7cfb9ebd63e2d05d33c03c17}{SDL\_mutex}}\ *\ \mbox{\hyperlink{_s_d_l__mutex_8h_a0e2ae8dca74d9f6c2bbe87030b9e7a0c}{mutex}})\ \mbox{\hyperlink{_s_d_l__mutex_8h_a0df0a8038b0220f070fa4a81aa340859}{SDL\_TRY\_ACQUIRE}}(0,\ \mbox{\hyperlink{_s_d_l__mutex_8h_a0e2ae8dca74d9f6c2bbe87030b9e7a0c}{mutex}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00215}\mbox{\hyperlink{_s_d_l__mutex_8h_a397d5e9da45af5cb6682a429915c307b}{00215}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_a397d5e9da45af5cb6682a429915c307b}{SDL\_UnlockMutex}}(\mbox{\hyperlink{_s_d_l__mutex_8h_ac085162a7cfb9ebd63e2d05d33c03c17}{SDL\_mutex}}\ *\ \mbox{\hyperlink{_s_d_l__mutex_8h_a0e2ae8dca74d9f6c2bbe87030b9e7a0c}{mutex}})\ \mbox{\hyperlink{_s_d_l__mutex_8h_acca008c2a7bed5dea3a950f80134a781}{SDL\_RELEASE}}(\mbox{\hyperlink{_s_d_l__mutex_8h_a0e2ae8dca74d9f6c2bbe87030b9e7a0c}{mutex}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00216}\mbox{\hyperlink{_s_d_l__mutex_8h_aa25335079da2e776536c63e84288d684}{00216}}\ \textcolor{preprocessor}{\#define\ SDL\_mutexV(m)\ \ \ SDL\_UnlockMutex(m)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00236}\mbox{\hyperlink{_s_d_l__mutex_8h_ad2bbcc4e32ac927af62f0cba671f63fe}{00236}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_ad2bbcc4e32ac927af62f0cba671f63fe}{SDL\_DestroyMutex}}(\mbox{\hyperlink{_s_d_l__mutex_8h_ac085162a7cfb9ebd63e2d05d33c03c17}{SDL\_mutex}}\ *\ \mbox{\hyperlink{_s_d_l__mutex_8h_a0e2ae8dca74d9f6c2bbe87030b9e7a0c}{mutex}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00238}00238\ \textcolor{comment}{/*\ @\}\ */}\textcolor{comment}{/*\ Mutex\ functions\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00244}00244\ \textcolor{comment}{/*\ @\{\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00245}00245\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00246}00246\ \textcolor{comment}{/*\ The\ SDL\ semaphore\ structure,\ defined\ in\ SDL\_syssem.c\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00247}00247\ \textcolor{keyword}{struct\ }SDL\_semaphore;}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00248}\mbox{\hyperlink{_s_d_l__mutex_8h_aa7d56df841e98eed229d1d4b17327d29}{00248}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }SDL\_semaphore\ \mbox{\hyperlink{_s_d_l__mutex_8h_aa7d56df841e98eed229d1d4b17327d29}{SDL\_sem}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00272}\mbox{\hyperlink{_s_d_l__mutex_8h_adf777c6c386966b58a00185726572d17}{00272}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_aa7d56df841e98eed229d1d4b17327d29}{SDL\_sem}}\ *\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_adf777c6c386966b58a00185726572d17}{SDL\_CreateSemaphore}}(\mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}}\ initial\_value);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00291}\mbox{\hyperlink{_s_d_l__mutex_8h_a23deb3b7e29a5137d804e4be3453a768}{00291}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_a23deb3b7e29a5137d804e4be3453a768}{SDL\_DestroySemaphore}}(\mbox{\hyperlink{_s_d_l__mutex_8h_aa7d56df841e98eed229d1d4b17327d29}{SDL\_sem}}\ *\ sem);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00318}\mbox{\hyperlink{_s_d_l__mutex_8h_af51d75d18cb90f28b35c31e853b04792}{00318}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_af51d75d18cb90f28b35c31e853b04792}{SDL\_SemWait}}(\mbox{\hyperlink{_s_d_l__mutex_8h_aa7d56df841e98eed229d1d4b17327d29}{SDL\_sem}}\ *\ sem);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00342}\mbox{\hyperlink{_s_d_l__mutex_8h_a517288aaa856ce2264e8420636e85c4a}{00342}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_a517288aaa856ce2264e8420636e85c4a}{SDL\_SemTryWait}}(\mbox{\hyperlink{_s_d_l__mutex_8h_aa7d56df841e98eed229d1d4b17327d29}{SDL\_sem}}\ *\ sem);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00343}00343\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00367}\mbox{\hyperlink{_s_d_l__mutex_8h_a3e685246411e466691ecf343fff1a108}{00367}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_a3e685246411e466691ecf343fff1a108}{SDL\_SemWaitTimeout}}(\mbox{\hyperlink{_s_d_l__mutex_8h_aa7d56df841e98eed229d1d4b17327d29}{SDL\_sem}}\ *sem,\ \mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a5fb8809e616532013f09411074beba04}{timeout}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00368}00368\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00385}\mbox{\hyperlink{_s_d_l__mutex_8h_a0c50f774babf7a44c381238a1f780595}{00385}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_a0c50f774babf7a44c381238a1f780595}{SDL\_SemPost}}(\mbox{\hyperlink{_s_d_l__mutex_8h_aa7d56df841e98eed229d1d4b17327d29}{SDL\_sem}}\ *\ sem);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00386}00386\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00397}\mbox{\hyperlink{_s_d_l__mutex_8h_ae66390dca585fdab8de871fe32935768}{00397}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_ae66390dca585fdab8de871fe32935768}{SDL\_SemValue}}(\mbox{\hyperlink{_s_d_l__mutex_8h_aa7d56df841e98eed229d1d4b17327d29}{SDL\_sem}}\ *\ sem);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00398}00398\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00399}00399\ \textcolor{comment}{/*\ @\}\ */}\textcolor{comment}{/*\ Semaphore\ functions\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00400}00400\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00401}00401\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00405}00405\ \textcolor{comment}{/*\ @\{\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00406}00406\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00407}00407\ \textcolor{comment}{/*\ The\ SDL\ condition\ variable\ structure,\ defined\ in\ SDL\_syscond.c\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00408}00408\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{_s_d_l__mutex_8h_ac50401d1b84d806a0c927c8cf454f96a}{SDL\_cond}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00409}\mbox{\hyperlink{_s_d_l__mutex_8h_ac50401d1b84d806a0c927c8cf454f96a}{00409}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{_s_d_l__mutex_8h_ac50401d1b84d806a0c927c8cf454f96a}{SDL\_cond}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_ac50401d1b84d806a0c927c8cf454f96a}{SDL\_cond}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00410}00410\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00425}\mbox{\hyperlink{_s_d_l__mutex_8h_a05cd070a02f5ce6eb0abbec4379468a8}{00425}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_ac50401d1b84d806a0c927c8cf454f96a}{SDL\_cond}}\ *\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_a05cd070a02f5ce6eb0abbec4379468a8}{SDL\_CreateCond}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00426}00426\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00440}\mbox{\hyperlink{_s_d_l__mutex_8h_a8843feeb270845e07fc23f692707540f}{00440}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_a8843feeb270845e07fc23f692707540f}{SDL\_DestroyCond}}(\mbox{\hyperlink{_s_d_l__mutex_8h_ac50401d1b84d806a0c927c8cf454f96a}{SDL\_cond}}\ *\ cond);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00457}\mbox{\hyperlink{_s_d_l__mutex_8h_a1037a8274b0b13118fc78eeb417a1397}{00457}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_a1037a8274b0b13118fc78eeb417a1397}{SDL\_CondSignal}}(\mbox{\hyperlink{_s_d_l__mutex_8h_ac50401d1b84d806a0c927c8cf454f96a}{SDL\_cond}}\ *\ cond);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00458}00458\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00474}\mbox{\hyperlink{_s_d_l__mutex_8h_a2ffd0b45ebdc44057007a59857ba46b3}{00474}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_a2ffd0b45ebdc44057007a59857ba46b3}{SDL\_CondBroadcast}}(\mbox{\hyperlink{_s_d_l__mutex_8h_ac50401d1b84d806a0c927c8cf454f96a}{SDL\_cond}}\ *\ cond);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00475}00475\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00502}\mbox{\hyperlink{_s_d_l__mutex_8h_af759b2fe1c5507f47854c1edf1ecbabd}{00502}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_af759b2fe1c5507f47854c1edf1ecbabd}{SDL\_CondWait}}(\mbox{\hyperlink{_s_d_l__mutex_8h_ac50401d1b84d806a0c927c8cf454f96a}{SDL\_cond}}\ *\ cond,\ \mbox{\hyperlink{_s_d_l__mutex_8h_ac085162a7cfb9ebd63e2d05d33c03c17}{SDL\_mutex}}\ *\ \mbox{\hyperlink{_s_d_l__mutex_8h_a0e2ae8dca74d9f6c2bbe87030b9e7a0c}{mutex}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00503}00503\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00531}\mbox{\hyperlink{_s_d_l__mutex_8h_aa57013f95a9c608cf24a5100b841e863}{00531}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__mutex_8h_aa57013f95a9c608cf24a5100b841e863}{SDL\_CondWaitTimeout}}(\mbox{\hyperlink{_s_d_l__mutex_8h_ac50401d1b84d806a0c927c8cf454f96a}{SDL\_cond}}\ *\ cond,}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00532}00532\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_d_l__mutex_8h_ac085162a7cfb9ebd63e2d05d33c03c17}{SDL\_mutex}}\ *\ \mbox{\hyperlink{_s_d_l__mutex_8h_a0e2ae8dca74d9f6c2bbe87030b9e7a0c}{mutex}},\ \mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}}\ ms);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00533}00533\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00534}00534\ \textcolor{comment}{/*\ @\}\ */}\textcolor{comment}{/*\ Condition\ variable\ functions\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00535}00535\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00536}00536\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00537}00537\ \textcolor{comment}{/*\ Ends\ C\ function\ definitions\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00538}00538\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00539}00539\ \}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00540}00540\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00541}00541\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{close__code_8h}{close\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00542}00542\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00543}00543\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_mutex\_h\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00544}00544\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__mutex_8h_source_l00545}00545\ \textcolor{comment}{/*\ vi:\ set\ ts=4\ sw=4\ expandtab:\ */}}
+
+\end{DoxyCode}

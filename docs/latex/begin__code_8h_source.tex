@@ -1,0 +1,185 @@
+\doxysection{begin\+\_\+code.\+h}
+\hypertarget{begin__code_8h_source}{}\label{begin__code_8h_source}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/begin\_code.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/begin\_code.h}}
+\mbox{\hyperlink{begin__code_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00002}00002\ \textcolor{comment}{\ \ Simple\ DirectMedia\ Layer}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00003}00003\ \textcolor{comment}{\ \ Copyright\ (C)\ 1997-\/2023\ Sam\ Lantinga\ <slouken@libsdl.org>}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00005}00005\ \textcolor{comment}{\ \ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00006}00006\ \textcolor{comment}{\ \ warranty.\ \ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00007}00007\ \textcolor{comment}{\ \ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00008}00008\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00009}00009\ \textcolor{comment}{\ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00010}00010\ \textcolor{comment}{\ \ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00011}00011\ \textcolor{comment}{\ \ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00013}00013\ \textcolor{comment}{\ \ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00014}00014\ \textcolor{comment}{\ \ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00015}00015\ \textcolor{comment}{\ \ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00016}00016\ \textcolor{comment}{\ \ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00017}00017\ \textcolor{comment}{\ \ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00018}00018\ \textcolor{comment}{\ \ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00019}00019\ \textcolor{comment}{\ \ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00020}00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00030}00030\ \textcolor{comment}{/*\ This\ shouldn't\ be\ nested\ -\/-\/\ included\ it\ around\ code\ only.\ */}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00031}00031\ \textcolor{preprocessor}{\#ifdef\ SDL\_begin\_code\_h}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00032}00032\ \textcolor{preprocessor}{\#error\ Nested\ inclusion\ of\ begin\_code.h}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00033}00033\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00034}\mbox{\hyperlink{begin__code_8h_a7682625c68d5d8a5c780ddb82b8303d5}{00034}}\ \textcolor{preprocessor}{\#define\ SDL\_begin\_code\_h}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00036}00036\ \textcolor{preprocessor}{\#ifndef\ SDL\_DEPRECATED}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00037}00037\ \textcolor{preprocessor}{\#\ \ if\ defined(\_\_GNUC\_\_)\ \&\&\ (\_\_GNUC\_\_\ >=\ 4)\ \ }\textcolor{comment}{/*\ technically,\ this\ arrived\ in\ gcc\ 3.1,\ but\ oh\ well.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00038}00038\ \textcolor{preprocessor}{\#\ \ \ \ define\ SDL\_DEPRECATED\ \_\_attribute\_\_((deprecated))}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00039}00039\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00040}\mbox{\hyperlink{begin__code_8h_ace2a23221522c1222ee165136d2c316c}{00040}}\ \textcolor{preprocessor}{\#\ \ \ \ define\ SDL\_DEPRECATED}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00041}00041\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00042}00042\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00044}00044\ \textcolor{preprocessor}{\#ifndef\ SDL\_UNUSED}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00045}00045\ \textcolor{preprocessor}{\#\ \ ifdef\ \_\_GNUC\_\_}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00046}00046\ \textcolor{preprocessor}{\#\ \ \ \ define\ SDL\_UNUSED\ \_\_attribute\_\_((unused))}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00047}00047\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00048}\mbox{\hyperlink{begin__code_8h_ac7ccce7052e1fdf5a79475866154727c}{00048}}\ \textcolor{preprocessor}{\#\ \ \ \ define\ SDL\_UNUSED}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00049}00049\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00050}00050\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00052}00052\ \textcolor{comment}{/*\ Some\ compilers\ use\ a\ special\ export\ keyword\ */}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00053}00053\ \textcolor{preprocessor}{\#ifndef\ DECLSPEC}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00054}00054\ \textcolor{preprocessor}{\#\ if\ defined(\_\_WIN32\_\_)\ ||\ defined(\_\_WINRT\_\_)\ ||\ defined(\_\_CYGWIN\_\_)\ ||\ defined(\_\_GDK\_\_)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00055}00055\ \textcolor{preprocessor}{\#\ \ ifdef\ DLL\_EXPORT}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00056}00056\ \textcolor{preprocessor}{\#\ \ \ define\ DECLSPEC\ \_\_declspec(dllexport)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00057}00057\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00058}00058\ \textcolor{preprocessor}{\#\ \ \ define\ DECLSPEC}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00059}00059\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00060}00060\ \textcolor{preprocessor}{\#\ elif\ defined(\_\_OS2\_\_)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00061}00061\ \textcolor{preprocessor}{\#\ \ \ ifdef\ BUILD\_SDL}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00062}00062\ \textcolor{preprocessor}{\#\ \ \ \ define\ DECLSPEC\ \ \ \ \_\_declspec(dllexport)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00063}00063\ \textcolor{preprocessor}{\#\ \ \ else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00064}00064\ \textcolor{preprocessor}{\#\ \ \ \ define\ DECLSPEC}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00065}00065\ \textcolor{preprocessor}{\#\ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00066}00066\ \textcolor{preprocessor}{\#\ else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00067}00067\ \textcolor{preprocessor}{\#\ \ if\ defined(\_\_GNUC\_\_)\ \&\&\ \_\_GNUC\_\_\ >=\ 4}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00068}00068\ \textcolor{preprocessor}{\#\ \ \ define\ DECLSPEC\ \_\_attribute\_\_\ ((visibility("{}default"{})))}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00069}00069\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00070}\mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{00070}}\ \textcolor{preprocessor}{\#\ \ \ define\ DECLSPEC}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00071}00071\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00072}00072\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00073}00073\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00075}00075\ \textcolor{comment}{/*\ By\ default\ SDL\ uses\ the\ C\ calling\ convention\ */}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00076}00076\ \textcolor{preprocessor}{\#ifndef\ SDLCALL}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00077}00077\ \textcolor{preprocessor}{\#if\ (defined(\_\_WIN32\_\_)\ ||\ defined(\_\_WINRT\_\_)\ ||\ defined(\_\_GDK\_\_))\ \&\&\ !defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00078}00078\ \textcolor{preprocessor}{\#define\ SDLCALL\ \_\_cdecl}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00079}00079\ \textcolor{preprocessor}{\#elif\ defined(\_\_OS2\_\_)\ ||\ defined(\_\_EMX\_\_)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00080}00080\ \textcolor{preprocessor}{\#define\ SDLCALL\ \_System}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00081}00081\ \textcolor{preprocessor}{\#\ if\ defined\ (\_\_GNUC\_\_)\ \&\&\ !defined(\_System)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00082}00082\ \textcolor{preprocessor}{\#\ \ define\ \_System\ }\textcolor{comment}{/*\ for\ old\ EMX/GCC\ compat.\ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00083}00083\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00084}00084\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00085}\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{00085}}\ \textcolor{preprocessor}{\#define\ SDLCALL}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00086}00086\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00087}00087\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDLCALL\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00089}00089\ \textcolor{comment}{/*\ Removed\ DECLSPEC\ on\ Symbian\ OS\ because\ SDL\ cannot\ be\ a\ DLL\ in\ EPOC\ */}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00090}00090\ \textcolor{preprocessor}{\#ifdef\ \_\_SYMBIAN32\_\_}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00091}00091\ \textcolor{preprocessor}{\#undef\ DECLSPEC}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00092}00092\ \textcolor{preprocessor}{\#define\ DECLSPEC}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00093}00093\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_SYMBIAN32\_\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00095}00095\ \textcolor{comment}{/*\ Force\ structure\ packing\ at\ 4\ byte\ alignment.}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00096}00096\ \textcolor{comment}{\ \ \ This\ is\ necessary\ if\ the\ header\ is\ included\ in\ code\ which\ has\ structure}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00097}00097\ \textcolor{comment}{\ \ \ packing\ set\ to\ an\ alternate\ value,\ say\ for\ loading\ structures\ from\ disk.}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00098}00098\ \textcolor{comment}{\ \ \ The\ packing\ is\ reset\ to\ the\ previous\ value\ in\ close\_code.h}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00099}00099\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00100}00100\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ ||\ defined(\_\_MWERKS\_\_)\ ||\ defined(\_\_BORLANDC\_\_)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00101}00101\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00102}00102\ \textcolor{preprocessor}{\#pragma\ warning(disable:\ 4103)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00103}00103\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00104}00104\ \textcolor{preprocessor}{\#ifdef\ \_\_clang\_\_}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00105}00105\ \textcolor{preprocessor}{\#pragma\ clang\ diagnostic\ ignored\ "{}-\/Wpragma-\/pack"{}}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00106}00106\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00107}00107\ \textcolor{preprocessor}{\#ifdef\ \_\_BORLANDC\_\_}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00108}00108\ \textcolor{preprocessor}{\#pragma\ nopackwarning}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00109}00109\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00110}00110\ \textcolor{preprocessor}{\#ifdef\ \_WIN64}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00111}00111\ \textcolor{comment}{/*\ Use\ 8-\/byte\ alignment\ on\ 64-\/bit\ architectures,\ so\ pointers\ are\ aligned\ */}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00112}00112\ \textcolor{preprocessor}{\#pragma\ pack(push,8)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00113}00113\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00114}00114\ \textcolor{preprocessor}{\#pragma\ pack(push,4)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00115}00115\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00116}00116\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ Compiler\ needs\ structure\ packing\ set\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00118}00118\ \textcolor{preprocessor}{\#ifndef\ SDL\_INLINE}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00119}00119\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00120}00120\ \textcolor{preprocessor}{\#define\ SDL\_INLINE\ \_\_inline\_\_}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00121}00121\ \textcolor{preprocessor}{\#elif\ defined(\_MSC\_VER)\ ||\ defined(\_\_BORLANDC\_\_)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00122}00122\ \textcolor{preprocessor}{\ \ \ \ \ \ defined(\_\_DMC\_\_)\ ||\ defined(\_\_SC\_\_)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00123}00123\ \textcolor{preprocessor}{\ \ \ \ \ \ defined(\_\_WATCOMC\_\_)\ ||\ defined(\_\_LCC\_\_)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00124}00124\ \textcolor{preprocessor}{\ \ \ \ \ \ defined(\_\_DECC)\ ||\ defined(\_\_CC\_ARM)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00125}00125\ \textcolor{preprocessor}{\#define\ SDL\_INLINE\ \_\_inline}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00126}00126\ \textcolor{preprocessor}{\#ifndef\ \_\_inline\_\_}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00127}00127\ \textcolor{preprocessor}{\#define\ \_\_inline\_\_\ \_\_inline}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00128}00128\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00129}00129\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00130}\mbox{\hyperlink{begin__code_8h_a6a319a994e2ea1a7e16679ad4dec2e94}{00130}}\ \textcolor{preprocessor}{\#define\ SDL\_INLINE\ inline}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00131}00131\ \textcolor{preprocessor}{\#ifndef\ \_\_inline\_\_}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00132}\mbox{\hyperlink{begin__code_8h_a9f04218fe09e6ee659e045b2f11542ed}{00132}}\ \textcolor{preprocessor}{\#define\ \_\_inline\_\_\ inline}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00133}00133\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00134}00134\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00135}00135\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_INLINE\ not\ defined\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00137}00137\ \textcolor{preprocessor}{\#ifndef\ SDL\_FORCE\_INLINE}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00138}00138\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00139}00139\ \textcolor{preprocessor}{\#define\ SDL\_FORCE\_INLINE\ \_\_forceinline}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00140}00140\ \textcolor{preprocessor}{\#elif\ (\ (defined(\_\_GNUC\_\_)\ \&\&\ (\_\_GNUC\_\_\ >=\ 4))\ ||\ defined(\_\_clang\_\_)\ )}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00141}00141\ \textcolor{preprocessor}{\#define\ SDL\_FORCE\_INLINE\ \_\_attribute\_\_((always\_inline))\ static\ \_\_inline\_\_}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00142}00142\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00143}\mbox{\hyperlink{begin__code_8h_addf1f12c70f89102cc187297860c5961}{00143}}\ \textcolor{preprocessor}{\#define\ SDL\_FORCE\_INLINE\ static\ SDL\_INLINE}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00144}00144\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00145}00145\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_FORCE\_INLINE\ not\ defined\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00147}00147\ \textcolor{preprocessor}{\#ifndef\ SDL\_NORETURN}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00148}00148\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00149}00149\ \textcolor{preprocessor}{\#define\ SDL\_NORETURN\ \_\_attribute\_\_((noreturn))}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00150}00150\ \textcolor{preprocessor}{\#elif\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00151}00151\ \textcolor{preprocessor}{\#define\ SDL\_NORETURN\ \_\_declspec(noreturn)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00152}00152\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00153}\mbox{\hyperlink{begin__code_8h_a10bf668f248382b6b4447f7865cb563e}{00153}}\ \textcolor{preprocessor}{\#define\ SDL\_NORETURN}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00154}00154\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00155}00155\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_NORETURN\ not\ defined\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00157}00157\ \textcolor{comment}{/*\ Apparently\ this\ is\ needed\ by\ several\ Windows\ compilers\ */}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00158}00158\ \textcolor{preprocessor}{\#if\ !defined(\_\_MACH\_\_)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00159}00159\ \textcolor{preprocessor}{\#ifndef\ NULL}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00160}00160\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00161}00161\ \textcolor{preprocessor}{\#define\ NULL\ 0}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00162}00162\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00163}\mbox{\hyperlink{begin__code_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{00163}}\ \textcolor{preprocessor}{\#define\ NULL\ ((void\ *)0)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00164}00164\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00165}00165\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ NULL\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00166}00166\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !\ Mac\ OS\ X\ -\/\ breaks\ precompiled\ headers\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00168}00168\ \textcolor{preprocessor}{\#ifndef\ SDL\_FALLTHROUGH}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00169}00169\ \textcolor{preprocessor}{\#if\ (defined(\_\_cplusplus)\ \&\&\ \_\_cplusplus\ >=\ 201703L)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00170}00170\ \textcolor{preprocessor}{\ \ \ \ (defined(\_\_STDC\_VERSION\_\_)\ \&\&\ \_\_STDC\_VERSION\_\_\ >=\ 202000L)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00171}00171\ \textcolor{preprocessor}{\#define\ SDL\_FALLTHROUGH\ [[fallthrough]]}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00172}00172\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00173}00173\ \textcolor{preprocessor}{\#if\ defined(\_\_has\_attribute)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00174}00174\ \textcolor{preprocessor}{\#define\ SDL\_HAS\_FALLTHROUGH\ \_\_has\_attribute(\_\_fallthrough\_\_)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00175}00175\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00176}\mbox{\hyperlink{begin__code_8h_ac2e9c4167dc37e757cef90db4987eef2}{00176}}\ \textcolor{preprocessor}{\#define\ SDL\_HAS\_FALLTHROUGH\ 0}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00177}00177\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_has\_attribute\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00178}00178\ \textcolor{preprocessor}{\#if\ SDL\_HAS\_FALLTHROUGH\ \&\&\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00179}00179\ \textcolor{preprocessor}{\ \ \ ((defined(\_\_GNUC\_\_)\ \&\&\ \_\_GNUC\_\_\ >=\ 7)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00180}00180\ \textcolor{preprocessor}{\ \ \ \ (defined(\_\_clang\_major\_\_)\ \&\&\ \_\_clang\_major\_\_\ >=\ 10))}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00181}00181\ \textcolor{preprocessor}{\#define\ SDL\_FALLTHROUGH\ \_\_attribute\_\_((\_\_fallthrough\_\_))}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00182}00182\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00183}\mbox{\hyperlink{begin__code_8h_a9bbeece5949f076e5130a4dda2a7ede5}{00183}}\ \textcolor{preprocessor}{\#define\ SDL\_FALLTHROUGH\ do\ \{\}\ while\ (0)\ }\textcolor{comment}{/*\ fallthrough\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00184}00184\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_HAS\_FALLTHROUGH\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00185}00185\ \textcolor{preprocessor}{\#undef\ SDL\_HAS\_FALLTHROUGH}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00186}00186\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ C++17\ or\ C2x\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{begin__code_8h_source_l00187}00187\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_FALLTHROUGH\ not\ defined\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

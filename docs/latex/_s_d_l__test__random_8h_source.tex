@@ -1,0 +1,85 @@
+\doxysection{SDL\+\_\+test\+\_\+random.\+h}
+\hypertarget{_s_d_l__test__random_8h_source}{}\label{_s_d_l__test__random_8h_source}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_test\_random.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_test\_random.h}}
+\mbox{\hyperlink{_s_d_l__test__random_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00002}00002\ \textcolor{comment}{\ \ Simple\ DirectMedia\ Layer}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00003}00003\ \textcolor{comment}{\ \ Copyright\ (C)\ 1997-\/2023\ Sam\ Lantinga\ <slouken@libsdl.org>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00005}00005\ \textcolor{comment}{\ \ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00006}00006\ \textcolor{comment}{\ \ warranty.\ \ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00007}00007\ \textcolor{comment}{\ \ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00008}00008\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00009}00009\ \textcolor{comment}{\ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00010}00010\ \textcolor{comment}{\ \ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00011}00011\ \textcolor{comment}{\ \ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00013}00013\ \textcolor{comment}{\ \ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00014}00014\ \textcolor{comment}{\ \ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00015}00015\ \textcolor{comment}{\ \ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00016}00016\ \textcolor{comment}{\ \ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00017}00017\ \textcolor{comment}{\ \ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00018}00018\ \textcolor{comment}{\ \ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00019}00019\ \textcolor{comment}{\ \ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00020}00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00030}00030\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00031}00031\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00032}00032\ \textcolor{comment}{\ A\ "{}32-\/bit\ Multiply\ with\ carry\ random\ number\ generator.\ Very\ fast.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00033}00033\ \textcolor{comment}{\ Includes\ a\ list\ of\ recommended\ multipliers.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00034}00034\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00035}00035\ \textcolor{comment}{\ multiply-\/with-\/carry\ generator:\ x(n)\ =\ a*x(n-\/1)\ +\ carry\ mod\ 2\string^32.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00036}00036\ \textcolor{comment}{\ period:\ (a*2\string^31)-\/1}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00037}00037\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00038}00038\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00040}00040\ \textcolor{preprocessor}{\#ifndef\ SDL\_test\_random\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00041}00041\ \textcolor{preprocessor}{\#define\ SDL\_test\_random\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00043}00043\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{begin__code_8h}{begin\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00044}00044\ \textcolor{comment}{/*\ Set\ up\ for\ C\ function\ definitions,\ even\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00045}00045\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00046}00046\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00047}00047\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00049}00049\ \textcolor{comment}{/*\ -\/-\/-\/\ Definitions\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00051}00051\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00052}00052\ \textcolor{comment}{\ *\ Macros\ that\ return\ a\ random\ number\ in\ a\ specific\ format.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00053}00053\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00054}\mbox{\hyperlink{_s_d_l__test__random_8h_a10ad442c3a8b85d202b6ac306bfe04cc}{00054}}\ \textcolor{preprocessor}{\#define\ SDLTest\_RandomInt(c)\ \ \ \ \ \ \ \ ((int)SDLTest\_Random(c))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00056}00056\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00057}00057\ \textcolor{comment}{\ *\ Context\ structure\ for\ the\ random\ number\ generator\ state.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00058}00058\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00059}\mbox{\hyperlink{struct_s_d_l_test___random_context}{00059}}\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00060}\mbox{\hyperlink{struct_s_d_l_test___random_context_a24f830d6cb476c96fbe325c99331e45f}{00060}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_s_d_l_test___random_context_a24f830d6cb476c96fbe325c99331e45f}{a}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00061}\mbox{\hyperlink{struct_s_d_l_test___random_context_a8bd6d1b4e1677ed1c06f5cc09f1af5b6}{00061}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_s_d_l_test___random_context_a8bd6d1b4e1677ed1c06f5cc09f1af5b6}{x}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00062}\mbox{\hyperlink{struct_s_d_l_test___random_context_a17a6a7e7b68a33c67d9b74c8c7c33198}{00062}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_s_d_l_test___random_context_a17a6a7e7b68a33c67d9b74c8c7c33198}{c}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00063}\mbox{\hyperlink{struct_s_d_l_test___random_context_a2c8d2f1ee16cdfd38361b8f03b3fdb85}{00063}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_s_d_l_test___random_context_a2c8d2f1ee16cdfd38361b8f03b3fdb85}{ah}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00064}\mbox{\hyperlink{struct_s_d_l_test___random_context_a0e2bccd3611d383d6510c6c828aa54c4}{00064}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_s_d_l_test___random_context_a0e2bccd3611d383d6510c6c828aa54c4}{al}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00065}00065\ \ \ \}\ \mbox{\hyperlink{struct_s_d_l_test___random_context}{SDLTest\_RandomContext}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00068}00068\ \textcolor{comment}{/*\ -\/-\/-\/\ Function\ prototypes\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00081}\mbox{\hyperlink{_s_d_l__test__random_8h_ac02d87003e18791250a4f762f8779c4f}{00081}}\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_s_d_l__test__random_8h_ac02d87003e18791250a4f762f8779c4f}{SDLTest\_RandomInit}}(\mbox{\hyperlink{struct_s_d_l_test___random_context}{SDLTest\_RandomContext}}\ *\ rndContext,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ xi,}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ ci);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00090}\mbox{\hyperlink{_s_d_l__test__random_8h_a1d1378845f65b7e471f13cb4f3b1a54e}{00090}}\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_s_d_l__test__random_8h_a1d1378845f65b7e471f13cb4f3b1a54e}{SDLTest\_RandomInitTime}}(\mbox{\hyperlink{struct_s_d_l_test___random_context}{SDLTest\_RandomContext}}\ *rndContext);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00104}\mbox{\hyperlink{_s_d_l__test__random_8h_a7a64ae98b2b7034bf7c38ef5cbc39ead}{00104}}\ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__test__random_8h_a7a64ae98b2b7034bf7c38ef5cbc39ead}{SDLTest\_Random}}(\mbox{\hyperlink{struct_s_d_l_test___random_context}{SDLTest\_RandomContext}}\ *rndContext);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00107}00107\ \textcolor{comment}{/*\ Ends\ C\ function\ definitions\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00108}00108\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00109}00109\ \}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00110}00110\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00111}00111\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{close__code_8h}{close\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00113}00113\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_test\_random\_h\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__random_8h_source_l00115}00115\ \textcolor{comment}{/*\ vi:\ set\ ts=4\ sw=4\ expandtab:\ */}}
+
+\end{DoxyCode}

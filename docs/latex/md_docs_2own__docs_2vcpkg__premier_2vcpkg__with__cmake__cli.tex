@@ -1,0 +1,35 @@
+\chapter{vcpkg with cmake command line}
+\hypertarget{md_docs_2own__docs_2vcpkg__premier_2vcpkg__with__cmake__cli}{}\label{md_docs_2own__docs_2vcpkg__premier_2vcpkg__with__cmake__cli}\index{vcpkg with cmake command line@{vcpkg with cmake command line}}
+\label{md_docs_2own__docs_2vcpkg__premier_2vcpkg__with__cmake__cli_autotoc_md267}%
+\Hypertarget{md_docs_2own__docs_2vcpkg__premier_2vcpkg__with__cmake__cli_autotoc_md267}%
+ To install a package globally, run
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{vcpkg\ install\ <package-\/name>}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item Or you can also use locally for your project using the manifest file {\ttfamily \doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{vcpkg.\+json}}.
+\item When building your project, you can either set the toolchain file or include the directories directly\+: Using the toolchain file\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cmake\ -\/B\ [build\ directory]\ -\/S\ .\ -\/DCMAKE\_TOOLCHAIN\_FILE=[vcpkg\ root]\(\backslash\)scripts\(\backslash\)buildsystems\(\backslash\)vcpkg.cmake}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Or by directly including the directories\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}[vcpkg\ root]/installed/[triplet]/include/<library-\/header>}\textcolor{stringliteral}{"{}}}
+
+\end{DoxyCode}
+ 

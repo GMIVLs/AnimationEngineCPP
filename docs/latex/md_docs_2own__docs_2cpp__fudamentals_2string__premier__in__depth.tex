@@ -1,0 +1,612 @@
+\chapter{String premier in CPP -\/ In depth}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth}{}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth}\index{String premier in CPP -\/ In depth@{String premier in CPP -\/ In depth}}
+\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md170}%
+\Hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md170}%
+ \hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md171}{}\doxysection{\texorpdfstring{Content}{Content}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md171}
+{\bfseries{Table of Contents}}
+
+
+\begin{DoxyItemize}
+\item String premier in CPP -\/ In depth
+\begin{DoxyItemize}
+\item Content
+\item Types of string -\/ Commonly used
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md172}{}\doxysection{\texorpdfstring{String in cpp all methods}{String in cpp all methods}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md172}
+In C++, the {\ttfamily string} class is a part of the Standard Library, defined in the header file {\ttfamily \texorpdfstring{$<$}{<}string\texorpdfstring{$>$}{>}}. It represents a sequence of characters and provides various methods to manipulate and query strings. The {\ttfamily string} class simplifies many of the complexities of working with raw C-\/style character arrays.
+
+Here\textquotesingle{}s an overview of the {\ttfamily string} class in C++, including its methods and common ways to use it\+:\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md173}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Construction$<$/strong$>$\+:}{<strong>Construction</strong>:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md173}
+
+\begin{DoxyItemize}
+\item Default constructor\+: {\ttfamily \doxylink{_s_d_l__opengl__glext_8h_ae84541b4f3d8e1ea24ec0f466a8c568b}{string()}}
+\item Copy constructor\+: {\ttfamily string(const string\& str)}
+\item Substring constructor\+: {\ttfamily string(const string\& str, size\+\_\+t pos, size\+\_\+t len = npos)}
+\item From C-\/string\+: {\ttfamily \doxylink{_s_d_l__opengl__glext_8h_ae84541b4f3d8e1ea24ec0f466a8c568b}{string(const char\texorpdfstring{$\ast$}{*} s)}}
+\item Repeat character\+: {\ttfamily \doxylink{_s_d_l__opengl__glext_8h_ae84541b4f3d8e1ea24ec0f466a8c568b}{string(size\+\_\+t n, char c)}}
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md174}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Element Access$<$/strong$>$\+:}{<strong>Element Access</strong>:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md174}
+
+\begin{DoxyItemize}
+\item {\ttfamily at(size\+\_\+t pos)}\+: Returns character at the specified position.
+\item {\ttfamily operator\mbox{[}\mbox{]}}\+: Access character at a specified position.
+\item {\ttfamily front()}\+: Returns the first character.
+\item {\ttfamily back()}\+: Returns the last character.
+\item {\ttfamily c\+\_\+str()}\+: Returns a C-\/style character string.
+\item {\ttfamily \doxylink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data()}}\+: Returns a pointer to the string data.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md175}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Modifiers$<$/strong$>$\+:}{<strong>Modifiers</strong>:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md175}
+
+\begin{DoxyItemize}
+\item {\ttfamily append()}\+: Append string.
+\item {\ttfamily push\+\_\+back()}\+: Append character.
+\item {\ttfamily assign()}\+: Assign new content to the string.
+\item {\ttfamily insert()}\+: Insert content.
+\item {\ttfamily erase()}\+: Erase characters.
+\item {\ttfamily replace()}\+: Replace part of the string.
+\item {\ttfamily swap()}\+: Swap string values.
+\item {\ttfamily pop\+\_\+back()}\+: Deletes the last character.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md176}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Capacity$<$/strong$>$\+:}{<strong>Capacity</strong>:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md176}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{_s_d_l__opengl__glext_8h_a9f139c614d49f2a707b6037305b0fec0}{size()}} or {\ttfamily \doxylink{_s_d_l__opengl__glext_8h_ab9c919755bde3b34349e23a32b4e0fa7}{length()}}\+: Return length.
+\item {\ttfamily resize()}\+: Change the size.
+\item {\ttfamily capacity()}\+: Returns the size of allocated storage.
+\item {\ttfamily reserve()}\+: Request a change in capacity.
+\item {\ttfamily clear()}\+: Clears the string.
+\item {\ttfamily empty()}\+: Checks if the string is empty.
+\item {\ttfamily shrink\+\_\+to\+\_\+fit()}\+: Reduces memory usage by freeing unused memory.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md177}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Operations$<$/strong$>$\+:}{<strong>Operations</strong>:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md177}
+
+\begin{DoxyItemize}
+\item {\ttfamily substr()}\+: Returns a substring.
+\item {\ttfamily copy()}\+: Copy sequence of characters from string.
+\item {\ttfamily c\+\_\+str()}\+: Returns a null-\/terminated character sequence.
+\item {\ttfamily find()}\+: Find content in string.
+\item {\ttfamily rfind()}\+: Find last occurrence of content in string.
+\item {\ttfamily find\+\_\+first\+\_\+of()}\+: Find character in string.
+\item {\ttfamily find\+\_\+last\+\_\+of()}\+: Find the last character in string.
+\item {\ttfamily find\+\_\+first\+\_\+not\+\_\+of()}\+: Find character not in string.
+\item {\ttfamily find\+\_\+last\+\_\+not\+\_\+of()}\+: Find the last character not in the string.
+\item {\ttfamily compare()}\+: Compare strings.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md178}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Relational Operators$<$/strong$>$\+:}{<strong>Relational Operators</strong>:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md178}
+Strings can be compared using relational operators like {\ttfamily ==}, {\ttfamily !=}, {\ttfamily \texorpdfstring{$<$}{<}}, {\ttfamily \texorpdfstring{$<$}{<}=}, {\ttfamily \texorpdfstring{$>$}{>}}, and {\ttfamily \texorpdfstring{$>$}{>}=}.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md179}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Iterators$<$/strong$>$\+:}{<strong>Iterators</strong>:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md179}
+
+\begin{DoxyItemize}
+\item {\ttfamily begin()}\+: Returns an iterator pointing to the first character.
+\item {\ttfamily \doxylink{_s_d_l__opengl_8h_a432111147038972f06e049e18a837002}{end()}}\+: Returns an iterator pointing to the past-\/the-\/end character.
+\item {\ttfamily rbegin()}, {\ttfamily rend()}\+: Reverse iterators.
+\item {\ttfamily cbegin()}, {\ttfamily cend()}, {\ttfamily crbegin()}, {\ttfamily crend()}\+: Constant iterators.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md180}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Numeric Conversions$<$/strong$>$\+:}{<strong>Numeric Conversions</strong>:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md180}
+
+\begin{DoxyItemize}
+\item {\ttfamily stoi()}\+: Convert string to integer.
+\item {\ttfamily stol()}, {\ttfamily stoll()}\+: Convert string to long and long long.
+\item {\ttfamily stof()}, {\ttfamily stod()}, {\ttfamily stold()}\+: Convert string to float, double, and long double.
+\item {\ttfamily to\+\_\+string()}\+: Convert numeric types to string.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md181}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Allocator$<$/strong$>$\+:}{<strong>Allocator</strong>:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md181}
+
+\begin{DoxyItemize}
+\item {\ttfamily get\+\_\+allocator()}\+: Returns the allocator object.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md182}{}\doxysubsection{\texorpdfstring{$<$strong$>$\+Member Constants$<$/strong$>$\+:}{<strong>Member Constants</strong>:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md182}
+
+\begin{DoxyItemize}
+\item {\ttfamily npos}\+: Represents the maximum size of the string, used for "{}until the end of the string"{} in various methods.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md183}{}\doxysubsection{\texorpdfstring{Common Usage Patterns\+:}{Common Usage Patterns:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md183}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{String Concatenation}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_vector__2d}{hello}}\ =\ \textcolor{stringliteral}{"{}Hello"{}};}
+\DoxyCodeLine{\textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_vector__2d}{world}}\ =\ \textcolor{stringliteral}{"{}\ World!"{}};}
+\DoxyCodeLine{\textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_vector__2d}{greeting}}\ =\ \mbox{\hyperlink{class_vector__2d}{hello}}\ +\ \mbox{\hyperlink{class_vector__2d}{world}};}
+
+\end{DoxyCode}
+
+\item {\bfseries{String Iteration}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{char}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a1f2d7f8147412c43ba2303a56f97ee73}{c}}\ :\ \mbox{\hyperlink{class_vector__2d}{greeting}})\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a1f2d7f8147412c43ba2303a56f97ee73}{c}};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+\item {\bfseries{Substrings and Searching}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_vector__2d}{pos}}\ =\ \mbox{\hyperlink{class_vector__2d}{greeting}}.find(\textcolor{stringliteral}{"{}World"{}});}
+\DoxyCodeLine{\textcolor{keywordtype}{string}\ sub\ =\ \mbox{\hyperlink{class_vector__2d}{greeting}}.substr(\mbox{\hyperlink{class_vector__2d}{pos}},\ 5);}
+
+\end{DoxyCode}
+
+\item {\bfseries{Conversion}}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_vector__2d}{numStr}}\ =\ \textcolor{stringliteral}{"{}12345"{}};}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_abb50fc1ead3a02a46fb52daa2045f95c}{num}}\ =\ \mbox{\hyperlink{class_vector__2d}{stoi}}(\mbox{\hyperlink{class_vector__2d}{numStr}});}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+This overview covers most of the string class\textquotesingle{}s capabilities in C++. However, the best way to fully understand and grasp its depth is to refer to the official documentation or a C++ reference and try out various methods and operations for yourself.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md184}{}\doxysection{\texorpdfstring{Explain the char and sting lateral in general}{Explain the char and sting lateral in general}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md184}
+Certainly! Let\textquotesingle{}s delve into string literals and character literals in C++.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md185}{}\doxysubsection{\texorpdfstring{Character Literals\+:}{Character Literals:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md185}
+A character literal represents a single character and is enclosed in single quotes. In C++, a character literal has type {\ttfamily char}.
+
+Examples\+:
+
+
+\begin{DoxyItemize}
+\item `\textquotesingle{}a'{\ttfamily  -\/}\textquotesingle{}1\textquotesingle{}{\ttfamily  -\/}\textquotesingle{}\textquotesingle{}\`{}
+\end{DoxyItemize}
+
+There are also some special character literals called escape sequences\+:
+
+
+\begin{DoxyItemize}
+\item `'~\newline
+\textquotesingle{}{\ttfamily \+: Newline -\/}\textquotesingle{}\textbackslash{}t\textquotesingle{}{\ttfamily \+: Tab -\/}\textquotesingle{}\textbackslash{}r\textquotesingle{}{\ttfamily \+: Carriage return -\/}\textquotesingle{}\textbackslash{}\textquotesingle{}\textquotesingle{}{\ttfamily \+: Single quote -\/}\textquotesingle{}"{}\textquotesingle{}{\ttfamily \+: Double quote -\/}\textquotesingle{}\textbackslash{}0\textquotesingle{}{\ttfamily \+: Null character -\/}\textquotesingle{}{\bfseries{}}\textquotesingle{}\`{}\+: Backspace
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md186}{}\doxysubsubsection{\texorpdfstring{Wide and Unicode Character Literals\+:}{Wide and Unicode Character Literals:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md186}
+
+\begin{DoxyItemize}
+\item {\ttfamily wchar\+\_\+t} is used for wide character literals and is prefixed by {\ttfamily L}, e.\+g., `L\textquotesingle{}Z'{\ttfamily .}
+\item {\ttfamily C++11 introduced}char16\+\_\+t{\ttfamily for UTF-\/16 encoded characters with prefix}u{\ttfamily , e.\+g.,}u\textquotesingle{}Z\textquotesingle{}{\ttfamily and}char32\+\_\+t{\ttfamily for UTF-\/32 encoded characters with prefix}U{\ttfamily , e.\+g.,}U\textquotesingle{}Z\textquotesingle{}\`{}.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md187}{}\doxysubsection{\texorpdfstring{String Literals\+:}{String Literals:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md187}
+A string literal is a sequence of characters surrounded by double quotes. The compiler appends a null character (`'\textbackslash{}0\textquotesingle{}\`{}) to every string literal, making it a null-\/terminated string.
+
+Examples\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily "{}\+Hello, World!"{}}
+\item {\ttfamily "{}\+C++ Programming"{}}
+\item {\ttfamily "{}12345"{}}
+\end{DoxyItemize}
+
+Similar to character literals, string literals also support escape sequences\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily "{}\+This is a string with a newline character.\textbackslash{}n"{}}
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md188}{}\doxysubsubsection{\texorpdfstring{Raw String Literals\+:}{Raw String Literals:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md188}
+C++11 introduced raw string literals that allow you to write string literals without escaping characters. This is particularly useful for regex patterns, path specifications, or any multi-\/line string content. They are denoted by {\ttfamily R} and surrounded by {\ttfamily "{}( )"{}}.
+
+Example\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily R"{}(\+This is a "{}raw"{} string. No need to escape the "{}double quotes"{}.)"{}}
+\item {\ttfamily R"{}(\+C\+:\textbackslash{}\+Path\textbackslash{}\+To\textbackslash{}\+Directory)"{}} (notice no need to double backslash)
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md189}{}\doxysubsubsection{\texorpdfstring{Wide and Unicode String Literals\+:}{Wide and Unicode String Literals:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md189}
+
+\begin{DoxyItemize}
+\item Wide string literals use {\ttfamily wchar\+\_\+t} and are prefixed by {\ttfamily L}, e.\+g., {\ttfamily L"{}\+Hello"{}}.
+\item UTF-\/8 string literals (C++11) use {\ttfamily char} and are prefixed by {\ttfamily u8}, e.\+g., {\ttfamily u8"{}\+Hello"{}}.
+\item UTF-\/16 string literals use {\ttfamily char16\+\_\+t} and are prefixed by {\ttfamily u}, e.\+g., {\ttfamily u"{}\+Hello"{}}.
+\item UTF-\/32 string literals use {\ttfamily char32\+\_\+t} and are prefixed by {\ttfamily U}, e.\+g., {\ttfamily U"{}\+Hello"{}}.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md190}{}\doxysubsection{\texorpdfstring{Distinction Between String Literals and $<$tt$>$std\+::string$<$/tt$>$\+:}{Distinction Between String Literals and <tt>std::string</tt>:}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md190}
+It\textquotesingle{}s crucial to understand that string literals (e.\+g., {\ttfamily "{}\+Hello"{}}) are of type {\ttfamily const char\mbox{[}\mbox{]}}. On the other hand, the {\ttfamily std\+::string} type from the C++ Standard Library is a class designed to handle strings, providing many utility functions. They can be implicitly converted, so you often see them being used interchangeably\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::string\ str\ =\ \textcolor{stringliteral}{"{}This\ is\ a\ string\ literal\ assigned\ to\ a\ std::string\ object."{}};}
+
+\end{DoxyCode}
+
+
+In the example above, the string literal {\ttfamily "{}\+This is a string literal assigned to a std\+::string object."{}} is automatically converted to a {\ttfamily std\+::string} object.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md191}{}\doxysection{\texorpdfstring{Types of string -\/ Commonly used}{Types of string - Commonly used}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md191}
+Extended table for {\ttfamily string} in {\ttfamily C++}.
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{8}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type/\+Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Memory}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Mutable}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{R/W}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Size Specified}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Usage \& Common Practices}}    }\\\cline{1-8}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type/\+Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Memory}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Mutable}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{R/W}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Size Specified}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Usage \& Common Practices}}    }\\\cline{1-8}
+\endhead
+C-\/style array   &Fixed-\/size, contiguous block of memory.   &Stack   &Yes   &R/W   &Yes ({\ttfamily \mbox{[}N\mbox{]}})   &{\ttfamily int arr\mbox{[}3\mbox{]} = \{1, 2, 3\};}   &Prefer {\ttfamily std\+::array} or {\ttfamily std\+::vector} for safety and flexibility.    \\\cline{1-8}
+Dynamic C-\/style array   &Dynamically-\/allocated array.   &Heap   &Yes   &R/W   &No ({\ttfamily \mbox{[}\mbox{]}})   &{\ttfamily int\texorpdfstring{$\ast$}{*} arr = new int\mbox{[}3\mbox{]}; arr\mbox{[}0\mbox{]} = 1;}   &Use with caution; must manually manage memory with {\ttfamily delete\mbox{[}\mbox{]}}.    \\\cline{1-8}
+{\ttfamily std\+::array\texorpdfstring{$<$}{<}T, N\texorpdfstring{$>$}{>}}   &Fixed-\/size, stack-\/allocated.   &Stack   &Yes   &R/W   &Yes ({\ttfamily \texorpdfstring{$<$}{<}T, N\texorpdfstring{$>$}{>}})   &{\ttfamily std\+::array\texorpdfstring{$<$}{<}int, 3\texorpdfstring{$>$}{>} arr = \{1, 2, 3\};}   &Preferred over C-\/style array for fixed-\/size lists.    \\\cline{1-8}
+{\ttfamily std\+::vector\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}}   &Dynamic array with auto-\/resizing.   &Heap \& Stack   &Yes   &R/W   &No (at creation)   &{\ttfamily std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} vec = \{1, 2, 3\};}   &Most common dynamic list in C++; handles memory management.    \\\cline{1-8}
+{\ttfamily std\+::list\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}}   &Doubly-\/linked list.   &Heap   &Yes   &R/W   &No (at creation)   &{\ttfamily std\+::list\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} lst = \{1, 2, 3\};}   &Use when frequent insertions/deletions are required in the middle.    \\\cline{1-8}
+Pointer to C-\/style array   &Points to the first element of an array.   &Depends   &Depends   &R/W   &Depends   &{\ttfamily int nums\mbox{[}3\mbox{]} = \{1, 2, 3\}; int\texorpdfstring{$\ast$}{*} p = nums;}   &Raw pointers can be error-\/prone; prefer modern alternatives.    \\\cline{1-8}
+Array of pointers   &Array where each element is a pointer.   &Stack   &Yes   &R/W   &Yes ({\ttfamily \mbox{[}N\mbox{]}})   &{\ttfamily int\texorpdfstring{$\ast$}{*} arr\mbox{[}3\mbox{]}; for(int i=0; i\texorpdfstring{$<$}{<}3; i++) arr\mbox{[}i\mbox{]} = new int(i+1);}   &Use when needing an array of objects on the heap.   \\\cline{1-8}
+\end{longtabu}
+
+
+{\bfseries{Notes\+:}}
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Size Specified}}\+: This column indicates whether you must specify the size of the array/list at compile-\/time or not. For data structures where the size isn\textquotesingle{}t specified at compile-\/time, it often means the size can be dynamically adjusted at runtime.
+\item {\bfseries{Memory Management}}\+: As previously mentioned, always ensure to release any heap-\/allocated memory to prevent memory leaks.
+\item {\bfseries{Safety}}\+: Using modern C++ containers is recommended for most use-\/cases due to their safety, flexibility, and the functionalities they provide.
+\end{DoxyItemize}
+
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md192}{}\doxysection{\texorpdfstring{More details}{More details}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md192}
+
+\begin{DoxyItemize}
+\item I\textquotesingle{}ll add a few more scenarios related to string handling in C++\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{8}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Define}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Read}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Write}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Allocation}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Null-\/\+Terminated}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Practices}}    }\\\cline{1-8}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Define}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Read}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Write}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Allocation}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Null-\/\+Terminated}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Practices}}    }\\\cline{1-8}
+\endhead
+{\bfseries{String Literal}}   &A sequence of characters surrounded by double quotes.   &{\ttfamily const char\texorpdfstring{$\ast$}{*} str = "{}\+Hello"{};}   &{\ttfamily cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} str;}   &N/A (immutable)   &Stack   &Yes   &Fixed messages, filenames, etc.    \\\cline{1-8}
+{\bfseries{C-\/style String (char array)}}   &Array of characters ending with a null terminator (`'\textbackslash{}0\textquotesingle{}{\ttfamily ). \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}char str\mbox{[}6\mbox{]} = "{}\+Hello"{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} str;{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}str\mbox{[}0\mbox{]} = \textquotesingle{}h\textquotesingle{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Stack \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Yes \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Older C++ code; Prefer}std\+::string{\ttfamily in modern C++. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}std\+::string{\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Dynamic string class in C++ standard library. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::string str = "{}\+Hello"{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} str;{\ttfamily or}str.\+c\+\_\+str(){\ttfamily for C-\/style \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}str\mbox{[}0\mbox{]} = \textquotesingle{}h\textquotesingle{}; str += "{} World"{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Heap (usually) \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} N/A \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Modern C++\+: safe and dynamic string handling. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Pointer to C-\/style String\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Points to the first character of a C-\/style string. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}const char\texorpdfstring{$\ast$}{*} ptr = "{}\+Hello"{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} ptr;{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Not directly (points to a string literal) \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Stack \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Yes (if points to literal) \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Be cautious with memory management. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Array of C-\/style Strings\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Array with elements as pointers to C-\/style strings. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}const char\texorpdfstring{$\ast$}{*} arr\mbox{[}\mbox{]} = \{"{}\+Hello"{}, "{}\+World"{}\};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} arr\mbox{[}0\mbox{]};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Not directly (contains string literals) \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Stack \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Yes \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Older C++\+: be cautious with memory management. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}std\+::vector$<$std\+::string$>${\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Dynamic array of}std\+::string{\ttfamily objects. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::vector$<$std\+::string$>$ vec = \{"{}\+Hello"{}, "{}\+World"{}\};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} vec\mbox{[}0\mbox{]};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}vec\mbox{[}0\mbox{]} = "{}\+HELLO"{}; \doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{vec.\+push\+\_\+back}("{}!"{});{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Heap \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} N/A \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Dynamic list of strings in modern C++. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Array of Characters\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Sequence of characters without null termination. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}char arr\mbox{[}\mbox{]} = \{\textquotesingle{}a\textquotesingle{}, \textquotesingle{}b\textquotesingle{}\};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Using loops (not directly with}cout{\ttfamily ) \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}arr\mbox{[}0\mbox{]} = \textquotesingle{}A\textquotesingle{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Stack \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} No \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Rare, since without null-\/termination it\textquotesingle{}s not a proper string. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Dynamic Array of Characters (heap)\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Dynamically allocated array of characters. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}char\texorpdfstring{$\ast$}{*} arr = new char\mbox{[}3\mbox{]}\{\textquotesingle{}a\textquotesingle{}, \textquotesingle{}b\textquotesingle{}, \textquotesingle{}\textbackslash{}0\textquotesingle{}\};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} arr;{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}arr\mbox{[}0\mbox{]} = \textquotesingle{}A\textquotesingle{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Heap \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Depends on Initialization \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Requires}delete\mbox{[}\mbox{]}{\ttfamily for deallocation. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+String View (}std\+::string\+\_\+view{\ttfamily )\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Non-\/owning reference to a string or a part of a string. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::string\+\_\+view sv = "{}\+Hello"{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} sv;\`{}   &N/A (non-\/modifiable)   &Depends on referred string   &Depends on referred string   &Used for efficient substring operations, available in C++17.   \\\cline{1-8}
+\end{longtabu}
+
+
+{\bfseries{Additional Notes}}\+:
+
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily std\+::string\+\_\+view}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: This is a lightweight, non-\/owning reference to a string. It doesn\textquotesingle{}t allocate or deallocate memory, and it\textquotesingle{}s useful when you want to work with substrings without copying. Always ensure that the underlying data outlives the {\ttfamily string\+\_\+view} to avoid dangling references.
+\end{DoxyItemize}
+
+This table should now provide a comprehensive overview of the different ways you can represent and work with strings in C++.
+
+
+\begin{DoxyItemize}
+\item The following ways are possible to create a string in CPP Sure! Here\textquotesingle{}s a table illustrating the various ways to create and represent strings in C++\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-3}
+\endhead
+{\bfseries{C-\/style (stack)}}   &An array of characters on the stack. Needs manual null termination.   &{\ttfamily char str\mbox{[}\mbox{]} = "{}\+Hello"{};}    \\\cline{1-3}
+{\bfseries{C-\/style (heap)}}   &An array of characters on the heap. Needs manual null termination.   &{\ttfamily char\texorpdfstring{$\ast$}{*} str = new char\mbox{[}6\mbox{]}; strcpy(str, "{}\+Hello"{});}    \\\cline{1-3}
+{\bfseries{std\+::string (stack)}}   &C++ standard string class. Stored on the stack, manages memory.   &{\ttfamily std\+::string str = "{}\+Hello"{};}    \\\cline{1-3}
+{\bfseries{std\+::string (heap)}}   &C++ standard string class. Object is allocated on the heap.   &{\ttfamily std\+::string\texorpdfstring{$\ast$}{*} str = new std\+::string("{}\+Hello"{});}    \\\cline{1-3}
+{\bfseries{String Literal}}   &Immutable sequence of characters. Stored in static memory region.   &{\ttfamily const char\texorpdfstring{$\ast$}{*} str = "{}\+Hello"{};}    \\\cline{1-3}
+{\bfseries{Raw String Literal}}   &Allows for strings that span multiple lines or contain backslashes.   &{\ttfamily const char\texorpdfstring{$\ast$}{*} str = R"{}(\+Hello\textbackslash{}n\+World)"{};} (no escape needed)    \\\cline{1-3}
+{\bfseries{std\+::stringstream}}   &Dynamic string stream. Useful for constructing strings from mixed types   &{\ttfamily std\+::stringstream ss; ss \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} "{}\+Hello "{} \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 42;}   \\\cline{1-3}
+\end{longtabu}
+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{C-\/style strings}}\+: Are arrays of characters terminated by a null character (`'\textbackslash{}0\textquotesingle{}\`{}). They require manual memory management and can lead to buffer overflows if not handled correctly.
+\item {\bfseries{std\+::string}}\+: A safer and more convenient way to work with strings in C++. It manages memory automatically and provides a range of useful string manipulation functions.
+\item {\bfseries{String Literal}}\+: Is a sequence of characters between double quotes. They are stored in a static memory region, and thus, are immutable. Attempts to modify them result in undefined behavior.
+\item {\bfseries{Raw String Literal}}\+: Provides a way to represent strings without escaping. Useful for representing paths, regex, or multi-\/line strings.
+\item {\bfseries{std\+::stringstream}}\+: A stream-\/based way to construct and manipulate strings. Especially useful when combining different data types into a single string.
+\item Always remember that for heap-\/allocated variables, it\textquotesingle{}s necessary to release the memory using {\ttfamily delete} (or {\ttfamily delete\mbox{[}\mbox{]}} for arrays) to avoid memory leaks.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md193}{}\doxysection{\texorpdfstring{String Array}{String Array}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md193}
+
+\begin{DoxyItemize}
+\item Let\textquotesingle{}s break down the ways you can work with strings and arrays of strings in C++, focusing on defining, reading, writing, and their common use cases\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{8}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Define}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Read}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Write}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Allocation}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Null-\/\+Terminated}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Practices}}    }\\\cline{1-8}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Define}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Read}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Write}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Allocation}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Null-\/\+Terminated}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Practices}}    }\\\cline{1-8}
+\endhead
+{\bfseries{String Literal}}   &A sequence of characters surrounded by double quotes.   &{\ttfamily const char\texorpdfstring{$\ast$}{*} str = "{}\+Hello"{};}   &{\ttfamily cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} str;}   &N/A (immutable)   &Stack   &Yes   &Fixed messages, filenames, etc.    \\\cline{1-8}
+{\bfseries{C-\/style String (char array)}}   &Array of characters ending with a null terminator (`'\textbackslash{}0\textquotesingle{}{\ttfamily ). \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}char str\mbox{[}6\mbox{]} = "{}\+Hello"{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} str;{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}str\mbox{[}0\mbox{]} = \textquotesingle{}h\textquotesingle{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Stack \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Yes \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Older C++ code; Prefer}std\+::string{\ttfamily in modern C++. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}std\+::string{\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Dynamic string class in C++ standard library. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::string str = "{}\+Hello"{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} str;{\ttfamily or}str.\+c\+\_\+str(){\ttfamily for C-\/style \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}str\mbox{[}0\mbox{]} = \textquotesingle{}h\textquotesingle{}; str += "{} World"{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Heap (usually) \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} N/A \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Modern C++\+: safe and dynamic string handling. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Pointer to C-\/style String\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Points to the first character of a C-\/style string. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}const char\texorpdfstring{$\ast$}{*} ptr = "{}\+Hello"{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} ptr;{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Not directly (points to a string literal) \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Stack \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Yes (if points to literal) \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Be cautious with memory management. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Array of C-\/style Strings\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Array with elements as pointers to C-\/style strings. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}const char\texorpdfstring{$\ast$}{*} arr\mbox{[}\mbox{]} = \{"{}\+Hello"{}, "{}\+World"{}\};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} arr\mbox{[}0\mbox{]};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Not directly (contains string literals) \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Stack \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Yes \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Older C++\+: be cautious with memory management. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}std\+::vector$<$std\+::string$>${\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Dynamic array of}std\+::string{\ttfamily objects. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::vector$<$std\+::string$>$ vec = \{"{}\+Hello"{}, "{}\+World"{}\};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} vec\mbox{[}0\mbox{]};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}vec\mbox{[}0\mbox{]} = "{}\+HELLO"{}; \doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{vec.\+push\+\_\+back}("{}!"{});{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Heap \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} N/A \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Dynamic list of strings in modern C++. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Array of Characters\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Sequence of characters without null termination. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}char arr\mbox{[}\mbox{]} = \{\textquotesingle{}a\textquotesingle{}, \textquotesingle{}b\textquotesingle{}\};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Using loops (not directly with}cout{\ttfamily ) \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}arr\mbox{[}0\mbox{]} = \textquotesingle{}A\textquotesingle{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Stack \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} No \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Rare, since without null-\/termination it\textquotesingle{}s not a proper string. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Dynamic Array of Characters (heap)\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Dynamically allocated array of characters. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}char\texorpdfstring{$\ast$}{*} arr = new char\mbox{[}3\mbox{]}\{\textquotesingle{}a\textquotesingle{}, \textquotesingle{}b\textquotesingle{}, \textquotesingle{}\textbackslash{}0\textquotesingle{}\};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} arr;{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}arr\mbox{[}0\mbox{]} = \textquotesingle{}A\textquotesingle{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Heap \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Depends on Initialization \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Requires}delete\mbox{[}\mbox{]}{\ttfamily for deallocation. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+String View (}std\+::string\+\_\+view{\ttfamily )\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Non-\/owning reference to a string or a part of a string. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::string\+\_\+view sv = "{}\+Hello"{};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} sv;\`{}   &N/A (non-\/modifiable)   &Depends on referred string   &Depends on referred string   &Used for efficient substring operations, available in C++17.   \\\cline{1-8}
+\end{longtabu}
+
+
+{\bfseries{Notes}}\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{String Literals}} are immutable. Attempting to modify them results in undefined behavior.
+\item {\bfseries{C-\/style Strings}} ({\ttfamily char} arrays) are error-\/prone due to manual memory management, lack of bounds checking, and susceptibility to buffer overflows.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily std\+::string}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} is dynamic and manages its memory. It can grow or shrink, and it\textquotesingle{}s safer than C-\/style strings.
+\item Always prefer {\ttfamily std\+::string} and {\ttfamily std\+::vector\texorpdfstring{$<$}{<}std\+::string\texorpdfstring{$>$}{>}} in modern C++ unless there\textquotesingle{}s a specific need for C-\/style handling or interfacing with older APIs.
+\end{DoxyItemize}
+
+Remember, regardless of how you\textquotesingle{}re working with strings in C++, always be cautious about buffer overflows, memory leaks, and undefined behavior. Proper memory management is crucial, especially when working with raw pointers or C-\/style strings.
+
+
+\begin{DoxyItemize}
+\item Let\textquotesingle{}s revise the table to include arrays of characters, allocation type (heap vs. stack), and whether or not the string is null-\/terminated\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}*\ ptr\ =\ \{\textcolor{charliteral}{'a'},\ \textcolor{charliteral}{'b'}\};\ \ \textcolor{comment}{//\ notice\ the\ single\ character\ is\ surrounded\ with\ quotes\ not\ double\ quotes.}}
+
+\end{DoxyCode}
+
+
+{\bfseries{Notes}}\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Allocation}}\+: "{}\+Stack"{} denotes local/static storage duration, and "{}\+Heap"{} denotes dynamic storage duration.
+\item {\bfseries{Null-\/\+Termination}}\+: Strings that aren\textquotesingle{}t null-\/terminated (`'\textbackslash{}0\textquotesingle{}{\ttfamily ) can\textquotesingle{}t be directly printed with}cout{\ttfamily without potential issues.}
+\item {\ttfamily It\textquotesingle{}s always essential to deallocate heap memory explicitly in C++ when using raw pointers.}
+\item {\ttfamily Using}std\+::string{\ttfamily and}std\+::vector\`{} abstracts away many of the complexities and pitfalls associated with raw pointers and arrays.
+\end{DoxyItemize}
+
+Certainly, let\textquotesingle{}s ensure the table is comprehensive. I\textquotesingle{}ll add a few more scenarios related to string handling in C++\+:
+
+{\bfseries{Additional Notes}}\+:
+
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily std\+::string\+\_\+view}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: This is a lightweight, non-\/owning reference to a string. It doesn\textquotesingle{}t allocate or deallocate memory, and it\textquotesingle{}s useful when you want to work with substrings without copying. Always ensure that the underlying data outlives the {\ttfamily string\+\_\+view} to avoid dangling references.
+\item This table should now provide a comprehensive overview of the different ways you can represent and work with strings in C++.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md194}{}\doxysection{\texorpdfstring{Libraries dealing with string}{Libraries dealing with string}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md194}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Library   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Library   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+{\bfseries{\doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{Boost.\+String\+Algo} \& \doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{Boost.\+String\+View}}}   &Part of the Boost library, they offer functions and classes for string manipulations.    \\\cline{1-2}
+{\bfseries{ICU (International Components for Unicode)}}   &A comprehensive library for Unicode support, text processing, regular expressions, and more.    \\\cline{1-2}
+{\bfseries{UTF8-\/\+CPP}}   &Header-\/only library for encoding and decoding UTF-\/8 strings.    \\\cline{1-2}
+{\bfseries{fmt (previously cppformat/fmtlib)}}   &Modern string formatting library, an alternative to printf and sprintf.    \\\cline{1-2}
+{\bfseries{RE2}}   &Highly efficient, memory-\/safe regular expression library.    \\\cline{1-2}
+{\bfseries{CTRE (Compile Time Regular Expressions)}}   &Allows for regex matching at compile-\/time for potential performance benefits.    \\\cline{1-2}
+{\bfseries{abseil (from Google)}}   &Collection of C++ libraries with utilities for string operations among others.   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md195}{}\doxysection{\texorpdfstring{What is char\texorpdfstring{$\ast$}{*} argv\mbox{[}$\,$\mbox{]} is there another way to declare this ?}{What is char* argv[] is there another way to declare this ?}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md195}
+The expression {\ttfamily char\texorpdfstring{$\ast$}{*} argv\mbox{[}\mbox{]}} is used in the main function of a C++ program to represent the command line arguments passed to the program. Here, {\ttfamily argv} is an array of pointers to {\ttfamily char}, where each pointer points to a null-\/terminated string (a C-\/style string). The size of the array is determined by the number of arguments passed to the program (including the program name itself).
+
+The declaration {\ttfamily char\texorpdfstring{$\ast$}{*} argv\mbox{[}\mbox{]}} can also be written as {\ttfamily char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} argv}. These two declarations are equivalent in this context. Here\textquotesingle{}s how\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily char\texorpdfstring{$\ast$}{*} argv\mbox{[}\mbox{]}} is an array of {\ttfamily char} pointers.
+\item {\ttfamily char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} argv} is a pointer to a {\ttfamily char} pointer, and it can also point to an array of {\ttfamily char} pointers.
+\end{DoxyItemize}
+
+In both cases, {\ttfamily argv} can be indexed like an array to access the individual command-\/line arguments, and these arguments can be accessed as null-\/terminated strings. So, you can declare the main function with either of these equivalent forms\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{argc}},\ \textcolor{keywordtype}{char}*\ argv[])\ \{\ \textcolor{comment}{/*\ ...\ */}\ \}}
+
+\end{DoxyCode}
+
+
+or
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{argc}},\ \textcolor{keywordtype}{char}**\ argv)\ \{\ \textcolor{comment}{/*\ ...\ */}\ \}}
+
+\end{DoxyCode}
+
+
+In both cases, {\ttfamily argc} is the count of command-\/line arguments, and {\ttfamily argv} is an array of the arguments themselves as C-\/style strings.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md196}{}\doxysection{\texorpdfstring{Can you loop over these both show me an example ?}{Can you loop over these both show me an example ?}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md196}
+Sure, here\textquotesingle{}s an example of how you can loop over {\ttfamily argv} using either {\ttfamily char\texorpdfstring{$\ast$}{*} argv\mbox{[}\mbox{]}} or {\ttfamily char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} argv}. Both examples do exactly the same thing\+: they print each command-\/line argument on a separate line.
+
+
+\begin{DoxyEnumerate}
+\item Using {\ttfamily char\texorpdfstring{$\ast$}{*} argv\mbox{[}\mbox{]}}\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{argc}},\ \textcolor{keywordtype}{char}*\ argv[])\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{class_vector__2d}{argc}};\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Argument\ "{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}:\ "{}}\ <<\ argv[i]\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item Using {\ttfamily char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} argv}\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{argc}},\ \textcolor{keywordtype}{char}**\ argv)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{class_vector__2d}{argc}};\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Argument\ "{}}\ <<\ i\ <<\ \textcolor{stringliteral}{"{}:\ "{}}\ <<\ argv[i]\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item In both cases, if you run the program with some command-\/line arguments, it will print each argument along with its position in the {\ttfamily argv} array.
+\item The {\ttfamily argc} is the number of command-\/line arguments (including the name of the program itself as the first argument), and {\ttfamily argv} is an array of those arguments as C-\/style strings. This is why we can use a loop to go through each argument in the {\ttfamily argv} array, from {\ttfamily argv\mbox{[}0\mbox{]}} (which is the program name) to {\ttfamily argv\mbox{[}argc-\/1\mbox{]}} (which is the last command-\/line argument).
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md197}{}\doxysubsection{\texorpdfstring{More Examples}{More Examples}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md197}
+Sure, here are several ways to create a string of characters in C++, including using C-\/style methods\+:
+
+
+\begin{DoxyEnumerate}
+\item Using C++ Standard Library\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::string\ \mbox{\hyperlink{class_vector__2d}{str1}}\ =\ \textcolor{stringliteral}{"{}Hello,\ World!"{}};}
+\DoxyCodeLine{std::string\ \mbox{\hyperlink{class_vector__2d}{str2}}(\textcolor{stringliteral}{"{}C++\ Strings"{}});}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item Using C-\/style character array (null-\/terminated string)\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_vector__2d}{cstr1}}[]\ =\ \textcolor{stringliteral}{"{}Hello,\ C-\/style!"{}};}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_vector__2d}{cstr2}}[12]\ =\ \textcolor{stringliteral}{"{}C-\/Strings"{}};}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item Using string concatenation\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::string\ \mbox{\hyperlink{class_vector__2d}{concat}}\ =\ \mbox{\hyperlink{class_vector__2d}{str1}}\ +\ \textcolor{stringliteral}{"{}\ "{}}\ +\ \mbox{\hyperlink{class_vector__2d}{str2}};}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item Using C-\/style string functions\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_vector__2d}{cstr3}}[50];}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{strcpy}}(\mbox{\hyperlink{class_vector__2d}{cstr3}},\ \textcolor{stringliteral}{"{}Copying\ C-\/string"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_vector__2d}{cstr4}}[50];}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{sprintf}}(\mbox{\hyperlink{class_vector__2d}{cstr4}},\ \textcolor{stringliteral}{"{}Formatted\ \%s"{}},\ \textcolor{stringliteral}{"{}C-\/string"{}});}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item Using string literals\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_vector__2d}{str\_literal}}\ =\ \textcolor{stringliteral}{"{}String\ Literal"{}};}
+
+\end{DoxyCode}
+
+
+While C-\/style strings are familiar, they can be error-\/prone due to issues like buffer overflows. Using {\ttfamily std\+::string} from the C++ Standard Library is safer and more flexible.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md198}{}\doxysubsection{\texorpdfstring{More Examples}{More Examples}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md198}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Function\ to\ modify\ and\ return\ the\ updated\ string}}
+\DoxyCodeLine{\textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_vector__2d}{appendText}}(\textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_ad3c78daa7d8673f71649d4840c641779}{input}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_vector__2d}{additional}})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{inputLength}}\ =\ \mbox{\hyperlink{class_vector__2d}{strlen}}(\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ad3c78daa7d8673f71649d4840c641779}{input}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{additionalLength}}\ =\ \mbox{\hyperlink{class_vector__2d}{strlen}}(\mbox{\hyperlink{class_vector__2d}{additional}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a321ff419cd5252e54cf95e64dc6687ee}{result}}\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[\mbox{\hyperlink{class_vector__2d}{inputLength}}\ +\ \mbox{\hyperlink{class_vector__2d}{additionalLength}}\ +\ 1];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{strcpy}}(\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a321ff419cd5252e54cf95e64dc6687ee}{result}},\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_ad3c78daa7d8673f71649d4840c641779}{input}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{strcat}}(\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a321ff419cd5252e54cf95e64dc6687ee}{result}},\ \mbox{\hyperlink{class_vector__2d}{additional}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a321ff419cd5252e54cf95e64dc6687ee}{result}};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_vector__2d}{initialText}}\ =\ \textcolor{stringliteral}{"{}Hello,\ "{}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_vector__2d}{additionalText}}\ =\ \textcolor{stringliteral}{"{}World!"{}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_vector__2d}{updatedText}}\ =\ \mbox{\hyperlink{class_vector__2d}{appendText}}(\textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\mbox{\hyperlink{class_vector__2d}{initialText}}),\ \mbox{\hyperlink{class_vector__2d}{additionalText}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \mbox{\hyperlink{class_vector__2d}{updatedText}}\ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{delete}[]\ \mbox{\hyperlink{class_vector__2d}{updatedText}};\ \textcolor{comment}{//\ Don't\ forget\ to\ free\ the\ memory}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Achieving the same thing using String class
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Function\ to\ modify\ and\ return\ the\ updated\ string}}
+\DoxyCodeLine{std::string\ \mbox{\hyperlink{class_vector__2d}{appendText}}(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_ad3c78daa7d8673f71649d4840c641779}{input}},\ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_vector__2d}{additional}})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_ad3c78daa7d8673f71649d4840c641779}{input}}\ +\ \mbox{\hyperlink{class_vector__2d}{additional}};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ std::string\ \mbox{\hyperlink{class_vector__2d}{initialText}}\ =\ \textcolor{stringliteral}{"{}Hello,\ "{}};}
+\DoxyCodeLine{\ \ \ \ std::string\ \mbox{\hyperlink{class_vector__2d}{additionalText}}\ =\ \textcolor{stringliteral}{"{}World!"{}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ std::string\ \mbox{\hyperlink{class_vector__2d}{updatedText}}\ =\ \mbox{\hyperlink{class_vector__2d}{appendText}}(\mbox{\hyperlink{class_vector__2d}{initialText}},\ \mbox{\hyperlink{class_vector__2d}{additionalText}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \mbox{\hyperlink{class_vector__2d}{updatedText}}\ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md199}{}\doxysection{\texorpdfstring{Example}{Example}}\label{md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth_autotoc_md199}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::string*\ \mbox{\hyperlink{class_vector__2d}{myFunction}}(std::string*\ \mbox{\hyperlink{class_vector__2d}{my\_str}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{example}}[5];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ std::string\ \mbox{\hyperlink{_s_d_l__opengl_8h_a4af680a6c683f88ed67b76f207f2e6e4}{s}}\ =\ \textcolor{stringliteral}{"{}This\ is\ my\ string"{}};}
+\DoxyCodeLine{\ \ \ \ std::string*\ ptr\ =\ \&\mbox{\hyperlink{_s_d_l__opengl_8h_a4af680a6c683f88ed67b76f207f2e6e4}{s}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 5;\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}We\ are\ printing\ the\ array\ -\/>\ ["{}}\ <<\ \mbox{\hyperlink{class_vector__2d}{example}}[i]\ <<\ \textcolor{stringliteral}{"{}]"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ *\mbox{\hyperlink{class_vector__2d}{myFunction}}(ptr)\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::string*\ \mbox{\hyperlink{class_vector__2d}{myFunction}}(std::string*\ \mbox{\hyperlink{class_vector__2d}{my\_str}})\ \{}
+\DoxyCodeLine{\ \ \ \ *\mbox{\hyperlink{class_vector__2d}{my\_str}}\ =\ *\mbox{\hyperlink{class_vector__2d}{my\_str}}\ +\ \textcolor{stringliteral}{"{}\ -\/>\ World!!"{}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vector__2d}{my\_str}};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

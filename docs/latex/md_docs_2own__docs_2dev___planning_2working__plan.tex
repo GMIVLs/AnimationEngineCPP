@@ -1,0 +1,199 @@
+\chapter{Working plan}
+\hypertarget{md_docs_2own__docs_2dev___planning_2working__plan}{}\label{md_docs_2own__docs_2dev___planning_2working__plan}\index{Working plan@{Working plan}}
+\label{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md213}%
+\Hypertarget{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md213}%
+
+
+
+\begin{DoxyItemize}
+\item 2D Simulator \& Animation Engine
+\item Requirements
+\begin{DoxyItemize}
+\item Project Strucuture
+\item 1. Math Module\+:
+\item 2. Stats Module\+:
+\item 3. Platform Module\+:
+\item 4. Motion Module\+:
+\item 5. Utilities Module\+:
+\item 6. Experiments Module\+:
+\item Table with Characteristics\+:
+\item Graphics Architecture Diagram\+:
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md214}{}\doxysection{\texorpdfstring{2\+D Simulator \& Animation Engine}{2D Simulator \& Animation Engine}}\label{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md214}
+The proposed strategy involves initially establishing particle system functionality in two dimensions by focusing on statics and then gradually expanding to incorporate dynamic features. To achieve this, we will initially work with linear motion within that plane as a foundation for creating more intricate animations in two-\/dimensional spaces.\hypertarget{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md215}{}\doxysection{\texorpdfstring{Requirements}{Requirements}}\label{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md215}
+Let us begin by establishing a preliminary structure that can be expanded upon in greater detail as we progress.\hypertarget{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md216}{}\doxysubsection{\texorpdfstring{Project Strucuture}{Project Strucuture}}\label{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md216}
+\hypertarget{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md217}{}\doxysubsection{\texorpdfstring{1. Math Module\+:}{1. Math Module:}}\label{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md217}
+
+\begin{DoxyItemize}
+\item linear algebra
+\begin{DoxyItemize}
+\item Vectors
+\item Matrices
+\item Tensors
+\item Quaternions
+\item ..etc.
+\end{DoxyItemize}
+\item Numerical Analysis
+\begin{DoxyItemize}
+\item Integral formula
+\begin{DoxyItemize}
+\item Simple linear integral (see below)
+\item Rang-\/kutta integral
+\item etc..
+\end{DoxyItemize}
+\item Differential formula
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md218}{}\doxysubsection{\texorpdfstring{2. Stats Module\+:}{2. Stats Module:}}\label{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md218}
+
+\begin{DoxyItemize}
+\item Probability\+:
+\begin{DoxyItemize}
+\item Probability and their distributions
+\item Monte carlo simulation
+\end{DoxyItemize}
+\item Random Generator
+\item Statistical Analysis (e.\+g., mean, median, mode, standard deviation)
+\begin{DoxyItemize}
+\item Random event generator
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md219}{}\doxysubsection{\texorpdfstring{3. Platform Module\+:}{3. Platform Module:}}\label{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md219}
+
+\begin{DoxyItemize}
+\item Environment
+\begin{DoxyItemize}
+\item Canvas Creation
+\item Colors
+\item Images
+\item Fonts
+\end{DoxyItemize}
+\item Animation (FPS and other related characteristics)
+\item User Input (e.\+g., keyboard and mouse interaction)
+\item Sound ..etc.
+\item Time
+\begin{DoxyItemize}
+\item Time detla
+\item FPS (Hz)
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md220}{}\doxysubsection{\texorpdfstring{4. Motion Module\+:}{4. Motion Module:}}\label{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md220}
+
+\begin{DoxyItemize}
+\item Particle2D (for 2D motion)
+\item Force (e.\+g., gravitational, electromagnetic)
+\item Kinematics (e.\+g., velocity, acceleration functions)
+\item Collisions (e.\+g., detection and response)
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md221}{}\doxysubsection{\texorpdfstring{5. Utilities Module\+:}{5. Utilities Module:}}\label{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md221}
+
+\begin{DoxyItemize}
+\item File IO (reading/writing data)
+\item Error Handling and Logging
+\item Time and Date functions (useful for random seed generation or time-\/based animations)
+\item Data Structures (e.\+g., Lists, Trees, Graphs, if not covered by your programming language\textquotesingle{}s standard library)
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md222}{}\doxysubsection{\texorpdfstring{6. Experiments Module\+:}{6. Experiments Module:}}\label{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md222}
+
+\begin{DoxyItemize}
+\item Simulation (running and visualizing motion or statistical simulations)
+\item Plotting (graphing results, if not covered under Canvas in the Platform module)
+\item User Interface (basic UI for user to choose and run experiments)
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md223}{}\doxysubsection{\texorpdfstring{Table with Characteristics\+:}{Table with Characteristics:}}\label{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md223}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Characteristics    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Characteristics    }\\\cline{1-2}
+\endhead
+Math   &Vector operations, Matrix operations, etc.    \\\cline{1-2}
+Stats   &Probability functions, Random number generation, etc.    \\\cline{1-2}
+Platform   &Canvas setup, Color definitions, Font management, etc.    \\\cline{1-2}
+Motion   &Particle behavior, Force definitions, Collision handling, etc.    \\\cline{1-2}
+Utilities   &File operations, Error logging, Time functions, etc.    \\\cline{1-2}
+Experiments   &Run simulations, Plotting tools, UI for user experiments, etc.   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md224}{}\doxysubsection{\texorpdfstring{Graphics Architecture Diagram\+:}{Graphics Architecture Diagram:}}\label{md_docs_2own__docs_2dev___planning_2working__plan_autotoc_md224}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{┌───────────────────────────────────────────────────────────┐}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ┌1.──────┐\ ┌2.──────┐\ ┌3.──────┐\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ │\ Physics│\ │\ Math\ \ \ │\ │\ stats\ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ │\ Module\ │\ │\ Module\ │\ │\ Module\ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ └─────┬──*\ └─────┬──*\ └─────┬──*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ ▼\ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ ┌4.───────┐\ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ │\ Particle│◀────┘\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ └────▶│\ Module\ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ └─────┬───*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ▼\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ┌5.───────────┐\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ Motion\ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ Module\ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ └─────────────*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ ┌6.───────────┐\ \ │\ \ \ ┌7.───────────┐\ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ │\ \ Utilities\ \ │\ \ │\ \ \ │\ \ \ Platform\ \ │\ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ Module\ \ \ │\ \ │\ \ \ │\ \ \ \ Module\ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ └─────┬───────*\ \ ▼\ \ \ └─────────────*\ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ ┌8.───────────┐\ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ └──▶\ │\ Experiments\ │\ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ Module\ \ \ │◀────┘\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ └─────┬───────*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ▼\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ┌───────────────────────┐\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ \ \ \ \`{}2d`\ Canvus\ \ \ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │\ \ \ \ Graphics\ Display\ \ \ │\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ └───────────────────────*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}
+\DoxyCodeLine{│\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2D\ -\/\ graphics\ architecture\ \ │}
+\DoxyCodeLine{└───────────────────────────────────────────────────────────┘}
+
+\end{DoxyCode}
+
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Module/\+Feature}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Characteristics/\+Components}}    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Module/\+Feature}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Characteristics/\+Components}}    }\\\cline{1-2}
+\endhead
+{\bfseries{Renderer Module}}   &-\/ Drawing Primitives (lines, circles, rectangles) ~\newline
+ -\/ Texture Management ~\newline
+ -\/ Layering and Depth ~\newline
+ -\/ Batch Rendering ~\newline
+ -\/ Shaders    \\\cline{1-2}
+{\bfseries{Asset Management}}   &-\/ Asset Loader ~\newline
+ -\/ Resource Management ~\newline
+ -\/ Sprite Management    \\\cline{1-2}
+{\bfseries{Animation Module}}   &-\/ Sprite Animation ~\newline
+ -\/ Tweening ~\newline
+ -\/ Particle Systems    \\\cline{1-2}
+{\bfseries{Audio Module}}   &-\/ Music Playback ~\newline
+ -\/ Sound Effects ~\newline
+ -\/ Volume Control    \\\cline{1-2}
+{\bfseries{Physics Module}}   &-\/ Collision Detection ~\newline
+ -\/ Physics Simulation ~\newline
+ -\/ Bounding Boxes    \\\cline{1-2}
+{\bfseries{Input Management}}   &-\/ Keyboard Input ~\newline
+ -\/ Mouse Input ~\newline
+ -\/ Touch Input    \\\cline{1-2}
+{\bfseries{Scene Management}}   &-\/ Scene Graph ~\newline
+ -\/ Camera ~\newline
+ -\/ Transitions    \\\cline{1-2}
+{\bfseries{User Interface (UI) Module}}   &-\/ Buttons and Controls ~\newline
+ -\/ Menus ~\newline
+ -\/ HUD (Heads-\/\+Up Display)    \\\cline{1-2}
+{\bfseries{Scripting and Event System}}   &-\/ Scripting Integration ~\newline
+ -\/ Event System    \\\cline{1-2}
+{\bfseries{Networking}}   &-\/ Client-\/\+Server Architecture ~\newline
+ -\/ Real-\/time Sync ~\newline
+ -\/ Lobbies and Matchmaking    \\\cline{1-2}
+{\bfseries{Debugging and Profiling Tools}}   &-\/ Debug Overlay ~\newline
+ -\/ Logging System ~\newline
+ -\/ Performance Profiling    \\\cline{1-2}
+{\bfseries{Documentation}}   &-\/ Detailed documentation for each module, function, and class.   \\\cline{1-2}
+\end{longtabu}

@@ -1,0 +1,139 @@
+\chapter{Maps -\/ Ordered and non-\/\+Ordered}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2maps__order__map__sets__others}{}\label{md_docs_2own__docs_2cpp__fudamentals_2maps__order__map__sets__others}\index{Maps -\/ Ordered and non-\/Ordered@{Maps -\/ Ordered and non-\/Ordered}}
+\label{md_docs_2own__docs_2cpp__fudamentals_2maps__order__map__sets__others_autotoc_md123}%
+\Hypertarget{md_docs_2own__docs_2cpp__fudamentals_2maps__order__map__sets__others_autotoc_md123}%
+ \hypertarget{md_docs_2own__docs_2cpp__fudamentals_2maps__order__map__sets__others_autotoc_md124}{}\doxysection{\texorpdfstring{Maps types}{Maps types}}\label{md_docs_2own__docs_2cpp__fudamentals_2maps__order__map__sets__others_autotoc_md124}
+{\ttfamily std\+::map} and {\ttfamily std\+::unordered\+\_\+map} are associative containers in C++ that store elements as key-\/value pairs. Here\textquotesingle{}s a table for various ways to construct them\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Storage Location}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Storage Location}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-4}
+\endhead
+{\bfseries{std\+::map (Stack)}}   &Stack   &Default construction on the stack.   &{\ttfamily std\+::map\texorpdfstring{$<$}{<}int, std\+::string\texorpdfstring{$>$}{>} m;}    \\\cline{1-4}
+{\bfseries{std\+::map (Heap)}}   &Heap   &Dynamically allocated on the heap.   &{\ttfamily auto m = new std\+::map\texorpdfstring{$<$}{<}int, std\+::string\texorpdfstring{$>$}{>}; ... delete m;}    \\\cline{1-4}
+{\bfseries{std\+::map (Initializer List)}}   &Stack   &Constructed with an initializer list.   &{\ttfamily std\+::map\texorpdfstring{$<$}{<}int, std\+::string\texorpdfstring{$>$}{>} m = \{\{1, "{}one"{}\}, \{2, "{}two"{}\}\};}    \\\cline{1-4}
+{\bfseries{std\+::unordered\+\_\+map (Stack)}}   &Stack   &Default construction on the stack for an unordered map.   &{\ttfamily std\+::unordered\+\_\+map\texorpdfstring{$<$}{<}int, std\+::string\texorpdfstring{$>$}{>} um;}    \\\cline{1-4}
+{\bfseries{std\+::unordered\+\_\+map (Heap)}}   &Heap   &Dynamically allocated unordered map on the heap.   &{\ttfamily auto um = new std\+::unordered\+\_\+map\texorpdfstring{$<$}{<}int, std\+::string\texorpdfstring{$>$}{>}; ... delete um;}    \\\cline{1-4}
+{\bfseries{std\+::unordered\+\_\+map (Initializer List)}}   &Stack   &Constructed with an initializer list for an unordered map.   &{\ttfamily std\+::unordered\+\_\+map\texorpdfstring{$<$}{<}int, std\+::string\texorpdfstring{$>$}{>} um = \{\{1, "{}one"{}\}, \{2, "{}two"{}\}\};}   \\\cline{1-4}
+\end{longtabu}
+
+
+{\bfseries{Description}}\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{std\+::map}}\+: A balanced binary tree (usually a red-\/black tree) that keeps its keys in sorted order.
+\item {\bfseries{std\+::unordered\+\_\+map}}\+: A hash table. It doesn\textquotesingle{}t keep its keys in any specific order, but can be faster for certain operations due to average constant-\/time complexity.
+\end{DoxyEnumerate}
+
+{\bfseries{Storage Notes}}\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Stack}}\+: These instances are automatically destroyed when they go out of scope. They\textquotesingle{}re suitable for relatively smaller maps or when the map\textquotesingle{}s lifetime is tied to a specific scope.
+\item {\bfseries{Heap}}\+: These instances need to be managed manually or via smart pointers. Suitable for larger maps or when the map needs to be shared or outlive the current scope.
+\end{DoxyItemize}
+
+For both {\ttfamily std\+::map} and {\ttfamily std\+::unordered\+\_\+map}, you\textquotesingle{}ll need to include the appropriate headers ({\ttfamily \texorpdfstring{$<$}{<}map\texorpdfstring{$>$}{>}} and {\ttfamily \texorpdfstring{$<$}{<}unordered\+\_\+map\texorpdfstring{$>$}{>}} respectively).\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2maps__order__map__sets__others_autotoc_md125}{}\doxysection{\texorpdfstring{How to use Hash Table (map)}{How to use Hash Table (map)}}\label{md_docs_2own__docs_2cpp__fudamentals_2maps__order__map__sets__others_autotoc_md125}
+C++ provides data structures for key-\/value pairs in the form of associative containers. Here are a few examples\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{std\+::map}}\+: It\textquotesingle{}s an ordered associative container that stores elements formed by the combination of a key value and a mapped value, following a specific order. The key values are unique.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::map<std::string,\ int>\ \mbox{\hyperlink{class_vector__2d}{myMap}};}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{myMap}}[\textcolor{stringliteral}{"{}apple"{}}]\ =\ 1;}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{myMap}}[\textcolor{stringliteral}{"{}banana"{}}]\ =\ 2;}
+
+\end{DoxyCode}
+
+\item {\bfseries{std\+::multimap}}\+: It\textquotesingle{}s similar to std\+::map, but allows for multiple values with the same key.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::multimap<std::string,\ int>\ \mbox{\hyperlink{class_vector__2d}{myMultimap}};}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{myMultimap}}.insert(std::make\_pair(\textcolor{stringliteral}{"{}apple"{}},\ 1));}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{myMultimap}}.insert(std::make\_pair(\textcolor{stringliteral}{"{}apple"{}},\ 2));}
+
+\end{DoxyCode}
+
+\item {\bfseries{std\+::unordered\+\_\+map}}\+: It\textquotesingle{}s an associative container that stores elements formed by the combination of a key value and a mapped value. It uses a hash table for internal organization of elements. The key values are unique.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::unordered\_map<std::string,\ int>\ \mbox{\hyperlink{class_vector__2d}{myUnorderedMap}};}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{myUnorderedMap}}[\textcolor{stringliteral}{"{}apple"{}}]\ =\ 1;}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{myUnorderedMap}}[\textcolor{stringliteral}{"{}banana"{}}]\ =\ 2;}
+
+\end{DoxyCode}
+
+\item {\bfseries{std\+::unordered\+\_\+multimap}}\+: It\textquotesingle{}s similar to std\+::unordered\+\_\+map, but allows for multiple values with the same key.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::unordered\_multimap<std::string,\ int>\ \mbox{\hyperlink{class_vector__2d}{myUnorderedMultimap}};}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{myUnorderedMultimap}}.insert(std::make\_pair(\textcolor{stringliteral}{"{}apple"{}},\ 1));}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{myUnorderedMultimap}}.insert(std::make\_pair(\textcolor{stringliteral}{"{}apple"{}},\ 2));}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+Each of these container types has its use cases, advantages, and disadvantages. Which one you choose to use largely depends on the specific requirements of your application.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2maps__order__map__sets__others_autotoc_md126}{}\doxysection{\texorpdfstring{What is the difference between multi map and map in CPP give example for each ?}{What is the difference between multi map and map in CPP give example for each ?}}\label{md_docs_2own__docs_2cpp__fudamentals_2maps__order__map__sets__others_autotoc_md126}
+In C++, both {\ttfamily std\+::map} and {\ttfamily std\+::multimap} are associative containers that store elements in a mapped fashion, where each element has a key value and a mapped value. The primary difference between them is that {\ttfamily std\+::map} doesn\textquotesingle{}t allow duplicate keys, whereas {\ttfamily std\+::multimap} does.
+
+Here\textquotesingle{}s an example of a {\ttfamily std\+::map}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ std::map<int,\ std::string>\ \mbox{\hyperlink{class_vector__2d}{myMap}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{myMap}}.insert(std::make\_pair(1,\ \textcolor{stringliteral}{"{}Apple"{}}));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{myMap}}.insert(std::make\_pair(2,\ \textcolor{stringliteral}{"{}Banana"{}}));}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ this\ will\ not\ insert\ a\ new\ element\ as\ key\ 1\ already\ exists}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{myMap}}.insert(std::make\_pair(1,\ \textcolor{stringliteral}{"{}Mango"{}}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&\mbox{\hyperlink{class_vector__2d}{pair}}\ :\ \mbox{\hyperlink{class_vector__2d}{myMap}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ \mbox{\hyperlink{class_vector__2d}{pair}}.first\ <<\ \textcolor{stringliteral}{"{}:\ "{}}\ <<\ \mbox{\hyperlink{class_vector__2d}{pair}}.second\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+And here\textquotesingle{}s an example of a {\ttfamily std\+::multimap}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ std::multimap<int,\ std::string>\ \mbox{\hyperlink{class_vector__2d}{myMultiMap}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{myMultiMap}}.insert(std::make\_pair(1,\ \textcolor{stringliteral}{"{}Apple"{}}));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{myMultiMap}}.insert(std::make\_pair(2,\ \textcolor{stringliteral}{"{}Banana"{}}));}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ this\ will\ insert\ a\ new\ element\ even\ though\ key\ 1\ already\ exists}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{myMultiMap}}.insert(std::make\_pair(1,\ \textcolor{stringliteral}{"{}Mango"{}}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&\mbox{\hyperlink{class_vector__2d}{pair}}\ :\ \mbox{\hyperlink{class_vector__2d}{myMultiMap}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ \mbox{\hyperlink{class_vector__2d}{pair}}.first\ <<\ \textcolor{stringliteral}{"{}:\ "{}}\ <<\ \mbox{\hyperlink{class_vector__2d}{pair}}.second\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+With a {\ttfamily std\+::map}, each key must be unique and for any given key, there is a single associated value. In contrast, with a {\ttfamily std\+::multimap}, the same key can be associated with multiple values. 

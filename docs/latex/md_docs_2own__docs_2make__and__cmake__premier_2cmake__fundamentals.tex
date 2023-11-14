@@ -1,0 +1,45 @@
+\chapter{CMake Fundamental}
+\hypertarget{md_docs_2own__docs_2make__and__cmake__premier_2cmake__fundamentals}{}\label{md_docs_2own__docs_2make__and__cmake__premier_2cmake__fundamentals}\index{CMake Fundamental@{CMake Fundamental}}
+\label{md_docs_2own__docs_2make__and__cmake__premier_2cmake__fundamentals_autotoc_md232}%
+\Hypertarget{md_docs_2own__docs_2make__and__cmake__premier_2cmake__fundamentals_autotoc_md232}%
+ \hypertarget{md_docs_2own__docs_2make__and__cmake__premier_2cmake__fundamentals_autotoc_md233}{}\doxysection{\texorpdfstring{Difference between include\+\_\+directories and target\+\_\+include\+\_\+directories}{Difference between include\_directories and target\_include\_directories}}\label{md_docs_2own__docs_2make__and__cmake__premier_2cmake__fundamentals_autotoc_md233}
+Both {\ttfamily include\+\_\+directories()} and {\ttfamily target\+\_\+include\+\_\+directories()} in CMake are used to specify include directories, but they have different scopes and use cases. Let\textquotesingle{}s go over their differences\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Scope}}\+:
+\begin{DoxyItemize}
+\item {\ttfamily include\+\_\+directories()}\+: This command adds include directories at the directory level. This means that every target defined in the current CMake directory and below (in terms of directory hierarchy) will inherit these include directories. It\textquotesingle{}s a global approach, affecting all subsequent targets.
+\item {\ttfamily target\+\_\+include\+\_\+directories()}\+: This command adds include directories at the target level. Only the specified target will be aware of these include directories. It allows for a more modular and granular approach.
+\end{DoxyItemize}
+\item {\bfseries{Usage}}\+:
+\begin{DoxyItemize}
+\item {\ttfamily include\+\_\+directories()}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{include\_directories(path/to/includes)}
+
+\end{DoxyCode}
+
+\item {\ttfamily target\+\_\+include\+\_\+directories()}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{target\_include\_directories(target\_name\ PRIVATE|PUBLIC|INTERFACE\ path/to/includes)}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\item {\bfseries{Modifiers (PRIVATE, PUBLIC, INTERFACE)}}\+:
+\begin{DoxyItemize}
+\item With {\ttfamily target\+\_\+include\+\_\+directories()}, you can specify how the include directories should be treated\+:
+\begin{DoxyItemize}
+\item {\ttfamily PRIVATE}\+: The include directories are only used by the target itself.
+\item {\ttfamily PUBLIC}\+: The include directories are used by the target and are also propagated to any other targets that link against this target.
+\item {\ttfamily INTERFACE}\+: The include directories are not used by the target itself but are propagated to any other targets that link against this target.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries{Best Practices}}\+:
+\begin{DoxyItemize}
+\item Modern CMake best practices recommend using {\ttfamily target\+\_\+include\+\_\+directories()} over {\ttfamily include\+\_\+directories()}. This is because {\ttfamily target\+\_\+include\+\_\+directories()} provides a more precise way to manage dependencies, reducing the chances of potential conflicts and ensuring that targets only have access to the include directories they actually need.
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+In summary, while both commands are used to specify include directories, {\ttfamily target\+\_\+include\+\_\+directories()} is more flexible and precise, allowing for better control over dependencies. If you\textquotesingle{}re starting a new project or updating an existing one, it\textquotesingle{}s generally recommended to use {\ttfamily target\+\_\+include\+\_\+directories()}. 

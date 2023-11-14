@@ -1,0 +1,77 @@
+\doxysection{SDL\+\_\+\+Joy\+Battery\+Event Struct Reference}
+\hypertarget{struct_s_d_l___joy_battery_event}{}\label{struct_s_d_l___joy_battery_event}\index{SDL\_JoyBatteryEvent@{SDL\_JoyBatteryEvent}}
+
+
+Joysick battery level change event structure (event.\+jbattery.\texorpdfstring{$\ast$}{*})  
+
+
+
+
+{\ttfamily \#include $<$SDL\+\_\+events.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}} \mbox{\hyperlink{struct_s_d_l___joy_battery_event_a6769e3e7e9907a9b214e88abcba12bb8}{type}}
+\item 
+\mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}} \mbox{\hyperlink{struct_s_d_l___joy_battery_event_aa135e2661c9cf8a65bd535a66a667ab4}{timestamp}}
+\item 
+\mbox{\hyperlink{_s_d_l__joystick_8h_a3c3d32500cb08f76ee8077983912c0bd}{SDL\+\_\+\+Joystick\+ID}} \mbox{\hyperlink{struct_s_d_l___joy_battery_event_a08e013a06c59ad74897a84b0b29e8426}{which}}
+\item 
+\mbox{\hyperlink{_s_d_l__joystick_8h_a293471a907265fb92ea12caf5bcc8065}{SDL\+\_\+\+Joystick\+Power\+Level}} \mbox{\hyperlink{struct_s_d_l___joy_battery_event_a035f2b336030c875ab0393dc2b3f3c9d}{level}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Joysick battery level change event structure (event.\+jbattery.\texorpdfstring{$\ast$}{*}) 
+
+Definition at line \mbox{\hyperlink{_s_d_l__events_8h_source_l00404}{404}} of file \mbox{\hyperlink{_s_d_l__events_8h_source}{SDL\+\_\+events.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_s_d_l___joy_battery_event_a035f2b336030c875ab0393dc2b3f3c9d}\label{struct_s_d_l___joy_battery_event_a035f2b336030c875ab0393dc2b3f3c9d} 
+\index{SDL\_JoyBatteryEvent@{SDL\_JoyBatteryEvent}!level@{level}}
+\index{level@{level}!SDL\_JoyBatteryEvent@{SDL\_JoyBatteryEvent}}
+\doxysubsubsection{\texorpdfstring{level}{level}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_s_d_l__joystick_8h_a293471a907265fb92ea12caf5bcc8065}{SDL\+\_\+\+Joystick\+Power\+Level}} SDL\+\_\+\+Joy\+Battery\+Event\+::level}
+
+The joystick battery level 
+
+Definition at line \mbox{\hyperlink{_s_d_l__events_8h_source_l00409}{409}} of file \mbox{\hyperlink{_s_d_l__events_8h_source}{SDL\+\_\+events.\+h}}.
+
+\Hypertarget{struct_s_d_l___joy_battery_event_aa135e2661c9cf8a65bd535a66a667ab4}\label{struct_s_d_l___joy_battery_event_aa135e2661c9cf8a65bd535a66a667ab4} 
+\index{SDL\_JoyBatteryEvent@{SDL\_JoyBatteryEvent}!timestamp@{timestamp}}
+\index{timestamp@{timestamp}!SDL\_JoyBatteryEvent@{SDL\_JoyBatteryEvent}}
+\doxysubsubsection{\texorpdfstring{timestamp}{timestamp}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}} SDL\+\_\+\+Joy\+Battery\+Event\+::timestamp}
+
+In milliseconds, populated using \doxylink{_s_d_l__timer_8h_a0b9bc71d6287e0ffafdc3419760fe2b3}{SDL\+\_\+\+Get\+Ticks()} 
+
+Definition at line \mbox{\hyperlink{_s_d_l__events_8h_source_l00407}{407}} of file \mbox{\hyperlink{_s_d_l__events_8h_source}{SDL\+\_\+events.\+h}}.
+
+\Hypertarget{struct_s_d_l___joy_battery_event_a6769e3e7e9907a9b214e88abcba12bb8}\label{struct_s_d_l___joy_battery_event_a6769e3e7e9907a9b214e88abcba12bb8} 
+\index{SDL\_JoyBatteryEvent@{SDL\_JoyBatteryEvent}!type@{type}}
+\index{type@{type}!SDL\_JoyBatteryEvent@{SDL\_JoyBatteryEvent}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}} SDL\+\_\+\+Joy\+Battery\+Event\+::type}
+
+\doxylink{_s_d_l__events_8h_a3b589e89be6b35c02e0dd34a55f3fccaaba4d43a2b97acab561fec0eef4a8a2cd}{SDL\+\_\+\+JOYBATTERYUPDATED} 
+
+Definition at line \mbox{\hyperlink{_s_d_l__events_8h_source_l00406}{406}} of file \mbox{\hyperlink{_s_d_l__events_8h_source}{SDL\+\_\+events.\+h}}.
+
+\Hypertarget{struct_s_d_l___joy_battery_event_a08e013a06c59ad74897a84b0b29e8426}\label{struct_s_d_l___joy_battery_event_a08e013a06c59ad74897a84b0b29e8426} 
+\index{SDL\_JoyBatteryEvent@{SDL\_JoyBatteryEvent}!which@{which}}
+\index{which@{which}!SDL\_JoyBatteryEvent@{SDL\_JoyBatteryEvent}}
+\doxysubsubsection{\texorpdfstring{which}{which}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_s_d_l__joystick_8h_a3c3d32500cb08f76ee8077983912c0bd}{SDL\+\_\+\+Joystick\+ID}} SDL\+\_\+\+Joy\+Battery\+Event\+::which}
+
+The joystick instance id 
+
+Definition at line \mbox{\hyperlink{_s_d_l__events_8h_source_l00408}{408}} of file \mbox{\hyperlink{_s_d_l__events_8h_source}{SDL\+\_\+events.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/opt/homebrew/\+Cellar/sdl2/2.\+28.\+5/include/\+SDL2/\mbox{\hyperlink{_s_d_l__events_8h}{SDL\+\_\+events.\+h}}\end{DoxyCompactItemize}

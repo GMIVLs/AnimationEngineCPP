@@ -1,0 +1,468 @@
+\chapter{Build Type in CPP}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework}{}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework}\index{Build Type in CPP@{Build Type in CPP}}
+\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md18}%
+\Hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md18}%
+ keyword\+: static, dynamic, framework
+
+{\bfseries{Table of Contents}}
+
+
+\begin{DoxyItemize}
+\item Build Type in CPP
+\begin{DoxyItemize}
+\item More details
+\item Hello World library -\/ both as static and dyanmic
+\item How about Framework
+\begin{DoxyItemize}
+\item What is a Framework?
+\item Using Frameworks in CMake\+Lists.txt
+\item Using Frameworks in the Command Line
+\item Features, Usages, and Common Practices for Frameworks\+:
+\item Common Frameworks for mac\+OS\+:
+\end{DoxyItemize}
+\item Static Linking vs Dynamic Linking
+\item Static Linking\+:
+\begin{DoxyItemize}
+\item -\/
+\item Disadvantages\+:
+\item File Extensions\+:
+\end{DoxyItemize}
+\item Dynamic Linking\+:
+\begin{DoxyItemize}
+\item -\/
+\item Disadvantages\+:
+\item File Extensions\+:
+\item Can youy create simple library and link it using static then dynamicc?
+\item 1. Creating the Library\+:
+\item 2. Static Linking\+:
+\item Dynamic Linking\+:
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Here\textquotesingle{}s a table that compares dynamic libraries and static libraries in various aspects\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Aspect}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Dynamic Library}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Static Library}}    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Aspect}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Dynamic Library}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Static Library}}    }\\\cline{1-3}
+\endhead
+{\bfseries{Description}}   &Libraries that are loaded at runtime.   &Libraries that are linked at compile time.    \\\cline{1-3}
+{\bfseries{Extension}}   &Typically {\ttfamily .dll} (Windows), {\ttfamily .so} (Linux), {\ttfamily .dylib} (mac\+OS).   &Typically {\ttfamily .lib} (Windows), {\ttfamily .a} (Unix/\+Linux/mac\+OS).    \\\cline{1-3}
+{\bfseries{Linking Type}}   &Dynamic Linking   &Static Linking    \\\cline{1-3}
+{\bfseries{Size of Executable}}   &Generally smaller, as the actual library code resides in the shared library.   &Larger, as the library code is incorporated into the final executable.    \\\cline{1-3}
+{\bfseries{Memory Footprint}}   &Multiple programs can share a single instance in memory.   &Each program has its own copy of the library functions in memory.    \\\cline{1-3}
+{\bfseries{Loading Time}}   &May increase, as linking is done at runtime.   &Typically faster, as all linking is done at compile time.    \\\cline{1-3}
+{\bfseries{Versioning}}   &Can update without recompiling dependent applications (if ABI is preserved).   &Applications must be recompiled if the library is updated.    \\\cline{1-3}
+{\bfseries{Portability}}   &Executable needs the correct version of the library present at runtime.   &No external dependencies are required at runtime.    \\\cline{1-3}
+{\bfseries{Performance}}   &Slight overhead due to dynamic linking, though often negligible.   &Might be slightly faster due to early binding.    \\\cline{1-3}
+{\bfseries{Compilation Time}}   &Might be faster as each change to the library doesn\textquotesingle{}t require recompiling dependent applications.   &Could be slower, especially if the library is large and the application needs to be relinked often.    \\\cline{1-3}
+{\bfseries{Code Snippet (Compilation)}}   &{\ttfamily gcc -\/shared -\/o \doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{libmylib.\+so} mylib.\+c} (Linux)   &{\ttfamily ar rcs libmylib.\+a \doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{mylib.\+o}} (after compiling {\ttfamily mylib.\+c} to object file)    \\\cline{1-3}
+{\bfseries{Code Snippet (Linking)}}   &{\ttfamily gcc -\/o myprog myprog.\+c -\/L/path/to/lib -\/lmylib} (dynamic linking in Linux)   &{\ttfamily gcc -\/o myprog myprog.\+c -\/L/path/to/lib -\/lmylib} (static linking)    \\\cline{1-3}
+{\bfseries{Distribution}}   &Must distribute the library and the executable. Also, may need to consider version compatibility.   &Only the executable is distributed.    \\\cline{1-3}
+{\bfseries{Use Case}}   &When you expect updates to the library without wanting to recompile all dependent applications. Also, for plugins.   &When you want a standalone executable without any external dependencies.   \\\cline{1-3}
+\end{longtabu}
+
+
+{\bfseries{Notes\+:}}
+
+
+\begin{DoxyEnumerate}
+\item The above table provides a general overview. The specifics can vary based on the operating system, compiler, and specific use cases.
+\item Dynamic libraries also have the concept of an "{}\+Application Binary Interface"{} (ABI). If you maintain ABI compatibility, you can update a dynamic library without recompiling programs that use it. However, if you break ABI compatibility, it requires recompilation.
+\item Always consider licensing when distributing libraries. Some licenses have different requirements or implications for static vs. dynamic linking.
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item {\bfseries{Note}}\+: The "{}\+Compilation Time"{} aspect is a general observation and the actual compilation time can vary based on the size of the library, the number of dependencies, and the specific system and build setup.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md19}{}\doxysection{\texorpdfstring{More details}{More details}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md19}
+{\bfseries{Static Linking}} and {\bfseries{Dynamic Linking}} are two processes of collecting and combining multiple object files to form a single executable.
+
+
+\begin{DoxyEnumerate}
+\item In {\bfseries{static linking}}, all library routines used by a program are copied into the program\textquotesingle{}s binary file during the linking phase. This makes the executable file self-\/contained, it can run independently without any external dependencies. But the disadvantage is the larger file size and possible duplication of code if multiple programs use the same library.
+\item In {\bfseries{dynamic linking}}, the linker doesn\textquotesingle{}t copy the library routines into the executable file. Instead, references to the library routines are made in the executable file. The actual linking happens at runtime when both the executable and the library are in memory. Dynamic linking reduces the size of the executable and allows library routines to be shared among multiple programs, reducing memory usage.
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item The extension for libraries and executable files differ depending on the operating system.
+\begin{DoxyItemize}
+\item {\bfseries{Windows}}\+: Static libraries usually have a {\ttfamily .lib} extension and dynamic libraries use the {\ttfamily .dll} (Dynamic Link Library) extension. Executables typically have {\ttfamily .exe} extensions.
+\item {\bfseries{Linux}}\+: Static libraries typically have a {\ttfamily .a} (archive) extension, and dynamic libraries have a {\ttfamily .so} (shared object) extension. Executables don\textquotesingle{}t have a required extension in Linux.
+\item {\bfseries{Mac}}\+: Static libraries typically have a {\ttfamily .a} extension, and dynamic libraries have a {\ttfamily .dylib} extension. Similar to Linux, executables don\textquotesingle{}t have a required extension in mac\+OS.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+These are just the usual conventions. It\textquotesingle{}s possible to configure the build process to use other extensions or even no extensions at all.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md20}{}\doxysection{\texorpdfstring{Hello World library -\/ both as static and dyanmic}{Hello World library - both as static and dyanmic}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md20}
+let\textquotesingle{}s create a simple "{}\+Hello World"{} library, both as a static library and a dynamic library.
+
+
+\begin{DoxyEnumerate}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Library Code ({\ttfamily \doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{hello.\+cpp}})\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{hello}}()\ \{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Hello,\ World\ from\ the\ library!"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Static Library Compilation}}\+:
+\end{DoxyEnumerate}
+
+To create a static library\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{g++\ -\/c\ hello.cpp\ -\/o\ hello.o}
+\DoxyCodeLine{ar\ rcs\ libhello.a\ hello.o}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Dynamic Library Compilation}}\+:
+\end{DoxyEnumerate}
+
+To create a dynamic/shared library\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{g++\ -\/shared\ -\/fPIC\ hello.cpp\ -\/o\ libhello.so}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Using the Libraries in a Main Program ({\ttfamily \doxylink{main_8cpp}{main.\+cpp}})\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{hello}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{hello}}();}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Linking with the Static Library}}\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{g++\ main.cpp\ -\/L.\ -\/lhello\ -\/o\ static\_hello}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Linking with the Dynamic Library}}\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{g++\ main.cpp\ -\/L.\ -\/lhello\ -\/o\ dynamic\_hello}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Make sure the dynamic library is in the library path or in the same directory when running the executable, or use {\ttfamily LD\+\_\+\+LIBRARY\+\_\+\+PATH}\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ LD\_LIBRARY\_PATH=.:\$LD\_LIBRARY\_PATH}
+\DoxyCodeLine{./dynamic\_hello}
+
+\end{DoxyCode}
+
+
+{\bfseries{Comparison Table}}\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Aspect}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Static Library}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Dynamic Library}}    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Aspect}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Static Library}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Dynamic Library}}    }\\\cline{1-3}
+\endhead
+{\bfseries{Compilation}}   &Two steps\+: Compile source to object file, then archive object files into a library.   &Compile with {\ttfamily -\/shared} to directly create the shared library.    \\\cline{1-3}
+{\bfseries{Linking}}   &Library content is included in the final executable.   &Only references to library functions are included. Library must be present at runtime.    \\\cline{1-3}
+{\bfseries{Executable Size}}   &Generally larger, as library content is embedded inside it.   &Smaller. The actual library code is in the shared library, not the executable.    \\\cline{1-3}
+{\bfseries{Distribution}}   &Just the executable is required.   &Both the executable and the shared library (.so, .dll) must be distributed.    \\\cline{1-3}
+{\bfseries{Update Library}}   &Need to relink and possibly recompile the executable.   &Just replace the shared library file (if ABI compatibility is maintained).    \\\cline{1-3}
+{\bfseries{Performance}}   &No overhead of dynamic linking at runtime.   &Minimal overhead due to dynamic linking, but generally negligible.    \\\cline{1-3}
+{\bfseries{Flexibility}}   &Not as flexible. Changing the library requires relinking the executable.   &More flexible. Applications can use different versions or implementations of a library without needing to be recompiled or relinked.   \\\cline{1-3}
+\end{longtabu}
+
+
+This table provides a general comparison between static and dynamic libraries in the context of a "{}\+Hello World"{} library. The exact benefits and trade-\/offs can vary based on the specific use-\/case and system setup.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md21}{}\doxysection{\texorpdfstring{How about Framework}{How about Framework}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md21}
+
+\begin{DoxyItemize}
+\item Framework is a bundle, usually in {\ttfamily mac\+OS}, read more about it in the {\ttfamily CMake\+\_\+for\+\_\+\+Professional} book.
+\end{DoxyItemize}
+
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md22}{}\doxysubsection{\texorpdfstring{What is a Framework?}{What is a Framework?}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md22}
+A framework in the context of software development is a pre-\/written set of code or tools that provides generic functionality, upon which more specific software can be built. Frameworks enable developers to avoid "{}reinventing the wheel"{} by offering a structure and foundation for building applications.
+
+{\bfseries{Examples}}\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Web Development}}\+: Django is a high-\/level Python web framework that encourages rapid development and clean, pragmatic design.
+\item {\bfseries{Mobile Development}}\+: Swift\+UI is a framework for building UIs across all Apple devices with the power of Swift.
+\item {\bfseries{Desktop Development}}\+: Qt is a free and open-\/source widget toolkit for creating GUIs as well as cross-\/platform applications that run on various software and hardware platforms.
+\end{DoxyEnumerate}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md23}{}\doxysubsection{\texorpdfstring{Using Frameworks in CMake\+Lists.\+txt}{Using Frameworks in CMakeLists.txt}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md23}
+When using a framework in CMake, you typically use the {\ttfamily find\+\_\+package} command to locate the framework, and then link against it.
+
+{\bfseries{Example}} (using a hypothetical "{}\+My\+Framework"{})\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Find\ the\ MyFramework\ package}
+\DoxyCodeLine{find\_package(MyFramework\ REQUIRED)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Link\ against\ MyFramework\ when\ creating\ your\ executable\ or\ library}
+\DoxyCodeLine{add\_executable(my\_app\ main.cpp)}
+\DoxyCodeLine{target\_link\_libraries(my\_app\ PRIVATE\ MyFramework::MyFramework)}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md24}{}\doxysubsection{\texorpdfstring{Using Frameworks in the Command Line}{Using Frameworks in the Command Line}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md24}
+When you\textquotesingle{}re compiling a program from the command line, you often have to specify where the compiler can find the framework headers and libraries. In mac\+OS, frameworks are typically bundled in a {\ttfamily .framework} directory.
+
+{\bfseries{Example}} (using a hypothetical "{}\+My\+Framework"{})\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{g++\ main.cpp\ -\/F\ /path/to/framework/directory\ -\/framework\ MyFramework\ -\/o\ my\_app}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item In the above, {\ttfamily -\/F} specifies the path to search for frameworks and {\ttfamily -\/framework} is used to link against a specific framework.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md25}{}\doxysubsection{\texorpdfstring{Features, Usages, and Common Practices for Frameworks\+:}{Features, Usages, and Common Practices for Frameworks:}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md25}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Feature}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Practices}}    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Feature}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Practices}}    }\\\cline{1-3}
+\endhead
+{\bfseries{Structure and Organization}}   &Provides a predefined structure for organizing code, resources, and other assets.   &Stick to the structure provided by the framework for maintainability and better collaboration.    \\\cline{1-3}
+{\bfseries{Reusable Components}}   &Contains pre-\/built components or modules that can be reused across different parts of an application.   &Use the built-\/in components before trying to build custom solutions; it saves time and ensures consistency.    \\\cline{1-3}
+{\bfseries{Documentation and Community}}   &Often comes with extensive documentation and a supportive community.   &Regularly consult the official documentation; participate in community forums or discussion boards for support.    \\\cline{1-3}
+{\bfseries{Extensibility}}   &Allows developers to extend or override built-\/in functionality to cater to specific requirements.   &Use extension points provided by the framework; avoid "{}hacking"{} or working against the framework\textquotesingle{}s design.    \\\cline{1-3}
+{\bfseries{Testing and Debugging}}   &Often includes tools or modules for testing and debugging to ensure the application works correctly.   &Regularly write tests as you develop; utilize built-\/in debugging tools for efficient troubleshooting.    \\\cline{1-3}
+{\bfseries{Updates and Maintenance}}   &Regularly receives updates, which might include new features, bug fixes, or performance improvements.   &Stay updated with the latest version; however, always test the application thoroughly after updating the framework.   \\\cline{1-3}
+\end{longtabu}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md26}{}\doxysubsection{\texorpdfstring{Common Frameworks for mac\+OS\+:}{Common Frameworks for macOS:}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md26}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Framework}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Use Cases}}    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Framework}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Use Cases}}    }\\\cline{1-3}
+\endhead
+{\bfseries{Cocoa/\+Cocoa Touch}}   &Apple\textquotesingle{}s native object-\/oriented APIs for mac\+OS/i\+OS UI development.   &Building native mac\+OS and i\+OS applications.    \\\cline{1-3}
+{\bfseries{Core Foundation}}   &C-\/based framework by Apple that provides data types and utilities for mac\+OS and i\+OS.   &Used for low-\/level operations in mac\+OS and i\+OS development.    \\\cline{1-3}
+{\bfseries{Metal}}   &High-\/performance graphics and compute API by Apple.   &Game development, graphics-\/intensive apps, and compute tasks on mac\+OS.    \\\cline{1-3}
+{\bfseries{Web\+Kit}}   &The web rendering engine behind Safari, used for embedding web content in apps.   &Building web browsers or embedding web content within native apps.    \\\cline{1-3}
+{\bfseries{Core ML}}   &Apple\textquotesingle{}s machine learning framework for adding trained ML models into applications.   &Implementing machine learning features in mac\+OS/i\+OS apps.    \\\cline{1-3}
+{\bfseries{Scene\+Kit/\+Sprite\+Kit}}   &Graphics rendering and animation infrastructure for creating 3D (Scene\+Kit) and 2D (Sprite\+Kit) graphics.   &Game development and 3D/2D graphics on mac\+OS/i\+OS.   \\\cline{1-3}
+\end{longtabu}
+
+
+
+\begin{DoxyItemize}
+\item Frameworks serve as a foundational layer or a scaffold upon which developers build their applications. They provide a consistent and structured way to build applications, enabling developers to focus on the unique aspects of their application rather than the repetitive or common functionalities.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md27}{}\doxysection{\texorpdfstring{Static Linking vs Dynamic Linking}{Static Linking vs Dynamic Linking}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md27}
+Static linking and dynamic linking are two methods of linking libraries to an application. Each method has its pros and cons, and the choice between them often depends on the specific requirements of the application or the preferences of the developer. Here\textquotesingle{}s a comparison between static and dynamic linking, along with the file extensions associated with each for mac\+OS, Windows, and Linux\+:\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md28}{}\doxysection{\texorpdfstring{Static Linking\+:}{Static Linking:}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md28}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md29}{}\doxysubsubsection{\texorpdfstring{Advantages\+:}{Advantages:}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md29}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Portability}}\+: The application can run on any system without needing external libraries since all dependencies are included within the executable.
+\item {\bfseries{Simplified Distribution}}\+: No need to manage and ship shared libraries separately.
+\item {\bfseries{Stable Versioning}}\+: Your application will always use the version of the library it was linked with, avoiding potential issues with incompatible library updates.
+\end{DoxyEnumerate}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md30}{}\doxysubsubsection{\texorpdfstring{Disadvantages\+:}{Disadvantages:}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md30}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Larger Executable Size}}\+: All required library code is embedded in the application, making the binary size larger.
+\item {\bfseries{No Shared Memory}}\+: Multiple applications using the same library can\textquotesingle{}t share a single in-\/memory copy of the library.
+\item {\bfseries{Update Difficulties}}\+: To update a library, you have to recompile and redistribute the entire application.
+\end{DoxyEnumerate}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md31}{}\doxysubsubsection{\texorpdfstring{File Extensions\+:}{File Extensions:}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md31}
+
+\begin{DoxyItemize}
+\item {\bfseries{mac\+OS}}\+: {\ttfamily .a} (archive libraries)
+\item {\bfseries{Windows}}\+: {\ttfamily .lib} (when used as a static library)
+\item {\bfseries{Linux}}\+: {\ttfamily .a}
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md32}{}\doxysection{\texorpdfstring{Dynamic Linking\+:}{Dynamic Linking:}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md32}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md33}{}\doxysubsubsection{\texorpdfstring{Advantages\+:}{Advantages:}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md33}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Smaller Executable Size}}\+: The application only includes references to external shared libraries, not the library code itself.
+\item {\bfseries{Shared Memory}}\+: Multiple applications can share a single in-\/memory copy of the library, saving memory.
+\item {\bfseries{Easier Updates}}\+: Library updates can be made without needing to recompile applications that use them, as long as the library remains backward-\/compatible.
+\end{DoxyEnumerate}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md34}{}\doxysubsubsection{\texorpdfstring{Disadvantages\+:}{Disadvantages:}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md34}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Dependency Management}}\+: The application requires external shared libraries to run. If a required library is missing or incompatible, the application will fail to start.
+\item {\bfseries{Versioning Issues}}\+: If an application expects a specific version of a library and the system has a different, incompatible version, the application might not work correctly.
+\item {\bfseries{Potential Security Risks}}\+: If an attacker replaces the shared library with a malicious version, applications using that library could be compromised.
+\end{DoxyEnumerate}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md35}{}\doxysubsubsection{\texorpdfstring{File Extensions\+:}{File Extensions:}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md35}
+
+\begin{DoxyItemize}
+\item {\bfseries{mac\+OS}}\+: {\ttfamily .dylib}
+\item {\bfseries{Windows}}\+: {\ttfamily .dll} (Dynamic Link Library)
+\item {\bfseries{Linux}}\+: {\ttfamily .so} (Shared Object)
+\end{DoxyItemize}
+
+In summary, the choice between static and dynamic linking will depend on the specific needs of your project. If you prioritize a self-\/contained, portable application without external dependencies, static linking might be the way to go. On the other hand, if you want a smaller executable size and easier library updates, dynamic linking could be a better choice.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md36}{}\doxysubsubsection{\texorpdfstring{Can youy create simple library and link it using static then dynamicc?}{Can youy create simple library and link it using static then dynamicc?}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md36}
+Here\textquotesingle{}s a step-\/by-\/step guide on creating a simple library, followed by instructions on how to link it both statically and dynamically, specifically for mac\+OS\+:\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md37}{}\doxysubsection{\texorpdfstring{1. Creating the Library\+:}{1. Creating the Library:}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md37}
+Let\textquotesingle{}s create a simple library that provides a function to square a number.
+
+{\bfseries{mathlib.\+h}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#ifndef\ MATHLIB\_H}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ MATHLIB\_H}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{square}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
+
+
+{\bfseries{mathlib.\+c}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}mathlib.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{square}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ *\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md38}{}\doxysubsection{\texorpdfstring{2. Static Linking\+:}{2. Static Linking:}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md38}
+Compile the source file to an object file, then create a static library\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{gcc\ -\/c\ mathlib.c\ -\/o\ mathlib.o}
+\DoxyCodeLine{ar\ rcs\ libmathlib.a\ mathlib.o}
+
+\end{DoxyCode}
+
+
+This will produce a static library file named {\ttfamily libmathlib.\+a}.
+
+Now, let\textquotesingle{}s create a simple program that uses the library.
+
+{\bfseries{main.\+c}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}mathlib.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{printf}}(\textcolor{stringliteral}{"{}Square\ of\ 5:\ \%d\(\backslash\)n"{}},\ \mbox{\hyperlink{class_vector__2d}{square}}(5));}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Compile the main program and link it with the static library\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{gcc\ main.c\ -\/L.\ -\/lmathlib\ -\/o\ main}
+
+\end{DoxyCode}
+
+
+Run the program\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./main}
+
+\end{DoxyCode}
+
+
+This should output {\ttfamily Square of 5\+: 25}.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md39}{}\doxysubsection{\texorpdfstring{3. Dynamic Linking\+:}{3. Dynamic Linking:}}\label{md_docs_2own__docs_2cpp__fudamentals_2build__types__static__dynamic__and__framework_autotoc_md39}
+To create a dynamic library\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{gcc\ -\/shared\ -\/o\ libmathlib.dylib\ mathlib.c}
+
+\end{DoxyCode}
+
+
+This will produce a dynamic library named {\ttfamily \doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{libmathlib.\+dylib}}.
+
+Compile the main program and link it with the dynamic library\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{gcc\ main.c\ -\/L.\ -\/lmathlib\ -\/o\ main}
+
+\end{DoxyCode}
+
+
+Before running the program, you need to ensure the OS knows where to find your dynamic library. You can temporarily set the library path as\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ DYLD\_LIBRARY\_PATH=.:\$DYLD\_LIBRARY\_PATH}
+
+\end{DoxyCode}
+
+
+Run the program\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./main}
+
+\end{DoxyCode}
+
+
+Again, this should output {\ttfamily Square of 5\+: 25}.
+
+Remember, static libraries ({\ttfamily .a} files) include the library\textquotesingle{}s code directly in the application, resulting in a standalone executable. Dynamic libraries ({\ttfamily .dylib} files), on the other hand, are separate files that the application loads at runtime, which means they need to be accessible to the application either via standard library paths or through paths like {\ttfamily DYLD\+\_\+\+LIBRARY\+\_\+\+PATH} for mac\+OS. 

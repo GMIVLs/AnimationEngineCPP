@@ -1,0 +1,633 @@
+\doxysection{gflags.\+h}
+\hypertarget{gflags_8h_source}{}\label{gflags_8h_source}\index{build/debug/vcpkg\_installed/arm64-\/osx/include/gflags/gflags.h@{build/debug/vcpkg\_installed/arm64-\/osx/include/gflags/gflags.h}}
+\mbox{\hyperlink{gflags_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (c)\ 2006,\ Google\ Inc.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00002}00002\ \textcolor{comment}{//\ All\ rights\ reserved.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00003}00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00004}00004\ \textcolor{comment}{//\ Redistribution\ and\ use\ in\ source\ and\ binary\ forms,\ with\ or\ without}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00005}00005\ \textcolor{comment}{//\ modification,\ are\ permitted\ provided\ that\ the\ following\ conditions\ are}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00006}00006\ \textcolor{comment}{//\ met:}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00007}00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00008}00008\ \textcolor{comment}{//\ \ \ \ \ *\ Redistributions\ of\ source\ code\ must\ retain\ the\ above\ copyright}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00009}00009\ \textcolor{comment}{//\ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00010}00010\ \textcolor{comment}{//\ \ \ \ \ *\ Redistributions\ in\ binary\ form\ must\ reproduce\ the\ above}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00011}00011\ \textcolor{comment}{//\ copyright\ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00012}00012\ \textcolor{comment}{//\ in\ the\ documentation\ and/or\ other\ materials\ provided\ with\ the}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00013}00013\ \textcolor{comment}{//\ distribution.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00014}00014\ \textcolor{comment}{//\ \ \ \ \ *\ Neither\ the\ name\ of\ Google\ Inc.\ nor\ the\ names\ of\ its}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00015}00015\ \textcolor{comment}{//\ contributors\ may\ be\ used\ to\ endorse\ or\ promote\ products\ derived\ from}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00016}00016\ \textcolor{comment}{//\ this\ software\ without\ specific\ prior\ written\ permission.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00017}00017\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00018}00018\ \textcolor{comment}{//\ THIS\ SOFTWARE\ IS\ PROVIDED\ BY\ THE\ COPYRIGHT\ HOLDERS\ AND\ CONTRIBUTORS}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00019}00019\ \textcolor{comment}{//\ "{}AS\ IS"{}\ AND\ ANY\ EXPRESS\ OR\ IMPLIED\ WARRANTIES,\ INCLUDING,\ BUT\ NOT}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00020}00020\ \textcolor{comment}{//\ LIMITED\ TO,\ THE\ IMPLIED\ WARRANTIES\ OF\ MERCHANTABILITY\ AND\ FITNESS\ FOR}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00021}00021\ \textcolor{comment}{//\ A\ PARTICULAR\ PURPOSE\ ARE\ DISCLAIMED.\ IN\ NO\ EVENT\ SHALL\ THE\ COPYRIGHT}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00022}00022\ \textcolor{comment}{//\ OWNER\ OR\ CONTRIBUTORS\ BE\ LIABLE\ FOR\ ANY\ DIRECT,\ INDIRECT,\ INCIDENTAL,}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00023}00023\ \textcolor{comment}{//\ SPECIAL,\ EXEMPLARY,\ OR\ CONSEQUENTIAL\ DAMAGES\ (INCLUDING,\ BUT\ NOT}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00024}00024\ \textcolor{comment}{//\ LIMITED\ TO,\ PROCUREMENT\ OF\ SUBSTITUTE\ GOODS\ OR\ SERVICES;\ LOSS\ OF\ USE,}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00025}00025\ \textcolor{comment}{//\ DATA,\ OR\ PROFITS;\ OR\ BUSINESS\ INTERRUPTION)\ HOWEVER\ CAUSED\ AND\ ON\ ANY}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00026}00026\ \textcolor{comment}{//\ THEORY\ OF\ LIABILITY,\ WHETHER\ IN\ CONTRACT,\ STRICT\ LIABILITY,\ OR\ TORT}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00027}00027\ \textcolor{comment}{//\ (INCLUDING\ NEGLIGENCE\ OR\ OTHERWISE)\ ARISING\ IN\ ANY\ WAY\ OUT\ OF\ THE\ USE}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00028}00028\ \textcolor{comment}{//\ OF\ THIS\ SOFTWARE,\ EVEN\ IF\ ADVISED\ OF\ THE\ POSSIBILITY\ OF\ SUCH\ DAMAGE.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00030}00030\ \textcolor{comment}{//\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00031}00031\ \textcolor{comment}{//\ Revamped\ and\ reorganized\ by\ Craig\ Silverstein}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00032}00032\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00033}00033\ \textcolor{comment}{//\ This\ is\ the\ file\ that\ should\ be\ included\ by\ any\ file\ which\ declares}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00034}00034\ \textcolor{comment}{//\ or\ defines\ a\ command\ line\ flag\ or\ wants\ to\ parse\ command\ line\ flags}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00035}00035\ \textcolor{comment}{//\ or\ print\ a\ program\ usage\ message\ (which\ will\ include\ information\ about}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00036}00036\ \textcolor{comment}{//\ flags).\ \ Executive\ summary,\ in\ the\ form\ of\ an\ example\ foo.cc\ file:}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00037}00037\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00038}00038\ \textcolor{comment}{//\ \ \ \ \#include\ "{}foo.h"{}\ \ \ \ \ \ \ \ \ //\ foo.h\ has\ a\ line\ "{}DECLARE\_int32(start);"{}}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00039}00039\ \textcolor{comment}{//\ \ \ \ \#include\ "{}validators.h"{}\ \ //\ hypothetical\ file\ defining\ ValidateIsFile()}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00040}00040\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00041}00041\ \textcolor{comment}{//\ \ \ \ DEFINE\_int32(end,\ 1000,\ "{}The\ last\ record\ to\ read"{});}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00042}00042\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00043}00043\ \textcolor{comment}{//\ \ \ \ DEFINE\_string(filename,\ "{}my\_file.txt"{},\ "{}The\ file\ to\ read"{});}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00044}00044\ \textcolor{comment}{//\ \ \ \ //\ Crash\ if\ the\ specified\ file\ does\ not\ exist.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00045}00045\ \textcolor{comment}{//\ \ \ \ static\ bool\ dummy\ =\ RegisterFlagValidator(\&FLAGS\_filename,}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00046}00046\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ValidateIsFile);}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00047}00047\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00048}00048\ \textcolor{comment}{//\ \ \ \ DECLARE\_bool(verbose);\ //\ some\ other\ file\ has\ a\ DEFINE\_bool(verbose,\ ...)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00049}00049\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00050}00050\ \textcolor{comment}{//\ \ \ \ void\ MyFunc()\ \{}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00051}00051\ \textcolor{comment}{//\ \ \ \ \ \ if\ (FLAGS\_verbose)\ printf("{}Records\ \%d-\/\%d\(\backslash\)n"{},\ FLAGS\_start,\ FLAGS\_end);}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00052}00052\ \textcolor{comment}{//\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00053}00053\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00054}00054\ \textcolor{comment}{//\ \ \ \ Then,\ at\ the\ command-\/line:}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00055}00055\ \textcolor{comment}{//\ \ \ \ \ \ \ ./foo\ -\/-\/noverbose\ -\/-\/start=5\ -\/-\/end=100}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00056}00056\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00057}00057\ \textcolor{comment}{//\ For\ more\ details,\ see}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00058}00058\ \textcolor{comment}{//\ \ \ \ doc/gflags.html}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00059}00059\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00060}00060\ \textcolor{comment}{//\ -\/-\/-\/\ A\ note\ about\ thread-\/safety:}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00061}00061\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00062}00062\ \textcolor{comment}{//\ We\ describe\ many\ functions\ in\ this\ routine\ as\ being\ thread-\/hostile,}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00063}00063\ \textcolor{comment}{//\ thread-\/compatible,\ or\ thread-\/safe.\ \ Here\ are\ the\ meanings\ we\ use:}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00064}00064\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00065}00065\ \textcolor{comment}{//\ thread-\/safe:\ it\ is\ safe\ for\ multiple\ threads\ to\ call\ this\ routine}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00066}00066\ \textcolor{comment}{//\ \ \ (or,\ when\ referring\ to\ a\ class,\ methods\ of\ this\ class)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00067}00067\ \textcolor{comment}{//\ \ \ concurrently.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00068}00068\ \textcolor{comment}{//\ thread-\/hostile:\ it\ is\ not\ safe\ for\ multiple\ threads\ to\ call\ this}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00069}00069\ \textcolor{comment}{//\ \ \ routine\ (or\ methods\ of\ this\ class)\ concurrently.\ \ In\ gflags,}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00070}00070\ \textcolor{comment}{//\ \ \ most\ thread-\/hostile\ routines\ are\ intended\ to\ be\ called\ early\ in,}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00071}00071\ \textcolor{comment}{//\ \ \ or\ even\ before,\ main()\ -\/-\/\ that\ is,\ before\ threads\ are\ spawned.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00072}00072\ \textcolor{comment}{//\ thread-\/compatible:\ it\ is\ safe\ for\ multiple\ threads\ to\ read\ from}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00073}00073\ \textcolor{comment}{//\ \ \ this\ variable\ (when\ applied\ to\ variables),\ or\ to\ call\ const}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00074}00074\ \textcolor{comment}{//\ \ \ methods\ of\ this\ class\ (when\ applied\ to\ classes),\ as\ long\ as\ no}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00075}00075\ \textcolor{comment}{//\ \ \ other\ thread\ is\ writing\ to\ the\ variable\ or\ calling\ non-\/const}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00076}00076\ \textcolor{comment}{//\ \ \ methods\ of\ this\ class.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00078}00078\ \textcolor{preprocessor}{\#ifndef\ GFLAGS\_GFLAGS\_H\_}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00079}00079\ \textcolor{preprocessor}{\#define\ GFLAGS\_GFLAGS\_H\_}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00081}00081\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00082}00082\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00084}00084\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gflags__declare_8h}{gflags/gflags\_declare.h}}"{}}\ \textcolor{comment}{//\ IWYU\ pragma:\ export}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00087}00087\ \textcolor{comment}{//\ We\ always\ want\ to\ export\ variables\ defined\ in\ user\ code}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00088}00088\ \textcolor{preprocessor}{\#ifndef\ GFLAGS\_DLL\_DEFINE\_FLAG}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00089}00089\ \textcolor{preprocessor}{\#\ \ if\ GFLAGS\_IS\_A\_DLL\ \&\&\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00090}00090\ \textcolor{preprocessor}{\#\ \ \ \ define\ GFLAGS\_DLL\_DEFINE\_FLAG\ \_\_declspec(dllexport)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00091}00091\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00092}\mbox{\hyperlink{gflags_8h_a03860ea6ee44d001c79e5af203651d5c}{00092}}\ \textcolor{preprocessor}{\#\ \ \ \ define\ GFLAGS\_DLL\_DEFINE\_FLAG}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00093}00093\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00094}00094\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00097}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e}{00097}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e}{GFLAGS\_NAMESPACE}}\ \{}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00100}00100\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00101}00101\ \textcolor{comment}{//\ To\ actually\ define\ a\ flag\ in\ a\ file,\ use\ DEFINE\_bool,}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00102}00102\ \textcolor{comment}{//\ DEFINE\_string,\ etc.\ at\ the\ bottom\ of\ this\ file.\ \ You\ may\ also\ find}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00103}00103\ \textcolor{comment}{//\ it\ useful\ to\ register\ a\ validator\ with\ the\ flag.\ \ This\ ensures\ that}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00104}00104\ \textcolor{comment}{//\ when\ the\ flag\ is\ parsed\ from\ the\ commandline,\ or\ is\ later\ set\ via}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00105}00105\ \textcolor{comment}{//\ SetCommandLineOption,\ we\ call\ the\ validation\ function.\ It\ is\ \_not\_}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00106}00106\ \textcolor{comment}{//\ called\ when\ you\ assign\ the\ value\ to\ the\ flag\ directly\ using\ the\ =\ operator.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00107}00107\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00108}00108\ \textcolor{comment}{//\ The\ validation\ function\ should\ return\ true\ if\ the\ flag\ value\ is\ valid,\ and}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00109}00109\ \textcolor{comment}{//\ false\ otherwise.\ If\ the\ function\ returns\ false\ for\ the\ new\ setting\ of\ the}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00110}00110\ \textcolor{comment}{//\ flag,\ the\ flag\ will\ retain\ its\ current\ value.\ If\ it\ returns\ false\ for\ the}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00111}00111\ \textcolor{comment}{//\ default\ value,\ ParseCommandLineFlags()\ will\ die.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00112}00112\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00113}00113\ \textcolor{comment}{//\ This\ function\ is\ safe\ to\ call\ at\ global\ construct\ time\ (as\ in\ the}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00114}00114\ \textcolor{comment}{//\ example\ below).}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00115}00115\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00116}00116\ \textcolor{comment}{//\ Example\ use:}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00117}00117\ \textcolor{comment}{//\ \ \ \ static\ bool\ ValidatePort(const\ char*\ flagname,\ int32\ value)\ \{}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00118}00118\ \textcolor{comment}{//\ \ \ \ \ \ \ if\ (value\ >\ 0\ \&\&\ value\ <\ 32768)\ \ \ //\ value\ is\ ok}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00119}00119\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ return\ true;}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00120}00120\ \textcolor{comment}{//\ \ \ \ \ \ \ printf("{}Invalid\ value\ for\ -\/-\/\%s:\ \%d\(\backslash\)n"{},\ flagname,\ (int)value);}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00121}00121\ \textcolor{comment}{//\ \ \ \ \ \ \ return\ false;}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00122}00122\ \textcolor{comment}{//\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00123}00123\ \textcolor{comment}{//\ \ \ \ DEFINE\_int32(port,\ 0,\ "{}What\ port\ to\ listen\ on"{});}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00124}00124\ \textcolor{comment}{//\ \ \ \ static\ bool\ dummy\ =\ RegisterFlagValidator(\&FLAGS\_port,\ \&ValidatePort);}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00126}00126\ \textcolor{comment}{//\ Returns\ true\ if\ successfully\ registered,\ false\ if\ not\ (because\ the}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00127}00127\ \textcolor{comment}{//\ first\ argument\ doesn't\ point\ to\ a\ command-\/line\ flag,\ or\ because\ a}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00128}00128\ \textcolor{comment}{//\ validator\ is\ already\ registered\ for\ this\ flag).}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00129}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a684aef047dd3be3960beab5aecd18a84}{00129}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{bool}\ RegisterFlagValidator(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}*\ \ \ \ \ \ \ \ flag,\ \textcolor{keywordtype}{bool}\ (*validate\_fn)(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ \textcolor{keywordtype}{bool}));}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00130}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a9ad8d9322ca98e69457ee5c293fc85a3}{00130}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{bool}\ RegisterFlagValidator(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_ab5e093ecf2996943821e773cdf22140a}{int32}}*\ \ \ \ \ \ \ flag,\ \textcolor{keywordtype}{bool}\ (*validate\_fn)(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_ab5e093ecf2996943821e773cdf22140a}{int32}}));}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00131}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_ad39d199d36e76f39158cc570daf1c43a}{00131}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{bool}\ RegisterFlagValidator(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a7cd152e31d8bd6ada6c1c79adeb5bd8c}{uint32}}*\ \ \ \ \ \ flag,\ \textcolor{keywordtype}{bool}\ (*validate\_fn)(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a7cd152e31d8bd6ada6c1c79adeb5bd8c}{uint32}}));}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00132}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a36d81ad24d98b494d5a2674be08a3572}{00132}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{bool}\ RegisterFlagValidator(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_aedc4fdd5cc24ffefc1a7d07a841e9798}{int64}}*\ \ \ \ \ \ \ flag,\ \textcolor{keywordtype}{bool}\ (*validate\_fn)(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_aedc4fdd5cc24ffefc1a7d07a841e9798}{int64}}));}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00133}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a2a527f08548249fb92e2205a04c2f0e1}{00133}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{bool}\ RegisterFlagValidator(\textcolor{keyword}{const}\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_af2914c2ad1f9bf454f663ddcc5c934d5}{uint64}}*\ \ \ \ \ \ flag,\ \textcolor{keywordtype}{bool}\ (*validate\_fn)(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_af2914c2ad1f9bf454f663ddcc5c934d5}{uint64}}));}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00134}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_aa73e0956d12959115508894194974e2e}{00134}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{bool}\ RegisterFlagValidator(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}*\ \ \ \ \ \ flag,\ \textcolor{keywordtype}{bool}\ (*validate\_fn)(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ \textcolor{keywordtype}{double}));}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00135}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_ab9508fafc50f115c1554d9c9bae8c04b}{00135}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{bool}\ RegisterFlagValidator(\textcolor{keyword}{const}\ std::string*\ flag,\ \textcolor{keywordtype}{bool}\ (*validate\_fn)(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ \textcolor{keyword}{const}\ std::string\&));}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00137}00137\ \textcolor{comment}{//\ Convenience\ macro\ for\ the\ registration\ of\ a\ flag\ validator}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00138}\mbox{\hyperlink{gflags_8h_adf87f791d0ff26e5c5359225930da184}{00138}}\ \textcolor{preprocessor}{\#define\ DEFINE\_validator(name,\ validator)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00139}00139\ \textcolor{preprocessor}{\ \ \ \ static\ const\ bool\ name\#\#\_validator\_registered\ =\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00140}00140\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ GFLAGS\_NAMESPACE::RegisterFlagValidator(\&FLAGS\_\#\#name,\ validator)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00143}00143\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00144}00144\ \textcolor{comment}{//\ These\ methods\ are\ the\ best\ way\ to\ get\ access\ to\ info\ about\ the}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00145}00145\ \textcolor{comment}{//\ list\ of\ commandline\ flags.\ \ Note\ that\ these\ routines\ are\ pretty\ slow.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00146}00146\ \textcolor{comment}{//\ \ \ GetAllFlags:\ mostly-\/complete\ info\ about\ the\ list,\ sorted\ by\ file.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00147}00147\ \textcolor{comment}{//\ \ \ ShowUsageWithFlags:\ pretty-\/prints\ the\ list\ to\ stdout\ (what\ -\/-\/help\ does)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00148}00148\ \textcolor{comment}{//\ \ \ ShowUsageWithFlagsRestrict:\ limit\ to\ filenames\ with\ restrict\ as\ a\ substr}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00149}00149\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00150}00150\ \textcolor{comment}{//\ In\ addition\ to\ accessing\ flags,\ you\ can\ also\ access\ argv[0]\ (the\ program}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00151}00151\ \textcolor{comment}{//\ name)\ and\ argv\ (the\ entire\ commandline),\ which\ we\ sock\ away\ a\ copy\ of.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00152}00152\ \textcolor{comment}{//\ These\ variables\ are\ static,\ so\ you\ should\ only\ set\ them\ once.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00153}00153\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00154}00154\ \textcolor{comment}{//\ No\ need\ to\ export\ this\ data\ only\ structure\ from\ DLL,\ avoiding\ VS\ warning\ 4251.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00155}\mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info}{00155}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info}{CommandLineFlagInfo}}\ \{}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00156}\mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_af56a81d2c7aca29203746976004abfc2}{00156}}\ \ \ std::string\ \mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_af56a81d2c7aca29203746976004abfc2}{name}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ name\ of\ the\ flag}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00157}\mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_a04f02cad9caae94a7ffd88e9cb89585b}{00157}}\ \ \ std::string\ \mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_a04f02cad9caae94a7ffd88e9cb89585b}{type}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ type\ of\ the\ flag:\ int32,\ etc}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00158}\mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_ae8bdcd07b1cb5b0561e122af6955fc90}{00158}}\ \ \ std::string\ \mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_ae8bdcd07b1cb5b0561e122af6955fc90}{description}};\ \ \ \ \ \textcolor{comment}{//\ the\ "{}help\ text"{}\ associated\ with\ the\ flag}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00159}\mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_a654abe3f7f744c9b3772c78bb8a4e90e}{00159}}\ \ \ std::string\ \mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_a654abe3f7f744c9b3772c78bb8a4e90e}{current\_value}};\ \ \ \textcolor{comment}{//\ the\ current\ value,\ as\ a\ string}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00160}\mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_a6f786f24cd6eaba82158e785809f53de}{00160}}\ \ \ std::string\ \mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_a6f786f24cd6eaba82158e785809f53de}{default\_value}};\ \ \ \textcolor{comment}{//\ the\ default\ value,\ as\ a\ string}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00161}\mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_af889e5db7ce96fd27b34bd9cc6bfaa8c}{00161}}\ \ \ std::string\ \mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_af889e5db7ce96fd27b34bd9cc6bfaa8c}{filename}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 'cleaned'\ version\ of\ filename\ holding\ the\ flag}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00162}\mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_a0942bc076c1307b2ab7f3c6d6c7ae4c3}{00162}}\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_a0942bc076c1307b2ab7f3c6d6c7ae4c3}{has\_validator\_fn}};\ \ \ \ \ \ \ \textcolor{comment}{//\ true\ if\ RegisterFlagValidator\ called\ on\ this\ flag}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00163}\mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_a9c9ae9de1ba9e9b591c21a761f9f08c2}{00163}}\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_a9c9ae9de1ba9e9b591c21a761f9f08c2}{is\_default}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ true\ if\ the\ flag\ has\ the\ default\ value\ and}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ has\ not\ been\ set\ explicitly\ from\ the\ cmdline}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ or\ via\ SetCommandLineOption}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00166}\mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_afe83fd3e23c58a6c03197807000e6990}{00166}}\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info_afe83fd3e23c58a6c03197807000e6990}{flag\_ptr}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ pointer\ to\ the\ flag's\ current\ value\ (i.e.\ FLAGS\_foo)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00167}00167\ \};}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00169}00169\ \textcolor{comment}{//\ Using\ this\ inside\ of\ a\ validator\ is\ a\ recipe\ for\ a\ deadlock.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00170}00170\ \textcolor{comment}{//\ TODO(user)\ Fix\ locking\ when\ validators\ are\ running,\ to\ make\ it\ safe\ to}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00171}00171\ \textcolor{comment}{//\ call\ validators\ during\ ParseAllFlags.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00172}00172\ \textcolor{comment}{//\ Also\ make\ sure\ then\ to\ uncomment\ the\ corresponding\ unit\ test\ in}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00173}00173\ \textcolor{comment}{//\ gflags\_unittest.sh}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00174}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_ae1f8d83ef21f4b5f7e2af46b1c9bcbd5}{00174}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{void}\ GetAllFlags(std::vector<CommandLineFlagInfo>*\ OUTPUT);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00175}00175\ \textcolor{comment}{//\ These\ two\ are\ actually\ defined\ in\ gflags\_reporting.cc.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00176}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a4ff02e12c7fa41ddfcca2eda34edc525}{00176}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{void}\ ShowUsageWithFlags(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *argv0);\ \ \textcolor{comment}{//\ what\ -\/-\/help\ does}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00177}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_ae58d1d3fe9b679bf2f5675b61951494d}{00177}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{void}\ ShowUsageWithFlagsRestrict(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *argv0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *restrict);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00179}00179\ \textcolor{comment}{//\ Create\ a\ descriptive\ string\ for\ a\ flag.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00180}00180\ \textcolor{comment}{//\ Goes\ to\ some\ trouble\ to\ make\ pretty\ line\ breaks.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00181}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a556a6279fa552e88de30970e50595f99}{00181}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ std::string\ DescribeOneFlag(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info}{CommandLineFlagInfo}}\&\ flag);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00183}00183\ \textcolor{comment}{//\ Thread-\/hostile;\ meant\ to\ be\ called\ before\ any\ threads\ are\ spawned.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00184}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_acec4ce92ca14e334cc7fd7c751d2d66b}{00184}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{void}\ SetArgv(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ argv);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00186}00186\ \textcolor{comment}{//\ The\ following\ functions\ are\ thread-\/safe\ as\ long\ as\ SetArgv()\ is}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00187}00187\ \textcolor{comment}{//\ only\ called\ before\ any\ threads\ start.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00188}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a3659a492bb65932d3fec71208bfa1401}{00188}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keyword}{const}\ std::vector<std::string>\&\ GetArgvs();}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00189}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a032038f20956397526a7a06871199580}{00189}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ GetArgv();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ all\ of\ argv\ as\ a\ string}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00190}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_af500e228527149ecb0d26ce3b4510f2d}{00190}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ GetArgv0();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ only\ argv0}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00191}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a7c037be382081a1c8440d841adeb33da}{00191}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a7cd152e31d8bd6ada6c1c79adeb5bd8c}{uint32}}\ GetArgvSum();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ simple\ checksum\ of\ argv}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00192}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_ab739c04d15202b4c70543b62307f0832}{00192}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ProgramInvocationName();\ \ \ \ \ \ \ \ \textcolor{comment}{//\ argv0,\ or\ "{}UNKNOWN"{}\ if\ not\ set}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00193}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a7a19c46018b821d28c2c1e43c7d21fec}{00193}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ProgramInvocationShortName();\ \ \ \textcolor{comment}{//\ basename(argv0)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00195}00195\ \textcolor{comment}{//\ ProgramUsage()\ is\ thread-\/safe\ as\ long\ as\ SetUsageMessage()\ is\ only}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00196}00196\ \textcolor{comment}{//\ called\ before\ any\ threads\ start.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00197}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_aed6c60892368a018b30b57dc8bbd16e1}{00197}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ProgramUsage();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ string\ set\ by\ SetUsageMessage()}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00199}00199\ \textcolor{comment}{//\ VersionString()\ is\ thread-\/safe\ as\ long\ as\ SetVersionString()\ is\ only}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00200}00200\ \textcolor{comment}{//\ called\ before\ any\ threads\ start.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00201}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a02a85c40905e662ed9e9528c681bcf16}{00201}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ VersionString();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ string\ set\ by\ SetVersionString()}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00205}00205\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00206}00206\ \textcolor{comment}{//\ Normally\ you\ access\ commandline\ flags\ by\ just\ saying\ "{}if\ (FLAGS\_foo)"{}}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00207}00207\ \textcolor{comment}{//\ or\ whatever,\ and\ set\ them\ by\ calling\ "{}FLAGS\_foo\ =\ bar"{}\ (or,\ more}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00208}00208\ \textcolor{comment}{//\ commonly,\ via\ the\ DEFINE\_foo\ macro).\ \ But\ if\ you\ need\ a\ bit\ more}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00209}00209\ \textcolor{comment}{//\ control,\ we\ have\ programmatic\ ways\ to\ get/set\ the\ flags\ as\ well.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00210}00210\ \textcolor{comment}{//\ These\ programmatic\ ways\ to\ access\ flags\ are\ thread-\/safe,\ but\ direct}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00211}00211\ \textcolor{comment}{//\ access\ is\ only\ thread-\/compatible.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00213}00213\ \textcolor{comment}{//\ Return\ true\ iff\ the\ flagname\ was\ found.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00214}00214\ \textcolor{comment}{//\ OUTPUT\ is\ set\ to\ the\ flag's\ value,\ or\ unchanged\ if\ we\ return\ false.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00215}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a2d864865f087a426390d3527a4c9e57b}{00215}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{bool}\ GetCommandLineOption(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}},\ std::string*\ OUTPUT);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00217}00217\ \textcolor{comment}{//\ Return\ true\ iff\ the\ flagname\ was\ found.\ OUTPUT\ is\ set\ to\ the\ flag's}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00218}00218\ \textcolor{comment}{//\ CommandLineFlagInfo\ or\ unchanged\ if\ we\ return\ false.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00219}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a3bc464c4d9308cdf156f7a1fe330e389}{00219}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{bool}\ GetCommandLineFlagInfo(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}},\ \mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info}{CommandLineFlagInfo}}*\ OUTPUT);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00221}00221\ \textcolor{comment}{//\ Return\ the\ CommandLineFlagInfo\ of\ the\ flagname.\ \ exit()\ if\ name\ not\ found.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00222}00222\ \textcolor{comment}{//\ Example\ usage,\ to\ check\ if\ a\ flag's\ value\ is\ currently\ the\ default\ value:}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00223}00223\ \textcolor{comment}{//\ \ \ if\ (GetCommandLineFlagInfoOrDie("{}foo"{}).is\_default)\ ...}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00224}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a55640f47aff8b8a3e419611dc8172c5e}{00224}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info}{CommandLineFlagInfo}}\ GetCommandLineFlagInfoOrDie(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}});}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00226}00226\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ FlagSettingMode\ \{}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00227}00227\ \ \ \textcolor{comment}{//\ update\ the\ flag's\ value\ (can\ call\ this\ multiple\ times).}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00228}\mbox{\hyperlink{gflags_8h_a959788fbbf7621922b671250ad568369}{00228}}\ \ \ \mbox{\hyperlink{gflags_8h_a959788fbbf7621922b671250ad568369}{SET\_FLAGS\_VALUE}},}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00229}00229\ \ \ \textcolor{comment}{//\ update\ the\ flag's\ value,\ but\ *only\ if*\ it\ has\ not\ yet\ been\ updated}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00230}00230\ \ \ \textcolor{comment}{//\ with\ SET\_FLAGS\_VALUE,\ SET\_FLAG\_IF\_DEFAULT,\ or\ "{}FLAGS\_xxx\ =\ nondef"{}.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00231}\mbox{\hyperlink{gflags_8h_a3a39b5e7a1f93ae9abb376f43f733a21}{00231}}\ \ \ \mbox{\hyperlink{gflags_8h_a3a39b5e7a1f93ae9abb376f43f733a21}{SET\_FLAG\_IF\_DEFAULT}},}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00232}00232\ \ \ \textcolor{comment}{//\ set\ the\ flag's\ default\ value\ to\ this.\ \ If\ the\ flag\ has\ not\ yet\ updated}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00233}00233\ \ \ \textcolor{comment}{//\ yet\ (via\ SET\_FLAGS\_VALUE,\ SET\_FLAG\_IF\_DEFAULT,\ or\ "{}FLAGS\_xxx\ =\ nondef"{})}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00234}00234\ \ \ \textcolor{comment}{//\ change\ the\ flag's\ current\ value\ to\ the\ new\ default\ value\ as\ well.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00235}00235\ \ \ SET\_FLAGS\_DEFAULT}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00236}00236\ \};}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00238}00238\ \textcolor{comment}{//\ Set\ a\ particular\ flag\ ("{}command\ line\ option"{}).\ \ Returns\ a\ string}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00239}00239\ \textcolor{comment}{//\ describing\ the\ new\ value\ that\ the\ option\ has\ been\ set\ to.\ \ The}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00240}00240\ \textcolor{comment}{//\ return\ value\ API\ is\ not\ well-\/specified,\ so\ basically\ just\ depend\ on}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00241}00241\ \textcolor{comment}{//\ it\ to\ be\ empty\ if\ the\ setting\ failed\ for\ some\ reason\ -\/-\/\ the\ name\ is}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00242}00242\ \textcolor{comment}{//\ not\ a\ valid\ flag\ name,\ or\ the\ value\ is\ not\ a\ valid\ value\ -\/-\/\ and}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00243}00243\ \textcolor{comment}{//\ non-\/empty\ else.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00245}00245\ \textcolor{comment}{//\ SetCommandLineOption\ uses\ set\_mode\ ==\ SET\_FLAGS\_VALUE\ (the\ common\ case)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00246}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a1efe92f3c65d5daa5bf9c2148981998e}{00246}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ std::string\ SetCommandLineOption\ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac783c2a5a0d42f36a33959f6a34ae0ba}{value}});}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00247}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a1b43998aca90d34a4e828a05b83df68c}{00247}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ std::string\ SetCommandLineOptionWithMode(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac783c2a5a0d42f36a33959f6a34ae0ba}{value}},\ FlagSettingMode\ set\_mode);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00248}00248\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00250}00250\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00251}00251\ \textcolor{comment}{//\ Saves\ the\ states\ (value,\ default\ value,\ whether\ the\ user\ has\ set}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00252}00252\ \textcolor{comment}{//\ the\ flag,\ registered\ validators,\ etc)\ of\ all\ flags,\ and\ restores}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00253}00253\ \textcolor{comment}{//\ them\ when\ the\ FlagSaver\ is\ destroyed.\ \ This\ is\ very\ useful\ in}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00254}00254\ \textcolor{comment}{//\ tests,\ say,\ when\ you\ want\ to\ let\ your\ tests\ change\ the\ flags,\ but}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00255}00255\ \textcolor{comment}{//\ make\ sure\ that\ they\ get\ reverted\ to\ the\ original\ states\ when\ your}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00256}00256\ \textcolor{comment}{//\ test\ is\ complete.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00257}00257\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00258}00258\ \textcolor{comment}{//\ Example\ usage:}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00259}00259\ \textcolor{comment}{//\ \ \ void\ TestFoo()\ \{}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00260}00260\ \textcolor{comment}{//\ \ \ \ \ FlagSaver\ s1;}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00261}00261\ \textcolor{comment}{//\ \ \ \ \ FLAG\_foo\ =\ false;}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00262}00262\ \textcolor{comment}{//\ \ \ \ \ FLAG\_bar\ =\ "{}some\ value"{};}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00263}00263\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00264}00264\ \textcolor{comment}{//\ \ \ \ \ //\ test\ happens\ here.\ \ You\ can\ return\ at\ any\ time}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00265}00265\ \textcolor{comment}{//\ \ \ \ \ //\ without\ worrying\ about\ restoring\ the\ FLAG\ values.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00266}00266\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00267}00267\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00268}00268\ \textcolor{comment}{//\ Note:\ This\ class\ is\ marked\ with\ GFLAGS\_ATTRIBUTE\_UNUSED\ because\ all}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00269}00269\ \textcolor{comment}{//\ the\ work\ is\ done\ in\ the\ constructor\ and\ destructor,\ so\ in\ the\ standard}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00270}00270\ \textcolor{comment}{//\ usage\ example\ above,\ the\ compiler\ would\ complain\ that\ it's\ an}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00271}00271\ \textcolor{comment}{//\ unused\ variable.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00272}00272\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00273}00273\ \textcolor{comment}{//\ This\ class\ is\ thread-\/safe.\ \ However,\ its\ destructor\ writes\ to}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00274}00274\ \textcolor{comment}{//\ exactly\ the\ set\ of\ flags\ that\ have\ changed\ value\ during\ its}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00275}00275\ \textcolor{comment}{//\ lifetime,\ so\ concurrent\ \_direct\_\ access\ to\ those\ flags}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00276}00276\ \textcolor{comment}{//\ (i.e.\ FLAGS\_foo\ instead\ of\ \{Get,Set\}CommandLineOption())\ is\ unsafe.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00277}00277\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00278}\mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_saver}{00278}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_saver}{FlagSaver}}\ \{}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00279}00279\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00280}\mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_saver_a7b459e22bdcf8adcf7a22fbeb321cc3d}{00280}}\ \ \ \mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_saver_a7b459e22bdcf8adcf7a22fbeb321cc3d}{FlagSaver}}();}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00281}\mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_saver_a9af1aa996c4929d6ae4e8fe9462bdb9d}{00281}}\ \ \ \mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_saver_a9af1aa996c4929d6ae4e8fe9462bdb9d}{\string~FlagSaver}}();}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00282}00282\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00283}00283\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00284}00284\ \ \ \textcolor{keyword}{class\ }FlagSaverImpl*\ impl\_;\ \ \ \textcolor{comment}{//\ we\ use\ pimpl\ here\ to\ keep\ API\ steady}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00285}00285\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00286}00286\ \ \ \mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_saver}{FlagSaver}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_saver}{FlagSaver}}\&);\ \ \textcolor{comment}{//\ no\ copying!}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00287}00287\ \ \ \textcolor{keywordtype}{void}\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_saver}{FlagSaver}}\&);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00288}00288\ \};}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00290}00290\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00291}00291\ \textcolor{comment}{//\ Some\ deprecated\ or\ hopefully-\/soon-\/to-\/be-\/deprecated\ functions.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00293}00293\ \textcolor{comment}{//\ This\ is\ often\ used\ for\ logging.\ \ TODO(csilvers):\ figure\ out\ a\ better\ way}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00294}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a5409eaabca33505b856323a45e795516}{00294}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ std::string\ CommandlineFlagsIntoString();}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00295}00295\ \textcolor{comment}{//\ Usually\ where\ this\ is\ used,\ a\ FlagSaver\ should\ be\ used\ instead.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00296}00296\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00297}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_acf6c4d7ea65b6f185ad130d36fa49810}{00297}}\ \textcolor{keywordtype}{bool}\ ReadFlagsFromString(\textcolor{keyword}{const}\ std::string\&\ flagfilecontents,}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ prog\_name,}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ errors\_are\_fatal);\ \ \textcolor{comment}{//\ uses\ SET\_FLAGS\_VALUE}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00300}00300\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00301}00301\ \textcolor{comment}{//\ These\ let\ you\ manually\ implement\ -\/-\/flagfile\ functionality.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00302}00302\ \textcolor{comment}{//\ DEPRECATED.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00303}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_af07d034987271a5c1fb2f6f8c012b2cf}{00303}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{bool}\ AppendFlagsIntoFile(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ prog\_name);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00304}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_aa4434691e9c178f20683849d3d0cd0dd}{00304}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{bool}\ ReadFromFlagsFile(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ prog\_name,\ \textcolor{keywordtype}{bool}\ errors\_are\_fatal);\ \ \ \textcolor{comment}{//\ uses\ SET\_FLAGS\_VALUE}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00306}00306\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00307}00307\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00308}00308\ \textcolor{comment}{//\ Useful\ routines\ for\ initializing\ flags\ from\ the\ environment.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00309}00309\ \textcolor{comment}{//\ In\ each\ case,\ if\ 'varname'\ does\ not\ exist\ in\ the\ environment}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00310}00310\ \textcolor{comment}{//\ return\ defval.\ \ If\ 'varname'\ does\ exist\ but\ is\ not\ valid}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00311}00311\ \textcolor{comment}{//\ (e.g.,\ not\ a\ number\ for\ an\ int32\ flag),\ abort\ with\ an\ error.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00312}00312\ \textcolor{comment}{//\ Otherwise,\ return\ the\ value.\ \ NOTE:\ for\ booleans,\ for\ true\ use}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00313}00313\ \textcolor{comment}{//\ 't'\ or\ 'T'\ or\ 'true'\ or\ '1',\ for\ false\ 'f'\ or\ 'F'\ or\ 'false'\ or\ '0'.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00314}00314\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00315}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_af15f6bf73ab73da7d363210df7663ebc}{00315}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{bool}\ BoolFromEnv(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *varname,\ \textcolor{keywordtype}{bool}\ defval);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00316}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a7758e76440a50bc8edef985d8070777c}{00316}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_ab5e093ecf2996943821e773cdf22140a}{int32}}\ Int32FromEnv(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *varname,\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_ab5e093ecf2996943821e773cdf22140a}{int32}}\ defval);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00317}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a52ce1579111dcc9f64b414855c046bf0}{00317}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a7cd152e31d8bd6ada6c1c79adeb5bd8c}{uint32}}\ Uint32FromEnv(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *varname,\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a7cd152e31d8bd6ada6c1c79adeb5bd8c}{uint32}}\ defval);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00318}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a8f713859844bedc934aa5e6990aec362}{00318}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_aedc4fdd5cc24ffefc1a7d07a841e9798}{int64}}\ Int64FromEnv(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *varname,\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_aedc4fdd5cc24ffefc1a7d07a841e9798}{int64}}\ defval);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00319}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a9784b80749bf969e9608cff84527147c}{00319}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_af2914c2ad1f9bf454f663ddcc5c934d5}{uint64}}\ Uint64FromEnv(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *varname,\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_af2914c2ad1f9bf454f663ddcc5c934d5}{uint64}}\ defval);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00320}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a75740f55b885d830fac666999a57870e}{00320}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{double}\ DoubleFromEnv(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *varname,\ \textcolor{keywordtype}{double}\ defval);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00321}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a192a80f6bf582e92c19c8b8a77594b08}{00321}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *StringFromEnv(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *varname,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *defval);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00322}00322\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00324}00324\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00325}00325\ \textcolor{comment}{//\ The\ next\ two\ functions\ parse\ gflags\ from\ main():}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00326}00326\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00327}00327\ \textcolor{comment}{//\ Set\ the\ "{}usage"{}\ message\ for\ this\ program.\ \ For\ example:}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00328}00328\ \textcolor{comment}{//\ \ \ string\ usage("{}This\ program\ does\ nothing.\ \ Sample\ usage:\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00329}00329\ \textcolor{comment}{//\ \ \ usage\ +=\ argv[0]\ +\ "{}\ <uselessarg1>\ <uselessarg2>"{};}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00330}00330\ \textcolor{comment}{//\ \ \ SetUsageMessage(usage);}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00331}00331\ \textcolor{comment}{//\ Do\ not\ include\ commandline\ flags\ in\ the\ usage:\ we\ do\ that\ for\ you!}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00332}00332\ \textcolor{comment}{//\ Thread-\/hostile;\ meant\ to\ be\ called\ before\ any\ threads\ are\ spawned.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00333}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a6cae600f9a8925b6cd61162d99c8a39f}{00333}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{void}\ SetUsageMessage(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_afb85c5d9b1bce96aa3b530d581194d1a}{usage}});}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00334}00334\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00335}00335\ \textcolor{comment}{//\ Sets\ the\ version\ string,\ which\ is\ emitted\ with\ -\/-\/version.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00336}00336\ \textcolor{comment}{//\ For\ instance:\ SetVersionString("{}1.3"{});}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00337}00337\ \textcolor{comment}{//\ Thread-\/hostile;\ meant\ to\ be\ called\ before\ any\ threads\ are\ spawned.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00338}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a02be50080330970cbda62acf72d4f049}{00338}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{void}\ SetVersionString(\textcolor{keyword}{const}\ std::string\&\ version);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00339}00339\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00340}00340\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00341}00341\ \textcolor{comment}{//\ Looks\ for\ flags\ in\ argv\ and\ parses\ them.\ \ Rearranges\ argv\ to\ put}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00342}00342\ \textcolor{comment}{//\ flags\ first,\ or\ removes\ them\ entirely\ if\ remove\_flags\ is\ true.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00343}00343\ \textcolor{comment}{//\ If\ a\ flag\ is\ defined\ more\ than\ once\ in\ the\ command\ line\ or\ flag}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00344}00344\ \textcolor{comment}{//\ file,\ the\ last\ definition\ is\ used.\ \ Returns\ the\ index\ (into\ argv)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00345}00345\ \textcolor{comment}{//\ of\ the\ first\ non-\/flag\ argument.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00346}00346\ \textcolor{comment}{//\ See\ top-\/of-\/file\ for\ more\ details\ on\ this\ function.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00347}00347\ \textcolor{preprocessor}{\#ifndef\ SWIG\ \ \ }\textcolor{comment}{//\ In\ swig,\ use\ ParseCommandLineFlagsScript()\ instead.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00348}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a1b5e67ff05303ff025ba6c046934bd83}{00348}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a7cd152e31d8bd6ada6c1c79adeb5bd8c}{uint32}}\ ParseCommandLineFlags(\textcolor{keywordtype}{int}\ *argc,\ \textcolor{keywordtype}{char}***\ argv,\ \textcolor{keywordtype}{bool}\ remove\_flags);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00349}00349\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00350}00350\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00352}00352\ \textcolor{comment}{//\ Calls\ to\ ParseCommandLineNonHelpFlags\ and\ then\ to}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00353}00353\ \textcolor{comment}{//\ HandleCommandLineHelpFlags\ can\ be\ used\ instead\ of\ a\ call\ to}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00354}00354\ \textcolor{comment}{//\ ParseCommandLineFlags\ during\ initialization,\ in\ order\ to\ allow\ for}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00355}00355\ \textcolor{comment}{//\ changing\ default\ values\ for\ some\ FLAGS\ (via}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00356}00356\ \textcolor{comment}{//\ e.g.\ SetCommandLineOptionWithMode\ calls)\ between\ the\ time\ of}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00357}00357\ \textcolor{comment}{//\ command\ line\ parsing\ and\ the\ time\ of\ dumping\ help\ information\ for}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00358}00358\ \textcolor{comment}{//\ the\ flags\ as\ a\ result\ of\ command\ line\ parsing.\ \ If\ a\ flag\ is}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00359}00359\ \textcolor{comment}{//\ defined\ more\ than\ once\ in\ the\ command\ line\ or\ flag\ file,\ the\ last}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00360}00360\ \textcolor{comment}{//\ definition\ is\ used.\ \ Returns\ the\ index\ (into\ argv)\ of\ the\ first}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00361}00361\ \textcolor{comment}{//\ non-\/flag\ argument.\ \ (If\ remove\_flags\ is\ true,\ will\ always\ return\ 1.)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00362}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a279d484af10bfbe5665a5655d16e5172}{00362}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a7cd152e31d8bd6ada6c1c79adeb5bd8c}{uint32}}\ ParseCommandLineNonHelpFlags(\textcolor{keywordtype}{int}\ *argc,\ \textcolor{keywordtype}{char}***\ argv,\ \textcolor{keywordtype}{bool}\ remove\_flags);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00363}00363\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00364}00364\ \textcolor{comment}{//\ This\ is\ actually\ defined\ in\ gflags\_reporting.cc.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00365}00365\ \textcolor{comment}{//\ This\ function\ is\ misnamed\ (it\ also\ handles\ -\/-\/version,\ etc.),\ but}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00366}00366\ \textcolor{comment}{//\ it's\ too\ late\ to\ change\ that\ now.\ :-\/(}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00367}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a54ddda77ec893438bd2faf0b6a114fe9}{00367}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{void}\ HandleCommandLineHelpFlags();\ \ \ \textcolor{comment}{//\ in\ gflags\_reporting.cc}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00368}00368\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00369}00369\ \textcolor{comment}{//\ Allow\ command\ line\ reparsing.\ \ Disables\ the\ error\ normally}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00370}00370\ \textcolor{comment}{//\ generated\ when\ an\ unknown\ flag\ is\ found,\ since\ it\ may\ be\ found\ in\ a}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00371}00371\ \textcolor{comment}{//\ later\ parse.\ \ Thread-\/hostile;\ meant\ to\ be\ called\ before\ any\ threads}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00372}00372\ \textcolor{comment}{//\ are\ spawned.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00373}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a1ce76dc3deebfb14d82bba08d39dae02}{00373}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{void}\ AllowCommandLineReparsing();}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00374}00374\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00375}00375\ \textcolor{comment}{//\ Reparse\ the\ flags\ that\ have\ not\ yet\ been\ recognized.\ \ Only\ flags}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00376}00376\ \textcolor{comment}{//\ registered\ since\ the\ last\ parse\ will\ be\ recognized.\ \ Any\ flag\ value}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00377}00377\ \textcolor{comment}{//\ must\ be\ provided\ as\ part\ of\ the\ argument\ using\ "{}="{},\ not\ as\ a}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00378}00378\ \textcolor{comment}{//\ separate\ command\ line\ argument\ that\ follows\ the\ flag\ argument.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00379}00379\ \textcolor{comment}{//\ Intended\ for\ handling\ flags\ from\ dynamically\ loaded\ libraries,}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00380}00380\ \textcolor{comment}{//\ since\ their\ flags\ are\ not\ registered\ until\ they\ are\ loaded.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00381}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_adfdb75d18218c04afb5eafbed26b1705}{00381}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{void}\ ReparseCommandLineNonHelpFlags();}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00382}00382\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00383}00383\ \textcolor{comment}{//\ Clean\ up\ memory\ allocated\ by\ flags.\ \ This\ is\ only\ needed\ to\ reduce}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00384}00384\ \textcolor{comment}{//\ the\ quantity\ of\ "{}potentially\ leaked"{}\ reports\ emitted\ by\ memory}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00385}00385\ \textcolor{comment}{//\ debugging\ tools\ such\ as\ valgrind.\ \ It\ is\ not\ required\ for\ normal}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00386}00386\ \textcolor{comment}{//\ operation,\ or\ for\ the\ google\ perftools\ heap-\/checker.\ \ It\ must\ only}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00387}00387\ \textcolor{comment}{//\ be\ called\ when\ the\ process\ is\ about\ to\ exit,\ and\ all\ threads\ that}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00388}00388\ \textcolor{comment}{//\ might\ access\ flags\ are\ quiescent.\ \ Referencing\ flags\ after\ this\ is}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00389}00389\ \textcolor{comment}{//\ called\ will\ have\ unexpected\ consequences.\ \ This\ is\ not\ safe\ to\ run}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00390}00390\ \textcolor{comment}{//\ when\ multiple\ threads\ might\ be\ running:\ the\ function\ is}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00391}00391\ \textcolor{comment}{//\ thread-\/hostile.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00392}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a3789286752e128fc9714937cd000f0d3}{00392}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{void}\ ShutDownCommandLineFlags();}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00393}00393\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00394}00394\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00395}00395\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00396}00396\ \textcolor{comment}{//\ Now\ come\ the\ command\ line\ flag\ declaration/definition\ macros\ that}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00397}00397\ \textcolor{comment}{//\ will\ actually\ be\ used.\ \ They're\ kind\ of\ hairy.\ \ A\ major\ reason}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00398}00398\ \textcolor{comment}{//\ for\ this\ is\ initialization:\ we\ want\ people\ to\ be\ able\ to\ access}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00399}00399\ \textcolor{comment}{//\ variables\ in\ global\ constructors\ and\ have\ that\ not\ crash,\ even\ if}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00400}00400\ \textcolor{comment}{//\ their\ global\ constructor\ runs\ before\ the\ global\ constructor\ here.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00401}00401\ \textcolor{comment}{//\ (Obviously,\ we\ can't\ guarantee\ the\ flags\ will\ have\ the\ correct}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00402}00402\ \textcolor{comment}{//\ default\ value\ in\ that\ case,\ but\ at\ least\ accessing\ them\ is\ safe.)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00403}00403\ \textcolor{comment}{//\ The\ only\ way\ to\ do\ that\ is\ have\ flags\ point\ to\ a\ static\ buffer.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00404}00404\ \textcolor{comment}{//\ So\ we\ make\ one,\ using\ a\ union\ to\ ensure\ proper\ alignment,\ and}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00405}00405\ \textcolor{comment}{//\ then\ use\ placement-\/new\ to\ actually\ set\ up\ the\ flag\ with\ the}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00406}00406\ \textcolor{comment}{//\ correct\ default\ value.\ \ In\ the\ same\ vein,\ we\ have\ to\ worry\ about}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00407}00407\ \textcolor{comment}{//\ flag\ access\ in\ global\ destructors,\ so\ FlagRegisterer\ has\ to\ be}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00408}00408\ \textcolor{comment}{//\ careful\ never\ to\ destroy\ the\ flag-\/values\ it\ constructs.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00409}00409\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00410}00410\ \textcolor{comment}{//\ Note\ that\ when\ we\ define\ a\ flag\ variable\ FLAGS\_<name>,\ we\ also}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00411}00411\ \textcolor{comment}{//\ preemptively\ define\ a\ junk\ variable,\ FLAGS\_no<name>.\ \ This\ is\ to}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00412}00412\ \textcolor{comment}{//\ cause\ a\ link-\/time\ error\ if\ someone\ tries\ to\ define\ 2\ flags\ with}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00413}00413\ \textcolor{comment}{//\ names\ like\ "{}logging"{}\ and\ "{}nologging"{}.\ \ We\ do\ this\ because\ a\ bool}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00414}00414\ \textcolor{comment}{//\ flag\ FLAG\ can\ be\ set\ from\ the\ command\ line\ to\ true\ with\ a\ "{}-\/FLAG"{}}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00415}00415\ \textcolor{comment}{//\ argument,\ and\ to\ false\ with\ a\ "{}-\/noFLAG"{}\ argument,\ and\ so\ this\ can}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00416}00416\ \textcolor{comment}{//\ potentially\ avert\ confusion.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00417}00417\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00418}00418\ \textcolor{comment}{//\ We\ also\ put\ flags\ into\ their\ own\ namespace.\ \ It\ is\ purposefully}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00419}00419\ \textcolor{comment}{//\ named\ in\ an\ opaque\ way\ that\ people\ should\ have\ trouble\ typing}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00420}00420\ \textcolor{comment}{//\ directly.\ \ The\ idea\ is\ that\ DEFINE\ puts\ the\ flag\ in\ the\ weird}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00421}00421\ \textcolor{comment}{//\ namespace,\ and\ DECLARE\ imports\ the\ flag\ from\ there\ into\ the\ current}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00422}00422\ \textcolor{comment}{//\ namespace.\ \ The\ net\ result\ is\ to\ force\ people\ to\ use\ DECLARE\ to\ get}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00423}00423\ \textcolor{comment}{//\ access\ to\ a\ flag,\ rather\ than\ saying\ "{}extern\ GFLAGS\_DLL\_DECL\ bool\ FLAGS\_whatever;"{}}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00424}00424\ \textcolor{comment}{//\ or\ some\ such\ instead.\ \ We\ want\ this\ so\ we\ can\ put\ extra}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00425}00425\ \textcolor{comment}{//\ functionality\ (like\ sanity-\/checking)\ in\ DECLARE\ if\ we\ want,\ and}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00426}00426\ \textcolor{comment}{//\ make\ sure\ it\ is\ picked\ up\ everywhere.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00427}00427\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00428}00428\ \textcolor{comment}{//\ We\ also\ put\ the\ type\ of\ the\ variable\ in\ the\ namespace,\ so\ that}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00429}00429\ \textcolor{comment}{//\ people\ can't\ DECLARE\_int32\ something\ that\ they\ DEFINE\_bool'd}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00430}00430\ \textcolor{comment}{//\ elsewhere.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00431}00431\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00432}\mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_registerer}{00432}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_registerer}{FlagRegisterer}}\ \{}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00433}00433\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00434}00434\ \ \ \textcolor{comment}{//\ We\ instantiate\ this\ template\ ctor\ for\ all\ supported\ types,}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00435}00435\ \ \ \textcolor{comment}{//\ so\ it\ is\ possible\ to\ place\ implementation\ of\ the\ FlagRegisterer\ ctor\ in}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00436}00436\ \ \ \textcolor{comment}{//\ .cc\ file.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00437}00437\ \ \ \textcolor{comment}{//\ Calling\ this\ constructor\ with\ unsupported\ type\ will\ produce\ linker\ error.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00438}00438\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ FlagType>}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00439}\mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_registerer_ab3542f1059b8584757f1e9526831ebe7}{00439}}\ \ \ \mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_registerer_ab3542f1059b8584757f1e9526831ebe7}{FlagRegisterer}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}},}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ help,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ filename,}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FlagType*\ current\_storage,\ FlagType*\ defvalue\_storage);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00442}00442\ \};}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00443}00443\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00444}00444\ \textcolor{comment}{//\ Force\ compiler\ to\ not\ generate\ code\ for\ the\ given\ template\ specialization.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00445}00445\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ \_MSC\_VER\ <\ 1800\ }\textcolor{comment}{//\ Visual\ Studio\ 2013\ version\ 12.0}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00446}00446\ \textcolor{preprocessor}{\ \ \#define\ GFLAGS\_DECLARE\_FLAG\_REGISTERER\_CTOR(type)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00447}00447\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00448}\mbox{\hyperlink{gflags_8h_ae344c571932298c449ddc62dd8ca9a0a}{00448}}\ \textcolor{preprocessor}{\ \ \#define\ GFLAGS\_DECLARE\_FLAG\_REGISTERER\_CTOR(type)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00449}00449\ \textcolor{preprocessor}{\ \ \ \ extern\ template\ GFLAGS\_DLL\_DECL\ FlagRegisterer::FlagRegisterer(\ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00450}00450\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ const\ char*\ name,\ const\ char*\ help,\ const\ char*\ filename,\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00451}00451\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ type*\ current\_storage,\ type*\ defvalue\_storage)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00452}00452\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00453}00453\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00454}00454\ \textcolor{comment}{//\ Do\ this\ for\ all\ supported\ flag\ types.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00455}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_afe19568ac95f6fcd179e7724e5efa5e6}{00455}}\ \mbox{\hyperlink{gflags_8h_ae344c571932298c449ddc62dd8ca9a0a}{GFLAGS\_DECLARE\_FLAG\_REGISTERER\_CTOR}}(\textcolor{keywordtype}{bool});}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00456}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a07862e1a6509d53a92cc071d7cb8a11d}{00456}}\ \mbox{\hyperlink{gflags_8h_ae344c571932298c449ddc62dd8ca9a0a}{GFLAGS\_DECLARE\_FLAG\_REGISTERER\_CTOR}}(\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_ab5e093ecf2996943821e773cdf22140a}{int32}});}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00457}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a1995cc0aa7f6f52121a0b308949ff6d6}{00457}}\ \mbox{\hyperlink{gflags_8h_ae344c571932298c449ddc62dd8ca9a0a}{GFLAGS\_DECLARE\_FLAG\_REGISTERER\_CTOR}}(\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a7cd152e31d8bd6ada6c1c79adeb5bd8c}{uint32}});}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00458}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a8bcdb0a51ef4b266647f793b9025fe25}{00458}}\ \mbox{\hyperlink{gflags_8h_ae344c571932298c449ddc62dd8ca9a0a}{GFLAGS\_DECLARE\_FLAG\_REGISTERER\_CTOR}}(\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_aedc4fdd5cc24ffefc1a7d07a841e9798}{int64}});}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00459}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a44eedf4d5f3a65e296915d349dad2dae}{00459}}\ \mbox{\hyperlink{gflags_8h_ae344c571932298c449ddc62dd8ca9a0a}{GFLAGS\_DECLARE\_FLAG\_REGISTERER\_CTOR}}(\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_af2914c2ad1f9bf454f663ddcc5c934d5}{uint64}});}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00460}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_aec13de5f67ab599571c432978bd0b601}{00460}}\ \mbox{\hyperlink{gflags_8h_ae344c571932298c449ddc62dd8ca9a0a}{GFLAGS\_DECLARE\_FLAG\_REGISTERER\_CTOR}}(\textcolor{keywordtype}{double});}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00461}\mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_a77ca59547901551105da91850d6779ab}{00461}}\ \mbox{\hyperlink{gflags_8h_ae344c571932298c449ddc62dd8ca9a0a}{GFLAGS\_DECLARE\_FLAG\_REGISTERER\_CTOR}}(std::string);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00462}00462\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00463}00463\ \textcolor{preprocessor}{\#undef\ GFLAGS\_DECLARE\_FLAG\_REGISTERER\_CTOR}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00464}00464\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00465}00465\ \textcolor{comment}{//\ If\ your\ application\ \#defines\ STRIP\_FLAG\_HELP\ to\ a\ non-\/zero\ value}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00466}00466\ \textcolor{comment}{//\ before\ \#including\ this\ file,\ we\ remove\ the\ help\ message\ from\ the}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00467}00467\ \textcolor{comment}{//\ binary\ file.\ This\ can\ reduce\ the\ size\ of\ the\ resulting\ binary}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00468}00468\ \textcolor{comment}{//\ somewhat,\ and\ may\ also\ be\ useful\ for\ security\ reasons.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00469}00469\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00470}00470\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_ad8eca23a9319ef28a41fc564ba4e21bc}{kStrippedFlagHelp}}[];}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00471}00471\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00472}00472\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00473}00473\ \}\ \textcolor{comment}{//\ namespace\ GFLAGS\_NAMESPACE}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00474}00474\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00475}00475\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00476}00476\ \textcolor{preprocessor}{\#ifndef\ SWIG\ \ }\textcolor{comment}{//\ In\ swig,\ ignore\ the\ main\ flag\ declarations}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00477}00477\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00478}00478\ \textcolor{preprocessor}{\#if\ defined(STRIP\_FLAG\_HELP)\ \&\&\ STRIP\_FLAG\_HELP\ >\ 0}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00479}00479\ \textcolor{comment}{//\ Need\ this\ construct\ to\ avoid\ the\ 'defined\ but\ not\ used'\ warning.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00480}00480\ \textcolor{preprocessor}{\#define\ MAYBE\_STRIPPED\_HELP(txt)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00481}00481\ \textcolor{preprocessor}{\ \ \ (false\ ?\ (txt)\ :\ GFLAGS\_NAMESPACE::kStrippedFlagHelp)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00482}00482\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00483}\mbox{\hyperlink{gflags_8h_a872aff5dae6b12538420bdacd2869d90}{00483}}\ \textcolor{preprocessor}{\#define\ MAYBE\_STRIPPED\_HELP(txt)\ txt}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00484}00484\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00485}00485\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00486}00486\ \textcolor{comment}{//\ Each\ command-\/line\ flag\ has\ two\ variables\ associated\ with\ it:\ one}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00487}00487\ \textcolor{comment}{//\ with\ the\ current\ value,\ and\ one\ with\ the\ default\ value.\ \ However,}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00488}00488\ \textcolor{comment}{//\ we\ have\ a\ third\ variable,\ which\ is\ where\ value\ is\ assigned;\ it's\ a}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00489}00489\ \textcolor{comment}{//\ constant.\ \ This\ guarantees\ that\ FLAG\_\#\#value\ is\ initialized\ at}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00490}00490\ \textcolor{comment}{//\ static\ initialization\ time\ (e.g.\ before\ program-\/start)\ rather\ than}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00491}00491\ \textcolor{comment}{//\ than\ global\ construction\ time\ (which\ is\ after\ program-\/start\ but}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00492}00492\ \textcolor{comment}{//\ before\ main),\ at\ least\ when\ 'value'\ is\ a\ compile-\/time\ constant.\ \ We}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00493}00493\ \textcolor{comment}{//\ use\ a\ small\ trick\ for\ the\ "{}default\ value"{}\ variable,\ and\ call\ it}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00494}00494\ \textcolor{comment}{//\ FLAGS\_no<name>.\ \ This\ serves\ the\ second\ purpose\ of\ assuring\ a}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00495}00495\ \textcolor{comment}{//\ compile\ error\ if\ someone\ tries\ to\ define\ a\ flag\ named\ no<name>}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00496}00496\ \textcolor{comment}{//\ which\ is\ illegal\ (-\/-\/foo\ and\ -\/-\/nofoo\ both\ affect\ the\ "{}foo"{}\ flag).}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00497}\mbox{\hyperlink{gflags_8h_ad9d9e4fc382a6fae0c3d06c55364ced1}{00497}}\ \textcolor{preprocessor}{\#define\ DEFINE\_VARIABLE(type,\ shorttype,\ name,\ value,\ help)\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00498}00498\ \textcolor{preprocessor}{\ \ namespace\ fL\#\#shorttype\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00499}00499\ \textcolor{preprocessor}{\ \ \ \ static\ const\ type\ FLAGS\_nono\#\#name\ =\ value;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00500}00500\ \textcolor{preprocessor}{\ \ \ \ }\textcolor{comment}{/*\ We\ always\ want\ to\ export\ defined\ variables,\ dll\ or\ no\ */}\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00501}00501\ \textcolor{preprocessor}{\ \ \ \ GFLAGS\_DLL\_DEFINE\_FLAG\ type\ FLAGS\_\#\#name\ =\ FLAGS\_nono\#\#name;\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00502}00502\ \textcolor{preprocessor}{\ \ \ \ static\ type\ FLAGS\_no\#\#name\ =\ FLAGS\_nono\#\#name;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00503}00503\ \textcolor{preprocessor}{\ \ \ \ static\ GFLAGS\_NAMESPACE::FlagRegisterer\ o\_\#\#name(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00504}00504\ \textcolor{preprocessor}{\ \ \ \ \ \ \#name,\ MAYBE\_STRIPPED\_HELP(help),\ \_\_FILE\_\_,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00505}00505\ \textcolor{preprocessor}{\ \ \ \ \ \ \&FLAGS\_\#\#name,\ \&FLAGS\_no\#\#name);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00506}00506\ \textcolor{preprocessor}{\ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00507}00507\ \textcolor{preprocessor}{\ \ using\ fL\#\#shorttype::FLAGS\_\#\#name}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00508}00508\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00509}00509\ \textcolor{comment}{//\ For\ DEFINE\_bool,\ we\ want\ to\ do\ the\ extra\ check\ that\ the\ passed-\/in}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00510}00510\ \textcolor{comment}{//\ value\ is\ actually\ a\ bool,\ and\ not\ a\ string\ or\ something\ that\ can\ be}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00511}00511\ \textcolor{comment}{//\ coerced\ to\ a\ bool.\ \ These\ declarations\ (no\ definition\ needed!)\ will}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00512}00512\ \textcolor{comment}{//\ help\ us\ do\ that,\ and\ never\ evaluate\ From,\ which\ is\ important.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00513}00513\ \textcolor{comment}{//\ We'll\ use\ 'sizeof(IsBool(val))'\ to\ distinguish.\ This\ code\ requires}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00514}00514\ \textcolor{comment}{//\ that\ the\ compiler\ have\ different\ sizes\ for\ bool\ \&\ double.\ Since}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00515}00515\ \textcolor{comment}{//\ this\ is\ not\ guaranteed\ by\ the\ standard,\ we\ check\ it\ with\ a}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00516}00516\ \textcolor{comment}{//\ COMPILE\_ASSERT.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00517}\mbox{\hyperlink{namespacef_l_b}{00517}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacef_l_b}{fLB}}\ \{}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00518}\mbox{\hyperlink{structf_l_b_1_1_compile_assert}{00518}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structf_l_b_1_1_compile_assert}{CompileAssert}}\ \{\};}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00519}\mbox{\hyperlink{namespacef_l_b_a2de1be5ae36822f837a104c4a09d8ff5}{00519}}\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{structf_l_b_1_1_compile_assert}{CompileAssert}}\ \mbox{\hyperlink{namespacef_l_b_a2de1be5ae36822f837a104c4a09d8ff5}{expected\_sizeof\_double\_neq\_sizeof\_bool}}[}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00520}00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keyword}{sizeof}(double)\ !=\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{bool}))\ ?\ 1\ :\ -\/1];}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00521}\mbox{\hyperlink{namespacef_l_b_a44b10cd752a6c2d26e2f3cf1681ce9a3}{00521}}\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ From>\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \mbox{\hyperlink{namespacef_l_b_a44b10cd752a6c2d26e2f3cf1681ce9a3}{IsBoolFlag}}(\textcolor{keyword}{const}\ From\&\ from);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00522}\mbox{\hyperlink{namespacef_l_b_a467c1bc95ab8e3d9f035be7f3af1a822}{00522}}\ \mbox{\hyperlink{gflags__declare_8h_ab630d48e0b993f39ca96b0c4401f01cf}{GFLAGS\_DLL\_DECL}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacef_l_b_a44b10cd752a6c2d26e2f3cf1681ce9a3}{IsBoolFlag}}(\textcolor{keywordtype}{bool}\ from);}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00523}00523\ \}\ \ \textcolor{comment}{//\ namespace\ fLB}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00524}00524\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00525}00525\ \textcolor{comment}{//\ Here\ are\ the\ actual\ DEFINE\_*-\/macros.\ The\ respective\ DECLARE\_*-\/macros}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00526}00526\ \textcolor{comment}{//\ are\ in\ a\ separate\ include,\ gflags\_declare.h,\ for\ reducing}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00527}00527\ \textcolor{comment}{//\ the\ physical\ transitive\ size\ for\ DECLARE\ use.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00528}\mbox{\hyperlink{gflags_8h_a315237dcd20ce003eb2f5e5357ed8da1}{00528}}\ \textcolor{preprocessor}{\#define\ DEFINE\_bool(name,\ val,\ txt)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00529}00529\ \textcolor{preprocessor}{\ \ namespace\ fLB\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00530}00530\ \textcolor{preprocessor}{\ \ \ \ typedef\ ::fLB::CompileAssert\ FLAG\_\#\#name\#\#\_value\_is\_not\_a\_bool[\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00531}00531\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ (sizeof(::fLB::IsBoolFlag(val))\ !=\ sizeof(double))?\ 1:\ -\/1];\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00532}00532\ \textcolor{preprocessor}{\ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00533}00533\ \textcolor{preprocessor}{\ \ DEFINE\_VARIABLE(bool,\ B,\ name,\ val,\ txt)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00534}00534\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00535}\mbox{\hyperlink{gflags_8h_a0f98f2f925d3cef08cf65f512b88230f}{00535}}\ \textcolor{preprocessor}{\#define\ DEFINE\_int32(name,\ val,\ txt)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00536}00536\ \textcolor{preprocessor}{\ \ \ DEFINE\_VARIABLE(GFLAGS\_NAMESPACE::int32,\ I,\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00537}00537\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name,\ val,\ txt)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00538}00538\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00539}\mbox{\hyperlink{gflags_8h_ab942d47624c2d2f5bc1f902f70d355c2}{00539}}\ \textcolor{preprocessor}{\#define\ DEFINE\_uint32(name,val,\ txt)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00540}00540\ \textcolor{preprocessor}{\ \ \ DEFINE\_VARIABLE(GFLAGS\_NAMESPACE::uint32,\ U,\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00541}00541\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name,\ val,\ txt)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00542}00542\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00543}\mbox{\hyperlink{gflags_8h_a7976fc247349071651517c5cc4c881e3}{00543}}\ \textcolor{preprocessor}{\#define\ DEFINE\_int64(name,\ val,\ txt)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00544}00544\ \textcolor{preprocessor}{\ \ \ DEFINE\_VARIABLE(GFLAGS\_NAMESPACE::int64,\ I64,\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00545}00545\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name,\ val,\ txt)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00546}00546\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00547}\mbox{\hyperlink{gflags_8h_a7d240238de6c0759c20ce2c804a9860e}{00547}}\ \textcolor{preprocessor}{\#define\ DEFINE\_uint64(name,val,\ txt)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00548}00548\ \textcolor{preprocessor}{\ \ \ DEFINE\_VARIABLE(GFLAGS\_NAMESPACE::uint64,\ U64,\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00549}00549\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name,\ val,\ txt)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00550}00550\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00551}\mbox{\hyperlink{gflags_8h_a04c7bb3afeca475e0f11d8f3eaf1383d}{00551}}\ \textcolor{preprocessor}{\#define\ DEFINE\_double(name,\ val,\ txt)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00552}00552\ \textcolor{preprocessor}{\ \ \ DEFINE\_VARIABLE(double,\ D,\ name,\ val,\ txt)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00553}00553\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00554}00554\ \textcolor{comment}{//\ Strings\ are\ trickier,\ because\ they're\ not\ a\ POD,\ so\ we\ can't}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00555}00555\ \textcolor{comment}{//\ construct\ them\ at\ static-\/initialization\ time\ (instead\ they\ get}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00556}00556\ \textcolor{comment}{//\ constructed\ at\ global-\/constructor\ time,\ which\ is\ much\ later).\ \ To}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00557}00557\ \textcolor{comment}{//\ try\ to\ avoid\ crashes\ in\ that\ case,\ we\ use\ a\ char\ buffer\ to\ store}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00558}00558\ \textcolor{comment}{//\ the\ string,\ which\ we\ can\ static-\/initialize,\ and\ then\ placement-\/new}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00559}00559\ \textcolor{comment}{//\ into\ it\ later.\ \ It's\ not\ perfect,\ but\ the\ best\ we\ can\ do.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00560}00560\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00561}\mbox{\hyperlink{namespacef_l_s}{00561}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacef_l_s}{fLS}}\ \{}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00562}00562\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00563}\mbox{\hyperlink{namespacef_l_s_a6c7045aabe9208d1adef185b78db39cd}{00563}}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespacef_l_s_a1b41ccd11a207a35ef8eae177682761c}{clstring}}*\ \mbox{\hyperlink{namespacef_l_s_a6c7045aabe9208d1adef185b78db39cd}{dont\_pass0toDEFINE\_string}}(\textcolor{keywordtype}{char}\ *stringspot,}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac783c2a5a0d42f36a33959f6a34ae0ba}{value}})\ \{}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00565}00565\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}(stringspot)\ \mbox{\hyperlink{namespacef_l_s_a1b41ccd11a207a35ef8eae177682761c}{clstring}}(\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac783c2a5a0d42f36a33959f6a34ae0ba}{value}});}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00566}00566\ \}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00567}\mbox{\hyperlink{namespacef_l_s_ab18b14f845169b9f81e1db21c8094ff7}{00567}}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespacef_l_s_a1b41ccd11a207a35ef8eae177682761c}{clstring}}*\ \mbox{\hyperlink{namespacef_l_s_a6c7045aabe9208d1adef185b78db39cd}{dont\_pass0toDEFINE\_string}}(\textcolor{keywordtype}{char}\ *stringspot,}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00568}00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacef_l_s_a1b41ccd11a207a35ef8eae177682761c}{clstring}}\ \&\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac783c2a5a0d42f36a33959f6a34ae0ba}{value}})\ \{}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00569}00569\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}(stringspot)\ \mbox{\hyperlink{namespacef_l_s_a1b41ccd11a207a35ef8eae177682761c}{clstring}}(\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac783c2a5a0d42f36a33959f6a34ae0ba}{value}});}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00570}00570\ \}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00571}\mbox{\hyperlink{namespacef_l_s_a9d49c430509e86262e2b169b892c65be}{00571}}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{namespacef_l_s_a1b41ccd11a207a35ef8eae177682761c}{clstring}}*\ \mbox{\hyperlink{namespacef_l_s_a6c7045aabe9208d1adef185b78db39cd}{dont\_pass0toDEFINE\_string}}(\textcolor{keywordtype}{char}\ *stringspot,}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac783c2a5a0d42f36a33959f6a34ae0ba}{value}});}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00573}00573\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00574}00574\ \textcolor{comment}{//\ Auxiliary\ class\ used\ to\ explicitly\ call\ destructor\ of\ string\ objects}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00575}00575\ \textcolor{comment}{//\ allocated\ using\ placement\ new\ during\ static\ program\ deinitialization.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00576}00576\ \textcolor{comment}{//\ The\ destructor\ MUST\ be\ an\ inline\ function\ such\ that\ the\ explicit}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00577}00577\ \textcolor{comment}{//\ destruction\ occurs\ in\ the\ same\ compilation\ unit\ as\ the\ placement\ new.}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00578}\mbox{\hyperlink{classf_l_s_1_1_string_flag_destructor}{00578}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classf_l_s_1_1_string_flag_destructor}{StringFlagDestructor}}\ \{}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00579}00579\ \ \ \textcolor{keywordtype}{void}\ *current\_storage\_;}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00580}00580\ \ \ \textcolor{keywordtype}{void}\ *defvalue\_storage\_;}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00581}00581\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00582}00582\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00583}00583\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00584}\mbox{\hyperlink{classf_l_s_1_1_string_flag_destructor_ad62cc257c672e2e16e134f92fdfa45f7}{00584}}\ \ \ \mbox{\hyperlink{classf_l_s_1_1_string_flag_destructor_ad62cc257c672e2e16e134f92fdfa45f7}{StringFlagDestructor}}(\textcolor{keywordtype}{void}\ *current,\ \textcolor{keywordtype}{void}\ *defvalue)}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00585}00585\ \ \ :\ current\_storage\_(current),\ defvalue\_storage\_(defvalue)\ \{\}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00586}00586\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00587}\mbox{\hyperlink{classf_l_s_1_1_string_flag_destructor_a13f872382842b7278bbe5a88da17b6dc}{00587}}\ \ \ \mbox{\hyperlink{classf_l_s_1_1_string_flag_destructor_a13f872382842b7278bbe5a88da17b6dc}{\string~StringFlagDestructor}}()\ \{}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00588}00588\ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{namespacef_l_s_a1b41ccd11a207a35ef8eae177682761c}{clstring}}*\textcolor{keyword}{>}(current\_storage\_\ )-\/>\string~\mbox{\hyperlink{namespacef_l_s_a1b41ccd11a207a35ef8eae177682761c}{clstring}}();}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00589}00589\ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{namespacef_l_s_a1b41ccd11a207a35ef8eae177682761c}{clstring}}*\textcolor{keyword}{>}(defvalue\_storage\_)-\/>\string~\mbox{\hyperlink{namespacef_l_s_a1b41ccd11a207a35ef8eae177682761c}{clstring}}();}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00590}00590\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00591}00591\ \};}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00592}00592\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00593}00593\ \}\ \ \textcolor{comment}{//\ namespace\ fLS}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00594}00594\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00595}00595\ \textcolor{comment}{//\ We\ need\ to\ define\ a\ var\ named\ FLAGS\_no\#\#name\ so\ people\ don't\ define}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00596}00596\ \textcolor{comment}{//\ -\/-\/string\ and\ -\/-\/nostring.\ \ And\ we\ need\ a\ temporary\ place\ to\ put\ val}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00597}00597\ \textcolor{comment}{//\ so\ we\ don't\ have\ to\ evaluate\ it\ twice.\ \ Two\ great\ needs\ that\ go}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00598}00598\ \textcolor{comment}{//\ great\ together!}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00599}00599\ \textcolor{comment}{//\ The\ weird\ 'using'\ +\ 'extern'\ inside\ the\ fLS\ namespace\ is\ to\ work\ around}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00600}00600\ \textcolor{comment}{//\ an\ unknown\ compiler\ bug/issue\ with\ the\ gcc\ 4.2.1\ on\ SUSE\ 10.\ \ See}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00601}00601\ \textcolor{comment}{//\ \ \ \ http://code.google.com/p/google-\/gflags/issues/detail?id=20}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00602}\mbox{\hyperlink{gflags_8h_a0ac3b0cf491d002a12e819bcb8d79d67}{00602}}\ \textcolor{preprocessor}{\#define\ DEFINE\_string(name,\ val,\ txt)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00603}00603\ \textcolor{preprocessor}{\ \ namespace\ fLS\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00604}00604\ \textcolor{preprocessor}{\ \ \ \ using\ ::fLS::clstring;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00605}00605\ \textcolor{preprocessor}{\ \ \ \ using\ ::fLS::StringFlagDestructor;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00606}00606\ \textcolor{preprocessor}{\ \ \ \ static\ union\ \{\ void*\ align;\ char\ s[sizeof(clstring)];\ \}\ s\_\#\#name[2];\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00607}00607\ \textcolor{preprocessor}{\ \ \ \ clstring*\ const\ FLAGS\_no\#\#name\ =\ ::fLS::\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00608}00608\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dont\_pass0toDEFINE\_string(s\_\#\#name[0].s,\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00609}00609\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val);\ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00610}00610\ \textcolor{preprocessor}{\ \ \ \ static\ GFLAGS\_NAMESPACE::FlagRegisterer\ o\_\#\#name(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00611}00611\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#name,\ MAYBE\_STRIPPED\_HELP(txt),\ \_\_FILE\_\_,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00612}00612\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ FLAGS\_no\#\#name,\ new\ (s\_\#\#name[1].s)\ clstring(*FLAGS\_no\#\#name));\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00613}00613\ \textcolor{preprocessor}{\ \ \ \ static\ StringFlagDestructor\ d\_\#\#name(s\_\#\#name[0].s,\ s\_\#\#name[1].s);\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00614}00614\ \textcolor{preprocessor}{\ \ \ \ extern\ GFLAGS\_DLL\_DEFINE\_FLAG\ clstring\&\ FLAGS\_\#\#name;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00615}00615\ \textcolor{preprocessor}{\ \ \ \ using\ fLS::FLAGS\_\#\#name;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00616}00616\ \textcolor{preprocessor}{\ \ \ \ clstring\&\ FLAGS\_\#\#name\ =\ *FLAGS\_no\#\#name;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00617}00617\ \textcolor{preprocessor}{\ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00618}00618\ \textcolor{preprocessor}{\ \ using\ fLS::FLAGS\_\#\#name}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00619}00619\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00620}00620\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ SWIG}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00621}00621\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00622}00622\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00623}00623\ \textcolor{comment}{//\ Import\ gflags\ library\ symbols\ into\ alternative/deprecated\ namespace(s)}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00624}00624\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gflags__gflags_8h}{gflags\_gflags.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00625}00625\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00626}00626\ }
+\DoxyCodeLine{\Hypertarget{gflags_8h_source_l00627}00627\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ GFLAGS\_GFLAGS\_H\_}}
+
+\end{DoxyCode}

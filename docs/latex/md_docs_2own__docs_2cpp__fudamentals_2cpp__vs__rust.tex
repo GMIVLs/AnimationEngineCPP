@@ -1,0 +1,45 @@
+\chapter{CPP vs Rust Concepts}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2cpp__vs__rust}{}\label{md_docs_2own__docs_2cpp__fudamentals_2cpp__vs__rust}\index{CPP vs Rust Concepts@{CPP vs Rust Concepts}}
+\label{md_docs_2own__docs_2cpp__fudamentals_2cpp__vs__rust_autotoc_md84}%
+\Hypertarget{md_docs_2own__docs_2cpp__fudamentals_2cpp__vs__rust_autotoc_md84}%
+
+\begin{DoxyItemize}
+\item Certainly! Both C++ and Rust have unique ways to handle references, especially when passing them to functions or methods. Here\textquotesingle{}s a table comparing reference handling in both languages\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Concept}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{C++}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Rust}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description \& Notes}}    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Concept}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{C++}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Rust}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description \& Notes}}    }\\\cline{1-4}
+\endhead
+{\bfseries{Immutable Reference}}   &{\ttfamily const T\&}   &{\ttfamily \&T}   &-\/ Both references are immutable and prevent modification of the referenced data. ~\newline
+ -\/ In Rust, immutability is the default.    \\\cline{1-4}
+{\bfseries{Mutable Reference}}   &{\ttfamily T\&}   &{\ttfamily \&mut T}   &-\/ Allows modification of the referenced data. ~\newline
+ -\/ In Rust, mutable references have stricter rules to prevent data races.    \\\cline{1-4}
+{\bfseries{Pass by Value}}   &{\ttfamily T} (where {\ttfamily T} is a type)   &{\ttfamily T}   &-\/ Data is copied/cloned when passed to the function. ~\newline
+ -\/ In Rust, this also means transferring ownership unless the type implements the {\ttfamily Copy} trait.    \\\cline{1-4}
+{\bfseries{Lifetime}}   &Not explicitly mentioned (but managed via RAII, smart pointers)   &Specified using lifetime annotations, e.\+g., {\ttfamily \&\textquotesingle{}a T}   &-\/ In Rust, lifetimes help prevent "{}dangling references"{} by ensuring references are valid for the required scope. ~\newline
+ -\/ C++ relies on developer discipline and tools like smart pointers.    \\\cline{1-4}
+{\bfseries{Move Semantics}}   &{\ttfamily std\+::move(obj)}   &Implicit, based on ownership system   &-\/ C++ uses {\ttfamily std\+::move} to indicate transfer of ownership. ~\newline
+ -\/ In Rust, ownership is automatically transferred when a value is used, causing the original variable to be no longer accessible.    \\\cline{1-4}
+{\bfseries{Multiple References}}   &Multiple references allowed unless they modify data.   &Multiple immutable references allowed, but only one mutable.   &-\/ Rust\textquotesingle{}s rules prevent data races by enforcing either multiple immutable references or a single mutable reference, but not both.    \\\cline{1-4}
+{\bfseries{Pointer Dereferencing}}   &{\ttfamily \texorpdfstring{$\ast$}{*}ptr}   &{\ttfamily \texorpdfstring{$\ast$}{*}ptr}   &-\/ Both languages use {\ttfamily \texorpdfstring{$\ast$}{*}} for dereferencing raw pointers.    \\\cline{1-4}
+{\bfseries{Null References}}   &Null pointers possible. Use {\ttfamily nullptr} in C++11 and beyond.   &No null references. Option and Result types are used for nullability and error handling.   &-\/ Rust ensures memory safety by disallowing null references. Instead, it encourages using Option and Result types for scenarios where values might be absent or errors might occur.   \\\cline{1-4}
+\end{longtabu}
+
+
+{\bfseries{Key Takeaways}}\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Safety vs Flexibility}}\+: Rust\textquotesingle{}s borrowing and reference system is designed with memory safety in mind, which avoids many common pitfalls present in C++. However, C++ provides more flexibility, which can be a double-\/edged sword.
+\item {\bfseries{Lifetimes}}\+: Rust\textquotesingle{}s lifetime annotations can be a steep learning curve for newcomers, but they provide compile-\/time guarantees against dangling references.
+\item {\bfseries{Ownership}}\+: Rust\textquotesingle{}s ownership system, encompassing borrowing and lifetimes, ensures memory safety without a garbage collector.
+\end{DoxyEnumerate}
+
+Both languages provide powerful features, but Rust\textquotesingle{}s system is more rigid in order to provide stronger compile-\/time guarantees regarding memory safety. C++ offers more flexibility but requires developers to be more disciplined to avoid memory issues. 

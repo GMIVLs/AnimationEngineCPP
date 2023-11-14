@@ -1,0 +1,225 @@
+\doxysection{SDL\+\_\+assert.\+h}
+\hypertarget{_s_d_l__assert_8h_source}{}\label{_s_d_l__assert_8h_source}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_assert.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_assert.h}}
+\mbox{\hyperlink{_s_d_l__assert_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00002}00002\ \textcolor{comment}{\ \ Simple\ DirectMedia\ Layer}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00003}00003\ \textcolor{comment}{\ \ Copyright\ (C)\ 1997-\/2023\ Sam\ Lantinga\ <slouken@libsdl.org>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00005}00005\ \textcolor{comment}{\ \ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00006}00006\ \textcolor{comment}{\ \ warranty.\ \ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00007}00007\ \textcolor{comment}{\ \ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00008}00008\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00009}00009\ \textcolor{comment}{\ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00010}00010\ \textcolor{comment}{\ \ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00011}00011\ \textcolor{comment}{\ \ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00013}00013\ \textcolor{comment}{\ \ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00014}00014\ \textcolor{comment}{\ \ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00015}00015\ \textcolor{comment}{\ \ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00016}00016\ \textcolor{comment}{\ \ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00017}00017\ \textcolor{comment}{\ \ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00018}00018\ \textcolor{comment}{\ \ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00019}00019\ \textcolor{comment}{\ \ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00020}00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00022}00022\ \textcolor{preprocessor}{\#ifndef\ SDL\_assert\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00023}00023\ \textcolor{preprocessor}{\#define\ SDL\_assert\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__stdinc_8h}{SDL\_stdinc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{begin__code_8h}{begin\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00028}00028\ \textcolor{comment}{/*\ Set\ up\ for\ C\ function\ definitions,\ even\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00029}00029\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00030}00030\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00031}00031\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00033}00033\ \textcolor{preprocessor}{\#ifndef\ SDL\_ASSERT\_LEVEL}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00034}00034\ \textcolor{preprocessor}{\#ifdef\ SDL\_DEFAULT\_ASSERT\_LEVEL}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00035}00035\ \textcolor{preprocessor}{\#define\ SDL\_ASSERT\_LEVEL\ SDL\_DEFAULT\_ASSERT\_LEVEL}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00036}00036\ \textcolor{preprocessor}{\#elif\ defined(\_DEBUG)\ ||\ defined(DEBUG)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00037}00037\ \textcolor{preprocessor}{\ \ \ \ \ \ (defined(\_\_GNUC\_\_)\ \&\&\ !defined(\_\_OPTIMIZE\_\_))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00038}00038\ \textcolor{preprocessor}{\#define\ SDL\_ASSERT\_LEVEL\ 2}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00039}00039\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00040}\mbox{\hyperlink{_s_d_l__assert_8h_afbd8fdb86f3bba968efccbd932877731}{00040}}\ \textcolor{preprocessor}{\#define\ SDL\_ASSERT\_LEVEL\ 1}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00041}00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00042}00042\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_ASSERT\_LEVEL\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00044}00044\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00045}00045\ \textcolor{comment}{These\ are\ macros\ and\ not\ first\ class\ functions\ so\ that\ the\ debugger\ breaks}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00046}00046\ \textcolor{comment}{on\ the\ assertion\ line\ and\ not\ in\ some\ random\ guts\ of\ SDL,\ and\ so\ each}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00047}00047\ \textcolor{comment}{assert\ can\ have\ unique\ static\ variables\ associated\ with\ it.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00048}00048\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00050}00050\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00051}00051\ \textcolor{comment}{/*\ Don't\ include\ intrin.h\ here\ because\ it\ contains\ C++\ code\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00052}00052\ \ \ \ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \_\_cdecl\ \_\_debugbreak(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00053}00053\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_TriggerBreakpoint()\ \_\_debugbreak()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00054}00054\ \textcolor{preprocessor}{\#elif\ \_SDL\_HAS\_BUILTIN(\_\_builtin\_debugtrap)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00055}00055\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_TriggerBreakpoint()\ \_\_builtin\_debugtrap()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00056}00056\ \textcolor{preprocessor}{\#elif\ (\ (!defined(\_\_NACL\_\_))\ \&\&\ ((defined(\_\_GNUC\_\_)\ ||\ defined(\_\_clang\_\_))\ \&\&\ (defined(\_\_i386\_\_)\ ||\ defined(\_\_x86\_64\_\_)))\ )}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00057}00057\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_TriggerBreakpoint()\ \_\_asm\_\_\ \_\_volatile\_\_\ (\ "{}int\ \$3\(\backslash\)n\(\backslash\)t"{}\ )}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00058}00058\ \textcolor{preprocessor}{\#elif\ (defined(\_\_GNUC\_\_)\ ||\ defined(\_\_clang\_\_))\ \&\&\ defined(\_\_riscv)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00059}00059\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_TriggerBreakpoint()\ \_\_asm\_\_\ \_\_volatile\_\_\ (\ "{}ebreak\(\backslash\)n\(\backslash\)t"{}\ )}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00060}00060\ \textcolor{preprocessor}{\#elif\ (\ defined(\_\_APPLE\_\_)\ \&\&\ (defined(\_\_arm64\_\_)\ ||\ defined(\_\_aarch64\_\_))\ )\ \ }\textcolor{comment}{/*\ this\ might\ work\ on\ other\ ARM\ targets,\ but\ this\ is\ a\ known\ quantity...\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00061}00061\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_TriggerBreakpoint()\ \_\_asm\_\_\ \_\_volatile\_\_\ (\ "{}brk\ \#22\(\backslash\)n\(\backslash\)t"{}\ )}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00062}00062\ \textcolor{preprocessor}{\#elif\ defined(\_\_APPLE\_\_)\ \&\&\ defined(\_\_arm\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00063}00063\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_TriggerBreakpoint()\ \_\_asm\_\_\ \_\_volatile\_\_\ (\ "{}bkpt\ \#22\(\backslash\)n\(\backslash\)t"{}\ )}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00064}00064\ \textcolor{preprocessor}{\#elif\ defined(\_\_386\_\_)\ \&\&\ defined(\_\_WATCOMC\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00065}00065\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_TriggerBreakpoint()\ \{\ \_asm\ \{\ int\ 0x03\ \}\ \}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00066}00066\ \textcolor{preprocessor}{\#elif\ defined(HAVE\_SIGNAL\_H)\ \&\&\ !defined(\_\_WATCOMC\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00067}00067\ \textcolor{preprocessor}{\ \ \ \ \#include\ <signal.h>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00068}\mbox{\hyperlink{_s_d_l__assert_8h_a42e8a6e0677acca7c1a927238b8dfe32}{00068}}\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_TriggerBreakpoint()\ raise(SIGTRAP)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00069}00069\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00070}00070\ \ \ \ \ \textcolor{comment}{/*\ How\ do\ we\ trigger\ breakpoints\ on\ this\ platform?\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00071}00071\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_TriggerBreakpoint()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00072}00072\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00074}00074\ \textcolor{preprocessor}{\#if\ defined(\_\_STDC\_VERSION\_\_)\ \&\&\ (\_\_STDC\_VERSION\_\_\ >=\ 199901L)\ }\textcolor{comment}{/*\ C99\ supports\ \_\_func\_\_\ as\ a\ standard.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00075}00075\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_FUNCTION\ \_\_func\_\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00076}00076\ \textcolor{preprocessor}{\#elif\ ((defined(\_\_GNUC\_\_)\ \&\&\ (\_\_GNUC\_\_\ >=\ 2))\ ||\ defined(\_MSC\_VER)\ ||\ defined\ (\_\_WATCOMC\_\_))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00077}00077\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_FUNCTION\ \_\_FUNCTION\_\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00078}00078\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00079}\mbox{\hyperlink{_s_d_l__assert_8h_a30da3daba50f032ecda2c701e97da79d}{00079}}\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_FUNCTION\ "{}???"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00080}00080\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00081}\mbox{\hyperlink{_s_d_l__assert_8h_a195c2795832718d008000d969eed96c3}{00081}}\ \textcolor{preprocessor}{\#define\ SDL\_FILE\ \ \ \ \_\_FILE\_\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00082}\mbox{\hyperlink{_s_d_l__assert_8h_a421a39f96c53fe309aa6d66b5c5bec22}{00082}}\ \textcolor{preprocessor}{\#define\ SDL\_LINE\ \ \ \ \_\_LINE\_\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00084}00084\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00085}00085\ \textcolor{comment}{sizeof\ (x)\ makes\ the\ compiler\ still\ parse\ the\ expression\ even\ without}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00086}00086\ \textcolor{comment}{assertions\ enabled,\ so\ the\ code\ is\ always\ checked\ at\ compile\ time,\ but}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00087}00087\ \textcolor{comment}{doesn't\ actually\ generate\ code\ for\ it,\ so\ there\ are\ no\ side\ effects\ or}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00088}00088\ \textcolor{comment}{expensive\ checks\ at\ run\ time,\ just\ the\ constant\ size\ of\ what\ x\ WOULD\ be,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00089}00089\ \textcolor{comment}{which\ presumably\ gets\ optimized\ out\ as\ unused.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00090}00090\ \textcolor{comment}{This\ also\ solves\ the\ problem\ of...}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00091}00091\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00092}00092\ \textcolor{comment}{\ \ \ \ int\ somevalue\ =\ blah();}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00093}00093\ \textcolor{comment}{\ \ \ \ SDL\_assert(somevalue\ ==\ 1);}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00094}00094\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00095}00095\ \textcolor{comment}{...which\ would\ cause\ compiles\ to\ complain\ that\ somevalue\ is\ unused\ if\ we}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00096}00096\ \textcolor{comment}{disable\ assertions.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00097}00097\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00099}00099\ \textcolor{comment}{/*\ "{}while\ (0,0)"{}\ fools\ Microsoft's\ compiler's\ /W4\ warning\ level\ into\ thinking}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00100}00100\ \textcolor{comment}{\ \ \ \ this\ condition\ isn't\ constant.\ And\ looks\ like\ an\ owl's\ face!\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00101}00101\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER\ \ }\textcolor{comment}{/*\ stupid\ /W4\ warnings.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00102}00102\ \textcolor{preprocessor}{\#define\ SDL\_NULL\_WHILE\_LOOP\_CONDITION\ (0,0)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00103}00103\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00104}\mbox{\hyperlink{_s_d_l__assert_8h_a2ffca06819acf027ec29d6fd14c94cbe}{00104}}\ \textcolor{preprocessor}{\#define\ SDL\_NULL\_WHILE\_LOOP\_CONDITION\ (0)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00105}00105\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00107}\mbox{\hyperlink{_s_d_l__assert_8h_aeee78c1e2347a3cfe4ee3c215d497acd}{00107}}\ \textcolor{preprocessor}{\#define\ SDL\_disabled\_assert(condition)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00108}00108\ \textcolor{preprocessor}{\ \ \ \ do\ \{\ (void)\ sizeof\ ((condition));\ \}\ while\ (SDL\_NULL\_WHILE\_LOOP\_CONDITION)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00110}\mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1a}{00110}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00111}00111\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00112}\mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1aa0ccce3254f1d981283e0792cd70437df}{00112}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1aa0ccce3254f1d981283e0792cd70437df}{SDL\_ASSERTION\_RETRY}},\ \ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00113}\mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1aace6f6a41a6b303e220828fbe25b5d2a6}{00113}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1aace6f6a41a6b303e220828fbe25b5d2a6}{SDL\_ASSERTION\_BREAK}},\ \ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00114}\mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1aa4cf9444bddf799c7638bbcc9c542799c}{00114}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1aa4cf9444bddf799c7638bbcc9c542799c}{SDL\_ASSERTION\_ABORT}},\ \ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00115}\mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1aa76eace7638278c093e24d78a91d6d772}{00115}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1aa76eace7638278c093e24d78a91d6d772}{SDL\_ASSERTION\_IGNORE}},\ \ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00116}00116\ \ \ \ \ \mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1aaf8d1af4dc16f160217acadf2b8585fea}{SDL\_ASSERTION\_ALWAYS\_IGNORE}}\ \ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00117}\mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1aaf8d1af4dc16f160217acadf2b8585fea}{00117}}\ \}\ \mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1a}{SDL\_AssertState}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00119}\mbox{\hyperlink{struct_s_d_l___assert_data}{00119}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_s_d_l___assert_data}{SDL\_AssertData}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00120}00120\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00121}\mbox{\hyperlink{struct_s_d_l___assert_data_a825e1c7772fe24afad33d0afc42cf04c}{00121}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_s_d_l___assert_data_a825e1c7772fe24afad33d0afc42cf04c}{always\_ignore}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00122}\mbox{\hyperlink{struct_s_d_l___assert_data_a230bbcc2d115aab04cf817773e08eb5b}{00122}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_s_d_l___assert_data_a230bbcc2d115aab04cf817773e08eb5b}{trigger\_count}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00123}\mbox{\hyperlink{struct_s_d_l___assert_data_aec6d372462fa8c94a9d04c1168cd38c9}{00123}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{struct_s_d_l___assert_data_aec6d372462fa8c94a9d04c1168cd38c9}{condition}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00124}\mbox{\hyperlink{struct_s_d_l___assert_data_acf27f593e6a436386d2cbcf826cf1ef7}{00124}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{struct_s_d_l___assert_data_acf27f593e6a436386d2cbcf826cf1ef7}{filename}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00125}\mbox{\hyperlink{struct_s_d_l___assert_data_ad026d8573970d2402230d5fa3c550b0f}{00125}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_s_d_l___assert_data_ad026d8573970d2402230d5fa3c550b0f}{linenum}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00126}\mbox{\hyperlink{struct_s_d_l___assert_data_a4913c57d4affb813feea82fc5f48a25c}{00126}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{struct_s_d_l___assert_data_a4913c57d4affb813feea82fc5f48a25c}{function}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00127}\mbox{\hyperlink{struct_s_d_l___assert_data_a2081dcf06dce4df497e423bccddfc099}{00127}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_s_d_l___assert_data}{SDL\_AssertData}}\ *\mbox{\hyperlink{struct_s_d_l___assert_data_a2081dcf06dce4df497e423bccddfc099}{next}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00128}\mbox{\hyperlink{_s_d_l__assert_8h_afc62064b31b91c078b2960270e29801e}{00128}}\ \}\ \mbox{\hyperlink{_s_d_l__assert_8h_afc62064b31b91c078b2960270e29801e}{SDL\_AssertData}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00130}00130\ \textcolor{comment}{/*\ Never\ call\ this\ directly.\ Use\ the\ SDL\_assert*\ macros.\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00131}\mbox{\hyperlink{_s_d_l__assert_8h_a01ef51d076f7e9c3839fff4161a16550}{00131}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1a}{SDL\_AssertState}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__assert_8h_a01ef51d076f7e9c3839fff4161a16550}{SDL\_ReportAssertion}}(\mbox{\hyperlink{struct_s_d_l___assert_data}{SDL\_AssertData}}\ *,}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *,}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *,\ \textcolor{keywordtype}{int})}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00134}00134\ \textcolor{preprocessor}{\#if\ defined(\_\_clang\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00135}00135\ \textcolor{preprocessor}{\#if\ \_\_has\_feature(attribute\_analyzer\_noreturn)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00136}00136\ \textcolor{comment}{/*\ this\ tells\ Clang's\ static\ analysis\ that\ we're\ a\ custom\ assert\ function,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00137}00137\ \textcolor{comment}{\ \ \ and\ that\ the\ analyzer\ should\ assume\ the\ condition\ was\ always\ true\ past\ this}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00138}00138\ \textcolor{comment}{\ \ \ SDL\_assert\ test.\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00139}00139\ \ \ \ \_\_attribute\_\_((analyzer\_noreturn))}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00140}00140\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00141}00141\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00142}00142\ ;}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00144}00144\ \textcolor{comment}{/*\ the\ do\ \{\}\ while(0)\ avoids\ dangling\ else\ problems:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00145}00145\ \textcolor{comment}{\ \ \ \ if\ (x)\ SDL\_assert(y);\ else\ blah();}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00146}00146\ \textcolor{comment}{\ \ \ \ \ \ \ ...\ without\ the\ do/while,\ the\ "{}else"{}\ could\ attach\ to\ this\ macro's\ "{}if"{}.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00147}00147\ \textcolor{comment}{\ \ \ We\ try\ to\ handle\ just\ the\ minimum\ we\ need\ here\ in\ a\ macro...the\ loop,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00148}00148\ \textcolor{comment}{\ \ \ the\ static\ vars,\ and\ break\ points.\ The\ heavy\ lifting\ is\ handled\ in}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00149}00149\ \textcolor{comment}{\ \ \ SDL\_ReportAssertion(),\ in\ SDL\_assert.c.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00150}00150\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00151}\mbox{\hyperlink{_s_d_l__assert_8h_a560c9df30e5f2db3d81daef3bbe81992}{00151}}\ \textcolor{preprocessor}{\#define\ SDL\_enabled\_assert(condition)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00152}00152\ \textcolor{preprocessor}{\ \ \ \ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00153}00153\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ while\ (\ !(condition)\ )\ \{\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00154}00154\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ static\ struct\ SDL\_AssertData\ sdl\_assert\_data\ =\ \{\ 0,\ 0,\ \#condition,\ 0,\ 0,\ 0,\ 0\ \};\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00155}00155\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ const\ SDL\_AssertState\ sdl\_assert\_state\ =\ SDL\_ReportAssertion(\&sdl\_assert\_data,\ SDL\_FUNCTION,\ SDL\_FILE,\ SDL\_LINE);\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00156}00156\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ if\ (sdl\_assert\_state\ ==\ SDL\_ASSERTION\_RETRY)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00157}00157\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ continue;\ }\textcolor{comment}{/*\ go\ again.\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00158}00158\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ if\ (sdl\_assert\_state\ ==\ SDL\_ASSERTION\_BREAK)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00159}00159\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_TriggerBreakpoint();\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00160}00160\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \}\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00161}00161\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ break;\ }\textcolor{comment}{/*\ not\ retrying.\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00162}00162\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00163}00163\ \textcolor{preprocessor}{\ \ \ \ \}\ while\ (SDL\_NULL\_WHILE\_LOOP\_CONDITION)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00165}00165\ \textcolor{comment}{/*\ Enable\ various\ levels\ of\ assertions.\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00166}00166\ \textcolor{preprocessor}{\#if\ SDL\_ASSERT\_LEVEL\ ==\ 0\ \ \ }\textcolor{comment}{/*\ assertions\ disabled\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00167}00167\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_assert(condition)\ SDL\_disabled\_assert(condition)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00168}00168\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_assert\_release(condition)\ SDL\_disabled\_assert(condition)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00169}00169\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_assert\_paranoid(condition)\ SDL\_disabled\_assert(condition)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00170}00170\ \textcolor{preprocessor}{\#elif\ SDL\_ASSERT\_LEVEL\ ==\ 1\ \ }\textcolor{comment}{/*\ release\ settings.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00171}\mbox{\hyperlink{_s_d_l__assert_8h_af03d71e27f06835f6a09358943c33b1d}{00171}}\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_assert(condition)\ SDL\_disabled\_assert(condition)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00172}\mbox{\hyperlink{_s_d_l__assert_8h_a3af3f7dba7e28942c17e16745028a7da}{00172}}\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_assert\_release(condition)\ SDL\_enabled\_assert(condition)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00173}\mbox{\hyperlink{_s_d_l__assert_8h_a4cc20db7eed29c5cd0e83f4f3d10860a}{00173}}\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_assert\_paranoid(condition)\ SDL\_disabled\_assert(condition)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00174}00174\ \textcolor{preprocessor}{\#elif\ SDL\_ASSERT\_LEVEL\ ==\ 2\ \ }\textcolor{comment}{/*\ normal\ settings.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00175}00175\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_assert(condition)\ SDL\_enabled\_assert(condition)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00176}00176\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_assert\_release(condition)\ SDL\_enabled\_assert(condition)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00177}00177\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_assert\_paranoid(condition)\ SDL\_disabled\_assert(condition)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00178}00178\ \textcolor{preprocessor}{\#elif\ SDL\_ASSERT\_LEVEL\ ==\ 3\ \ }\textcolor{comment}{/*\ paranoid\ settings.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00179}00179\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_assert(condition)\ SDL\_enabled\_assert(condition)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00180}00180\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_assert\_release(condition)\ SDL\_enabled\_assert(condition)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00181}00181\ \textcolor{preprocessor}{\#\ \ \ define\ SDL\_assert\_paranoid(condition)\ SDL\_enabled\_assert(condition)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00182}00182\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00183}00183\ \textcolor{preprocessor}{\#\ \ \ error\ Unknown\ assertion\ level.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00184}00184\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00186}00186\ \textcolor{comment}{/*\ this\ assertion\ is\ never\ disabled\ at\ any\ level.\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00187}\mbox{\hyperlink{_s_d_l__assert_8h_a22dedc823eb26ea054cbc584b614718e}{00187}}\ \textcolor{preprocessor}{\#define\ SDL\_assert\_always(condition)\ SDL\_enabled\_assert(condition)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00198}\mbox{\hyperlink{_s_d_l__assert_8h_aa63dc5ca0d954add6893512583b08071}{00198}}\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{_s_d_l__assert_8h_a06d6a46a43cc7b34764c37398573ef1a}{SDL\_AssertState}}\ (\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ *\mbox{\hyperlink{_s_d_l__assert_8h_aa63dc5ca0d954add6893512583b08071}{SDL\_AssertionHandler}})(}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_s_d_l___assert_data}{SDL\_AssertData}}*\ \mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}},\ \textcolor{keywordtype}{void}*\ userdata);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00222}\mbox{\hyperlink{_s_d_l__assert_8h_a12dc8edd25f52f3add69369b2978e689}{00222}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__assert_8h_a12dc8edd25f52f3add69369b2978e689}{SDL\_SetAssertionHandler}}(}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_d_l__assert_8h_aa63dc5ca0d954add6893512583b08071}{SDL\_AssertionHandler}}\ handler,}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *userdata);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00241}\mbox{\hyperlink{_s_d_l__assert_8h_a34dc4d9332bcdc32b3a0baa3fc2966bc}{00241}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__assert_8h_aa63dc5ca0d954add6893512583b08071}{SDL\_AssertionHandler}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__assert_8h_a34dc4d9332bcdc32b3a0baa3fc2966bc}{SDL\_GetDefaultAssertionHandler}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00264}\mbox{\hyperlink{_s_d_l__assert_8h_a61c95d5aa8a1bd701e829b0842e04f07}{00264}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__assert_8h_aa63dc5ca0d954add6893512583b08071}{SDL\_AssertionHandler}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__assert_8h_a61c95d5aa8a1bd701e829b0842e04f07}{SDL\_GetAssertionHandler}}(\textcolor{keywordtype}{void}\ **puserdata);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00292}\mbox{\hyperlink{_s_d_l__assert_8h_a59366c845267d9d6c8f214e096f7b45c}{00292}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_s_d_l___assert_data}{SDL\_AssertData}}\ *\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__assert_8h_a59366c845267d9d6c8f214e096f7b45c}{SDL\_GetAssertionReport}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00306}\mbox{\hyperlink{_s_d_l__assert_8h_abdbad45c4ede1953c784a7b312349a32}{00306}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__assert_8h_abdbad45c4ede1953c784a7b312349a32}{SDL\_ResetAssertionReport}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00307}00307\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00308}00308\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00309}00309\ \textcolor{comment}{/*\ these\ had\ wrong\ naming\ conventions\ until\ 2.0.4.\ Please\ update\ your\ app!\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00310}\mbox{\hyperlink{_s_d_l__assert_8h_a15ee0b48c2893f92f851d251424837b6}{00310}}\ \textcolor{preprocessor}{\#define\ SDL\_assert\_state\ SDL\_AssertState}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00311}\mbox{\hyperlink{_s_d_l__assert_8h_a74c575b310128e12358caf79aec09da7}{00311}}\ \textcolor{preprocessor}{\#define\ SDL\_assert\_data\ SDL\_AssertData}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00312}00312\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00313}00313\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00314}00314\ \textcolor{comment}{/*\ Ends\ C\ function\ definitions\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00315}00315\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00316}00316\ \}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00317}00317\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00318}00318\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{close__code_8h}{close\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00320}00320\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_assert\_h\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00321}00321\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__assert_8h_source_l00322}00322\ \textcolor{comment}{/*\ vi:\ set\ ts=4\ sw=4\ expandtab:\ */}}
+
+\end{DoxyCode}

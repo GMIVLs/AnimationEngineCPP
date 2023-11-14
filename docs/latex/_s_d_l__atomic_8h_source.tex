@@ -1,0 +1,178 @@
+\doxysection{SDL\+\_\+atomic.\+h}
+\hypertarget{_s_d_l__atomic_8h_source}{}\label{_s_d_l__atomic_8h_source}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_atomic.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_atomic.h}}
+\mbox{\hyperlink{_s_d_l__atomic_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00002}00002\ \textcolor{comment}{\ \ Simple\ DirectMedia\ Layer}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00003}00003\ \textcolor{comment}{\ \ Copyright\ (C)\ 1997-\/2023\ Sam\ Lantinga\ <slouken@libsdl.org>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00005}00005\ \textcolor{comment}{\ \ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00006}00006\ \textcolor{comment}{\ \ warranty.\ \ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00007}00007\ \textcolor{comment}{\ \ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00008}00008\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00009}00009\ \textcolor{comment}{\ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00010}00010\ \textcolor{comment}{\ \ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00011}00011\ \textcolor{comment}{\ \ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00013}00013\ \textcolor{comment}{\ \ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00014}00014\ \textcolor{comment}{\ \ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00015}00015\ \textcolor{comment}{\ \ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00016}00016\ \textcolor{comment}{\ \ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00017}00017\ \textcolor{comment}{\ \ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00018}00018\ \textcolor{comment}{\ \ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00019}00019\ \textcolor{comment}{\ \ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00020}00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00059}00059\ \textcolor{preprocessor}{\#ifndef\ SDL\_atomic\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00060}00060\ \textcolor{preprocessor}{\#define\ SDL\_atomic\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00062}00062\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__stdinc_8h}{SDL\_stdinc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00063}00063\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__platform_8h}{SDL\_platform.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00065}00065\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{begin__code_8h}{begin\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00067}00067\ \textcolor{comment}{/*\ Set\ up\ for\ C\ function\ definitions,\ even\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00068}00068\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00069}00069\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00070}00070\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00087}00087\ \textcolor{comment}{/*\ @\{\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00089}\mbox{\hyperlink{_s_d_l__atomic_8h_a59179ff8d21c65b9d9a544f3c2088e81}{00089}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__atomic_8h_a59179ff8d21c65b9d9a544f3c2088e81}{SDL\_SpinLock}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00106}\mbox{\hyperlink{_s_d_l__atomic_8h_a5410c5f832f0d862282cd65fc432fc0b}{00106}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__stdinc_8h_a8fca68df0f976765230fe589a7c7733b}{SDL\_bool}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__atomic_8h_a5410c5f832f0d862282cd65fc432fc0b}{SDL\_AtomicTryLock}}(\mbox{\hyperlink{_s_d_l__atomic_8h_a59179ff8d21c65b9d9a544f3c2088e81}{SDL\_SpinLock}}\ *lock);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00121}\mbox{\hyperlink{_s_d_l__atomic_8h_a95ecd72190ba8e5ed6ed78d5d1b36509}{00121}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__atomic_8h_a95ecd72190ba8e5ed6ed78d5d1b36509}{SDL\_AtomicLock}}(\mbox{\hyperlink{_s_d_l__atomic_8h_a59179ff8d21c65b9d9a544f3c2088e81}{SDL\_SpinLock}}\ *lock);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00138}\mbox{\hyperlink{_s_d_l__atomic_8h_a3fb14c56b17347349ac2fb5300205bac}{00138}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__atomic_8h_a3fb14c56b17347349ac2fb5300205bac}{SDL\_AtomicUnlock}}(\mbox{\hyperlink{_s_d_l__atomic_8h_a59179ff8d21c65b9d9a544f3c2088e81}{SDL\_SpinLock}}\ *lock);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00140}00140\ \textcolor{comment}{/*\ @\}\ */}\textcolor{comment}{/*\ SDL\ AtomicLock\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00147}00147\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ (\_MSC\_VER\ >\ 1200)\ \&\&\ !defined(\_\_clang\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00148}00148\ \textcolor{keywordtype}{void}\ \_ReadWriteBarrier(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00149}00149\ \textcolor{preprocessor}{\#pragma\ intrinsic(\_ReadWriteBarrier)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00150}00150\ \textcolor{preprocessor}{\#define\ SDL\_CompilerBarrier()\ \ \ \_ReadWriteBarrier()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00151}00151\ \textcolor{preprocessor}{\#elif\ (defined(\_\_GNUC\_\_)\ \&\&\ !defined(\_\_EMSCRIPTEN\_\_))\ ||\ (defined(\_\_SUNPRO\_C)\ \&\&\ (\_\_SUNPRO\_C\ >=\ 0x5120))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00152}00152\ \textcolor{comment}{/*\ This\ is\ correct\ for\ all\ CPUs\ when\ using\ GCC\ or\ Solaris\ Studio\ 12.1+.\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00153}00153\ \textcolor{preprocessor}{\#define\ SDL\_CompilerBarrier()\ \ \ \_\_asm\_\_\ \_\_volatile\_\_\ ("{}"{}\ :\ :\ :\ "{}memory"{})}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00154}00154\ \textcolor{preprocessor}{\#elif\ defined(\_\_WATCOMC\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00155}00155\ \textcolor{keyword}{extern}\ \_\_inline\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_s_d_l__atomic_8h_a36d435d444dc115a5cc11fa7027576ec}{SDL\_CompilerBarrier}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00156}00156\ \textcolor{preprocessor}{\#pragma\ aux\ SDL\_CompilerBarrier\ =\ "{}"{}\ parm\ []\ modify\ exact\ [];}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00157}00157\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00158}\mbox{\hyperlink{_s_d_l__atomic_8h_a36d435d444dc115a5cc11fa7027576ec}{00158}}\ \textcolor{preprocessor}{\#define\ SDL\_CompilerBarrier()\ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00159}00159\ \textcolor{preprocessor}{\{\ SDL\_SpinLock\ \_tmp\ =\ 0;\ SDL\_AtomicLock(\&\_tmp);\ SDL\_AtomicUnlock(\&\_tmp);\ \}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00160}00160\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00183}\mbox{\hyperlink{_s_d_l__atomic_8h_a4bec96c1fc632536952c309513a0258e}{00183}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__atomic_8h_a4bec96c1fc632536952c309513a0258e}{SDL\_MemoryBarrierReleaseFunction}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00184}\mbox{\hyperlink{_s_d_l__atomic_8h_ae911d7eb425a9e83fd34ab1303412cba}{00184}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__atomic_8h_ae911d7eb425a9e83fd34ab1303412cba}{SDL\_MemoryBarrierAcquireFunction}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00186}00186\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)\ \&\&\ (defined(\_\_powerpc\_\_)\ ||\ defined(\_\_ppc\_\_))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00187}00187\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierRelease()\ \ \ \_\_asm\_\_\ \_\_volatile\_\_\ ("{}lwsync"{}\ :\ :\ :\ "{}memory"{})}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00188}00188\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierAcquire()\ \ \ \_\_asm\_\_\ \_\_volatile\_\_\ ("{}lwsync"{}\ :\ :\ :\ "{}memory"{})}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00189}00189\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_aarch64\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00190}00190\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierRelease()\ \ \ \_\_asm\_\_\ \_\_volatile\_\_\ ("{}dmb\ ish"{}\ :\ :\ :\ "{}memory"{})}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00191}00191\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierAcquire()\ \ \ \_\_asm\_\_\ \_\_volatile\_\_\ ("{}dmb\ ish"{}\ :\ :\ :\ "{}memory"{})}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00192}00192\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_arm\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00193}00193\ \textcolor{preprocessor}{\#if\ 0\ }\textcolor{comment}{/*\ defined(\_\_LINUX\_\_)\ ||\ defined(\_\_ANDROID\_\_)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00194}00194\ \textcolor{comment}{/*\ Information\ from:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00195}00195\ \textcolor{comment}{\ \ \ https://chromium.googlesource.com/chromium/chromium/+/trunk/base/atomicops\_internals\_arm\_gcc.h\#19}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00196}00196\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00197}00197\ \textcolor{comment}{\ \ \ The\ Linux\ kernel\ provides\ a\ helper\ function\ which\ provides\ the\ right\ code\ for\ a\ memory\ barrier,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00198}00198\ \textcolor{comment}{\ \ \ hard-\/coded\ at\ address\ 0xffff0fa0}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00199}00199\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00200}00200\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}}\ (*SDL\_KernelMemoryBarrierFunc)();}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00201}00201\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierRelease()\ \ ((SDL\_KernelMemoryBarrierFunc)0xffff0fa0)()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00202}00202\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierAcquire()\ \ ((SDL\_KernelMemoryBarrierFunc)0xffff0fa0)()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00203}00203\ \textcolor{preprocessor}{\#elif\ 0\ }\textcolor{comment}{/*\ defined(\_\_QNXNTO\_\_)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00204}00204\ \textcolor{preprocessor}{\#include\ <sys/cpuinline.h>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00206}00206\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierRelease()\ \ \ \_\_cpu\_membarrier()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00207}00207\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierAcquire()\ \ \ \_\_cpu\_membarrier()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00208}00208\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00209}00209\ \textcolor{preprocessor}{\#if\ defined(\_\_ARM\_ARCH\_7\_\_)\ ||\ defined(\_\_ARM\_ARCH\_7A\_\_)\ ||\ defined(\_\_ARM\_ARCH\_7EM\_\_)\ ||\ defined(\_\_ARM\_ARCH\_7R\_\_)\ ||\ defined(\_\_ARM\_ARCH\_7M\_\_)\ ||\ defined(\_\_ARM\_ARCH\_7S\_\_)\ ||\ defined(\_\_ARM\_ARCH\_8A\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00210}00210\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierRelease()\ \ \ \_\_asm\_\_\ \_\_volatile\_\_\ ("{}dmb\ ish"{}\ :\ :\ :\ "{}memory"{})}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00211}00211\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierAcquire()\ \ \ \_\_asm\_\_\ \_\_volatile\_\_\ ("{}dmb\ ish"{}\ :\ :\ :\ "{}memory"{})}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00212}00212\ \textcolor{preprocessor}{\#elif\ defined(\_\_ARM\_ARCH\_6\_\_)\ ||\ defined(\_\_ARM\_ARCH\_6J\_\_)\ ||\ defined(\_\_ARM\_ARCH\_6K\_\_)\ ||\ defined(\_\_ARM\_ARCH\_6T2\_\_)\ ||\ defined(\_\_ARM\_ARCH\_6Z\_\_)\ ||\ defined(\_\_ARM\_ARCH\_6ZK\_\_)\ ||\ defined(\_\_ARM\_ARCH\_5TE\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00213}00213\ \textcolor{preprocessor}{\#ifdef\ \_\_thumb\_\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00214}00214\ \textcolor{comment}{/*\ The\ mcr\ instruction\ isn't\ available\ in\ thumb\ mode,\ use\ real\ functions\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00215}00215\ \textcolor{preprocessor}{\#define\ SDL\_MEMORY\_BARRIER\_USES\_FUNCTION}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00216}00216\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierRelease()\ \ \ SDL\_MemoryBarrierReleaseFunction()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00217}00217\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierAcquire()\ \ \ SDL\_MemoryBarrierAcquireFunction()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00218}00218\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00219}00219\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierRelease()\ \ \ \_\_asm\_\_\ \_\_volatile\_\_\ ("{}mcr\ p15,\ 0,\ \%0,\ c7,\ c10,\ 5"{}\ :\ :\ "{}r"{}(0)\ :\ "{}memory"{})}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00220}00220\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierAcquire()\ \ \ \_\_asm\_\_\ \_\_volatile\_\_\ ("{}mcr\ p15,\ 0,\ \%0,\ c7,\ c10,\ 5"{}\ :\ :\ "{}r"{}(0)\ :\ "{}memory"{})}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00221}00221\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_thumb\_\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00222}00222\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00223}00223\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierRelease()\ \ \ \_\_asm\_\_\ \_\_volatile\_\_\ ("{}"{}\ :\ :\ :\ "{}memory"{})}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00224}00224\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierAcquire()\ \ \ \_\_asm\_\_\ \_\_volatile\_\_\ ("{}"{}\ :\ :\ :\ "{}memory"{})}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00225}00225\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_LINUX\_\_\ ||\ \_\_ANDROID\_\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00226}00226\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_GNUC\_\_\ \&\&\ \_\_arm\_\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00227}00227\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00228}00228\ \textcolor{preprocessor}{\#if\ (defined(\_\_SUNPRO\_C)\ \&\&\ (\_\_SUNPRO\_C\ >=\ 0x5120))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00229}00229\ \textcolor{comment}{/*\ This\ is\ correct\ for\ all\ CPUs\ on\ Solaris\ when\ using\ Solaris\ Studio\ 12.1+.\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00230}00230\ \textcolor{preprocessor}{\#include\ <mbarrier.h>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00231}00231\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierRelease()\ \ \_\_machine\_rel\_barrier()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00232}00232\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierAcquire()\ \ \_\_machine\_acq\_barrier()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00233}00233\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00234}00234\ \textcolor{comment}{/*\ This\ is\ correct\ for\ the\ x86\ and\ x64\ CPUs,\ and\ we'll\ expand\ this\ over\ time.\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00235}\mbox{\hyperlink{_s_d_l__atomic_8h_a041cb5705236fe51b35cb3d59c1fbba7}{00235}}\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierRelease()\ \ SDL\_CompilerBarrier()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00236}\mbox{\hyperlink{_s_d_l__atomic_8h_aa33019d94c637a106218dde56b46a20a}{00236}}\ \textcolor{preprocessor}{\#define\ SDL\_MemoryBarrierAcquire()\ \ SDL\_CompilerBarrier()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00237}00237\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00238}00238\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00240}00240\ \textcolor{comment}{/*\ "{}REP\ NOP"{}\ is\ PAUSE,\ coded\ for\ tools\ that\ don't\ know\ it\ by\ that\ name.\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00241}00241\ \textcolor{preprocessor}{\#if\ (defined(\_\_GNUC\_\_)\ ||\ defined(\_\_clang\_\_))\ \&\&\ (defined(\_\_i386\_\_)\ ||\ defined(\_\_x86\_64\_\_))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00242}00242\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_CPUPauseInstruction()\ \_\_asm\_\_\ \_\_volatile\_\_("{}pause\(\backslash\)n"{})\ \ }\textcolor{comment}{/*\ Some\ assemblers\ can't\ do\ REP\ NOP,\ so\ go\ with\ PAUSE.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00243}00243\ \textcolor{preprocessor}{\#elif\ (defined(\_\_arm\_\_)\ \&\&\ defined(\_\_ARM\_ARCH)\ \&\&\ \_\_ARM\_ARCH\ >=\ 7)\ ||\ defined(\_\_aarch64\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00244}00244\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_CPUPauseInstruction()\ \_\_asm\_\_\ \_\_volatile\_\_("{}yield"{}\ :::\ "{}memory"{})}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00245}00245\ \textcolor{preprocessor}{\#elif\ (defined(\_\_powerpc\_\_)\ ||\ defined(\_\_powerpc64\_\_))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00246}00246\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_CPUPauseInstruction()\ \_\_asm\_\_\ \_\_volatile\_\_("{}or\ 27,27,27"{});}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00247}00247\ \textcolor{preprocessor}{\#elif\ defined(\_MSC\_VER)\ \&\&\ (defined(\_M\_IX86)\ ||\ defined(\_M\_X64))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00248}00248\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_CPUPauseInstruction()\ \_mm\_pause()\ \ }\textcolor{comment}{/*\ this\ is\ actually\ "{}rep\ nop"{}\ and\ not\ a\ SIMD\ instruction.\ No\ inline\ asm\ in\ MSVC\ x86-\/64!\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00249}00249\ \textcolor{preprocessor}{\#elif\ defined(\_MSC\_VER)\ \&\&\ (defined(\_M\_ARM)\ ||\ defined(\_M\_ARM64))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00250}00250\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_CPUPauseInstruction()\ \_\_yield()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00251}00251\ \textcolor{preprocessor}{\#elif\ defined(\_\_WATCOMC\_\_)\ \&\&\ defined(\_\_386\_\_)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00252}00252\ \ \ \ \ \textcolor{keyword}{extern}\ \_\_inline\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_s_d_l__atomic_8h_a6aa8f8635b3a07f02fe26e5cc052a5f6}{SDL\_CPUPauseInstruction}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00253}00253\ \textcolor{preprocessor}{\ \ \ \ \#pragma\ aux\ SDL\_CPUPauseInstruction\ =\ "{}.686p"{}\ "{}.xmm2"{}\ "{}pause"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00254}00254\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00255}\mbox{\hyperlink{_s_d_l__atomic_8h_a6aa8f8635b3a07f02fe26e5cc052a5f6}{00255}}\ \textcolor{preprocessor}{\ \ \ \ \#define\ SDL\_CPUPauseInstruction()}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00256}00256\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00258}00258\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00263}\mbox{\hyperlink{struct_s_d_l__atomic__t_a0d09ddf3cc5798c709edb7cea104203a}{00263}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_s_d_l__atomic__t_a0d09ddf3cc5798c709edb7cea104203a}{value}};\ \}\ \mbox{\hyperlink{struct_s_d_l__atomic__t}{SDL\_atomic\_t}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00282}\mbox{\hyperlink{_s_d_l__atomic_8h_ad6b90be91abb896260930d3908c0437b}{00282}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__stdinc_8h_a8fca68df0f976765230fe589a7c7733b}{SDL\_bool}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__atomic_8h_ad6b90be91abb896260930d3908c0437b}{SDL\_AtomicCAS}}(\mbox{\hyperlink{struct_s_d_l__atomic__t}{SDL\_atomic\_t}}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}},\ \textcolor{keywordtype}{int}\ oldval,\ \textcolor{keywordtype}{int}\ newval);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00300}\mbox{\hyperlink{_s_d_l__atomic_8h_a95b659308ebb16226d5c0cbf2188e51d}{00300}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__atomic_8h_a95b659308ebb16226d5c0cbf2188e51d}{SDL\_AtomicSet}}(\mbox{\hyperlink{struct_s_d_l__atomic__t}{SDL\_atomic\_t}}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a55f85da29bf761fde63cc95d26300230}{v}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00301}00301\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00315}\mbox{\hyperlink{_s_d_l__atomic_8h_a633c2661709f59c98f128f99aea36d96}{00315}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__atomic_8h_a633c2661709f59c98f128f99aea36d96}{SDL\_AtomicGet}}(\mbox{\hyperlink{struct_s_d_l__atomic__t}{SDL\_atomic\_t}}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00316}00316\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00334}\mbox{\hyperlink{_s_d_l__atomic_8h_a36cadfcf8e2bda1974fbce6afdc6d529}{00334}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__atomic_8h_a36cadfcf8e2bda1974fbce6afdc6d529}{SDL\_AtomicAdd}}(\mbox{\hyperlink{struct_s_d_l__atomic__t}{SDL\_atomic\_t}}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a55f85da29bf761fde63cc95d26300230}{v}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00335}00335\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00339}00339\ \textcolor{preprocessor}{\#ifndef\ SDL\_AtomicIncRef}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00340}\mbox{\hyperlink{_s_d_l__atomic_8h_a9c3b04a6ce4b6907bfb6e2ea4649ff64}{00340}}\ \textcolor{preprocessor}{\#define\ SDL\_AtomicIncRef(a)\ \ \ \ SDL\_AtomicAdd(a,\ 1)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00341}00341\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00342}00342\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00349}00349\ \textcolor{preprocessor}{\#ifndef\ SDL\_AtomicDecRef}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00350}\mbox{\hyperlink{_s_d_l__atomic_8h_a1602c33647cfdfa8ae49a2eef10341c9}{00350}}\ \textcolor{preprocessor}{\#define\ SDL\_AtomicDecRef(a)\ \ \ \ (SDL\_AtomicAdd(a,\ -\/1)\ ==\ 1)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00351}00351\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00352}00352\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00370}\mbox{\hyperlink{_s_d_l__atomic_8h_aa3070cf7f391b522e08595822c2f0eba}{00370}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__stdinc_8h_a8fca68df0f976765230fe589a7c7733b}{SDL\_bool}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__atomic_8h_aa3070cf7f391b522e08595822c2f0eba}{SDL\_AtomicCASPtr}}(\textcolor{keywordtype}{void}\ **\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}},\ \textcolor{keywordtype}{void}\ *oldval,\ \textcolor{keywordtype}{void}\ *newval);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00371}00371\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00387}\mbox{\hyperlink{_s_d_l__atomic_8h_a3207340e57c812760328fa4f15198919}{00387}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__atomic_8h_a3207340e57c812760328fa4f15198919}{SDL\_AtomicSetPtr}}(\textcolor{keywordtype}{void}\ **\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}},\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{_s_d_l__opengl_8h_a55f85da29bf761fde63cc95d26300230}{v}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00388}00388\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00403}\mbox{\hyperlink{_s_d_l__atomic_8h_abbfdbca42b03cce91ab5a5f7f5078d4d}{00403}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__atomic_8h_abbfdbca42b03cce91ab5a5f7f5078d4d}{SDL\_AtomicGetPtr}}(\textcolor{keywordtype}{void}\ **\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00404}00404\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00405}00405\ \textcolor{comment}{/*\ Ends\ C\ function\ definitions\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00406}00406\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00407}00407\ \}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00408}00408\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00409}00409\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00410}00410\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{close__code_8h}{close\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00411}00411\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00412}00412\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_atomic\_h\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00413}00413\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__atomic_8h_source_l00414}00414\ \textcolor{comment}{/*\ vi:\ set\ ts=4\ sw=4\ expandtab:\ */}}
+
+\end{DoxyCode}

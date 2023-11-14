@@ -1,0 +1,108 @@
+\doxysection{/opt/homebrew/\+Cellar/sdl2/2.28.5/include/\+SDL2/\+SDL\+\_\+loadso.h File Reference}
+\hypertarget{_s_d_l__loadso_8h}{}\label{_s_d_l__loadso_8h}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_loadso.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_loadso.h}}
+{\ttfamily \#include "{}SDL\+\_\+stdinc.\+h"{}}\newline
+{\ttfamily \#include "{}SDL\+\_\+error.\+h"{}}\newline
+{\ttfamily \#include "{}begin\+\_\+code.\+h"{}}\newline
+{\ttfamily \#include "{}close\+\_\+code.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}} \mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}} \mbox{\hyperlink{_s_d_l__loadso_8h_ab4adfde098ce42506123b9ddabac5884}{SDL\+\_\+\+Load\+Object}} (\mbox{\hyperlink{class_vector__2d}{const}} \mbox{\hyperlink{class_vector__2d}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_vector__2d}{sofile}})
+\item 
+\mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}} \mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}} \mbox{\hyperlink{_s_d_l__loadso_8h_a9013bf9ba13dc4f9b7b56ab35c4ef9ba}{SDL\+\_\+\+Load\+Function}} (\mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a19abe6abc6ac2e10ec1bdf30f68a2527}{handle}}, \mbox{\hyperlink{class_vector__2d}{const}} \mbox{\hyperlink{class_vector__2d}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}})
+\item 
+\mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}} \mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}} \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}} \mbox{\hyperlink{_s_d_l__loadso_8h_a041e43c276cb826c2034eff220be7fe4}{SDL\+\_\+\+Unload\+Object}} (\mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a19abe6abc6ac2e10ec1bdf30f68a2527}{handle}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+System dependent library loading routines
+
+Some things to keep in mind\+: \begin{DoxyItemize}
+\item These functions only work on C function names. Other languages may have name mangling and intrinsic language support that varies from compiler to compiler. \item Make sure you declare your function pointers with the same calling convention as the actual library function. Your code will crash mysteriously if you do not do this. \item Avoid namespace collisions. If you load a symbol from the library, it is not defined whether or not it goes into the global symbol namespace for the application. If it does and it conflicts with symbols in your code or other shared libraries, you will not get the results you expect. \+:) \end{DoxyItemize}
+
+
+Definition in file \mbox{\hyperlink{_s_d_l__loadso_8h_source}{SDL\+\_\+loadso.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_s_d_l__loadso_8h_a9013bf9ba13dc4f9b7b56ab35c4ef9ba}\label{_s_d_l__loadso_8h_a9013bf9ba13dc4f9b7b56ab35c4ef9ba} 
+\index{SDL\_loadso.h@{SDL\_loadso.h}!SDL\_LoadFunction@{SDL\_LoadFunction}}
+\index{SDL\_LoadFunction@{SDL\_LoadFunction}!SDL\_loadso.h@{SDL\_loadso.h}}
+\doxysubsubsection{\texorpdfstring{SDL\_LoadFunction()}{SDL\_LoadFunction()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}} \mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}} SDL\+\_\+\+Load\+Function (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}} \texorpdfstring{$\ast$}{*}}]{handle,  }\item[{\mbox{\hyperlink{class_vector__2d}{const}} \mbox{\hyperlink{class_vector__2d}{char}} \texorpdfstring{$\ast$}{*}}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+Look up the address of the named function in a shared object.
+
+This function pointer is no longer valid after calling \doxylink{_s_d_l__loadso_8h_a041e43c276cb826c2034eff220be7fe4}{SDL\+\_\+\+Unload\+Object()}.
+
+This function can only look up C function names. Other languages may have name mangling and intrinsic language support that varies from compiler to compiler.
+
+Make sure you declare your function pointers with the same calling convention as the actual library function. Your code will crash mysteriously if you do not do this.
+
+If the requested function doesn\textquotesingle{}t exist, NULL is returned.
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & a valid shared object handle returned by \doxylink{_s_d_l__loadso_8h_ab4adfde098ce42506123b9ddabac5884}{SDL\+\_\+\+Load\+Object()} \\
+\hline
+{\em name} & the name of the function to look up \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the function or NULL if there was an error; call \doxylink{_s_d_l__error_8h_adaef317de186f072f8328798de29d51a}{SDL\+\_\+\+Get\+Error()} for more information.
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+This function is available since SDL 2.\+0.\+0.
+\end{DoxySince}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_s_d_l__loadso_8h_ab4adfde098ce42506123b9ddabac5884}{SDL\+\_\+\+Load\+Object} 
+
+\doxylink{_s_d_l__loadso_8h_a041e43c276cb826c2034eff220be7fe4}{SDL\+\_\+\+Unload\+Object} 
+\end{DoxySeeAlso}
+\Hypertarget{_s_d_l__loadso_8h_ab4adfde098ce42506123b9ddabac5884}\label{_s_d_l__loadso_8h_ab4adfde098ce42506123b9ddabac5884} 
+\index{SDL\_loadso.h@{SDL\_loadso.h}!SDL\_LoadObject@{SDL\_LoadObject}}
+\index{SDL\_LoadObject@{SDL\_LoadObject}!SDL\_loadso.h@{SDL\_loadso.h}}
+\doxysubsubsection{\texorpdfstring{SDL\_LoadObject()}{SDL\_LoadObject()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}} \mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}} SDL\+\_\+\+Load\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vector__2d}{const}} \mbox{\hyperlink{class_vector__2d}{char}} \texorpdfstring{$\ast$}{*}}]{sofile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+Dynamically load a shared object.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sofile} & a system-\/dependent name of the object file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an opaque pointer to the object handle or NULL if there was an error; call \doxylink{_s_d_l__error_8h_adaef317de186f072f8328798de29d51a}{SDL\+\_\+\+Get\+Error()} for more information.
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+This function is available since SDL 2.\+0.\+0.
+\end{DoxySince}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_s_d_l__loadso_8h_a9013bf9ba13dc4f9b7b56ab35c4ef9ba}{SDL\+\_\+\+Load\+Function} 
+
+\doxylink{_s_d_l__loadso_8h_a041e43c276cb826c2034eff220be7fe4}{SDL\+\_\+\+Unload\+Object} 
+\end{DoxySeeAlso}
+\Hypertarget{_s_d_l__loadso_8h_a041e43c276cb826c2034eff220be7fe4}\label{_s_d_l__loadso_8h_a041e43c276cb826c2034eff220be7fe4} 
+\index{SDL\_loadso.h@{SDL\_loadso.h}!SDL\_UnloadObject@{SDL\_UnloadObject}}
+\index{SDL\_UnloadObject@{SDL\_UnloadObject}!SDL\_loadso.h@{SDL\_loadso.h}}
+\doxysubsubsection{\texorpdfstring{SDL\_UnloadObject()}{SDL\_UnloadObject()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}} \mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}} \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}} SDL\+\_\+\+Unload\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}} \texorpdfstring{$\ast$}{*}}]{handle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+Unload a shared object from memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & a valid shared object handle returned by \doxylink{_s_d_l__loadso_8h_ab4adfde098ce42506123b9ddabac5884}{SDL\+\_\+\+Load\+Object()}\\
+\hline
+\end{DoxyParams}
+\begin{DoxySince}{Since}
+This function is available since SDL 2.\+0.\+0.
+\end{DoxySince}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_s_d_l__loadso_8h_a9013bf9ba13dc4f9b7b56ab35c4ef9ba}{SDL\+\_\+\+Load\+Function} 
+
+\doxylink{_s_d_l__loadso_8h_ab4adfde098ce42506123b9ddabac5884}{SDL\+\_\+\+Load\+Object} 
+\end{DoxySeeAlso}

@@ -1,0 +1,77 @@
+\doxysection{/opt/homebrew/\+Cellar/sdl2/2.28.5/include/\+SDL2/\+SDL\+\_\+guid.h File Reference}
+\hypertarget{_s_d_l__guid_8h}{}\label{_s_d_l__guid_8h}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_guid.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_guid.h}}
+{\ttfamily \#include "{}SDL\+\_\+stdinc.\+h"{}}\newline
+{\ttfamily \#include "{}SDL\+\_\+error.\+h"{}}\newline
+{\ttfamily \#include "{}begin\+\_\+code.\+h"{}}\newline
+{\ttfamily \#include "{}close\+\_\+code.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_s_d_l___g_u_i_d}{SDL\+\_\+\+GUID}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}} \mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}} \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}} \mbox{\hyperlink{_s_d_l__guid_8h_ac45f2a78da7a4ac7beae6f3ded687b58}{SDL\+\_\+\+GUIDTo\+String}} (\mbox{\hyperlink{struct_s_d_l___g_u_i_d}{SDL\+\_\+\+GUID}} \mbox{\hyperlink{class_vector__2d}{guid}}, \mbox{\hyperlink{class_vector__2d}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_vector__2d}{psz\+GUID}}, int \mbox{\hyperlink{class_vector__2d}{cb\+GUID}})
+\item 
+\mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}} \mbox{\hyperlink{struct_s_d_l___g_u_i_d}{SDL\+\_\+\+GUID}} \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}} \mbox{\hyperlink{_s_d_l__guid_8h_ab432a2a76d325f885dfcd45344c6384b}{SDL\+\_\+\+GUIDFrom\+String}} (\mbox{\hyperlink{class_vector__2d}{const}} \mbox{\hyperlink{class_vector__2d}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_vector__2d}{pch\+GUID}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Include file for handling \doxylink{struct_s_d_l___g_u_i_d}{SDL\+\_\+\+GUID} values. 
+
+Definition in file \mbox{\hyperlink{_s_d_l__guid_8h_source}{SDL\+\_\+guid.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_s_d_l__guid_8h_ab432a2a76d325f885dfcd45344c6384b}\label{_s_d_l__guid_8h_ab432a2a76d325f885dfcd45344c6384b} 
+\index{SDL\_guid.h@{SDL\_guid.h}!SDL\_GUIDFromString@{SDL\_GUIDFromString}}
+\index{SDL\_GUIDFromString@{SDL\_GUIDFromString}!SDL\_guid.h@{SDL\_guid.h}}
+\doxysubsubsection{\texorpdfstring{SDL\_GUIDFromString()}{SDL\_GUIDFromString()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}} \mbox{\hyperlink{struct_s_d_l___g_u_i_d}{SDL\+\_\+\+GUID}} \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}} SDL\+\_\+\+GUIDFrom\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vector__2d}{const}} \mbox{\hyperlink{class_vector__2d}{char}} \texorpdfstring{$\ast$}{*}}]{pch\+GUID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+Convert a GUID string into a \doxylink{struct_s_d_l___g_u_i_d}{SDL\+\_\+\+GUID} structure.
+
+Performs no error checking. If this function is given a string containing an invalid GUID, the function will silently succeed, but the GUID generated will not be useful.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pch\+GUID} & string containing an ASCII representation of a GUID \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a \doxylink{struct_s_d_l___g_u_i_d}{SDL\+\_\+\+GUID} structure.
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+This function is available since SDL 2.\+24.\+0.
+\end{DoxySince}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_s_d_l__guid_8h_ac45f2a78da7a4ac7beae6f3ded687b58}{SDL\+\_\+\+GUIDTo\+String} 
+\end{DoxySeeAlso}
+\Hypertarget{_s_d_l__guid_8h_ac45f2a78da7a4ac7beae6f3ded687b58}\label{_s_d_l__guid_8h_ac45f2a78da7a4ac7beae6f3ded687b58} 
+\index{SDL\_guid.h@{SDL\_guid.h}!SDL\_GUIDToString@{SDL\_GUIDToString}}
+\index{SDL\_GUIDToString@{SDL\_GUIDToString}!SDL\_guid.h@{SDL\_guid.h}}
+\doxysubsubsection{\texorpdfstring{SDL\_GUIDToString()}{SDL\_GUIDToString()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}} \mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}} \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}} SDL\+\_\+\+GUIDTo\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_s_d_l___g_u_i_d}{SDL\+\_\+\+GUID}}}]{guid,  }\item[{\mbox{\hyperlink{class_vector__2d}{char}} \texorpdfstring{$\ast$}{*}}]{psz\+GUID,  }\item[{int}]{cb\+GUID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+Get an ASCII string representation for a given \doxylink{struct_s_d_l___g_u_i_d}{SDL\+\_\+\+GUID}.
+
+You should supply at least 33 bytes for psz\+GUID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em guid} & the \doxylink{struct_s_d_l___g_u_i_d}{SDL\+\_\+\+GUID} you wish to convert to string \\
+\hline
+{\em psz\+GUID} & buffer in which to write the ASCII string \\
+\hline
+{\em cb\+GUID} & the size of psz\+GUID\\
+\hline
+\end{DoxyParams}
+\begin{DoxySince}{Since}
+This function is available since SDL 2.\+24.\+0.
+\end{DoxySince}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_s_d_l__guid_8h_ab432a2a76d325f885dfcd45344c6384b}{SDL\+\_\+\+GUIDFrom\+String} 
+\end{DoxySeeAlso}

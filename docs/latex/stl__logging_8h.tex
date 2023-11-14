@@ -1,0 +1,183 @@
+\doxysection{build/debug/vcpkg\+\_\+installed/arm64-\/osx/include/glog/stl\+\_\+logging.h File Reference}
+\hypertarget{stl__logging_8h}{}\label{stl__logging_8h}\index{build/debug/vcpkg\_installed/arm64-\/osx/include/glog/stl\_logging.h@{build/debug/vcpkg\_installed/arm64-\/osx/include/glog/stl\_logging.h}}
+{\ttfamily \#include $<$deque$>$}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$ostream$>$}\newline
+{\ttfamily \#include $<$set$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacegoogle}{google}}
+\item 
+namespace \mbox{\hyperlink{namespacestd}{std}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{class_vector__2d}{define}} \mbox{\hyperlink{stl__logging_8h_a5e919f38e03be7bf929f6217c66af984}{OUTPUT\+\_\+\+TWO\+\_\+\+ARG\+\_\+\+CONTAINER}}(\mbox{\hyperlink{class_vector__2d}{Sequence}})
+\item 
+\#\mbox{\hyperlink{class_vector__2d}{define}} \mbox{\hyperlink{stl__logging_8h_a75af345e6244f42937858aae7bbf6676}{OUTPUT\+\_\+\+THREE\+\_\+\+ARG\+\_\+\+CONTAINER}}(\mbox{\hyperlink{class_vector__2d}{Sequence}})
+\item 
+\#\mbox{\hyperlink{class_vector__2d}{define}} \mbox{\hyperlink{stl__logging_8h_a4b31e314ef6be3dcfd2935ab0d01d3de}{OUTPUT\+\_\+\+FOUR\+\_\+\+ARG\+\_\+\+CONTAINER}}(\mbox{\hyperlink{class_vector__2d}{Sequence}})
+\item 
+\#\mbox{\hyperlink{class_vector__2d}{define}} \mbox{\hyperlink{stl__logging_8h_aff2c9aeb85a64708d00f8d36cb2aac95}{OUTPUT\+\_\+\+FIVE\+\_\+\+ARG\+\_\+\+CONTAINER}}(\mbox{\hyperlink{class_vector__2d}{Sequence}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{class_vector__2d}{class}} \mbox{\hyperlink{class_vector__2d}{First}} , \mbox{\hyperlink{class_vector__2d}{class}} \mbox{\hyperlink{class_vector__2d}{Second}} $>$ }\\std\+::ostream \& \mbox{\hyperlink{stl__logging_8h_a682a8f845c69fb4338ae7da571464daf}{operator$<$$<$}} (std\+::ostream \&\mbox{\hyperlink{class_vector__2d}{out}}, \mbox{\hyperlink{class_vector__2d}{const}} std\+::pair$<$ \mbox{\hyperlink{class_vector__2d}{First}}, \mbox{\hyperlink{class_vector__2d}{Second}} $>$ \&\mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}})
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{class_vector__2d}{class}} \mbox{\hyperlink{class_vector__2d}{Iter}} $>$ }\\\mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}} \mbox{\hyperlink{namespacegoogle_ae5a5342065be66465356f053adfba6fe}{google\+::\+Print\+Sequence}} (std\+::ostream \&\mbox{\hyperlink{class_vector__2d}{out}}, \mbox{\hyperlink{class_vector__2d}{Iter}} \mbox{\hyperlink{class_vector__2d}{begin}}, \mbox{\hyperlink{class_vector__2d}{Iter}} \mbox{\hyperlink{_s_d_l__opengl_8h_a432111147038972f06e049e18a837002}{end}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{stl__logging_8h_aff2c9aeb85a64708d00f8d36cb2aac95}\label{stl__logging_8h_aff2c9aeb85a64708d00f8d36cb2aac95} 
+\index{stl\_logging.h@{stl\_logging.h}!OUTPUT\_FIVE\_ARG\_CONTAINER@{OUTPUT\_FIVE\_ARG\_CONTAINER}}
+\index{OUTPUT\_FIVE\_ARG\_CONTAINER@{OUTPUT\_FIVE\_ARG\_CONTAINER}!stl\_logging.h@{stl\_logging.h}}
+\doxysubsubsection{\texorpdfstring{OUTPUT\_FIVE\_ARG\_CONTAINER}{OUTPUT\_FIVE\_ARG\_CONTAINER}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{class_vector__2d}{define}} OUTPUT\+\_\+\+FIVE\+\_\+\+ARG\+\_\+\+CONTAINER(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{class_vector__2d}{Sequence}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2,\ \textcolor{keyword}{class}\ T3,\ \textcolor{keyword}{class}\ T4,\ \textcolor{keyword}{class}\ T5>\ \(\backslash\)}
+\DoxyCodeLine{\textcolor{keyword}{inline}\ std::ostream\&\ \mbox{\hyperlink{stl__logging_8h_a682a8f845c69fb4338ae7da571464daf}{operator<<}}(std::ostream\&\ \mbox{\hyperlink{class_vector__2d}{out}},\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{Sequence<T1,\ T2,\ T3,\ T4,\ T5>}}\&\ \mbox{\hyperlink{class_vector__2d}{seq}})\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ google::PrintSequence(\mbox{\hyperlink{class_vector__2d}{out}},\ \mbox{\hyperlink{class_vector__2d}{seq}}.begin(),\ \mbox{\hyperlink{class_vector__2d}{seq}}.end());\ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vector__2d}{out}};\ \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{stl__logging_8h_source_l00148}{148}} of file \mbox{\hyperlink{stl__logging_8h_source}{stl\+\_\+logging.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ OUTPUT\_FIVE\_ARG\_CONTAINER(Sequence)\ \(\backslash\)}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{template<class\ T1,\ class\ T2,\ class\ T3,\ class\ T4,\ class\ T5>\ \(\backslash\)}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{inline\ std::ostream\&\ operator<<(std::ostream\&\ out,\ \(\backslash\)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ Sequence<T1,\ T2,\ T3,\ T4,\ T5>\&\ seq)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\ \ google::PrintSequence(out,\ seq.begin(),\ seq.end());\ \(\backslash\)}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\ \ return\ out;\ \(\backslash\)}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\}}}
+
+\end{DoxyCode}
+\Hypertarget{stl__logging_8h_a4b31e314ef6be3dcfd2935ab0d01d3de}\label{stl__logging_8h_a4b31e314ef6be3dcfd2935ab0d01d3de} 
+\index{stl\_logging.h@{stl\_logging.h}!OUTPUT\_FOUR\_ARG\_CONTAINER@{OUTPUT\_FOUR\_ARG\_CONTAINER}}
+\index{OUTPUT\_FOUR\_ARG\_CONTAINER@{OUTPUT\_FOUR\_ARG\_CONTAINER}!stl\_logging.h@{stl\_logging.h}}
+\doxysubsubsection{\texorpdfstring{OUTPUT\_FOUR\_ARG\_CONTAINER}{OUTPUT\_FOUR\_ARG\_CONTAINER}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{class_vector__2d}{define}} OUTPUT\+\_\+\+FOUR\+\_\+\+ARG\+\_\+\+CONTAINER(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{class_vector__2d}{Sequence}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2,\ \textcolor{keyword}{class}\ T3,\ \textcolor{keyword}{class}\ T4>\ \(\backslash\)}
+\DoxyCodeLine{\textcolor{keyword}{inline}\ std::ostream\&\ \mbox{\hyperlink{stl__logging_8h_a682a8f845c69fb4338ae7da571464daf}{operator<<}}(std::ostream\&\ \mbox{\hyperlink{class_vector__2d}{out}},\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{Sequence<T1,\ T2,\ T3,\ T4>}}\&\ \mbox{\hyperlink{class_vector__2d}{seq}})\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ google::PrintSequence(\mbox{\hyperlink{class_vector__2d}{out}},\ \mbox{\hyperlink{class_vector__2d}{seq}}.begin(),\ \mbox{\hyperlink{class_vector__2d}{seq}}.end());\ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vector__2d}{out}};\ \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{stl__logging_8h_source_l00123}{123}} of file \mbox{\hyperlink{stl__logging_8h_source}{stl\+\_\+logging.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ OUTPUT\_FOUR\_ARG\_CONTAINER(Sequence)\ \(\backslash\)}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{template<class\ T1,\ class\ T2,\ class\ T3,\ class\ T4>\ \(\backslash\)}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{inline\ std::ostream\&\ operator<<(std::ostream\&\ out,\ \(\backslash\)}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ Sequence<T1,\ T2,\ T3,\ T4>\&\ seq)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\ \ google::PrintSequence(out,\ seq.begin(),\ seq.end());\ \(\backslash\)}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\ \ return\ out;\ \(\backslash\)}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\}}}
+
+\end{DoxyCode}
+\Hypertarget{stl__logging_8h_a75af345e6244f42937858aae7bbf6676}\label{stl__logging_8h_a75af345e6244f42937858aae7bbf6676} 
+\index{stl\_logging.h@{stl\_logging.h}!OUTPUT\_THREE\_ARG\_CONTAINER@{OUTPUT\_THREE\_ARG\_CONTAINER}}
+\index{OUTPUT\_THREE\_ARG\_CONTAINER@{OUTPUT\_THREE\_ARG\_CONTAINER}!stl\_logging.h@{stl\_logging.h}}
+\doxysubsubsection{\texorpdfstring{OUTPUT\_THREE\_ARG\_CONTAINER}{OUTPUT\_THREE\_ARG\_CONTAINER}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{class_vector__2d}{define}} OUTPUT\+\_\+\+THREE\+\_\+\+ARG\+\_\+\+CONTAINER(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{class_vector__2d}{Sequence}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2,\ \textcolor{keyword}{class}\ T3>\ \(\backslash\)}
+\DoxyCodeLine{\textcolor{keyword}{inline}\ std::ostream\&\ \mbox{\hyperlink{stl__logging_8h_a682a8f845c69fb4338ae7da571464daf}{operator<<}}(std::ostream\&\ \mbox{\hyperlink{class_vector__2d}{out}},\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{Sequence<T1,\ T2,\ T3>}}\&\ \mbox{\hyperlink{class_vector__2d}{seq}})\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ google::PrintSequence(\mbox{\hyperlink{class_vector__2d}{out}},\ \mbox{\hyperlink{class_vector__2d}{seq}}.begin(),\ \mbox{\hyperlink{class_vector__2d}{seq}}.end());\ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vector__2d}{out}};\ \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{stl__logging_8h_source_l00110}{110}} of file \mbox{\hyperlink{stl__logging_8h_source}{stl\+\_\+logging.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ OUTPUT\_THREE\_ARG\_CONTAINER(Sequence)\ \(\backslash\)}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{template<class\ T1,\ class\ T2,\ class\ T3>\ \(\backslash\)}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{inline\ std::ostream\&\ operator<<(std::ostream\&\ out,\ \(\backslash\)}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ Sequence<T1,\ T2,\ T3>\&\ seq)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ google::PrintSequence(out,\ seq.begin(),\ seq.end());\ \(\backslash\)}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\ \ return\ out;\ \(\backslash\)}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\}}}
+
+\end{DoxyCode}
+\Hypertarget{stl__logging_8h_a5e919f38e03be7bf929f6217c66af984}\label{stl__logging_8h_a5e919f38e03be7bf929f6217c66af984} 
+\index{stl\_logging.h@{stl\_logging.h}!OUTPUT\_TWO\_ARG\_CONTAINER@{OUTPUT\_TWO\_ARG\_CONTAINER}}
+\index{OUTPUT\_TWO\_ARG\_CONTAINER@{OUTPUT\_TWO\_ARG\_CONTAINER}!stl\_logging.h@{stl\_logging.h}}
+\doxysubsubsection{\texorpdfstring{OUTPUT\_TWO\_ARG\_CONTAINER}{OUTPUT\_TWO\_ARG\_CONTAINER}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{class_vector__2d}{define}} OUTPUT\+\_\+\+TWO\+\_\+\+ARG\+\_\+\+CONTAINER(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{class_vector__2d}{Sequence}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class}\ T1,\ \textcolor{keyword}{class}\ T2>\ \(\backslash\)}
+\DoxyCodeLine{\textcolor{keyword}{inline}\ std::ostream\&\ \mbox{\hyperlink{stl__logging_8h_a682a8f845c69fb4338ae7da571464daf}{operator<<}}(std::ostream\&\ \mbox{\hyperlink{class_vector__2d}{out}},\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{Sequence<T1,\ T2>}}\&\ \mbox{\hyperlink{class_vector__2d}{seq}})\ \{\ \(\backslash\)}
+\DoxyCodeLine{\ \ google::PrintSequence(\mbox{\hyperlink{class_vector__2d}{out}},\ \mbox{\hyperlink{class_vector__2d}{seq}}.begin(),\ \mbox{\hyperlink{class_vector__2d}{seq}}.end());\ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vector__2d}{out}};\ \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{stl__logging_8h_source_l00093}{93}} of file \mbox{\hyperlink{stl__logging_8h_source}{stl\+\_\+logging.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ OUTPUT\_TWO\_ARG\_CONTAINER(Sequence)\ \(\backslash\)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{template<class\ T1,\ class\ T2>\ \(\backslash\)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{inline\ std::ostream\&\ operator<<(std::ostream\&\ out,\ \(\backslash\)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ Sequence<T1,\ T2>\&\ seq)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\ \ google::PrintSequence(out,\ seq.begin(),\ seq.end());\ \(\backslash\)}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\ \ return\ out;\ \(\backslash\)}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\}}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{stl__logging_8h_a682a8f845c69fb4338ae7da571464daf}\label{stl__logging_8h_a682a8f845c69fb4338ae7da571464daf} 
+\index{stl\_logging.h@{stl\_logging.h}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!stl\_logging.h@{stl\_logging.h}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{class_vector__2d}{class}} \mbox{\hyperlink{class_vector__2d}{First}} , \mbox{\hyperlink{class_vector__2d}{class}} \mbox{\hyperlink{class_vector__2d}{Second}} $>$ \\
+std\+::ostream \& \mbox{\hyperlink{class_vector__2d}{operator}}$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{\mbox{\hyperlink{class_vector__2d}{const}} std\+::pair$<$ \mbox{\hyperlink{class_vector__2d}{First}}, \mbox{\hyperlink{class_vector__2d}{Second}} $>$ \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{stl__logging_8h_source_l00172}{172}} of file \mbox{\hyperlink{stl__logging_8h_source}{stl\+\_\+logging.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \mbox{\hyperlink{class_vector__2d}{out}}\ <<\ \textcolor{charliteral}{'('}\ <<\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}}.first\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}}.second\ <<\ \textcolor{charliteral}{')'};}
+\DoxyCodeLine{00175\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vector__2d}{out}};}
+\DoxyCodeLine{00176\ \}}
+
+\end{DoxyCode}

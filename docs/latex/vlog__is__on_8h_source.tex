@@ -1,0 +1,124 @@
+\doxysection{vlog\+\_\+is\+\_\+on.\+h}
+\hypertarget{vlog__is__on_8h_source}{}\label{vlog__is__on_8h_source}\index{build/debug/vcpkg\_installed/arm64-\/osx/include/glog/vlog\_is\_on.h@{build/debug/vcpkg\_installed/arm64-\/osx/include/glog/vlog\_is\_on.h}}
+\mbox{\hyperlink{vlog__is__on_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (c)\ 1999,\ 2007,\ Google\ Inc.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00002}00002\ \textcolor{comment}{//\ All\ rights\ reserved.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00003}00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00004}00004\ \textcolor{comment}{//\ Redistribution\ and\ use\ in\ source\ and\ binary\ forms,\ with\ or\ without}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00005}00005\ \textcolor{comment}{//\ modification,\ are\ permitted\ provided\ that\ the\ following\ conditions\ are}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00006}00006\ \textcolor{comment}{//\ met:}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00007}00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00008}00008\ \textcolor{comment}{//\ \ \ \ \ *\ Redistributions\ of\ source\ code\ must\ retain\ the\ above\ copyright}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00009}00009\ \textcolor{comment}{//\ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00010}00010\ \textcolor{comment}{//\ \ \ \ \ *\ Redistributions\ in\ binary\ form\ must\ reproduce\ the\ above}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00011}00011\ \textcolor{comment}{//\ copyright\ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00012}00012\ \textcolor{comment}{//\ in\ the\ documentation\ and/or\ other\ materials\ provided\ with\ the}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00013}00013\ \textcolor{comment}{//\ distribution.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00014}00014\ \textcolor{comment}{//\ \ \ \ \ *\ Neither\ the\ name\ of\ Google\ Inc.\ nor\ the\ names\ of\ its}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00015}00015\ \textcolor{comment}{//\ contributors\ may\ be\ used\ to\ endorse\ or\ promote\ products\ derived\ from}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00016}00016\ \textcolor{comment}{//\ this\ software\ without\ specific\ prior\ written\ permission.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00017}00017\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00018}00018\ \textcolor{comment}{//\ THIS\ SOFTWARE\ IS\ PROVIDED\ BY\ THE\ COPYRIGHT\ HOLDERS\ AND\ CONTRIBUTORS}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00019}00019\ \textcolor{comment}{//\ "{}AS\ IS"{}\ AND\ ANY\ EXPRESS\ OR\ IMPLIED\ WARRANTIES,\ INCLUDING,\ BUT\ NOT}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00020}00020\ \textcolor{comment}{//\ LIMITED\ TO,\ THE\ IMPLIED\ WARRANTIES\ OF\ MERCHANTABILITY\ AND\ FITNESS\ FOR}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00021}00021\ \textcolor{comment}{//\ A\ PARTICULAR\ PURPOSE\ ARE\ DISCLAIMED.\ IN\ NO\ EVENT\ SHALL\ THE\ COPYRIGHT}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00022}00022\ \textcolor{comment}{//\ OWNER\ OR\ CONTRIBUTORS\ BE\ LIABLE\ FOR\ ANY\ DIRECT,\ INDIRECT,\ INCIDENTAL,}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00023}00023\ \textcolor{comment}{//\ SPECIAL,\ EXEMPLARY,\ OR\ CONSEQUENTIAL\ DAMAGES\ (INCLUDING,\ BUT\ NOT}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00024}00024\ \textcolor{comment}{//\ LIMITED\ TO,\ PROCUREMENT\ OF\ SUBSTITUTE\ GOODS\ OR\ SERVICES;\ LOSS\ OF\ USE,}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00025}00025\ \textcolor{comment}{//\ DATA,\ OR\ PROFITS;\ OR\ BUSINESS\ INTERRUPTION)\ HOWEVER\ CAUSED\ AND\ ON\ ANY}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00026}00026\ \textcolor{comment}{//\ THEORY\ OF\ LIABILITY,\ WHETHER\ IN\ CONTRACT,\ STRICT\ LIABILITY,\ OR\ TORT}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00027}00027\ \textcolor{comment}{//\ (INCLUDING\ NEGLIGENCE\ OR\ OTHERWISE)\ ARISING\ IN\ ANY\ WAY\ OUT\ OF\ THE\ USE}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00028}00028\ \textcolor{comment}{//\ OF\ THIS\ SOFTWARE,\ EVEN\ IF\ ADVISED\ OF\ THE\ POSSIBILITY\ OF\ SUCH\ DAMAGE.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00029}00029\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00030}00030\ \textcolor{comment}{//\ Author:\ Ray\ Sidney\ and\ many\ others}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00031}00031\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00032}00032\ \textcolor{comment}{//\ Defines\ the\ VLOG\_IS\_ON\ macro\ that\ controls\ the\ variable-\/verbosity}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00033}00033\ \textcolor{comment}{//\ conditional\ logging.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00034}00034\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00035}00035\ \textcolor{comment}{//\ It's\ used\ by\ VLOG\ and\ VLOG\_IF\ in\ logging.h}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00036}00036\ \textcolor{comment}{//\ and\ by\ RAW\_VLOG\ in\ raw\_logging.h\ to\ trigger\ the\ logging.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00037}00037\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00038}00038\ \textcolor{comment}{//\ It\ can\ also\ be\ used\ directly\ e.g.\ like\ this:}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00039}00039\ \textcolor{comment}{//\ \ \ if\ (VLOG\_IS\_ON(2))\ \{}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00040}00040\ \textcolor{comment}{//\ \ \ \ \ //\ do\ some\ logging\ preparation\ and\ logging}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00041}00041\ \textcolor{comment}{//\ \ \ \ \ //\ that\ can't\ be\ accomplished\ e.g.\ via\ just\ VLOG(2)\ <<\ ...;}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00042}00042\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00043}00043\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00044}00044\ \textcolor{comment}{//\ The\ truth\ value\ that\ VLOG\_IS\_ON(level)\ returns\ is\ determined\ by}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00045}00045\ \textcolor{comment}{//\ the\ three\ verbosity\ level\ flags:}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00046}00046\ \textcolor{comment}{//\ \ \ -\/-\/v=<n>\ \ Gives\ the\ default\ maximal\ active\ V-\/logging\ level;}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00047}00047\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ 0\ is\ the\ default.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00048}00048\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ Normally\ positive\ values\ are\ used\ for\ V-\/logging\ levels.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00049}00049\ \textcolor{comment}{//\ \ \ -\/-\/vmodule=<str>\ \ Gives\ the\ per-\/module\ maximal\ V-\/logging\ levels\ to\ override}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00050}00050\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\ value\ given\ by\ -\/-\/v.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00051}00051\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ E.g.\ "{}my\_module=2,foo*=3"{}\ would\ change\ the\ logging\ level}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00052}00052\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\ all\ code\ in\ source\ files\ "{}my\_module.*"{}\ and\ "{}foo*.*"{}}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00053}00053\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ("{}-\/inl"{}\ suffixes\ are\ also\ disregarded\ for\ this\ matching).}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00054}00054\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00055}00055\ \textcolor{comment}{//\ SetVLOGLevel\ helper\ function\ is\ provided\ to\ do\ limited\ dynamic\ control\ over}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00056}00056\ \textcolor{comment}{//\ V-\/logging\ by\ overriding\ the\ per-\/module\ settings\ given\ via\ -\/-\/vmodule\ flag.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00057}00057\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00058}00058\ \textcolor{comment}{//\ CAVEAT:\ -\/-\/vmodule\ functionality\ is\ not\ available\ in\ non\ gcc\ compilers.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00059}00059\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00061}00061\ \textcolor{preprocessor}{\#ifndef\ BASE\_VLOG\_IS\_ON\_H\_}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00062}00062\ \textcolor{preprocessor}{\#define\ BASE\_VLOG\_IS\_ON\_H\_}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00064}00064\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{log__severity_8h}{glog/log\_severity.h}}>}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00066}00066\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00067}00067\ \textcolor{comment}{//\ We\ emit\ an\ anonymous\ static\ int*\ variable\ at\ every\ VLOG\_IS\_ON(n)\ site.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00068}00068\ \textcolor{comment}{//\ (Normally)\ the\ first\ time\ every\ VLOG\_IS\_ON(n)\ site\ is\ hit,}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00069}00069\ \textcolor{comment}{//\ we\ determine\ what\ variable\ will\ dynamically\ control\ logging\ at\ this\ site:}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00070}00070\ \textcolor{comment}{//\ it's\ either\ FLAGS\_v\ or\ an\ appropriate\ internal\ variable}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00071}00071\ \textcolor{comment}{//\ matching\ the\ current\ source\ file\ that\ represents\ results\ of}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00072}00072\ \textcolor{comment}{//\ parsing\ of\ -\/-\/vmodule\ flag\ and/or\ SetVLOGLevel\ calls.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00073}00073\ \textcolor{preprocessor}{\#define\ VLOG\_IS\_ON(verboselevel)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00074}00074\ \textcolor{preprocessor}{\ \ \_\_extension\_\_\ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00075}00075\ \textcolor{preprocessor}{\ \ (\{\ static\ google::SiteFlag\ vlocal\_\_\ =\ \{NULL,\ NULL,\ 0,\ NULL\};\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00076}00076\ \textcolor{preprocessor}{\ \ \ \ \ google::int32\ verbose\_level\_\_\ =\ (verboselevel);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00077}00077\ \textcolor{preprocessor}{\ \ \ \ \ (vlocal\_\_.level\ ==\ NULL\ ?\ google::InitVLOG3\_\_(\&vlocal\_\_,\ \&FLAGS\_v,\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00078}00078\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_\_FILE\_\_,\ verbose\_level\_\_)\ :\ *vlocal\_\_.level\ >=\ verbose\_level\_\_);\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00079}00079\ \textcolor{preprocessor}{\ \ \})}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00080}00080\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00081}00081\ \textcolor{comment}{//\ GNU\ extensions\ not\ available,\ so\ we\ do\ not\ support\ -\/-\/vmodule.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00082}00082\ \textcolor{comment}{//\ Dynamic\ value\ of\ FLAGS\_v\ always\ controls\ the\ logging\ level.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00083}\mbox{\hyperlink{vlog__is__on_8h_a956152cad330225654d128f35c00efce}{00083}}\ \textcolor{preprocessor}{\#define\ VLOG\_IS\_ON(verboselevel)\ (FLAGS\_v\ >=\ (verboselevel))}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00084}00084\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00086}00086\ \textcolor{comment}{//\ Set\ VLOG(\_IS\_ON)\ level\ for\ module\_pattern\ to\ log\_level.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00087}00087\ \textcolor{comment}{//\ This\ lets\ us\ dynamically\ control\ what\ is\ normally\ set\ by\ the\ -\/-\/vmodule\ flag.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00088}00088\ \textcolor{comment}{//\ Returns\ the\ level\ that\ previously\ applied\ to\ module\_pattern.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00089}00089\ \textcolor{comment}{//\ NOTE:\ To\ change\ the\ log\ level\ for\ VLOG(\_IS\_ON)\ sites}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00090}00090\ \textcolor{comment}{//\ \ \ that\ have\ already\ executed\ after/during\ InitGoogleLogging,}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00091}00091\ \textcolor{comment}{//\ \ \ one\ needs\ to\ supply\ the\ exact\ -\/-\/vmodule\ pattern\ that\ applied\ to\ them.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00092}00092\ \textcolor{comment}{//\ \ \ \ \ \ \ (If\ no\ -\/-\/vmodule\ pattern\ applied\ to\ them}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00093}00093\ \textcolor{comment}{//\ \ \ \ \ \ \ the\ value\ of\ FLAGS\_v\ will\ continue\ to\ control\ them.)}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00094}\mbox{\hyperlink{vlog__is__on_8h_a3211cb7a5c13f02b8402a63383411ec0}{00094}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{export_8h_af43ac7f6f83169274a0db0eebf31c930}{GLOG\_EXPORT}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{vlog__is__on_8h_a3211cb7a5c13f02b8402a63383411ec0}{SetVLOGLevel}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ module\_pattern,\ \textcolor{keywordtype}{int}\ log\_level);}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00096}00096\ \textcolor{comment}{//\ Various\ declarations\ needed\ for\ VLOG\_IS\_ON\ above:\ =========================}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00098}\mbox{\hyperlink{struct_site_flag}{00098}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_site_flag}{SiteFlag}}\ \{}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00099}\mbox{\hyperlink{struct_site_flag_a574708b8cec5384bdea3f69755b1994d}{00099}}\ \ \ \mbox{\hyperlink{namespacegoogle_a55bebe2bafcd7d70769349aad34ab306}{google::int32}}*\ \mbox{\hyperlink{struct_site_flag_a574708b8cec5384bdea3f69755b1994d}{level}};}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00100}\mbox{\hyperlink{struct_site_flag_a85f7ab234300fb4a5611fe067c3fd17c}{00100}}\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{struct_site_flag_a85f7ab234300fb4a5611fe067c3fd17c}{base\_name}};}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00101}\mbox{\hyperlink{struct_site_flag_a9d77a1617be13e3c3dcd5df93d823387}{00101}}\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{struct_site_flag_a9d77a1617be13e3c3dcd5df93d823387}{base\_len}};}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00102}\mbox{\hyperlink{struct_site_flag_ad32ad0c4d6c9b11fdf7e45b84e3ae71b}{00102}}\ \ \ \mbox{\hyperlink{struct_site_flag}{SiteFlag}}*\ \mbox{\hyperlink{struct_site_flag_ad32ad0c4d6c9b11fdf7e45b84e3ae71b}{next}};}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00103}00103\ \};}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00105}00105\ \textcolor{comment}{//\ Helper\ routine\ which\ determines\ the\ logging\ info\ for\ a\ particalur\ VLOG\ site.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00106}00106\ \textcolor{comment}{//\ \ \ site\_flag\ \ \ \ \ is\ the\ address\ of\ the\ site-\/local\ pointer\ to\ the\ controlling}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00107}00107\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ verbosity\ level}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00108}00108\ \textcolor{comment}{//\ \ \ site\_default\ \ is\ the\ default\ to\ use\ for\ *site\_flag}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00109}00109\ \textcolor{comment}{//\ \ \ fname\ \ \ \ \ \ \ \ \ is\ the\ current\ source\ file\ name}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00110}00110\ \textcolor{comment}{//\ \ \ verbose\_level\ is\ the\ argument\ to\ VLOG\_IS\_ON}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00111}00111\ \textcolor{comment}{//\ We\ will\ return\ the\ return\ value\ for\ VLOG\_IS\_ON}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00112}00112\ \textcolor{comment}{//\ and\ if\ possible\ set\ *site\_flag\ appropriately.}}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00113}\mbox{\hyperlink{vlog__is__on_8h_a74b86340a670c6fb1ebd85c3aed8196d}{00113}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{export_8h_af43ac7f6f83169274a0db0eebf31c930}{GLOG\_EXPORT}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{vlog__is__on_8h_a74b86340a670c6fb1ebd85c3aed8196d}{InitVLOG3\_\_}}(}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00114}00114\ \ \ \ \ google::SiteFlag*\ site\_flag,}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00115}00115\ \ \ \ \ \mbox{\hyperlink{namespacegoogle_a55bebe2bafcd7d70769349aad34ab306}{google::int32}}*\ site\_default,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fname,}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00116}00116\ \ \ \ \ \mbox{\hyperlink{namespacegoogle_a55bebe2bafcd7d70769349aad34ab306}{google::int32}}\ verbose\_level);}
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{vlog__is__on_8h_source_l00118}00118\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ BASE\_VLOG\_IS\_ON\_H\_}}
+
+\end{DoxyCode}

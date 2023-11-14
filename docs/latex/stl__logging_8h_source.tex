@@ -1,0 +1,226 @@
+\doxysection{stl\+\_\+logging.\+h}
+\hypertarget{stl__logging_8h_source}{}\label{stl__logging_8h_source}\index{build/debug/vcpkg\_installed/arm64-\/osx/include/glog/stl\_logging.h@{build/debug/vcpkg\_installed/arm64-\/osx/include/glog/stl\_logging.h}}
+\mbox{\hyperlink{stl__logging_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (c)\ 2003,\ Google\ Inc.}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00002}00002\ \textcolor{comment}{//\ All\ rights\ reserved.}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00003}00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00004}00004\ \textcolor{comment}{//\ Redistribution\ and\ use\ in\ source\ and\ binary\ forms,\ with\ or\ without}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00005}00005\ \textcolor{comment}{//\ modification,\ are\ permitted\ provided\ that\ the\ following\ conditions\ are}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00006}00006\ \textcolor{comment}{//\ met:}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00007}00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00008}00008\ \textcolor{comment}{//\ \ \ \ \ *\ Redistributions\ of\ source\ code\ must\ retain\ the\ above\ copyright}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00009}00009\ \textcolor{comment}{//\ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer.}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00010}00010\ \textcolor{comment}{//\ \ \ \ \ *\ Redistributions\ in\ binary\ form\ must\ reproduce\ the\ above}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00011}00011\ \textcolor{comment}{//\ copyright\ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00012}00012\ \textcolor{comment}{//\ in\ the\ documentation\ and/or\ other\ materials\ provided\ with\ the}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00013}00013\ \textcolor{comment}{//\ distribution.}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00014}00014\ \textcolor{comment}{//\ \ \ \ \ *\ Neither\ the\ name\ of\ Google\ Inc.\ nor\ the\ names\ of\ its}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00015}00015\ \textcolor{comment}{//\ contributors\ may\ be\ used\ to\ endorse\ or\ promote\ products\ derived\ from}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00016}00016\ \textcolor{comment}{//\ this\ software\ without\ specific\ prior\ written\ permission.}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00017}00017\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00018}00018\ \textcolor{comment}{//\ THIS\ SOFTWARE\ IS\ PROVIDED\ BY\ THE\ COPYRIGHT\ HOLDERS\ AND\ CONTRIBUTORS}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00019}00019\ \textcolor{comment}{//\ "{}AS\ IS"{}\ AND\ ANY\ EXPRESS\ OR\ IMPLIED\ WARRANTIES,\ INCLUDING,\ BUT\ NOT}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00020}00020\ \textcolor{comment}{//\ LIMITED\ TO,\ THE\ IMPLIED\ WARRANTIES\ OF\ MERCHANTABILITY\ AND\ FITNESS\ FOR}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00021}00021\ \textcolor{comment}{//\ A\ PARTICULAR\ PURPOSE\ ARE\ DISCLAIMED.\ IN\ NO\ EVENT\ SHALL\ THE\ COPYRIGHT}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00022}00022\ \textcolor{comment}{//\ OWNER\ OR\ CONTRIBUTORS\ BE\ LIABLE\ FOR\ ANY\ DIRECT,\ INDIRECT,\ INCIDENTAL,}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00023}00023\ \textcolor{comment}{//\ SPECIAL,\ EXEMPLARY,\ OR\ CONSEQUENTIAL\ DAMAGES\ (INCLUDING,\ BUT\ NOT}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00024}00024\ \textcolor{comment}{//\ LIMITED\ TO,\ PROCUREMENT\ OF\ SUBSTITUTE\ GOODS\ OR\ SERVICES;\ LOSS\ OF\ USE,}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00025}00025\ \textcolor{comment}{//\ DATA,\ OR\ PROFITS;\ OR\ BUSINESS\ INTERRUPTION)\ HOWEVER\ CAUSED\ AND\ ON\ ANY}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00026}00026\ \textcolor{comment}{//\ THEORY\ OF\ LIABILITY,\ WHETHER\ IN\ CONTRACT,\ STRICT\ LIABILITY,\ OR\ TORT}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00027}00027\ \textcolor{comment}{//\ (INCLUDING\ NEGLIGENCE\ OR\ OTHERWISE)\ ARISING\ IN\ ANY\ WAY\ OUT\ OF\ THE\ USE}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00028}00028\ \textcolor{comment}{//\ OF\ THIS\ SOFTWARE,\ EVEN\ IF\ ADVISED\ OF\ THE\ POSSIBILITY\ OF\ SUCH\ DAMAGE.}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00029}00029\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00030}00030\ \textcolor{comment}{//\ Stream\ output\ operators\ for\ STL\ containers;\ to\ be\ used\ for\ logging\ *only*.}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00031}00031\ \textcolor{comment}{//\ Inclusion\ of\ this\ file\ lets\ you\ do:}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00032}00032\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00033}00033\ \textcolor{comment}{//\ list<string>\ x;}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00034}00034\ \textcolor{comment}{//\ LOG(INFO)\ <<\ "{}data:\ "{}\ <<\ x;}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00035}00035\ \textcolor{comment}{//\ vector<int>\ v1,\ v2;}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00036}00036\ \textcolor{comment}{//\ CHECK\_EQ(v1,\ v2);}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00037}00037\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00038}00038\ \textcolor{comment}{//\ If\ you\ want\ to\ use\ this\ header\ file\ with\ hash\ maps\ or\ slist,\ you}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00039}00039\ \textcolor{comment}{//\ need\ to\ define\ macros\ before\ including\ this\ file:}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00040}00040\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00041}00041\ \textcolor{comment}{//\ -\/\ GLOG\_STL\_LOGGING\_FOR\_UNORDERED\ \ \ \ \ -\/\ <unordered\_map>\ and\ <unordered\_set>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00042}00042\ \textcolor{comment}{//\ -\/\ GLOG\_STL\_LOGGING\_FOR\_TR1\_UNORDERED\ -\/\ <tr1/unordered\_(map|set)>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00043}00043\ \textcolor{comment}{//\ -\/\ GLOG\_STL\_LOGGING\_FOR\_EXT\_HASH\ \ \ \ \ \ -\/\ <ext/hash\_(map|set)>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00044}00044\ \textcolor{comment}{//\ -\/\ GLOG\_STL\_LOGGING\_FOR\_EXT\_SLIST\ \ \ \ \ -\/\ <ext/slist>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00045}00045\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00047}00047\ \textcolor{preprocessor}{\#ifndef\ UTIL\_GTL\_STL\_LOGGING\_INL\_H\_}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00048}00048\ \textcolor{preprocessor}{\#define\ UTIL\_GTL\_STL\_LOGGING\_INL\_H\_}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00050}00050\ \textcolor{preprocessor}{\#if\ !1}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00051}00051\ \textcolor{preprocessor}{\#\ error\ We\ do\ not\ support\ stl\_logging\ for\ this\ compiler}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00052}00052\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00054}00054\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00055}00055\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00056}00056\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00057}00057\ \textcolor{preprocessor}{\#include\ <ostream>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00058}00058\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00059}00059\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00060}00060\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00062}00062\ \textcolor{preprocessor}{\#if\ defined(GLOG\_STL\_LOGGING\_FOR\_UNORDERED)\ \&\&\ \_\_cplusplus\ >=\ 201103L}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00063}00063\ \textcolor{preprocessor}{\#\ include\ <unordered\_map>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00064}00064\ \textcolor{preprocessor}{\#\ include\ <unordered\_set>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00065}00065\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00067}00067\ \textcolor{preprocessor}{\#ifdef\ GLOG\_STL\_LOGGING\_FOR\_TR1\_UNORDERED}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00068}00068\ \textcolor{preprocessor}{\#\ include\ <tr1/unordered\_map>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00069}00069\ \textcolor{preprocessor}{\#\ include\ <tr1/unordered\_set>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00070}00070\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00072}00072\ \textcolor{preprocessor}{\#ifdef\ GLOG\_STL\_LOGGING\_FOR\_EXT\_HASH}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00073}00073\ \textcolor{preprocessor}{\#\ include\ <ext/hash\_set>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00074}00074\ \textcolor{preprocessor}{\#\ include\ <ext/hash\_map>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00075}00075\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00076}00076\ \textcolor{preprocessor}{\#ifdef\ GLOG\_STL\_LOGGING\_FOR\_EXT\_SLIST}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00077}00077\ \textcolor{preprocessor}{\#\ include\ <ext/slist>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00078}00078\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00080}00080\ \textcolor{comment}{//\ Forward\ declare\ these\ two,\ and\ define\ them\ after\ all\ the\ container\ streams}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00081}00081\ \textcolor{comment}{//\ operators\ so\ that\ we\ can\ recurse\ from\ pair\ -\/>\ container\ -\/>\ container\ -\/>\ pair}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00082}00082\ \textcolor{comment}{//\ properly.}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00083}00083\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ First,\ \textcolor{keyword}{class}\ Second>}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00084}00084\ std::ostream\&\ \mbox{\hyperlink{stl__logging_8h_a682a8f845c69fb4338ae7da571464daf}{operator<<}}(std::ostream\&\ out,\ \textcolor{keyword}{const}\ std::pair<First,\ Second>\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}});}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00086}00086\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegoogle}{google}}\ \{}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00088}00088\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ Iter>}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00089}00089\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacegoogle_ae5a5342065be66465356f053adfba6fe}{PrintSequence}}(std::ostream\&\ out,\ Iter\ begin,\ Iter\ \mbox{\hyperlink{_s_d_l__opengl_8h_a432111147038972f06e049e18a837002}{end}});}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00091}00091\ \}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00093}\mbox{\hyperlink{stl__logging_8h_a5e919f38e03be7bf929f6217c66af984}{00093}}\ \textcolor{preprocessor}{\#define\ OUTPUT\_TWO\_ARG\_CONTAINER(Sequence)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00094}00094\ \textcolor{preprocessor}{template<class\ T1,\ class\ T2>\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00095}00095\ \textcolor{preprocessor}{inline\ std::ostream\&\ operator<<(std::ostream\&\ out,\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00096}00096\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ Sequence<T1,\ T2>\&\ seq)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00097}00097\ \textcolor{preprocessor}{\ \ google::PrintSequence(out,\ seq.begin(),\ seq.end());\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00098}00098\ \textcolor{preprocessor}{\ \ return\ out;\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00099}00099\ \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00101}00101\ \mbox{\hyperlink{stl__logging_8h_a5e919f38e03be7bf929f6217c66af984}{OUTPUT\_TWO\_ARG\_CONTAINER}}(std::vector)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00102}00102\ \mbox{\hyperlink{stl__logging_8h_a5e919f38e03be7bf929f6217c66af984}{OUTPUT\_TWO\_ARG\_CONTAINER}}(std::deque)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00103}00103\ \mbox{\hyperlink{stl__logging_8h_a5e919f38e03be7bf929f6217c66af984}{OUTPUT\_TWO\_ARG\_CONTAINER}}(std::list)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00104}00104\ \textcolor{preprocessor}{\#ifdef\ GLOG\_STL\_LOGGING\_FOR\_EXT\_SLIST}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00105}00105\ \mbox{\hyperlink{stl__logging_8h_a5e919f38e03be7bf929f6217c66af984}{OUTPUT\_TWO\_ARG\_CONTAINER}}(\_\_gnu\_cxx::slist)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00106}00106\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00108}00108\ \textcolor{preprocessor}{\#undef\ OUTPUT\_TWO\_ARG\_CONTAINER}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00110}\mbox{\hyperlink{stl__logging_8h_a75af345e6244f42937858aae7bbf6676}{00110}}\ \textcolor{preprocessor}{\#define\ OUTPUT\_THREE\_ARG\_CONTAINER(Sequence)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00111}00111\ \textcolor{preprocessor}{template<class\ T1,\ class\ T2,\ class\ T3>\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00112}00112\ \textcolor{preprocessor}{inline\ std::ostream\&\ operator<<(std::ostream\&\ out,\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00113}00113\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ Sequence<T1,\ T2,\ T3>\&\ seq)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00114}00114\ \textcolor{preprocessor}{\ \ google::PrintSequence(out,\ seq.begin(),\ seq.end());\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00115}00115\ \textcolor{preprocessor}{\ \ return\ out;\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00116}00116\ \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00118}00118\ \mbox{\hyperlink{stl__logging_8h_a75af345e6244f42937858aae7bbf6676}{OUTPUT\_THREE\_ARG\_CONTAINER}}(std::set)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00119}00119\ \mbox{\hyperlink{stl__logging_8h_a75af345e6244f42937858aae7bbf6676}{OUTPUT\_THREE\_ARG\_CONTAINER}}(std::multiset)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00121}00121\ \textcolor{preprocessor}{\#undef\ OUTPUT\_THREE\_ARG\_CONTAINER}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00123}\mbox{\hyperlink{stl__logging_8h_a4b31e314ef6be3dcfd2935ab0d01d3de}{00123}}\ \textcolor{preprocessor}{\#define\ OUTPUT\_FOUR\_ARG\_CONTAINER(Sequence)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00124}00124\ \textcolor{preprocessor}{template<class\ T1,\ class\ T2,\ class\ T3,\ class\ T4>\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00125}00125\ \textcolor{preprocessor}{inline\ std::ostream\&\ operator<<(std::ostream\&\ out,\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00126}00126\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ Sequence<T1,\ T2,\ T3,\ T4>\&\ seq)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00127}00127\ \textcolor{preprocessor}{\ \ google::PrintSequence(out,\ seq.begin(),\ seq.end());\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00128}00128\ \textcolor{preprocessor}{\ \ return\ out;\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00129}00129\ \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00131}00131\ \mbox{\hyperlink{stl__logging_8h_a4b31e314ef6be3dcfd2935ab0d01d3de}{OUTPUT\_FOUR\_ARG\_CONTAINER}}(std::map)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00132}00132\ \mbox{\hyperlink{stl__logging_8h_a4b31e314ef6be3dcfd2935ab0d01d3de}{OUTPUT\_FOUR\_ARG\_CONTAINER}}(std::multimap)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00133}00133\ \textcolor{preprocessor}{\#if\ defined(GLOG\_STL\_LOGGING\_FOR\_UNORDERED)\ \&\&\ \_\_cplusplus\ >=\ 201103L}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00134}00134\ \mbox{\hyperlink{stl__logging_8h_a4b31e314ef6be3dcfd2935ab0d01d3de}{OUTPUT\_FOUR\_ARG\_CONTAINER}}(std::unordered\_set)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00135}00135\ \mbox{\hyperlink{stl__logging_8h_a4b31e314ef6be3dcfd2935ab0d01d3de}{OUTPUT\_FOUR\_ARG\_CONTAINER}}(std::unordered\_multiset)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00136}00136\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00137}00137\ \textcolor{preprocessor}{\#ifdef\ GLOG\_STL\_LOGGING\_FOR\_TR1\_UNORDERED}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00138}00138\ \mbox{\hyperlink{stl__logging_8h_a4b31e314ef6be3dcfd2935ab0d01d3de}{OUTPUT\_FOUR\_ARG\_CONTAINER}}(std::tr1::unordered\_set)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00139}00139\ \mbox{\hyperlink{stl__logging_8h_a4b31e314ef6be3dcfd2935ab0d01d3de}{OUTPUT\_FOUR\_ARG\_CONTAINER}}(std::tr1::unordered\_multiset)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00140}00140\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00141}00141\ \textcolor{preprocessor}{\#ifdef\ GLOG\_STL\_LOGGING\_FOR\_EXT\_HASH}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00142}00142\ \mbox{\hyperlink{stl__logging_8h_a4b31e314ef6be3dcfd2935ab0d01d3de}{OUTPUT\_FOUR\_ARG\_CONTAINER}}(\_\_gnu\_cxx::hash\_set)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00143}00143\ \mbox{\hyperlink{stl__logging_8h_a4b31e314ef6be3dcfd2935ab0d01d3de}{OUTPUT\_FOUR\_ARG\_CONTAINER}}(\_\_gnu\_cxx::hash\_multiset)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00144}00144\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00146}00146\ \textcolor{preprocessor}{\#undef\ OUTPUT\_FOUR\_ARG\_CONTAINER}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00148}\mbox{\hyperlink{stl__logging_8h_aff2c9aeb85a64708d00f8d36cb2aac95}{00148}}\ \textcolor{preprocessor}{\#define\ OUTPUT\_FIVE\_ARG\_CONTAINER(Sequence)\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00149}00149\ \textcolor{preprocessor}{template<class\ T1,\ class\ T2,\ class\ T3,\ class\ T4,\ class\ T5>\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00150}00150\ \textcolor{preprocessor}{inline\ std::ostream\&\ operator<<(std::ostream\&\ out,\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00151}00151\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ Sequence<T1,\ T2,\ T3,\ T4,\ T5>\&\ seq)\ \{\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00152}00152\ \textcolor{preprocessor}{\ \ google::PrintSequence(out,\ seq.begin(),\ seq.end());\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00153}00153\ \textcolor{preprocessor}{\ \ return\ out;\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00154}00154\ \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00156}00156\ \textcolor{preprocessor}{\#if\ defined(GLOG\_STL\_LOGGING\_FOR\_UNORDERED)\ \&\&\ \_\_cplusplus\ >=\ 201103L}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00157}00157\ \mbox{\hyperlink{stl__logging_8h_aff2c9aeb85a64708d00f8d36cb2aac95}{OUTPUT\_FIVE\_ARG\_CONTAINER}}(std::unordered\_map)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00158}00158\ \mbox{\hyperlink{stl__logging_8h_aff2c9aeb85a64708d00f8d36cb2aac95}{OUTPUT\_FIVE\_ARG\_CONTAINER}}(std::unordered\_multimap)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00159}00159\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00160}00160\ \textcolor{preprocessor}{\#ifdef\ GLOG\_STL\_LOGGING\_FOR\_TR1\_UNORDERED}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00161}00161\ \mbox{\hyperlink{stl__logging_8h_aff2c9aeb85a64708d00f8d36cb2aac95}{OUTPUT\_FIVE\_ARG\_CONTAINER}}(std::tr1::unordered\_map)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00162}00162\ \mbox{\hyperlink{stl__logging_8h_aff2c9aeb85a64708d00f8d36cb2aac95}{OUTPUT\_FIVE\_ARG\_CONTAINER}}(std::tr1::unordered\_multimap)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00163}00163\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00164}00164\ \textcolor{preprocessor}{\#ifdef\ GLOG\_STL\_LOGGING\_FOR\_EXT\_HASH}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00165}00165\ \mbox{\hyperlink{stl__logging_8h_aff2c9aeb85a64708d00f8d36cb2aac95}{OUTPUT\_FIVE\_ARG\_CONTAINER}}(\_\_gnu\_cxx::hash\_map)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00166}00166\ \mbox{\hyperlink{stl__logging_8h_aff2c9aeb85a64708d00f8d36cb2aac95}{OUTPUT\_FIVE\_ARG\_CONTAINER}}(\_\_gnu\_cxx::hash\_multimap)}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00167}00167\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00169}00169\ \textcolor{preprocessor}{\#undef\ OUTPUT\_FIVE\_ARG\_CONTAINER}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00171}00171\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ First,\ \textcolor{keyword}{class}\ Second>}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00172}\mbox{\hyperlink{stl__logging_8h_a682a8f845c69fb4338ae7da571464daf}{00172}}\ \textcolor{keyword}{inline}\ std::ostream\&\ \mbox{\hyperlink{stl__logging_8h_a682a8f845c69fb4338ae7da571464daf}{operator<<}}(std::ostream\&\ out,}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::pair<First,\ Second>\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}})\ \{}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00174}00174\ \ \ out\ <<\ \textcolor{charliteral}{'('}\ <<\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}}.first\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}}.second\ <<\ \textcolor{charliteral}{')'};}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00175}00175\ \ \ \textcolor{keywordflow}{return}\ out;}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00176}00176\ \}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00178}00178\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegoogle}{google}}\ \{}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00180}00180\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ Iter>}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00181}\mbox{\hyperlink{namespacegoogle_ae5a5342065be66465356f053adfba6fe}{00181}}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacegoogle_ae5a5342065be66465356f053adfba6fe}{PrintSequence}}(std::ostream\&\ out,\ Iter\ begin,\ Iter\ \mbox{\hyperlink{_s_d_l__opengl_8h_a432111147038972f06e049e18a837002}{end}})\ \{}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00182}00182\ \ \ \textcolor{comment}{//\ Output\ at\ most\ 100\ elements\ -\/-\/\ appropriate\ if\ used\ for\ logging.}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00183}00183\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ begin\ !=\ \mbox{\hyperlink{_s_d_l__opengl_8h_a432111147038972f06e049e18a837002}{end}}\ \&\&\ i\ <\ 100;\ ++i,\ ++begin)\ \{}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00184}00184\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >\ 0)\ out\ <<\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00185}00185\ \ \ \ \ out\ <<\ *begin;}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00186}00186\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00187}00187\ \ \ \textcolor{keywordflow}{if}\ (begin\ !=\ \mbox{\hyperlink{_s_d_l__opengl_8h_a432111147038972f06e049e18a837002}{end}})\ \{}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00188}00188\ \ \ \ \ out\ <<\ \textcolor{stringliteral}{"{}\ ..."{}};}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00189}00189\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00190}00190\ \}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00192}00192\ \}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00194}00194\ \textcolor{comment}{//\ Note\ that\ this\ is\ technically\ undefined\ behavior!\ We\ are\ adding\ things\ into}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00195}00195\ \textcolor{comment}{//\ the\ std\ namespace\ for\ a\ reason\ though\ -\/-\/\ we\ are\ providing\ new\ operations\ on}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00196}00196\ \textcolor{comment}{//\ types\ which\ are\ themselves\ defined\ with\ this\ namespace.\ Without\ this,\ these}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00197}00197\ \textcolor{comment}{//\ operator\ overloads\ cannot\ be\ found\ via\ ADL.\ If\ these\ definitions\ are\ not}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00198}00198\ \textcolor{comment}{//\ found\ via\ ADL,\ they\ must\ be\ \#included\ before\ they're\ used,\ which\ requires}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00199}00199\ \textcolor{comment}{//\ this\ header\ to\ be\ included\ before\ apparently\ independent\ other\ headers.}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00200}00200\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00201}00201\ \textcolor{comment}{//\ For\ example,\ base/logging.h\ defines\ various\ template\ functions\ to\ implement}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00202}00202\ \textcolor{comment}{//\ CHECK\_EQ(x,\ y)\ and\ stream\ x\ and\ y\ into\ the\ log\ in\ the\ event\ the\ check\ fails.}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00203}00203\ \textcolor{comment}{//\ It\ does\ so\ via\ the\ function\ template\ MakeCheckOpValueString:}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00204}00204\ \textcolor{comment}{//\ \ \ template<class\ T>}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00205}00205\ \textcolor{comment}{//\ \ \ void\ MakeCheckOpValueString(strstream*\ ss,\ const\ T\&\ v)\ \{}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00206}00206\ \textcolor{comment}{//\ \ \ \ \ (*ss)\ <<\ v;}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00207}00207\ \textcolor{comment}{//\ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00208}00208\ \textcolor{comment}{//\ Because\ 'glog/logging.h'\ is\ included\ before\ 'glog/stl\_logging.h',}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00209}00209\ \textcolor{comment}{//\ subsequent\ CHECK\_EQ(v1,\ v2)\ for\ vector<...>\ typed\ variable\ v1\ and\ v2\ can\ only}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00210}00210\ \textcolor{comment}{//\ find\ these\ operator\ definitions\ via\ ADL.}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00211}00211\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00212}00212\ \textcolor{comment}{//\ Even\ this\ solution\ has\ problems\ -\/-\/\ it\ may\ pull\ unintended\ operators\ into\ the}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00213}00213\ \textcolor{comment}{//\ namespace\ as\ well,\ allowing\ them\ to\ also\ be\ found\ via\ ADL,\ and\ creating\ code}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00214}00214\ \textcolor{comment}{//\ that\ only\ works\ with\ a\ particular\ order\ of\ includes.\ Long\ term,\ we\ need\ to}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00215}00215\ \textcolor{comment}{//\ move\ all\ of\ the\ *definitions*\ into\ namespace\ std,\ bet\ we\ need\ to\ ensure\ no}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00216}00216\ \textcolor{comment}{//\ one\ references\ them\ first.\ This\ lets\ us\ take\ that\ step.\ We\ cannot\ define\ them}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00217}00217\ \textcolor{comment}{//\ in\ both\ because\ that\ would\ create\ ambiguous\ overloads\ when\ both\ are\ found.}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00218}\mbox{\hyperlink{namespacestd}{00218}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacestd}{std}}\ \{\ using\ ::operator<<;\ \}}
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{stl__logging_8h_source_l00220}00220\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ UTIL\_GTL\_STL\_LOGGING\_INL\_H\_}}
+
+\end{DoxyCode}

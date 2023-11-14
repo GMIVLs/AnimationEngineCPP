@@ -1,0 +1,39 @@
+\doxysection{SDL\+\_\+quit.\+h}
+\hypertarget{_s_d_l__quit_8h_source}{}\label{_s_d_l__quit_8h_source}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_quit.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_quit.h}}
+\mbox{\hyperlink{_s_d_l__quit_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00002}00002\ \textcolor{comment}{\ \ Simple\ DirectMedia\ Layer}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00003}00003\ \textcolor{comment}{\ \ Copyright\ (C)\ 1997-\/2023\ Sam\ Lantinga\ <slouken@libsdl.org>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00005}00005\ \textcolor{comment}{\ \ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00006}00006\ \textcolor{comment}{\ \ warranty.\ \ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00007}00007\ \textcolor{comment}{\ \ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00008}00008\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00009}00009\ \textcolor{comment}{\ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00010}00010\ \textcolor{comment}{\ \ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00011}00011\ \textcolor{comment}{\ \ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00013}00013\ \textcolor{comment}{\ \ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00014}00014\ \textcolor{comment}{\ \ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00015}00015\ \textcolor{comment}{\ \ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00016}00016\ \textcolor{comment}{\ \ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00017}00017\ \textcolor{comment}{\ \ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00018}00018\ \textcolor{comment}{\ \ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00019}00019\ \textcolor{comment}{\ \ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00020}00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00028}00028\ \textcolor{preprocessor}{\#ifndef\ SDL\_quit\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00029}00029\ \textcolor{preprocessor}{\#define\ SDL\_quit\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00031}00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__stdinc_8h}{SDL\_stdinc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__error_8h}{SDL\_error.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00053}00053\ \textcolor{comment}{/*\ There\ are\ no\ functions\ directly\ affecting\ the\ quit\ event\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00055}\mbox{\hyperlink{_s_d_l__quit_8h_a28f0e45d1be91312001526ec45d9dc83}{00055}}\ \textcolor{preprocessor}{\#define\ SDL\_QuitRequested()\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00056}00056\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ (SDL\_PumpEvents(),\ (SDL\_PeepEvents(NULL,0,SDL\_PEEKEVENT,SDL\_QUIT,SDL\_QUIT)\ >\ 0))}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__quit_8h_source_l00058}00058\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_quit\_h\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

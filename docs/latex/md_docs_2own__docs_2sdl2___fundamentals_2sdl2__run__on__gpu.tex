@@ -1,0 +1,48 @@
+\chapter{SDL2 Run on GPU}
+\hypertarget{md_docs_2own__docs_2sdl2___fundamentals_2sdl2__run__on__gpu}{}\label{md_docs_2own__docs_2sdl2___fundamentals_2sdl2__run__on__gpu}\index{SDL2 Run on GPU@{SDL2 Run on GPU}}
+\label{md_docs_2own__docs_2sdl2___fundamentals_2sdl2__run__on__gpu_autotoc_md248}%
+\Hypertarget{md_docs_2own__docs_2sdl2___fundamentals_2sdl2__run__on__gpu_autotoc_md248}%
+ It\textquotesingle{}s possible to utilize SDL2 in combination with the GPU for rendering, especially for intensive 2D graphics. SDL2 provides hardware-\/accelerated rendering through its {\ttfamily SDL\+\_\+\+Renderer} API, which uses the GPU to perform rendering operations when available.
+
+Here\textquotesingle{}s a breakdown of how you can use SDL2 with GPU acceleration\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Hardware-\/\+Accelerated Renderer}}\+: When creating a renderer with SDL2, you can specify the {\ttfamily SDL\+\_\+\+RENDERER\+\_\+\+ACCELERATED} flag. This tells SDL2 to create a hardware-\/accelerated renderer, which uses the GPU when possible.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_s_d_l__render_8h_aaf0bf7d020754fc614fe06552ea4d5d4}{SDL\_Renderer}}*\ \mbox{\hyperlink{class_vector__2d}{renderer}}\ =\ \mbox{\hyperlink{_s_d_l__render_8h_a4acc54236013e4ef625dcc362cc8b7d5}{SDL\_CreateRenderer}}(window,\ -\/1,}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{_s_d_l__render_8h_a3a6e51bbee5fd3f8ee0c9f7504ae4130a1268ba2faaf6d9c7c7b71fc550f4248a}{SDL\_RENDERER\_ACCELERATED}});}
+
+\end{DoxyCode}
+
+\item {\bfseries{V-\/\+Sync}}\+: If you also want to enable V-\/\+Sync to cap the frame rate and prevent screen tearing, you can use the {\ttfamily SDL\+\_\+\+RENDERER\+\_\+\+PRESENTVSYNC} flag\+: 00
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_s_d_l__render_8h_aaf0bf7d020754fc614fe06552ea4d5d4}{SDL\_Renderer}}*\ \mbox{\hyperlink{class_vector__2d}{renderer}}\ =\ \mbox{\hyperlink{_s_d_l__render_8h_a4acc54236013e4ef625dcc362cc8b7d5}{SDL\_CreateRenderer}}(window,\ -\/1,}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{_s_d_l__render_8h_a3a6e51bbee5fd3f8ee0c9f7504ae4130a1268ba2faaf6d9c7c7b71fc550f4248a}{SDL\_RENDERER\_ACCELERATED}}\ |\ \mbox{\hyperlink{_s_d_l__render_8h_a3a6e51bbee5fd3f8ee0c9f7504ae4130a12abcfe685ff444f0fc727db981a0c83}{SDL\_RENDERER\_PRESENTVSYNC}});}
+
+\end{DoxyCode}
+
+\item {\bfseries{Textures over Surfaces}}\+: For GPU-\/accelerated rendering, you should prefer {\ttfamily SDL\+\_\+\+Texture} over {\ttfamily \doxylink{struct_s_d_l___surface}{SDL\+\_\+\+Surface}}. Textures can be loaded into GPU memory, making them much faster to draw when using a hardware-\/accelerated renderer.
+
+To convert an {\ttfamily \doxylink{struct_s_d_l___surface}{SDL\+\_\+\+Surface}} to {\ttfamily SDL\+\_\+\+Texture} for rendering\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_s_d_l__render_8h_a17850d7f1f5de457727cb3cf66b3a7f5}{SDL\_Texture}}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_ab21590c4736d1459a5a0674a42b5a655}{texture}}\ =\ \mbox{\hyperlink{_s_d_l__render_8h_a5c0f3b4f6fdb462e4292cd45e72719fb}{SDL\_CreateTextureFromSurface}}(\mbox{\hyperlink{class_vector__2d}{renderer}},}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{class_vector__2d}{surface}});}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md_docs_2own__docs_2sdl2___fundamentals_2sdl2__run__on__gpu_autotoc_md249}{}\doxysection{\texorpdfstring{Regarding the Apple M1 chip\+:}{Regarding the Apple M1 chip:}}\label{md_docs_2own__docs_2sdl2___fundamentals_2sdl2__run__on__gpu_autotoc_md249}
+
+\begin{DoxyItemize}
+\item The M1 is Apple\textquotesingle{}s ARM-\/based chip that has integrated GPU cores. It\textquotesingle{}s quite powerful and can definitely handle intensive 2D graphics.
+\item If you\textquotesingle{}re developing on an M1 Mac, ensure you have the latest SDL2 libraries that are compatible with the ARM architecture of the M1.
+\item SDL2 has support for Metal, which is Apple\textquotesingle{}s graphics and compute API. This means SDL2 can take advantage of the M1\textquotesingle{}s GPU capabilities via Metal for rendering.
+\end{DoxyItemize}
+
+The SDL2 offers hardware-\/accelerated rendering for 2D graphics, if you need more control over the GPU, especially for 3D graphics or custom shaders, you might want to consider combining SDL2 with a graphics API like Open\+GL, Vulkan, or Metal. SDL2 can be used to create a window and handle input, while the graphics API manages the rendering. 

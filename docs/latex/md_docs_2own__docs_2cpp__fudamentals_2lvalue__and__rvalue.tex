@@ -1,0 +1,42 @@
+\chapter{Lvalue and Rvalue}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2lvalue__and__rvalue}{}\label{md_docs_2own__docs_2cpp__fudamentals_2lvalue__and__rvalue}\index{Lvalue and Rvalue@{Lvalue and Rvalue}}
+\label{md_docs_2own__docs_2cpp__fudamentals_2lvalue__and__rvalue_autotoc_md122}%
+\Hypertarget{md_docs_2own__docs_2cpp__fudamentals_2lvalue__and__rvalue_autotoc_md122}%
+
+\begin{DoxyItemize}
+\item In C++, lvalues and rvalues are fundamental concepts that pertain to the "{}value category"{} of expressions. Here\textquotesingle{}s a table outlining the main distinctions and their related concepts\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Concept}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Usage}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Types}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Concept}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Usage}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Types}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-5}
+\endhead
+{\bfseries{lvalue}}   &Storage location   &Represents an object that occupies a memory location and can appear on the left or right side of an assignment.   &Variables, Arrays   &{\ttfamily int x = 10; x = 20;} (x is an lvalue)    \\\cline{1-5}
+&Addressable   &Its address can be taken using the {\ttfamily \&} operator.   &&{\ttfamily int\texorpdfstring{$\ast$}{*} p = \&x;}    \\\cline{1-5}
+&Modifiable   &Can be modified if it\textquotesingle{}s not declared as {\ttfamily const}.   &&\\\cline{1-5}
+{\bfseries{rvalue}}   &Temporary Value   &Represents a temporary object that doesn\textquotesingle{}t have a stable storage location. Typically appears on the right side of an assignment but cannot be assigned to.   &Literals, Temporaries   &{\ttfamily int y = x + 10;} ({\ttfamily x + 10} is an rvalue)    \\\cline{1-5}
+&Not addressable directly   &Cannot directly take the address of an rvalue because it doesn\textquotesingle{}t have a stable memory location.   &&{\ttfamily int\texorpdfstring{$\ast$}{*} q = \&(x + 10); // Error}    \\\cline{1-5}
+{\bfseries{xvalue}}   &"{}e\+Xpiring"{} value   &Represents an object about to be moved from or destroyed. Sits between lvalues and rvalues and can be bound to rvalue references.   &Moved-\/from objects   &{\ttfamily std\+::move(x)}    \\\cline{1-5}
+{\bfseries{glvalue}}   &Generalized lvalue   &Category that encompasses both lvalues and xvalues.   &lvalues, xvalues   &\\\cline{1-5}
+{\bfseries{prvalue}}   &Pure rvalue   &Rvalues that aren\textquotesingle{}t xvalues. They are typically temporary objects that don\textquotesingle{}t have identity and can\textquotesingle{}t be moved-\/from.   &Temporaries, Literals   &{\ttfamily x + 10}   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{Notes}}\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Rvalue References}}\+: C++11 introduced rvalue references ({\ttfamily T\&\&}) which can bind to rvalues. They play a key role in move semantics and perfect forwarding.
+\item {\bfseries{Move Semantics}}\+: Allows resources owned by an rvalue to be moved into an lvalue without making a copy. Useful for transferring resources from temporary objects.
+\item {\bfseries{lvalue References}}\+: These are the traditional references ({\ttfamily T\&}) which bind to lvalues. They can also bind to rvalues if they\textquotesingle{}re {\ttfamily const}, e.\+g., {\ttfamily const T\&}.
+\item {\bfseries{Categories Expansion}}\+: The concepts of lvalues and rvalues were expanded in C++11 with the introduction of xvalues, glvalues, and prvalues to provide a more detailed classification of expressions, especially to support move semantics and rvalue references.
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item When programming in C++, understanding these concepts is crucial for resource management, especially when dealing with operations like copy and move semantics, reference binding, and overloading based on value categories. 
+\end{DoxyItemize}

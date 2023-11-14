@@ -1,0 +1,96 @@
+\doxysection{SDL\+\_\+test\+\_\+md5.\+h}
+\hypertarget{_s_d_l__test__md5_8h_source}{}\label{_s_d_l__test__md5_8h_source}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_test\_md5.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_test\_md5.h}}
+\mbox{\hyperlink{_s_d_l__test__md5_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00002}00002\ \textcolor{comment}{\ \ Simple\ DirectMedia\ Layer}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00003}00003\ \textcolor{comment}{\ \ Copyright\ (C)\ 1997-\/2023\ Sam\ Lantinga\ <slouken@libsdl.org>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00005}00005\ \textcolor{comment}{\ \ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00006}00006\ \textcolor{comment}{\ \ warranty.\ \ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00007}00007\ \textcolor{comment}{\ \ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00008}00008\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00009}00009\ \textcolor{comment}{\ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00010}00010\ \textcolor{comment}{\ \ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00011}00011\ \textcolor{comment}{\ \ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00013}00013\ \textcolor{comment}{\ \ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00014}00014\ \textcolor{comment}{\ \ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00015}00015\ \textcolor{comment}{\ \ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00016}00016\ \textcolor{comment}{\ \ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00017}00017\ \textcolor{comment}{\ \ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00018}00018\ \textcolor{comment}{\ \ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00019}00019\ \textcolor{comment}{\ \ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00020}00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00030}00030\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00031}00031\ \textcolor{comment}{\ ***********************************************************************}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00032}00032\ \textcolor{comment}{\ **\ Header\ file\ for\ implementation\ of\ MD5\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00033}00033\ \textcolor{comment}{\ **\ RSA\ Data\ Security,\ Inc.\ MD5\ Message-\/Digest\ Algorithm\ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00034}00034\ \textcolor{comment}{\ **\ Created:\ 2/17/90\ RLR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00035}00035\ \textcolor{comment}{\ **\ Revised:\ 12/27/90\ SRD,AJ,BSK,JT\ Reference\ C\ version\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00036}00036\ \textcolor{comment}{\ **\ Revised\ (for\ MD5):\ RLR\ 4/27/91\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00037}00037\ \textcolor{comment}{\ **\ \ \ -\/-\/\ G\ modified\ to\ have\ y\&\string~z\ instead\ of\ y\&z\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00038}00038\ \textcolor{comment}{\ **\ \ \ -\/-\/\ FF,\ GG,\ HH\ modified\ to\ add\ in\ last\ register\ done\ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00039}00039\ \textcolor{comment}{\ **\ \ \ -\/-\/\ Access\ pattern:\ round\ 2\ works\ mod\ 5,\ round\ 3\ works\ mod\ 3\ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00040}00040\ \textcolor{comment}{\ **\ \ \ -\/-\/\ distinct\ additive\ constant\ for\ each\ step\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00041}00041\ \textcolor{comment}{\ **\ \ \ -\/-\/\ round\ 4\ added,\ working\ mod\ 7\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00042}00042\ \textcolor{comment}{\ ***********************************************************************}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00043}00043\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00045}00045\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00046}00046\ \textcolor{comment}{\ ***********************************************************************}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00047}00047\ \textcolor{comment}{\ **\ \ Message-\/digest\ routines:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00048}00048\ \textcolor{comment}{\ **\ \ To\ form\ the\ message\ digest\ for\ a\ message\ M\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00049}00049\ \textcolor{comment}{\ **\ \ \ \ (1)\ Initialize\ a\ context\ buffer\ mdContext\ using\ MD5Init\ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00050}00050\ \textcolor{comment}{\ **\ \ \ \ (2)\ Call\ MD5Update\ on\ mdContext\ and\ M\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00051}00051\ \textcolor{comment}{\ **\ \ \ \ (3)\ Call\ MD5Final\ on\ mdContext\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00052}00052\ \textcolor{comment}{\ **\ \ The\ message\ digest\ is\ now\ in\ mdContext-\/>digest[0...15]\ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00053}00053\ \textcolor{comment}{\ ***********************************************************************}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00054}00054\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00056}00056\ \textcolor{preprocessor}{\#ifndef\ SDL\_test\_md5\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00057}00057\ \textcolor{preprocessor}{\#define\ SDL\_test\_md5\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00059}00059\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{begin__code_8h}{begin\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00060}00060\ \textcolor{comment}{/*\ Set\ up\ for\ C\ function\ definitions,\ even\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00061}00061\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00062}00062\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00063}00063\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00065}00065\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Definitions\ -\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00067}00067\ \textcolor{comment}{/*\ typedef\ a\ 32-\/bit\ type\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00068}\mbox{\hyperlink{_s_d_l__test__md5_8h_a2bdcfd1b3373be8191c70eb4a7cb84c6}{00068}}\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__test__md5_8h_a2bdcfd1b3373be8191c70eb4a7cb84c6}{MD5UINT4}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00070}00070\ \textcolor{comment}{/*\ Data\ structure\ for\ MD5\ (Message-\/Digest)\ computation\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00071}\mbox{\hyperlink{struct_s_d_l_test___md5_context}{00071}}\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00072}\mbox{\hyperlink{struct_s_d_l_test___md5_context_a95b3d5fd74fd1b7a27bf96f3bb32beb4}{00072}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__test__md5_8h_a2bdcfd1b3373be8191c70eb4a7cb84c6}{MD5UINT4}}\ \ i[2];\ \ \ \ \ \textcolor{comment}{/*\ number\ of\ \_bits\_\ handled\ mod\ 2\string^64\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00073}\mbox{\hyperlink{struct_s_d_l_test___md5_context_a061f0cead7ec49ac4c5baf0bbd9c13a7}{00073}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__test__md5_8h_a2bdcfd1b3373be8191c70eb4a7cb84c6}{MD5UINT4}}\ \ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa3b73d9ca9f2e2396cbeae1ce6ce14be}{buf}}[4];\ \ \ \ \ \ \ \textcolor{comment}{/*\ scratch\ buffer\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00074}\mbox{\hyperlink{struct_s_d_l_test___md5_context_a337638ef799dc0ad9397ea9b175ea388}{00074}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a83ad0ee7f1e06b59c90271716e689080}{in}}[64];\ \ \ \textcolor{comment}{/*\ input\ buffer\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00075}\mbox{\hyperlink{struct_s_d_l_test___md5_context_ab29079997a9f35e5d52c2aac3ad28f90}{00075}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ digest[16];\ \ \ \textcolor{comment}{/*\ actual\ digest\ after\ Md5Final\ call\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00076}00076\ \ \ \}\ \mbox{\hyperlink{struct_s_d_l_test___md5_context}{SDLTest\_Md5Context}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00078}00078\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Function\ Prototypes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00089}\mbox{\hyperlink{_s_d_l__test__md5_8h_add801a5f4162ed3bb0211d0e7b5829ec}{00089}}\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_s_d_l__test__md5_8h_add801a5f4162ed3bb0211d0e7b5829ec}{SDLTest\_Md5Init}}(\mbox{\hyperlink{struct_s_d_l_test___md5_context}{SDLTest\_Md5Context}}\ *\ mdContext);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00104}\mbox{\hyperlink{_s_d_l__test__md5_8h_a435607e2ee1bf1ce09686ef97c21a7d5}{00104}}\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_s_d_l__test__md5_8h_a435607e2ee1bf1ce09686ef97c21a7d5}{SDLTest\_Md5Update}}(\mbox{\hyperlink{struct_s_d_l_test___md5_context}{SDLTest\_Md5Context}}\ *\ mdContext,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *inBuf,}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ inLen);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00118}\mbox{\hyperlink{_s_d_l__test__md5_8h_a3f0bd1fb177aea21d09b3ff7b3323e77}{00118}}\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_s_d_l__test__md5_8h_a3f0bd1fb177aea21d09b3ff7b3323e77}{SDLTest\_Md5Final}}(\mbox{\hyperlink{struct_s_d_l_test___md5_context}{SDLTest\_Md5Context}}\ *\ mdContext);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00121}00121\ \textcolor{comment}{/*\ Ends\ C\ function\ definitions\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00122}00122\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00123}00123\ \}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00124}00124\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00125}00125\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{close__code_8h}{close\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00127}00127\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_test\_md5\_h\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__md5_8h_source_l00129}00129\ \textcolor{comment}{/*\ vi:\ set\ ts=4\ sw=4\ expandtab:\ */}}
+
+\end{DoxyCode}

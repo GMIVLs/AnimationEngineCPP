@@ -1,0 +1,108 @@
+\doxysection{gflags\+\_\+gflags.\+h}
+\hypertarget{gflags__gflags_8h_source}{}\label{gflags__gflags_8h_source}\index{build/debug/vcpkg\_installed/arm64-\/osx/include/gflags/gflags\_gflags.h@{build/debug/vcpkg\_installed/arm64-\/osx/include/gflags/gflags\_gflags.h}}
+\mbox{\hyperlink{gflags__gflags_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (c)\ 2014,\ Andreas\ Schuh}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00002}00002\ \textcolor{comment}{//\ All\ rights\ reserved.}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00003}00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00004}00004\ \textcolor{comment}{//\ Redistribution\ and\ use\ in\ source\ and\ binary\ forms,\ with\ or\ without}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00005}00005\ \textcolor{comment}{//\ modification,\ are\ permitted\ provided\ that\ the\ following\ conditions\ are}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00006}00006\ \textcolor{comment}{//\ met:}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00007}00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00008}00008\ \textcolor{comment}{//\ \ \ \ \ *\ Redistributions\ of\ source\ code\ must\ retain\ the\ above\ copyright}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00009}00009\ \textcolor{comment}{//\ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer.}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00010}00010\ \textcolor{comment}{//\ \ \ \ \ *\ Redistributions\ in\ binary\ form\ must\ reproduce\ the\ above}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00011}00011\ \textcolor{comment}{//\ copyright\ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00012}00012\ \textcolor{comment}{//\ in\ the\ documentation\ and/or\ other\ materials\ provided\ with\ the}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00013}00013\ \textcolor{comment}{//\ distribution.}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00014}00014\ \textcolor{comment}{//\ \ \ \ \ *\ Neither\ the\ name\ of\ Google\ Inc.\ nor\ the\ names\ of\ its}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00015}00015\ \textcolor{comment}{//\ contributors\ may\ be\ used\ to\ endorse\ or\ promote\ products\ derived\ from}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00016}00016\ \textcolor{comment}{//\ this\ software\ without\ specific\ prior\ written\ permission.}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00017}00017\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00018}00018\ \textcolor{comment}{//\ THIS\ SOFTWARE\ IS\ PROVIDED\ BY\ THE\ COPYRIGHT\ HOLDERS\ AND\ CONTRIBUTORS}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00019}00019\ \textcolor{comment}{//\ "{}AS\ IS"{}\ AND\ ANY\ EXPRESS\ OR\ IMPLIED\ WARRANTIES,\ INCLUDING,\ BUT\ NOT}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00020}00020\ \textcolor{comment}{//\ LIMITED\ TO,\ THE\ IMPLIED\ WARRANTIES\ OF\ MERCHANTABILITY\ AND\ FITNESS\ FOR}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00021}00021\ \textcolor{comment}{//\ A\ PARTICULAR\ PURPOSE\ ARE\ DISCLAIMED.\ IN\ NO\ EVENT\ SHALL\ THE\ COPYRIGHT}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00022}00022\ \textcolor{comment}{//\ OWNER\ OR\ CONTRIBUTORS\ BE\ LIABLE\ FOR\ ANY\ DIRECT,\ INDIRECT,\ INCIDENTAL,}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00023}00023\ \textcolor{comment}{//\ SPECIAL,\ EXEMPLARY,\ OR\ CONSEQUENTIAL\ DAMAGES\ (INCLUDING,\ BUT\ NOT}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00024}00024\ \textcolor{comment}{//\ LIMITED\ TO,\ PROCUREMENT\ OF\ SUBSTITUTE\ GOODS\ OR\ SERVICES;\ LOSS\ OF\ USE,}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00025}00025\ \textcolor{comment}{//\ DATA,\ OR\ PROFITS;\ OR\ BUSINESS\ INTERRUPTION)\ HOWEVER\ CAUSED\ AND\ ON\ ANY}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00026}00026\ \textcolor{comment}{//\ THEORY\ OF\ LIABILITY,\ WHETHER\ IN\ CONTRACT,\ STRICT\ LIABILITY,\ OR\ TORT}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00027}00027\ \textcolor{comment}{//\ (INCLUDING\ NEGLIGENCE\ OR\ OTHERWISE)\ ARISING\ IN\ ANY\ WAY\ OUT\ OF\ THE\ USE}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00028}00028\ \textcolor{comment}{//\ OF\ THIS\ SOFTWARE,\ EVEN\ IF\ ADVISED\ OF\ THE\ POSSIBILITY\ OF\ SUCH\ DAMAGE.}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00030}00030\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00031}00031\ \textcolor{comment}{//\ Imports\ the\ gflags\ library\ symbols\ into\ an\ alternative/deprecated\ namespace.}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00033}00033\ \textcolor{preprocessor}{\#ifndef\ GFLAGS\_GFLAGS\_H\_}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00034}00034\ \textcolor{preprocessor}{\#\ \ error\ The\ internal\ header\ gflags\_gflags.h\ may\ only\ be\ included\ by\ gflags.h}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00035}00035\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00037}00037\ \textcolor{preprocessor}{\#ifndef\ GFLAGS\_NS\_GFLAGS\_H\_}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00038}00038\ \textcolor{preprocessor}{\#define\ GFLAGS\_NS\_GFLAGS\_H\_}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00041}\mbox{\hyperlink{namespacegflags}{00041}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegflags}{gflags}}\ \{}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00044}00044\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::int32;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00045}00045\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::uint32;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00046}00046\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::int64;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00047}00047\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::uint64;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00049}00049\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::RegisterFlagValidator;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00050}00050\ \textcolor{keyword}{using\ }\mbox{\hyperlink{struct_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_command_line_flag_info}{GFLAGS\_NAMESPACE::CommandLineFlagInfo}};}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00051}00051\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::GetAllFlags;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00052}00052\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::ShowUsageWithFlags;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00053}00053\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::ShowUsageWithFlagsRestrict;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00054}00054\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::DescribeOneFlag;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00055}00055\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::SetArgv;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00056}00056\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::GetArgvs;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00057}00057\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::GetArgv;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00058}00058\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::GetArgv0;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00059}00059\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::GetArgvSum;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00060}00060\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::ProgramInvocationName;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00061}00061\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::ProgramInvocationShortName;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00062}00062\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::ProgramUsage;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00063}00063\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::VersionString;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00064}00064\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::GetCommandLineOption;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00065}00065\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::GetCommandLineFlagInfo;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00066}00066\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::GetCommandLineFlagInfoOrDie;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00067}00067\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::FlagSettingMode;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00068}00068\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::SET\_FLAGS\_VALUE;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00069}00069\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::SET\_FLAG\_IF\_DEFAULT;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00070}00070\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::SET\_FLAGS\_DEFAULT;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00071}00071\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::SetCommandLineOption;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00072}00072\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::SetCommandLineOptionWithMode;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00073}00073\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_saver}{GFLAGS\_NAMESPACE::FlagSaver}};}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00074}00074\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::CommandlineFlagsIntoString;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00075}00075\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::ReadFlagsFromString;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00076}00076\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::AppendFlagsIntoFile;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00077}00077\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::ReadFromFlagsFile;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00078}00078\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::BoolFromEnv;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00079}00079\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::Int32FromEnv;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00080}00080\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::Uint32FromEnv;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00081}00081\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::Int64FromEnv;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00082}00082\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::Uint64FromEnv;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00083}00083\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::DoubleFromEnv;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00084}00084\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::StringFromEnv;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00085}00085\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::SetUsageMessage;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00086}00086\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::SetVersionString;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00087}00087\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::ParseCommandLineNonHelpFlags;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00088}00088\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::HandleCommandLineHelpFlags;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00089}00089\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::AllowCommandLineReparsing;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00090}00090\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::ReparseCommandLineNonHelpFlags;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00091}00091\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::ShutDownCommandLineFlags;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00092}00092\ \textcolor{keyword}{using\ }\mbox{\hyperlink{class_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e_1_1_flag_registerer}{GFLAGS\_NAMESPACE::FlagRegisterer}};}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00094}00094\ \textcolor{preprocessor}{\#ifndef\ SWIG}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00095}00095\ \textcolor{keyword}{using\ }GFLAGS\_NAMESPACE::ParseCommandLineFlags;}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00096}00096\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00099}00099\ \}\ \textcolor{comment}{//\ namespace\ gflags}}
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{gflags__gflags_8h_source_l00102}00102\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ GFLAGS\_NS\_GFLAGS\_H\_}}
+
+\end{DoxyCode}

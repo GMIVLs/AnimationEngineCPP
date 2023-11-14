@@ -1,0 +1,261 @@
+\chapter{Lists and Array in CPP}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays}{}\label{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays}\index{Lists and Array in CPP@{Lists and Array in CPP}}
+\label{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md106}%
+\Hypertarget{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md106}%
+
+
+
+\begin{DoxyItemize}
+\item Intro -\/ methods for creating arrays
+\item How to loop over a list-\/array-\/vector
+\item C++ Standard Library for Several Containers
+\item How to create an array in C++
+\item what is \{\} for element storing is it a set or array or what
+\item Declare an array
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md107}{}\doxysection{\texorpdfstring{Intro -\/ methods for creating arrays}{Intro - methods for creating arrays}}\label{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md107}
+
+\begin{DoxyItemize}
+\item Arrays and lists can be created in various ways in C++, both in traditional C-\/style and in modern C++ style. Here\textquotesingle{}s a table summarizing those\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Storage Location}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Storage Location}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-4}
+\endhead
+{\bfseries{C-\/style Static Array}}   &Stack   &Fixed-\/size array declared at compile time.   &{\ttfamily int arr\mbox{[}5\mbox{]} = \{1, 2, 3, 4, 5\};}    \\\cline{1-4}
+{\bfseries{C-\/style Dynamic Array}}   &Heap   &Array whose size is determined at runtime.   &{\ttfamily int\texorpdfstring{$\ast$}{*} arr = new int\mbox{[}5\mbox{]}; ... delete\mbox{[}\mbox{]} arr;}    \\\cline{1-4}
+{\bfseries{C++ std\+::array}}   &Stack   &Fixed-\/size array with size known at compile time.   &{\ttfamily std\+::array\texorpdfstring{$<$}{<}int, 5\texorpdfstring{$>$}{>} arr = \{1, 2, 3, 4, 5\};}    \\\cline{1-4}
+{\bfseries{C++ std\+::vector}}   &Heap (usually)   &Dynamic array that can grow/shrink at runtime.   &{\ttfamily std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} vec = \{1, 2, 3, 4, 5\};}    \\\cline{1-4}
+{\bfseries{C++ std\+::list}}   &Heap (usually)   &Doubly-\/linked list.   &{\ttfamily std\+::list\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} lst = \{1, 2, 3, 4, 5\};}    \\\cline{1-4}
+{\bfseries{C++ std\+::forward\+\_\+list}}   &Heap (usually)   &Singly-\/linked list.   &{\ttfamily std\+::forward\+\_\+list\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} flst = \{1, 2, 3, 4, 5\};}   \\\cline{1-4}
+\end{longtabu}
+
+
+{\bfseries{Notes}}\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{C-\/style Static Array}}\+: It\textquotesingle{}s a basic fixed-\/size array defined on the stack. You need to know its size at compile time. The array will be destroyed automatically when it goes out of scope.
+\item {\bfseries{C-\/style Dynamic Array}}\+: Uses pointers. You determine the size at runtime and must manually manage memory using {\ttfamily new} and {\ttfamily delete}.
+\item {\bfseries{C++ std\+::array}}\+: A container that encapsulates fixed-\/size arrays. Offers benefits over C-\/style static arrays like bounds checking with the {\ttfamily at()} function.
+\item {\bfseries{C++ std\+::vector}}\+: Dynamic array. Its size can change at runtime. It\textquotesingle{}s one of the most used containers in C++ because of its flexibility and ease of use.
+\item {\bfseries{C++ std\+::list}}\+: Doubly-\/linked list. Useful when you frequently need to insert or delete elements in the middle.
+\item {\bfseries{C++ std\+::forward\+\_\+list}}\+: Singly-\/linked list. Uses less memory than {\ttfamily std\+::list} but you can\textquotesingle{}t access elements backwards.
+\end{DoxyEnumerate}
+
+For the C++ style containers ({\ttfamily std\+::array}, {\ttfamily std\+::vector}, {\ttfamily std\+::list}, {\ttfamily std\+::forward\+\_\+list}), you will need to include the respective headers ({\ttfamily \texorpdfstring{$<$}{<}array\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}vector\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}list\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}forward\+\_\+list\texorpdfstring{$>$}{>}}) to use them.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md108}{}\doxysection{\texorpdfstring{How to loop over a list-\/array-\/vector}{How to loop over a list-array-vector}}\label{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md108}
+
+\begin{DoxyItemize}
+\item Iterating over various types of containers in C++ can be achieved through different methods. Here\textquotesingle{}s a table detailing how to loop over elements in several standard C++ containers, along with descriptions, examples, and the versions of C++ in which they are supported\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Container}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{C++ Version}}    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Container}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{C++ Version}}    }\\\cline{1-5}
+\endhead
+{\bfseries{Array}}   &Range-\/based {\ttfamily for}   &Directly iterate over elements of a fixed-\/size array.   &`int arr\mbox{[}5\mbox{]} = \{1, 2, 3, 4, 5\}; for(int i \+: arr) \{ cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} i \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} ' \textquotesingle{}; \}{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} C++11 onwards \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+C-\/\+Style Array\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Traditional}for{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Use an index-\/based loop for a pointer or C-\/style array. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}int arr\mbox{[}\mbox{]} = \{1, 2, 3\}; for(int i=0; i\texorpdfstring{$<$}{<}3; ++i) \{ cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} arr\mbox{[}i\mbox{]} \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \textquotesingle{} \textquotesingle{}; \}{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} All versions \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}std\+::vector\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Range-\/based}for{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Directly iterate over elements of a vector. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}vector$<$int$>$ v = \{1, 2, 3\}; for(int i \+: v) \{ cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} i \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \textquotesingle{} \textquotesingle{}; \}{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} C++11 onwards \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}std\+::vector\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}iterator{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Use iterators provided by vector for traversal. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}for(auto it = \doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{v.\+begin()}; it != v.\+end(); ++it) \{ cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \texorpdfstring{$\ast$}{*}it \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \textquotesingle{} \textquotesingle{}; \}{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} All versions \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}std\+::list\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Range-\/based}for{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Directly iterate over elements of a list. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}list$<$int$>$ l = \{1, 2, 3\}; for(int i \+: l) \{ cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} i \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \textquotesingle{} \textquotesingle{}; \}{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} C++11 onwards \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}std\+::list\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}iterator{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Use iterators provided by list for traversal. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}for(auto it = \doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{l.\+begin()}; it != l.\+end(); ++it) \{ cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \texorpdfstring{$\ast$}{*}it \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \textquotesingle{} \textquotesingle{}; \}{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} All versions \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}std\+::map\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Range-\/based}for{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Directly iterate over key-\/value pairs in a map. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}map$<$int, string$>$ m = \{\{1,"{}a"{}\}, \{2,"{}b"{}\}\}; for(auto\& \mbox{[}k,v\mbox{]} \+: m) \{ cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} k \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \textquotesingle{}\+:\textquotesingle{} \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} v \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \textquotesingle{} \textquotesingle{}; \}{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} C++11 for loop, C++17 for structured bindings \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}std\+::map\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}iterator{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Use iterators to traverse key-\/value pairs in a map. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}for(auto it = \doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{m.\+begin()}; it != m.\+end(); ++it) \{ cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} it-\/\texorpdfstring{$>$}{>}first \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \textquotesingle{}\+:\textquotesingle{} \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} it-\/\texorpdfstring{$>$}{>}second \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \textquotesingle{} \textquotesingle{}; \}{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} All versions \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}std\+::unordered\+\_\+map\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Range-\/based}for{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Directly iterate over key-\/value pairs in an unordered map. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}unordered\+\_\+map$<$int, string$>$ um = \{\{1,"{}a"{}\}, \{2,"{}b"{}\}\}; for(auto\& \mbox{[}k,v\mbox{]} \+: um) \{ cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} k \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \textquotesingle{}\+:\textquotesingle{} \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} v \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \textquotesingle{} \textquotesingle{}; \}{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} C++11 for loop, C++17 for structured bindings \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}std\+::unordered\+\_\+map\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}iterator{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Use iterators to traverse key-\/value pairs in an unordered map. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}for(auto it = \doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{um.\+begin()}; it != um.\+end(); ++it) \{ cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} it-\/\texorpdfstring{$>$}{>}first \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \textquotesingle{}\+:\textquotesingle{} \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} it-\/\texorpdfstring{$>$}{>}second \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \textquotesingle{} \textquotesingle{}; \}\`{}   &All versions   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{Notes}}\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Range-\/based for loops}}\+: Introduced in C++11, they allow for a more concise way of iterating over containers.
+\item {\bfseries{Structured Bindings}}\+: Introduced in C++17, they allow you to unpack the key-\/value pairs in maps directly in the range-\/based for loop.
+\item {\bfseries{Iterators}}\+: Are the traditional way of looping over elements in most of the STL containers.
+\end{DoxyEnumerate}
+
+Always remember to include the appropriate headers for the containers you\textquotesingle{}re using ({\ttfamily \texorpdfstring{$<$}{<}array\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}vector\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}list\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}map\texorpdfstring{$>$}{>}}, {\ttfamily \texorpdfstring{$<$}{<}unordered\+\_\+map\texorpdfstring{$>$}{>}}, etc.).\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md109}{}\doxysection{\texorpdfstring{C++ Standard Library for Several Containers}{C++ Standard Library for Several Containers}}\label{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md109}
+The C++ Standard Library ({\ttfamily std} namespace) provides a variety of container classes, each designed for different use-\/cases. Here\textquotesingle{}s a simplified overview of some commonly used container types, presented in table form\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Data Structure}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Memory Profile}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example Usage}}    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Data Structure}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Memory Profile}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example Usage}}    }\\\cline{1-4}
+\endhead
+{\ttfamily std\+::array\texorpdfstring{$<$}{<}T, N\texorpdfstring{$>$}{>}}   &Fixed-\/size array. Stores {\ttfamily N} elements of type {\ttfamily T}.   &Contiguous memory, no overhead.   &{\ttfamily std\+::array\texorpdfstring{$<$}{<}int, 3\texorpdfstring{$>$}{>} arr = \{1, 2, 3\};}    \\\cline{1-4}
+{\ttfamily std\+::pair\texorpdfstring{$<$}{<}T1, T2\texorpdfstring{$>$}{>}}   &Stores exactly two values.   &Contiguous memory for the two elements.   &`std\+::pair$<$int, char$>$ p(1, \textquotesingle{}a');{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::list$<$\+T$>${\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Doubly-\/linked list. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Each node contains an element of type}T{\ttfamily and two pointers (prev \& next). \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::list$<$int$>$ lst = \{1, 2, 3\};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::vector$<$\+T$>${\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Dynamic array. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Pointer to dynamic memory, size, and capacity. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::vector$<$int$>$ vec = \{1, 2, 3\};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::map$<$\+Key, Value$>${\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Balanced binary tree (often a red-\/black tree). \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Nodes containing key-\/value pairs, pointers to children. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::map$<$char, int$>$ m; m\mbox{[}\textquotesingle{}a\textquotesingle{}\mbox{]} = 1;{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::unordered\+\_\+map$<$\+Key, Value$>${\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Hash table. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Buckets with lists/chains for collision resolution. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::unordered\+\_\+map$<$char, int$>$ um; um\mbox{[}\textquotesingle{}a\textquotesingle{}\mbox{]} = 1;{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::set$<$\+Key$>${\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Like}std\+::map{\ttfamily , but only keys. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Nodes containing keys, pointers to children. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::set$<$int$>$ s = \{1, 2, 3\};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::unordered\+\_\+set$<$\+Key$>${\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Like}std\+::unordered\+\_\+map{\ttfamily , but only keys. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Buckets with lists/chains for collision resolution. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::unordered\+\_\+set$<$int$>$ us = \{1, 2, 3\};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::deque$<$\+T$>${\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Double-\/ended queue. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Can grow/shrink from both ends; often uses blocks of memory. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::deque$<$int$>$ dq = \{1, 2, 3\};{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::stack$<$\+T$>${\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} LIFO data structure. Uses another container underneath (e.\+g., vector, deque). \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Depends on the underlying container. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::stack$<$int$>$ st; st.\+push(1);{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Odd"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::queue$<$\+T$>${\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} FIFO data structure. Uses another container underneath (e.\+g., list, deque). \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Depends on the underlying container. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::queue$<$int$>$ q; q.\+push(1);{\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}/tr\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}tr class="{}markdown\+Table\+Row\+Even"{}\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::priority\+\_\+queue$<$\+T$>${\ttfamily \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Heap-\/based priority queue. Uses a vector by default. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>} Depends on the underlying container, often a dynamic array. \textbackslash{}ilinebr \texorpdfstring{$<$}{<}/td\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}td class="{}markdown\+Table\+Body\+None"{}\texorpdfstring{$>$}{>}}std\+::priority\+\_\+queue$<$int$>$ pq; pq.\+push(1);\`{}   \\\cline{1-4}
+\end{longtabu}
+
+
+
+\begin{DoxyItemize}
+\item Note\+: The memory profiles provided are very high-\/level. The exact memory layout can differ based on system, compiler, and standard library version. The representations above are simplifications meant to convey the conceptual differences.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md110}{}\doxysection{\texorpdfstring{How to create an array in C++}{How to create an array in C++}}\label{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md110}
+Creating arrays or lists in C++ can be done in multiple ways, each having its own set of advantages and trade-\/offs. Here\textquotesingle{}s an exhaustive table of possible methods\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{8}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type/\+Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Memory}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Mutable}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{R/W}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Size Specified}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Usage \& Common Practices}}    }\\\cline{1-8}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Type/\+Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Memory}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Mutable}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{R/W}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Size Specified}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Usage \& Common Practices}}    }\\\cline{1-8}
+\endhead
+C-\/style array   &Fixed-\/size, contiguous block of memory.   &Stack   &Yes   &R/W   &Yes ({\ttfamily \mbox{[}N\mbox{]}})   &{\ttfamily int arr\mbox{[}3\mbox{]} = \{1, 2, 3\};}   &Prefer {\ttfamily std\+::array} or {\ttfamily std\+::vector} for safety and flexibility.    \\\cline{1-8}
+Dynamic C-\/style array   &Dynamically-\/allocated array.   &Heap   &Yes   &R/W   &No ({\ttfamily \mbox{[}\mbox{]}})   &{\ttfamily int\texorpdfstring{$\ast$}{*} arr = new int\mbox{[}3\mbox{]}; arr\mbox{[}0\mbox{]} = 1;}   &Use with caution; must manually manage memory with {\ttfamily delete\mbox{[}\mbox{]}}.    \\\cline{1-8}
+{\ttfamily std\+::array\texorpdfstring{$<$}{<}T, N\texorpdfstring{$>$}{>}}   &Fixed-\/size, stack-\/allocated.   &Stack   &Yes   &R/W   &Yes ({\ttfamily \texorpdfstring{$<$}{<}T, N\texorpdfstring{$>$}{>}})   &{\ttfamily std\+::array\texorpdfstring{$<$}{<}int, 3\texorpdfstring{$>$}{>} arr = \{1, 2, 3\};}   &Preferred over C-\/style array for fixed-\/size lists.    \\\cline{1-8}
+{\ttfamily std\+::vector\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}}   &Dynamic array with auto-\/resizing.   &Heap \& Stack   &Yes   &R/W   &No (at creation)   &{\ttfamily std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} vec = \{1, 2, 3\};}   &Most common dynamic list in C++; handles memory management.    \\\cline{1-8}
+{\ttfamily std\+::list\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}}   &Doubly-\/linked list.   &Heap   &Yes   &R/W   &No (at creation)   &{\ttfamily std\+::list\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} lst = \{1, 2, 3\};}   &Use when frequent insertions/deletions are required in the middle.    \\\cline{1-8}
+Pointer to C-\/style array   &Points to the first element of an array.   &Depends   &Depends   &R/W   &Depends   &{\ttfamily int nums\mbox{[}3\mbox{]} = \{1, 2, 3\}; int\texorpdfstring{$\ast$}{*} p = nums;}   &Raw pointers can be error-\/prone; prefer modern alternatives.    \\\cline{1-8}
+Array of pointers   &Array where each element is a pointer.   &Stack   &Yes   &R/W   &Yes ({\ttfamily \mbox{[}N\mbox{]}})   &{\ttfamily int\texorpdfstring{$\ast$}{*} arr\mbox{[}3\mbox{]}; for(int i=0; i\texorpdfstring{$<$}{<}3; i++) arr\mbox{[}i\mbox{]} = new int(i+1);}   &Use when needing an array of objects on the heap.   \\\cline{1-8}
+\end{longtabu}
+
+
+{\bfseries{Notes\+:}}
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Heap \& Stack for {\ttfamily std\+::vector}}}\+: The {\ttfamily std\+::vector} object metadata (like size, capacity) resides on the stack, while the actual data is stored on the heap.
+\item {\bfseries{Mutable}}\+: All the array types/lists mentioned in C++ are mutable by default. However, their mutability can be restricted using the {\ttfamily const} qualifier.
+\item {\bfseries{R/W}}\+: All the array types/lists mentioned are readable and writable.
+\item {\bfseries{Memory Management}}\+: Always ensure to release any heap-\/allocated memory to avoid memory leaks. For C-\/style dynamic arrays, use {\ttfamily delete\mbox{[}\mbox{]}} and for individual heap allocations use {\ttfamily delete}.
+\item {\bfseries{Safety}}\+: Using modern C++ containers like {\ttfamily std\+::vector} or {\ttfamily std\+::array} is recommended for most use-\/cases due to their safety, flexibility, and the added functionalities they provide.
+\item {\bfseries{Size Specified}}\+: This column indicates whether you must specify the size of the array/list at compile-\/time or not. For data structures where the size isn\textquotesingle{}t specified at compile-\/time, it often means the size can be dynamically adjusted at runtime.
+\item {\bfseries{Memory Management}}\+: As previously mentioned, always ensure to release any heap-\/allocated memory to prevent memory leaks.
+\item {\bfseries{Safety}}\+: Using modern C++ containers is recommended for most use-\/cases due to their safety, flexibility, and the functionalities they provide.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md111}{}\doxysection{\texorpdfstring{what is \{\} for element storing is it a set or array or what}{what is \{\} for element storing is it a set or array or what}}\label{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md111}
+In C++, {\ttfamily \{\}} is known as the list initialization (or uniform initialization) syntax. It was introduced in C++11 to initialize objects.
+
+
+\begin{DoxyItemize}
+\item When you see something like this\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{arr}}[]\ =\ \{1,\ 2,\ 3\};}
+
+\end{DoxyCode}
+
+
+{\ttfamily \{1, 2, 3\}} is an initializer list which is being used to initialize the array {\ttfamily arr}.
+
+Similarly, when you see\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::vector<int>\ \mbox{\hyperlink{class_vector__2d}{vec}}\ =\ \{1,\ 2,\ 3\};}
+
+\end{DoxyCode}
+
+
+{\ttfamily \{1, 2, 3\}} is an initializer list which is being used to initialize the vector {\ttfamily vec}.
+
+So, {\ttfamily \{\}} is not a data type, but a way to initialize objects of various types such as arrays, vectors, sets, etc. The actual type of the data being stored depends on the type of the object being initialized.
+
+In the case of\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::vector<std::vector<int>>\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a7b24a3f2f56eb1244ae69dacb4fecb6f}{matrix}}\ =\ \{}
+\DoxyCodeLine{\ \ \ \ \{1,\ 2,\ 3\},}
+\DoxyCodeLine{\ \ \ \ \{4,\ 5,\ 6\},}
+\DoxyCodeLine{\ \ \ \ \{7,\ 8,\ 9\}}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+
+
+Here, {\ttfamily \{1, 2, 3\}}, {\ttfamily \{4, 5, 6\}}, and {\ttfamily \{7, 8, 9\}} are initializer lists being used to initialize the inner vectors, and the outer {\ttfamily \{...\}} is an initializer list to initialize the outer vector. This results in a 2D vector, which you can think of as a matrix.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md112}{}\doxysection{\texorpdfstring{Declare an array}{Declare an array}}\label{md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays_autotoc_md112}
+C++ provides various ways to declare a list (or a sequence) of elements. Here are some common ones\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{C-\/style Array}}\+: An array is a simple, fixed-\/size list that contains elements of the same type.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{arr}}[3]\ =\ \{1,\ 2,\ 3\};\ \ \textcolor{comment}{//\ Array\ of\ 3\ integers}}
+
+\end{DoxyCode}
+
+\item {\bfseries{std\+::array}}\+: It\textquotesingle{}s a container in the Standard Library that encapsulates fixed size arrays. It\textquotesingle{}s more efficient and safer than C-\/style arrays.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::array<int,\ 3>\ \mbox{\hyperlink{class_vector__2d}{arr}}\ =\ \{1,\ 2,\ 3\};\ \ \textcolor{comment}{//\ Array\ of\ 3\ integers}}
+
+\end{DoxyCode}
+
+\item {\bfseries{std\+::vector}}\+: It\textquotesingle{}s a dynamic array, it can grow and shrink at runtime.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::vector<int>\ \mbox{\hyperlink{class_vector__2d}{vec}}\ =\ \{1,\ 2,\ 3\};\ \ \textcolor{comment}{//\ Vector\ of\ integers}}
+
+\end{DoxyCode}
+
+\item {\bfseries{std\+::list}}\+: It\textquotesingle{}s a doubly-\/linked list that allows fast insertions and deletions at both its beginning and its end.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::list<int>\ \mbox{\hyperlink{class_vector__2d}{lst}}\ =\ \{1,\ 2,\ 3\};\ \ \textcolor{comment}{//\ List\ of\ integers}}
+
+\end{DoxyCode}
+
+\item {\bfseries{std\+::forward\+\_\+list}}\+: It\textquotesingle{}s a singly-\/linked list, and unlike std\+::list, allows for fast insertions and deletions at its beginning only.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::forward\_list<int>\ \mbox{\hyperlink{class_vector__2d}{fwd\_lst}}\ =\ \{1,\ 2,\ 3\};\ \ \textcolor{comment}{//\ Forward\ list\ of\ integers}}
+
+\end{DoxyCode}
+
+\item {\bfseries{std\+::deque}}\+: A double-\/ended queue that allows fast insertions and deletions at both its beginning and its end.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::deque<int>\ \mbox{\hyperlink{class_vector__2d}{dq}}\ =\ \{1,\ 2,\ 3\};\ \ \textcolor{comment}{//\ Deque\ of\ integers}}
+
+\end{DoxyCode}
+
+\item {\bfseries{std\+::initializer\+\_\+list}}\+: It\textquotesingle{}s a lightweight array-\/like container used for list-\/initialization of objects.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::initializer\_list<int>\ \mbox{\hyperlink{class_vector__2d}{init\_list}}\ =\ \{1,\ 2,\ 3\};\ \ \textcolor{comment}{//\ Initializer\ list\ of\ integers}}
+
+\end{DoxyCode}
+
+\item {\bfseries{std\+::set or std\+::multiset}}\+: They\textquotesingle{}re associative containers that contain sorted sets of unique and non-\/unique elements, respectively.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::set<int>\ \mbox{\hyperlink{class_vector__2d}{set}}\ =\ \{1,\ 2,\ 3\};\ \ \textcolor{comment}{//\ Set\ of\ unique\ integers}}
+\DoxyCodeLine{std::multiset<int>\ \mbox{\hyperlink{class_vector__2d}{mset}}\ =\ \{1,\ 1,\ 2,\ 2,\ 3,\ 3\};\ \ \textcolor{comment}{//\ Multiset\ of\ integers}}
+
+\end{DoxyCode}
+
+\item {\bfseries{std\+::unordered\+\_\+set or std\+::unordered\+\_\+multiset}}\+: They\textquotesingle{}re associative containers that contain unsorted sets of unique and non-\/unique elements, respectively.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::unordered\_set<int>\ \mbox{\hyperlink{class_vector__2d}{uset}}\ =\ \{1,\ 2,\ 3\};\ \ \textcolor{comment}{//\ Unordered\ set\ of\ unique\ integers}}
+\DoxyCodeLine{std::unordered\_multiset<int>\ \mbox{\hyperlink{class_vector__2d}{umset}}\ =\ \{1,\ 1,\ 2,\ 2,\ 3,\ 3\};\ \ \textcolor{comment}{//\ Unordered\ multiset\ of\ integers}}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+Each of these methods has its use cases, advantages, and drawbacks. Which one you choose depends on the requirements of your specific application. 

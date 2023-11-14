@@ -1,0 +1,131 @@
+\chapter{To do list}
+\hypertarget{md_docs_2own__docs_2dev___planning_2todo}{}\label{md_docs_2own__docs_2dev___planning_2todo}\index{To do list@{To do list}}
+\label{md_docs_2own__docs_2dev___planning_2todo_autotoc_md206}%
+\Hypertarget{md_docs_2own__docs_2dev___planning_2todo_autotoc_md206}%
+
+
+
+\begin{DoxyItemize}
+\item 1. Math Module
+\begin{DoxyItemize}
+\item 1.2 Vector in 2D space
+\begin{DoxyItemize}
+\item 1.2.1 Computional vector
+\begin{DoxyItemize}
+\item 1.2.1.1 Requirements
+\item 1.2.1.2 Example
+\end{DoxyItemize}
+\item 1.2.2 Display Vector -\/ later
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2dev___planning_2todo_autotoc_md207}{}\doxysection{\texorpdfstring{1. Math Module}{1. Math Module}}\label{md_docs_2own__docs_2dev___planning_2todo_autotoc_md207}
+\hypertarget{md_docs_2own__docs_2dev___planning_2todo_autotoc_md208}{}\doxysubsection{\texorpdfstring{1.\+2 Vector in 2\+D space}{1.2 Vector in 2D space}}\label{md_docs_2own__docs_2dev___planning_2todo_autotoc_md208}
+\hypertarget{md_docs_2own__docs_2dev___planning_2todo_autotoc_md209}{}\doxysubsubsection{\texorpdfstring{1.\+2.\+1 Computional vector}{1.2.1 Computional vector}}\label{md_docs_2own__docs_2dev___planning_2todo_autotoc_md209}
+
+\begin{DoxyItemize}
+\item \mbox{[}x\mbox{]} Finish from your previous constructed class.
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} length \+: length of a vector in given units.
+\item \mbox{[} \mbox{]} magnitude \+: (i.\+e., similar to length)
+\item \mbox{[} \mbox{]} normalize \+: (vector lentgh = 1 unit)
+\item \mbox{[} \mbox{]} rotate \+: (accept rotation)
+\item \mbox{[} \mbox{]} dot product\+: (scalar value)
+\item \mbox{[} \mbox{]} orthogonal \+: (the perpendicular component vector of a given 2d vector)
+\item \mbox{[} \mbox{]} projection \+: (the horizontal component vector of a given 2d vector)
+\item \mbox{[} \mbox{]} transition \+: (moving) (moving a vector {\bfseries{origin}} from point A to point B)
+\item \mbox{[} \mbox{]} refelction \+: given a vector angle create the refelection.
+\item \mbox{[} \mbox{]} need for vector print operator (\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}).
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2dev___planning_2todo_autotoc_md210}{}\doxyparagraph{\texorpdfstring{1.\+2.\+1.\+1 Requirements}{1.2.1.1 Requirements}}\label{md_docs_2own__docs_2dev___planning_2todo_autotoc_md210}
+
+\begin{DoxyEnumerate}
+\item The object should be constructed either on the heap or stack, using smart pointers is recommended.
+\item It should allow for creating a new vector through an operation. Each method that requires this operation should have a distinguishable name, either {\ttfamily \doxylink{class_vector__2d_aa12fa7d32ffceb33bd56a31e707bdbc8}{immutable\+::add}} to create a new vector, or {\ttfamily in\+\_\+place} to alter the input vector (usually the first vector if two vector inputs are required).
+\end{DoxyEnumerate}\hypertarget{md_docs_2own__docs_2dev___planning_2todo_autotoc_md211}{}\doxyparagraph{\texorpdfstring{1.\+2.\+1.\+2 Example}{1.2.1.2 Example}}\label{md_docs_2own__docs_2dev___planning_2todo_autotoc_md211}
+
+\begin{DoxyItemize}
+\item For just sharing the idea, we don\textquotesingle{}t follow this style, as we will focus more on {\ttfamily template} 2d vector.
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Our\ regular\ class\ in\ 2d-\/space,}}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{Vector2D}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{private}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a1675d9d7bb68e1657ff028643b4037e3}{y}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{Vector2D}}(\textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_vector__2d}{x\_val}}\ =\ 0.0,\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_vector__2d}{y\_val}}\ =\ 0.0)\ :\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}(\mbox{\hyperlink{class_vector__2d}{x\_val}}),\ \mbox{\hyperlink{_s_d_l__opengl_8h_a1675d9d7bb68e1657ff028643b4037e3}{y}}(\mbox{\hyperlink{class_vector__2d}{y\_val}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Vector\ constructed.\(\backslash\)n"{}};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Destructor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{\string~Vector2D}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Vector\ destructed.\(\backslash\)n"{}};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Getter\ methods}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{getX}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{getY}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a1675d9d7bb68e1657ff028643b4037e3}{y}};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Setter\ methods}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{setX}}(\textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_vector__2d}{x\_val}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ =\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{x\_val}};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{setY}}(\textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_vector__2d}{y\_val}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_d_l__opengl_8h_a1675d9d7bb68e1657ff028643b4037e3}{y}}\ =\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{y\_val}};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Method\ to\ add\ another\ vector\ and\ alter\ this\ vector}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_aa12fa7d32ffceb33bd56a31e707bdbc8}{add}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{Vector2D}}\&\ \mbox{\hyperlink{class_vector__2d}{other}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ +=\ \mbox{\hyperlink{class_vector__2d}{other}}.x;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_d_l__opengl_8h_a1675d9d7bb68e1657ff028643b4037e3}{y}}\ +=\ \mbox{\hyperlink{class_vector__2d}{other}}.y;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{namespace\ }\mbox{\hyperlink{class_vector__2d}{immutable}}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{Vector2D}}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a1675d9d7bb68e1657ff028643b4037e3}{y}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{Vector2D}}(\textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_vector__2d}{x\_val}}\ =\ 0.0,\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_vector__2d}{y\_val}}\ =\ 0.0)\ :\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}(\mbox{\hyperlink{class_vector__2d}{x\_val}}),\ \mbox{\hyperlink{_s_d_l__opengl_8h_a1675d9d7bb68e1657ff028643b4037e3}{y}}(\mbox{\hyperlink{class_vector__2d}{y\_val}})\ \{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Getter\ methods}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{getX}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{getY}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a1675d9d7bb68e1657ff028643b4037e3}{y}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Static\ method\ to\ add\ two\ vectors\ and\ return\ a\ new\ one}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_vector__2d}{Vector2D}}\ \mbox{\hyperlink{class_vector__2d_aa12fa7d32ffceb33bd56a31e707bdbc8}{add}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{Vector2D}}\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{Vector2D}}\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{Vector2D}}(\mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}}.x\ +\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b}}.x,\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}}.y\ +\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b}}.y);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ mutable\ class}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{Vector2D}}\ \mbox{\hyperlink{class_vector__2d}{vec1}}(1.0,\ 2.0);}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Immutable}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Creating\ a\ new\ vector\ by\ adding\ two\ immutable\ vectors}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{immutable::Vector2D}}\ \mbox{\hyperlink{class_vector__2d}{vec3}}(1.0,\ 2.0);}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2own__docs_2dev___planning_2todo_autotoc_md212}{}\doxysubsubsection{\texorpdfstring{1.\+2.\+2 Display Vector -\/ later}{1.2.2 Display Vector - later}}\label{md_docs_2own__docs_2dev___planning_2todo_autotoc_md212}
+In this case, let\textquotesingle{}s create a new class that inherits from the {\ttfamily basics} class to construct another class called {\ttfamily Computational2\+DVector}. This class will allow us to display an arrow in two-\/dimensional space. 

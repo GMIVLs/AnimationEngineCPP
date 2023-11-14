@@ -1,0 +1,82 @@
+\chapter{General Princicple Concpets}
+\hypertarget{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles}{}\label{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles}\index{General Princicple Concpets@{General Princicple Concpets}}
+\label{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles_autotoc_md200}%
+\Hypertarget{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles_autotoc_md200}%
+
+
+
+\begin{DoxyItemize}
+\item Introduction
+\begin{DoxyItemize}
+\item Physics Concepts To be Investigated
+\begin{DoxyItemize}
+\item Statics\+:
+\item Kinetics\+:
+\end{DoxyItemize}
+\item Method for Numerical Integral
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles_autotoc_md201}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles_autotoc_md201}
+In the study of mechanics, particularly when discussing the motion of objects, the terms "{}kinematics"{} and "{}dynamics"{} (or "{}kinetics"{}) refer to different aspects\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Kinematics}}\+: This is the study of motion without considering the causes of the motion. It involves concepts like displacement, velocity, acceleration, and time, without any reference to the force causing the movement. In other words, kinematics is purely descriptive and doesn\textquotesingle{}t delve into the reasons behind the motion.
+\item {\bfseries{Dynamics}} (or sometimes referred to as {\bfseries{Kinetics}})\+: This is the study of motion considering the forces and torques that cause it. Dynamics is further divided into\+:
+\begin{DoxyItemize}
+\item {\bfseries{Statics}}\+: Study of forces in equilibrium (i.\+e., systems that are not accelerating).
+\item {\bfseries{Kinetics}}\+: Study of forces in non-\/equilibrium (i.\+e., systems that are accelerating).
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+So, in a simplified way\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Kinematics}}\+: How things move.
+\item {\bfseries{Dynamics/\+Kinetics}}\+: Why things move.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles_autotoc_md202}{}\doxysubsection{\texorpdfstring{Physics Concepts To be Investigated}{Physics Concepts To be Investigated}}\label{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles_autotoc_md202}
+\hypertarget{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles_autotoc_md203}{}\doxysubsubsection{\texorpdfstring{Statics\+:}{Statics:}}\label{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles_autotoc_md203}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Equilibrium}}\+: A state where the net force and net moment (torque) on a body are zero, leading to no acceleration.
+\item {\bfseries{Free Body Diagram (FBD)}}\+: A graphical representation showing all the external forces acting on a body.
+\item {\bfseries{Support Reactions}}\+: Forces exerted by supports or connections. For instance, the reaction force of a table supporting a book.
+\item {\bfseries{Moments and Torques}}\+: A force\textquotesingle{}s tendency to rotate an object about an axis.
+\item {\bfseries{Trusses}}\+: Structures composed of triangular units used in bridges and roofs. Static analysis helps determine the forces in each member.
+\item {\bfseries{Beams}}\+: Structural elements that primarily resist loads applied laterally to the beam\textquotesingle{}s axis. Analysis includes determining shear forces and bending moments.
+\item {\bfseries{Centroids and Centers of Gravity}}\+: The point where all the weight of an object appears to act.
+\item {\bfseries{Moments of Inertia}}\+: Measures an object\textquotesingle{}s resistance to changes in its rotational motion.
+\end{DoxyEnumerate}\hypertarget{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles_autotoc_md204}{}\doxysubsubsection{\texorpdfstring{Kinetics\+:}{Kinetics:}}\label{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles_autotoc_md204}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Newton\textquotesingle{}s Second Law}}\+: ( F = ma ), relating force, mass, and acceleration.
+\item {\bfseries{Linear Motion}} (also known as {\bfseries{Translational Motion}})\+: Movement along a straight line. Concepts related to this include velocity, acceleration, and displacement.
+\item {\bfseries{Rotational Motion}}\+: Movement around an axis. Concepts include angular velocity, angular acceleration, and moments of inertia.
+\item {\bfseries{Work and Energy}}\+: Concepts related to the work done by forces and the conservation of energy.
+\item {\bfseries{Momentum and Impulse}}\+: Concepts involving the product of mass and velocity, and how forces acting over time can change momentum.
+\item {\bfseries{Drag Force}}\+: A resistive force acting opposite to the object\textquotesingle{}s relative motion through a fluid (like air or water).
+\item Friction\+: The force resisting the relative motion of solid surfaces, fluid layers, or material elements sliding against each other.
+\item {\bfseries{Simple Harmonic Motion}}\+: The motion of an object oscillating back and forth, such as a pendulum or a mass on a spring.
+\item {\bfseries{Damped and Forced Vibrations}}\+: Situations where external forces or resistive forces (like drag or friction) influence an object\textquotesingle{}s natural vibrations.
+\end{DoxyEnumerate}\hypertarget{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles_autotoc_md205}{}\doxysubsection{\texorpdfstring{Method for Numerical Integral}{Method for Numerical Integral}}\label{md_docs_2own__docs_2dev___planning_2physcis__concepts_2general__principles_autotoc_md205}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method Name}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method Name}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}    }\\\cline{1-2}
+\endhead
+{\bfseries{Euler\textquotesingle{}s Method}}   &A first-\/order method where the new position is found by adding the current velocity multiplied by a time step to the current position.    \\\cline{1-2}
+{\bfseries{Improved Euler\textquotesingle{}s (Heun\textquotesingle{}s Method)}}   &An improved version of Euler\textquotesingle{}s method which uses an average of the slopes at the beginning and end of the interval to update the state.    \\\cline{1-2}
+{\bfseries{Midpoint Method}}   &Uses the slope at the midpoint of the interval to update the state, providing a more accurate estimate than the basic Euler\textquotesingle{}s method.    \\\cline{1-2}
+{\bfseries{Runge-\/\+Kutta 4th order (RK4)}}   &A widely used method that takes four estimates of the slope (at the beginning, two at the midpoint, and one at the end) to update the state. It\textquotesingle{}s more accurate than the previous methods for the same time step.    \\\cline{1-2}
+{\bfseries{Verlet Integration}}   &Especially useful for problems of molecular dynamics. It uses positions and accelerations, but not velocities, which can make it more stable for certain types of problems, like many-\/body simulations.    \\\cline{1-2}
+{\bfseries{Leapfrog Method}}   &A variation of Verlet that stores velocities and positions staggered in time, which can improve energy conservation in certain simulations.    \\\cline{1-2}
+{\bfseries{Velocity Verlet}}   &A modified version of the Verlet method that also provides velocities, making it useful for systems where velocities are required, e.\+g., for temperature calculations in molecular dynamics.   \\\cline{1-2}
+\end{longtabu}
+
+
+Each method has its advantages and drawbacks in terms of accuracy, stability, and computational cost. The choice of method can depend on the specific problem at hand, its requirements, and the desired balance between accuracy and computational efficiency. 

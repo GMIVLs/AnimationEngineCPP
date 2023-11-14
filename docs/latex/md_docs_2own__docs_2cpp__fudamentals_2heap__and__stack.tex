@@ -1,0 +1,218 @@
+\chapter{Heap and Stack}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack}{}\label{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack}\index{Heap and Stack@{Heap and Stack}}
+\label{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack_autotoc_md96}%
+\Hypertarget{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack_autotoc_md96}%
+
+
+
+\begin{DoxyItemize}
+\item All methods to clean a heap memory
+\item List all data structures in CPP allocated on heap vs on stack
+\item Keyword New and allocations on the heap
+\item Can I allocate on heap of multi dimensional array without using new keyword.
+\item Can I allocate on heap primitive data
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack_autotoc_md97}{}\doxysection{\texorpdfstring{All methods to clean a heap memory}{All methods to clean a heap memory}}\label{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack_autotoc_md97}
+
+\begin{DoxyItemize}
+\item Managing dynamically allocated memory (objects on the heap) is crucial in C++. Here\textquotesingle{}s a table that outlines the different ways to deallocate or clean up heap-\/allocated objects\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Best Practices}}    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Best Practices}}    }\\\cline{1-4}
+\endhead
+{\bfseries{delete}}   &Used to deallocate memory that was allocated with {\ttfamily new} for single objects.   &{\ttfamily int\texorpdfstring{$\ast$}{*} p = new int; delete p;}   &Always set the pointer to {\ttfamily nullptr} after {\ttfamily delete} to avoid dangling pointers.    \\\cline{1-4}
+{\bfseries{delete\mbox{[}\mbox{]}}}   &Used to deallocate memory that was allocated with {\ttfamily new\mbox{[}\mbox{]}} for arrays.   &{\ttfamily int\texorpdfstring{$\ast$}{*} arr = new int\mbox{[}10\mbox{]}; delete\mbox{[}\mbox{]} arr;}   &Same as {\ttfamily delete}\+: always set the pointer to {\ttfamily nullptr} afterwards.    \\\cline{1-4}
+{\bfseries{Destructor}}   &A special class method that is invoked when an object goes out of scope or is explicitly deleted.   &{\ttfamily class My\+Class \{ \texorpdfstring{$\sim$}{\string~}\+My\+Class() \{ /\texorpdfstring{$\ast$}{*} cleanup \texorpdfstring{$\ast$}{*}/ \} \};}   &Useful to release resources (like heap memory) associated with an object.    \\\cline{1-4}
+{\bfseries{std\+::unique\+\_\+ptr}}   &Smart pointer that owns a heap-\/allocated object and deletes it when the {\ttfamily unique\+\_\+ptr} goes out of scope.   &{\ttfamily std\+::unique\+\_\+ptr\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} \doxylink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p(new int)};}   &Avoids manual memory management. When the {\ttfamily unique\+\_\+ptr} is destroyed, it automatically deletes the associated heap object.    \\\cline{1-4}
+{\bfseries{std\+::shared\+\_\+ptr}}   &Smart pointer that can have multiple owners. The heap object is deleted when the last {\ttfamily shared\+\_\+ptr} is destroyed.   &{\ttfamily std\+::shared\+\_\+ptr\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} p1(new int); std\+::shared\+\_\+ptr\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} p2 = p1;}   &Reference counting ensures object is deleted only after last reference is gone. Prefer {\ttfamily std\+::make\+\_\+shared} for allocation.    \\\cline{1-4}
+{\bfseries{std\+::weak\+\_\+ptr}}   &A non-\/owning smart pointer. Doesn\textquotesingle{}t affect the reference count of a {\ttfamily shared\+\_\+ptr}.   &{\ttfamily std\+::weak\+\_\+ptr\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} wp = p1;}   &Useful in situations where circular references might occur with {\ttfamily shared\+\_\+ptr}. Doesn\textquotesingle{}t prevent object from being deleted.    \\\cline{1-4}
+{\bfseries{Custom Deleter}}   &Provide custom deletion logic for smart pointers.   &{\ttfamily auto deleter = \mbox{[}\mbox{]}(int\texorpdfstring{$\ast$}{*} p) \{ delete p; \}; std\+::shared\+\_\+ptr\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} \doxylink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p(new int, deleter)};}   &For special cleanup needs with smart pointers, like custom memory pools or specific deletion routines.   \\\cline{1-4}
+\end{longtabu}
+
+
+{\bfseries{Important Points}}\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Ownership}}\+: With raw pointers, you need to manually manage ownership. With smart pointers, ownership semantics are clearer ({\ttfamily unique\+\_\+ptr} has unique ownership, {\ttfamily shared\+\_\+ptr} can have shared ownership).
+\item {\bfseries{Dangling Pointers}}\+: After deallocating memory using {\ttfamily delete} or {\ttfamily delete\mbox{[}\mbox{]}}, always set the pointer to {\ttfamily nullptr} to prevent accidental access to now-\/deallocated memory.
+\item {\bfseries{Avoid Manual Management}}\+: Whenever possible, prefer to use smart pointers like {\ttfamily std\+::unique\+\_\+ptr} and {\ttfamily std\+::shared\+\_\+ptr} over raw pointers. They provide automatic memory management, making the code safer against memory leaks and other memory-\/related issues.
+\item {\bfseries{Custom Deleters}}\+: They allow you to provide specific logic for deallocating memory or resources when using smart pointers. Useful in scenarios where the default {\ttfamily delete} isn\textquotesingle{}t suitable.
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item To utilize smart pointers, remember to include the {\ttfamily \texorpdfstring{$<$}{<}memory\texorpdfstring{$>$}{>}} header.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack_autotoc_md98}{}\doxysection{\texorpdfstring{List all data structures in CPP allocated on heap vs on stack}{List all data structures in CPP allocated on heap vs on stack}}\label{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack_autotoc_md98}
+In C++, you have control over whether you want to allocate memory on the stack or on the heap. This applies to almost any type of data structure, including both built-\/in types (like {\ttfamily int}, {\ttfamily double}, {\ttfamily array}, etc.) and user-\/defined types (like classes and structs).
+
+Here\textquotesingle{}s a list of some common data structures in C++, and examples of how you could allocate them on the stack or on the heap\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Arrays}}\+:
+\begin{DoxyItemize}
+\item Stack\+: {\ttfamily int arr\mbox{[}10\mbox{]};}
+\item Heap\+: {\ttfamily int\texorpdfstring{$\ast$}{*} arr = new int\mbox{[}10\mbox{]};}
+\end{DoxyItemize}
+\item {\bfseries{Standard Library Containers (like {\ttfamily std\+::vector}, {\ttfamily std\+::list}, {\ttfamily std\+::map}, etc.)}}\+:
+\begin{DoxyItemize}
+\item Stack\+: {\ttfamily std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} vec(10);}
+\item Heap\+: {\ttfamily std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>}\texorpdfstring{$\ast$}{*} vec = new std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>}(10);}
+\end{DoxyItemize}
+\item {\bfseries{Classes/\+Structs}}\+:
+\begin{DoxyItemize}
+\item Stack\+: {\ttfamily My\+Class obj;}
+\item Heap\+: {\ttfamily My\+Class\texorpdfstring{$\ast$}{*} obj = new My\+Class();}
+\end{DoxyItemize}
+\item {\bfseries{Strings}}\+:
+\begin{DoxyItemize}
+\item Stack\+: {\ttfamily std\+::string str;}
+\item Heap\+: {\ttfamily std\+::string\texorpdfstring{$\ast$}{*} str = new std\+::string();}
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+Note that when you allocate memory on the heap (using {\ttfamily new}), it\textquotesingle{}s your responsibility to deallocate it when you\textquotesingle{}re done using it (using {\ttfamily delete}). If you forget to do this, it can lead to memory leaks.
+
+On the other hand, when you allocate memory on the stack, it automatically gets deallocated when it goes out of scope. This makes memory management easier, but it also means that stack-\/allocated memory can\textquotesingle{}t be used to persist data beyond the lifetime of the current scope.
+
+Remember that {\ttfamily std\+::vector} and other Standard Library containers automatically manage their own memory, so even when you allocate them on the stack, they can still hold large amounts of data that\textquotesingle{}s actually stored on the heap. So, you get the convenience of stack allocation (automatic lifetime management) with the flexibility of heap allocation (dynamic size).
+
+Finally, note that some types, like {\ttfamily std\+::array}, are intended to be allocated on the stack, and don\textquotesingle{}t have a straightforward way to be allocated on the heap. Conversely, things like {\ttfamily std\+::shared\+\_\+ptr} or {\ttfamily std\+::unique\+\_\+ptr} are designed to manage heap-\/allocated memory.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack_autotoc_md99}{}\doxysection{\texorpdfstring{Keyword New and allocations on the heap}{Keyword New and allocations on the heap}}\label{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack_autotoc_md99}
+In C++, there are two common ways to allocate memory on the heap\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{new}}\+: This is the most common way. It allocates memory and calls the constructor for the object.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}*\ i\ =\ \textcolor{keyword}{new}\ int(5);\ \textcolor{comment}{//\ allocate\ an\ int\ on\ the\ heap\ with\ a\ value\ of\ 5}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{malloc}}\+: This is a C library function also available in C++. It allocates a block of memory of the specified size and returns a pointer to it, but does not call the constructor.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}*\ i\ =\ (\textcolor{keywordtype}{int}*)\mbox{\hyperlink{class_vector__2d}{malloc}}(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));\ \textcolor{comment}{//\ allocate\ an\ int\ on\ the\ heap,\ not\ initialized}}
+
+\end{DoxyCode}
+
+
+In modern C++, it\textquotesingle{}s recommended to use {\ttfamily new} over {\ttfamily malloc}, as {\ttfamily new} is type-\/safe, calls constructors, and is more flexible with C++ types.
+
+In addition to {\ttfamily new}, in modern C++, you could use smart pointers like {\ttfamily std\+::unique\+\_\+ptr} or {\ttfamily std\+::shared\+\_\+ptr}, which automatically manage memory deallocation, reducing the risk of memory leaks.
+
+For example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::unique\_ptr<int>\ i(\textcolor{keyword}{new}\ \textcolor{keywordtype}{int}(5));\ \ \textcolor{comment}{//\ Using\ new}}
+\DoxyCodeLine{\textcolor{comment}{//\ or\ even\ better:}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ i\ =\ std::make\_unique<int>(5);\ \ \ \textcolor{comment}{//\ Using\ std::make\_unique}}
+
+\end{DoxyCode}
+
+
+In this case, {\ttfamily i} will automatically be deallocated when it goes out of scope. This makes your code safer and easier to maintain by reducing manual memory management.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack_autotoc_md100}{}\doxysection{\texorpdfstring{Can I allocate on heap of multi dimensional array without using new keyword.}{Can I allocate on heap of multi dimensional array without using new keyword.}}\label{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack_autotoc_md100}
+In C++, the {\ttfamily new} keyword is typically used to allocate memory on the heap. However, there are other ways to allocate memory on the heap that don\textquotesingle{}t directly involve {\ttfamily new}. One alternative is to use {\ttfamily malloc()}, {\ttfamily calloc()}, and {\ttfamily realloc()}, which are part of the C standard library (included via {\ttfamily \#include \texorpdfstring{$<$}{<}cstdlib\texorpdfstring{$>$}{>}} or {\ttfamily \#include \texorpdfstring{$<$}{<}stdlib.\+h\texorpdfstring{$>$}{>}} in C++). These functions allow you to allocate and deallocate memory on the heap. Here\textquotesingle{}s an example of how you could use {\ttfamily malloc()} to allocate a 2D array on the heap\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{rows}}\ =\ 5;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{cols}}\ =\ 10;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ the\ rows}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}**\ \mbox{\hyperlink{class_vector__2d}{arr}}\ =\ (\textcolor{keywordtype}{int}**)\mbox{\hyperlink{class_vector__2d}{malloc}}(\mbox{\hyperlink{class_vector__2d}{rows}}\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}*));}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ For\ each\ row,\ allocate\ memory\ for\ the\ columns}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{class_vector__2d}{rows}};\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d}{arr}}[i]\ =\ (\textcolor{keywordtype}{int}*)\mbox{\hyperlink{class_vector__2d}{malloc}}(\mbox{\hyperlink{class_vector__2d}{cols}}\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Don't\ forget\ to\ free\ the\ memory!}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{class_vector__2d}{rows}};\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d}{free}}(\mbox{\hyperlink{class_vector__2d}{arr}}[i]);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{free}}(\mbox{\hyperlink{class_vector__2d}{arr}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Please note that while {\ttfamily malloc} and its associated functions are available in C++, they\textquotesingle{}re considered more C-\/style and their usage is generally discouraged in C++ where {\ttfamily new} and {\ttfamily delete} (or smart pointers) are preferred. They do not call constructors and destructors, which makes them unsuitable for non-\/trivial types. If you don\textquotesingle{}t want to use {\ttfamily new} directly, but want the benefits it provides (like constructors and destructors being automatically called), you can use {\ttfamily std\+::vector} or other similar containers, which handle memory management for you\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{rows}}\ =\ 5;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{cols}}\ =\ 10;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Create\ a\ 2D\ vector\ (a\ vector\ of\ vectors)}}
+\DoxyCodeLine{\ \ \ \ std::vector<std::vector<int>>\ \mbox{\hyperlink{class_vector__2d}{vec}}(\mbox{\hyperlink{class_vector__2d}{rows}},\ std::vector<int>(\mbox{\hyperlink{class_vector__2d}{cols}}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ You\ don't\ need\ to\ worry\ about\ freeing\ the\ memory}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+This creates a 2D array (in the form of a {\ttfamily std\+::vector}) on the heap. When {\ttfamily vec} goes out of scope, its destructor is called, which automatically frees the memory it was using. This helps prevent memory leaks, which can be a common issue when manually managing memory.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack_autotoc_md101}{}\doxysection{\texorpdfstring{Can I allocate on heap primitive data}{Can I allocate on heap primitive data}}\label{md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack_autotoc_md101}
+Yes, you can create primitive types on the heap in C++. However, the syntax you provided is incorrect. The correct way to do it is to use the {\ttfamily new} keyword followed by the type, and then assign this to a pointer. Here\textquotesingle{}s how you can do it\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{var}}\ =\ 10;\ \ \textcolor{comment}{//\ This\ creates\ an\ integer\ on\ the\ stack.}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}*\ \mbox{\hyperlink{class_vector__2d}{var\_on\_heap}}\ =\ \textcolor{keyword}{new}\ int(\mbox{\hyperlink{class_vector__2d}{var}});\ \ \textcolor{comment}{//\ This\ creates\ an\ integer\ on\ the\ heap,\ with\ the\ value\ of\ var.}}
+
+\end{DoxyCode}
+
+
+In this code\+:
+
+
+\begin{DoxyEnumerate}
+\item {\ttfamily var} is an integer variable that is allocated on the stack and initialized with the value {\ttfamily 10}.
+\item {\ttfamily var\+\_\+on\+\_\+heap} is a pointer to an integer that is allocated on the heap. The {\ttfamily new} keyword is used to allocate memory on the heap, and the {\ttfamily int(var)} syntax initializes the heap-\/allocated integer with the value of {\ttfamily var}.
+\end{DoxyEnumerate}
+
+Remember, when you allocate memory on the heap using {\ttfamily new}, you should deallocate it using {\ttfamily delete} to prevent memory leaks\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{keyword}{delete}\ \mbox{\hyperlink{class_vector__2d}{var\_on\_heap}};\ \ \textcolor{comment}{//\ This\ deallocates\ the\ memory\ on\ the\ heap.}}
+
+\end{DoxyCode}
+
+
+After calling {\ttfamily delete}, the memory that {\ttfamily var\+\_\+on\+\_\+heap} points to is deallocated, but {\ttfamily var\+\_\+on\+\_\+heap} itself still exists and now is a dangling pointer. It\textquotesingle{}s a good practice to set {\ttfamily var\+\_\+on\+\_\+heap} to {\ttfamily nullptr} after deleting it to prevent any future misuse\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{var\_on\_heap}}\ =\ \textcolor{keyword}{nullptr};\ \ \textcolor{comment}{//\ This\ sets\ var\_on\_heap\ to\ the\ null\ pointer.}}
+
+\end{DoxyCode}
+ 

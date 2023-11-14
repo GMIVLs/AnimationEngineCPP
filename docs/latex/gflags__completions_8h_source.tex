@@ -1,0 +1,127 @@
+\doxysection{gflags\+\_\+completions.\+h}
+\hypertarget{gflags__completions_8h_source}{}\label{gflags__completions_8h_source}\index{build/debug/vcpkg\_installed/arm64-\/osx/include/gflags/gflags\_completions.h@{build/debug/vcpkg\_installed/arm64-\/osx/include/gflags/gflags\_completions.h}}
+\mbox{\hyperlink{gflags__completions_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (c)\ 2008,\ Google\ Inc.}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00002}00002\ \textcolor{comment}{//\ All\ rights\ reserved.}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00003}00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00004}00004\ \textcolor{comment}{//\ Redistribution\ and\ use\ in\ source\ and\ binary\ forms,\ with\ or\ without}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00005}00005\ \textcolor{comment}{//\ modification,\ are\ permitted\ provided\ that\ the\ following\ conditions\ are}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00006}00006\ \textcolor{comment}{//\ met:}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00007}00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00008}00008\ \textcolor{comment}{//\ \ \ \ \ *\ Redistributions\ of\ source\ code\ must\ retain\ the\ above\ copyright}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00009}00009\ \textcolor{comment}{//\ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer.}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00010}00010\ \textcolor{comment}{//\ \ \ \ \ *\ Redistributions\ in\ binary\ form\ must\ reproduce\ the\ above}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00011}00011\ \textcolor{comment}{//\ copyright\ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00012}00012\ \textcolor{comment}{//\ in\ the\ documentation\ and/or\ other\ materials\ provided\ with\ the}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00013}00013\ \textcolor{comment}{//\ distribution.}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00014}00014\ \textcolor{comment}{//\ \ \ \ \ *\ Neither\ the\ name\ of\ Google\ Inc.\ nor\ the\ names\ of\ its}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00015}00015\ \textcolor{comment}{//\ contributors\ may\ be\ used\ to\ endorse\ or\ promote\ products\ derived\ from}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00016}00016\ \textcolor{comment}{//\ this\ software\ without\ specific\ prior\ written\ permission.}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00017}00017\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00018}00018\ \textcolor{comment}{//\ THIS\ SOFTWARE\ IS\ PROVIDED\ BY\ THE\ COPYRIGHT\ HOLDERS\ AND\ CONTRIBUTORS}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00019}00019\ \textcolor{comment}{//\ "{}AS\ IS"{}\ AND\ ANY\ EXPRESS\ OR\ IMPLIED\ WARRANTIES,\ INCLUDING,\ BUT\ NOT}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00020}00020\ \textcolor{comment}{//\ LIMITED\ TO,\ THE\ IMPLIED\ WARRANTIES\ OF\ MERCHANTABILITY\ AND\ FITNESS\ FOR}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00021}00021\ \textcolor{comment}{//\ A\ PARTICULAR\ PURPOSE\ ARE\ DISCLAIMED.\ IN\ NO\ EVENT\ SHALL\ THE\ COPYRIGHT}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00022}00022\ \textcolor{comment}{//\ OWNER\ OR\ CONTRIBUTORS\ BE\ LIABLE\ FOR\ ANY\ DIRECT,\ INDIRECT,\ INCIDENTAL,}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00023}00023\ \textcolor{comment}{//\ SPECIAL,\ EXEMPLARY,\ OR\ CONSEQUENTIAL\ DAMAGES\ (INCLUDING,\ BUT\ NOT}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00024}00024\ \textcolor{comment}{//\ LIMITED\ TO,\ PROCUREMENT\ OF\ SUBSTITUTE\ GOODS\ OR\ SERVICES;\ LOSS\ OF\ USE,}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00025}00025\ \textcolor{comment}{//\ DATA,\ OR\ PROFITS;\ OR\ BUSINESS\ INTERRUPTION)\ HOWEVER\ CAUSED\ AND\ ON\ ANY}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00026}00026\ \textcolor{comment}{//\ THEORY\ OF\ LIABILITY,\ WHETHER\ IN\ CONTRACT,\ STRICT\ LIABILITY,\ OR\ TORT}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00027}00027\ \textcolor{comment}{//\ (INCLUDING\ NEGLIGENCE\ OR\ OTHERWISE)\ ARISING\ IN\ ANY\ WAY\ OUT\ OF\ THE\ USE}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00028}00028\ \textcolor{comment}{//\ OF\ THIS\ SOFTWARE,\ EVEN\ IF\ ADVISED\ OF\ THE\ POSSIBILITY\ OF\ SUCH\ DAMAGE.}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00029}00029\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00030}00030\ \textcolor{comment}{//\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00032}00032\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00033}00033\ \textcolor{comment}{//\ Implement\ helpful\ bash-\/style\ command\ line\ flag\ completions}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00034}00034\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00035}00035\ \textcolor{comment}{//\ **\ Functional\ API:}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00036}00036\ \textcolor{comment}{//\ HandleCommandLineCompletions()\ should\ be\ called\ early\ during}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00037}00037\ \textcolor{comment}{//\ program\ startup,\ but\ after\ command\ line\ flag\ code\ has\ been}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00038}00038\ \textcolor{comment}{//\ initialized,\ such\ as\ the\ beginning\ of\ HandleCommandLineHelpFlags().}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00039}00039\ \textcolor{comment}{//\ It\ checks\ the\ value\ of\ the\ flag\ -\/-\/tab\_completion\_word.\ \ If\ this}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00040}00040\ \textcolor{comment}{//\ flag\ is\ empty,\ nothing\ happens\ here.\ \ If\ it\ contains\ a\ string,}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00041}00041\ \textcolor{comment}{//\ however,\ then\ HandleCommandLineCompletions()\ will\ hijack\ the}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00042}00042\ \textcolor{comment}{//\ process,\ attempting\ to\ identify\ the\ intention\ behind\ this}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00043}00043\ \textcolor{comment}{//\ completion.\ \ Regardless\ of\ the\ outcome\ of\ this\ deduction,\ the}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00044}00044\ \textcolor{comment}{//\ process\ will\ be\ terminated,\ similar\ to\ -\/-\/helpshort\ flag}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00045}00045\ \textcolor{comment}{//\ handling.}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00046}00046\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00047}00047\ \textcolor{comment}{//\ **\ Overview\ of\ Bash\ completions:}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00048}00048\ \textcolor{comment}{//\ Bash\ can\ be\ told\ to\ programatically\ determine\ completions\ for\ the}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00049}00049\ \textcolor{comment}{//\ current\ 'cursor\ word'.\ \ It\ does\ this\ by\ (in\ this\ case)\ invoking\ a}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00050}00050\ \textcolor{comment}{//\ command\ with\ some\ additional\ arguments\ identifying\ the\ command}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00051}00051\ \textcolor{comment}{//\ being\ executed,\ the\ word\ being\ completed,\ and\ the\ previous\ word}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00052}00052\ \textcolor{comment}{//\ (if\ any).\ \ Bash\ then\ expects\ a\ sequence\ of\ output\ lines\ to\ be}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00053}00053\ \textcolor{comment}{//\ printed\ to\ stdout.\ \ If\ these\ lines\ all\ contain\ a\ common\ prefix}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00054}00054\ \textcolor{comment}{//\ longer\ than\ the\ cursor\ word,\ bash\ will\ replace\ the\ cursor\ word}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00055}00055\ \textcolor{comment}{//\ with\ that\ common\ prefix,\ and\ display\ nothing.\ \ If\ there\ isn't\ such}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00056}00056\ \textcolor{comment}{//\ a\ common\ prefix,\ bash\ will\ display\ the\ lines\ in\ pages\ using\ 'more'.}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00057}00057\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00058}00058\ \textcolor{comment}{//\ **\ Strategy\ taken\ for\ command\ line\ completions:}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00059}00059\ \textcolor{comment}{//\ If\ we\ can\ deduce\ either\ the\ exact\ flag\ intended,\ or\ a\ common\ flag}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00060}00060\ \textcolor{comment}{//\ prefix,\ we'll\ output\ exactly\ that.\ \ Otherwise,\ if\ information}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00061}00061\ \textcolor{comment}{//\ must\ be\ displayed\ to\ the\ user,\ we'll\ take\ the\ opportunity\ to\ add}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00062}00062\ \textcolor{comment}{//\ some\ helpful\ information\ beyond\ just\ the\ flag\ name\ (specifically,}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00063}00063\ \textcolor{comment}{//\ we'll\ include\ the\ default\ flag\ value\ and\ as\ much\ of\ the\ flag's}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00064}00064\ \textcolor{comment}{//\ description\ as\ can\ fit\ on\ a\ single\ terminal\ line\ width,\ as\ specified}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00065}00065\ \textcolor{comment}{//\ by\ the\ flag\ -\/-\/tab\_completion\_columns).\ \ Furthermore,\ we'll\ try\ to}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00066}00066\ \textcolor{comment}{//\ make\ bash\ order\ the\ output\ such\ that\ the\ most\ useful\ or\ relevent}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00067}00067\ \textcolor{comment}{//\ flags\ are\ the\ most\ likely\ to\ be\ shown\ at\ the\ top.}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00068}00068\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00069}00069\ \textcolor{comment}{//\ **\ Additional\ features:}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00070}00070\ \textcolor{comment}{//\ To\ assist\ in\ finding\ that\ one\ really\ useful\ flag,\ substring\ matching}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00071}00071\ \textcolor{comment}{//\ was\ implemented.\ \ Before\ pressing\ a\ <TAB>\ to\ get\ completion\ for\ the}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00072}00072\ \textcolor{comment}{//\ current\ word,\ you\ can\ append\ one\ or\ more\ '?'\ to\ the\ flag\ to\ do}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00073}00073\ \textcolor{comment}{//\ substring\ matching.\ \ Here's\ the\ semantics:}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00074}00074\ \textcolor{comment}{//\ \ \ -\/-\/foo<TAB>\ \ \ \ \ Show\ me\ all\ flags\ with\ names\ prefixed\ by\ 'foo'}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00075}00075\ \textcolor{comment}{//\ \ \ -\/-\/foo?<TAB>\ \ \ \ Show\ me\ all\ flags\ with\ 'foo'\ somewhere\ in\ the\ name}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00076}00076\ \textcolor{comment}{//\ \ \ -\/-\/foo??<TAB>\ \ \ Same\ as\ prior\ case,\ but\ also\ search\ in\ module}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00077}00077\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ definition\ path\ for\ 'foo'}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00078}00078\ \textcolor{comment}{//\ \ \ -\/-\/foo???<TAB>\ \ Same\ as\ prior\ case,\ but\ also\ search\ in\ flag}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00079}00079\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ descriptions\ for\ 'foo'}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00080}00080\ \textcolor{comment}{//\ Finally,\ we'll\ trim\ the\ output\ to\ a\ relatively\ small\ number\ of}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00081}00081\ \textcolor{comment}{//\ flags\ to\ keep\ bash\ quiet\ about\ the\ verbosity\ of\ output.\ \ If\ one}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00082}00082\ \textcolor{comment}{//\ really\ wanted\ to\ see\ all\ possible\ matches,\ appending\ a\ '+'\ to\ the}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00083}00083\ \textcolor{comment}{//\ search\ word\ will\ force\ the\ exhaustive\ list\ of\ matches\ to\ be\ printed.}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00084}00084\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00085}00085\ \textcolor{comment}{//\ **\ How\ to\ have\ bash\ accept\ completions\ from\ a\ binary:}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00086}00086\ \textcolor{comment}{//\ Bash\ requires\ that\ it\ be\ informed\ about\ each\ command\ that\ programmatic}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00087}00087\ \textcolor{comment}{//\ completion\ should\ be\ enabled\ for.\ \ Example\ addition\ to\ a\ .bashrc}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00088}00088\ \textcolor{comment}{//\ file\ would\ be\ (your\ path\ to\ gflags\_completions.sh\ file\ may\ differ):}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00090}00090\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00091}00091\ \textcolor{comment}{\$\ complete\ -\/o\ bashdefault\ -\/o\ default\ -\/o\ nospace\ -\/C\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00092}00092\ \textcolor{comment}{\ '/home/build/eng/bash/bash\_completions.sh\ -\/-\/tab\_completion\_columns\ \$COLUMNS'\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00093}00093\ \textcolor{comment}{\ \ time\ \ env\ \ binary\_name\ \ another\_binary\ \ [...]}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00094}00094\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00096}00096\ \textcolor{comment}{//\ This\ would\ allow\ the\ following\ to\ work:}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00097}00097\ \textcolor{comment}{//\ \ \ \$\ /path/to/binary\_name\ -\/-\/vmodule<TAB>}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00098}00098\ \textcolor{comment}{//\ Or:}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00099}00099\ \textcolor{comment}{//\ \ \ \$\ ./bin/path/another\_binary\ -\/-\/gfs\_u<TAB>}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00100}00100\ \textcolor{comment}{//\ (etc)}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00101}00101\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00102}00102\ \textcolor{comment}{//\ Sadly,\ it\ appears\ that\ bash\ gives\ no\ easy\ way\ to\ force\ this\ behavior\ for}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00103}00103\ \textcolor{comment}{//\ all\ commands.\ \ That's\ where\ the\ "{}time"{}\ in\ the\ above\ example\ comes\ in.}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00104}00104\ \textcolor{comment}{//\ If\ you\ haven't\ specifically\ added\ a\ command\ to\ the\ list\ of\ completion}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00105}00105\ \textcolor{comment}{//\ supported\ commands,\ you\ can\ still\ get\ completions\ by\ prefixing\ the}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00106}00106\ \textcolor{comment}{//\ entire\ command\ with\ "{}env"{}.}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00107}00107\ \textcolor{comment}{//\ \ \ \$\ env\ /some/brand/new/binary\ -\/-\/vmod<TAB>}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00108}00108\ \textcolor{comment}{//\ Assuming\ that\ "{}binary"{}\ is\ a\ newly\ compiled\ binary,\ this\ should\ still}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00109}00109\ \textcolor{comment}{//\ produce\ the\ expected\ completion\ output.}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00112}00112\ \textcolor{preprocessor}{\#ifndef\ GFLAGS\_COMPLETIONS\_H\_}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00113}00113\ \textcolor{preprocessor}{\#define\ GFLAGS\_COMPLETIONS\_H\_}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00115}\mbox{\hyperlink{namespacegoogle}{00115}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegoogle}{google}}\ \{}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00117}\mbox{\hyperlink{namespacegoogle_a27bc6be594d97b4c2bb0a61aba574f1f}{00117}}\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacegoogle_a27bc6be594d97b4c2bb0a61aba574f1f}{HandleCommandLineCompletions}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00119}00119\ \}}
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{gflags__completions_8h_source_l00121}00121\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ GFLAGS\_COMPLETIONS\_H\_}}
+
+\end{DoxyCode}

@@ -1,0 +1,108 @@
+\doxysection{/opt/homebrew/\+Cellar/sdl2/2.28.5/include/\+SDL2/\+SDL\+\_\+bits.h File Reference}
+\hypertarget{_s_d_l__bits_8h}{}\label{_s_d_l__bits_8h}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_bits.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_bits.h}}
+{\ttfamily \#include "{}SDL\+\_\+stdinc.\+h"{}}\newline
+{\ttfamily \#include "{}begin\+\_\+code.\+h"{}}\newline
+{\ttfamily \#include "{}close\+\_\+code.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{begin__code_8h_addf1f12c70f89102cc187297860c5961}{SDL\+\_\+\+FORCE\+\_\+\+INLINE}} int \mbox{\hyperlink{_s_d_l__bits_8h_ada8cd16089cc635936dfe1a6884729a4}{SDL\+\_\+\+Most\+Significant\+Bit\+Index32}} (\mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}} \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}})
+\item 
+\mbox{\hyperlink{begin__code_8h_addf1f12c70f89102cc187297860c5961}{SDL\+\_\+\+FORCE\+\_\+\+INLINE}} \mbox{\hyperlink{_s_d_l__stdinc_8h_a8fca68df0f976765230fe589a7c7733b}{SDL\+\_\+bool}} \mbox{\hyperlink{_s_d_l__bits_8h_a9ca9ab50814f9cfbce5c1cba379b001d}{SDL\+\_\+\+Has\+Exactly\+One\+Bit\+Set32}} (\mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}} \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for fiddling with bits and bitmasks.
+
+Definition in file \mbox{\hyperlink{_s_d_l__bits_8h_source}{SDL\+\_\+bits.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_s_d_l__bits_8h_a9ca9ab50814f9cfbce5c1cba379b001d}\label{_s_d_l__bits_8h_a9ca9ab50814f9cfbce5c1cba379b001d} 
+\index{SDL\_bits.h@{SDL\_bits.h}!SDL\_HasExactlyOneBitSet32@{SDL\_HasExactlyOneBitSet32}}
+\index{SDL\_HasExactlyOneBitSet32@{SDL\_HasExactlyOneBitSet32}!SDL\_bits.h@{SDL\_bits.h}}
+\doxysubsubsection{\texorpdfstring{SDL\_HasExactlyOneBitSet32()}{SDL\_HasExactlyOneBitSet32()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{begin__code_8h_addf1f12c70f89102cc187297860c5961}{SDL\+\_\+\+FORCE\+\_\+\+INLINE}} \mbox{\hyperlink{_s_d_l__stdinc_8h_a8fca68df0f976765230fe589a7c7733b}{SDL\+\_\+bool}} SDL\+\_\+\+Has\+Exactly\+One\+Bit\+Set32 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}}}]{x }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_d_l__bits_8h_source_l00110}{110}} of file \mbox{\hyperlink{_s_d_l__bits_8h_source}{SDL\+\_\+bits.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00111\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ \&\&\ !(\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ \&\ (\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ -\/\ 1)))\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_s_d_l__stdinc_8h_a8fca68df0f976765230fe589a7c7733ba32efa84cfb0a91b0eee1edf6e941cf74}{SDL\_TRUE}};}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_s_d_l__stdinc_8h_a8fca68df0f976765230fe589a7c7733ba76e680af86c5508ea4ccd9f969eb1ea2}{SDL\_FALSE}};}
+\DoxyCodeLine{00116\ \}}
+
+\end{DoxyCode}
+\Hypertarget{_s_d_l__bits_8h_ada8cd16089cc635936dfe1a6884729a4}\label{_s_d_l__bits_8h_ada8cd16089cc635936dfe1a6884729a4} 
+\index{SDL\_bits.h@{SDL\_bits.h}!SDL\_MostSignificantBitIndex32@{SDL\_MostSignificantBitIndex32}}
+\index{SDL\_MostSignificantBitIndex32@{SDL\_MostSignificantBitIndex32}!SDL\_bits.h@{SDL\_bits.h}}
+\doxysubsubsection{\texorpdfstring{SDL\_MostSignificantBitIndex32()}{SDL\_MostSignificantBitIndex32()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{begin__code_8h_addf1f12c70f89102cc187297860c5961}{SDL\+\_\+\+FORCE\+\_\+\+INLINE}} int SDL\+\_\+\+Most\+Significant\+Bit\+Index32 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}}}]{x }\end{DoxyParamCaption})}
+
+Get the index of the most significant bit. Result is undefined when called with 0. This operation can also be stated as "{}count leading zeroes"{} and "{}log base 2"{}.
+
+\begin{DoxyReturn}{Returns}
+the index of the most significant bit, or -\/1 if the value is 0. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_s_d_l__bits_8h_source_l00060}{60}} of file \mbox{\hyperlink{_s_d_l__bits_8h_source}{SDL\+\_\+bits.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)\ \&\&\ (\_\_GNUC\_\_\ >=\ 4\ ||\ (\_\_GNUC\_\_\ ==\ 3\ \&\&\ \_\_GNUC\_MINOR\_\_\ >=\ 4))}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{/*\ Count\ Leading\ Zeroes\ builtin\ in\ GCC.}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ \ *\ http://gcc.gnu.org/onlinedocs/gcc-\/4.3.4/gcc/Other-\/Builtins.html}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ ==\ 0)\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ 31\ -\/\ \mbox{\hyperlink{class_vector__2d}{\_\_builtin\_clz}}(\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}});}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#elif\ defined(\_\_WATCOMC\_\_)\ \&\&\ defined(\_\_386\_\_)}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ ==\ 0)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vector__2d}{\_SDL\_bsr\_watcom}}(\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}});}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#elif\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a57f14e05b1900f16a2da82ade47d0c6d}{index}};}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_vector__2d}{\_BitScanReverse}}(\&\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a57f14e05b1900f16a2da82ade47d0c6d}{index}},\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}))\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a57f14e05b1900f16a2da82ade47d0c6d}{index}};}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{/*\ Based\ off\ of\ Bit\ Twiddling\ Hacks\ by\ Sean\ Eron\ Anderson}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ \ \ *\ <seander@cs.stanford.edu>,\ released\ in\ the\ public\ domain.}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ \ *\ http://graphics.stanford.edu/\string~seander/bithacks.html\#IntegerLog}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b}}[]\ =\ \{0x2,\ 0xC,\ 0xF0,\ 0xFF00,\ 0xFFFF0000\};}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \ \ \ \mbox{\hyperlink{class_vector__2d}{S}}[]\ =\ \{1,\ 2,\ 4,\ 8,\ 16\};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{msbIndex}}\ =\ 0;}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{int}\ i;}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ ==\ 0)\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 4;\ i\ >=\ 0;\ i-\/-\/)}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ \&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b}}[i])}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ >>=\ \mbox{\hyperlink{class_vector__2d}{S}}[i];}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d}{msbIndex}}\ |=\ \mbox{\hyperlink{class_vector__2d}{S}}[i];}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vector__2d}{msbIndex}};}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00107\ \}}
+
+\end{DoxyCode}

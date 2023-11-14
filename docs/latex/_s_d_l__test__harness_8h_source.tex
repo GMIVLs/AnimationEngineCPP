@@ -1,0 +1,106 @@
+\doxysection{SDL\+\_\+test\+\_\+harness.\+h}
+\hypertarget{_s_d_l__test__harness_8h_source}{}\label{_s_d_l__test__harness_8h_source}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_test\_harness.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_test\_harness.h}}
+\mbox{\hyperlink{_s_d_l__test__harness_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00002}00002\ \textcolor{comment}{\ \ Simple\ DirectMedia\ Layer}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00003}00003\ \textcolor{comment}{\ \ Copyright\ (C)\ 1997-\/2023\ Sam\ Lantinga\ <slouken@libsdl.org>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00005}00005\ \textcolor{comment}{\ \ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00006}00006\ \textcolor{comment}{\ \ warranty.\ \ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00007}00007\ \textcolor{comment}{\ \ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00008}00008\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00009}00009\ \textcolor{comment}{\ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00010}00010\ \textcolor{comment}{\ \ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00011}00011\ \textcolor{comment}{\ \ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00013}00013\ \textcolor{comment}{\ \ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00014}00014\ \textcolor{comment}{\ \ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00015}00015\ \textcolor{comment}{\ \ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00016}00016\ \textcolor{comment}{\ \ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00017}00017\ \textcolor{comment}{\ \ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00018}00018\ \textcolor{comment}{\ \ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00019}00019\ \textcolor{comment}{\ \ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00020}00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00030}00030\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00031}00031\ \textcolor{comment}{\ \ Defines\ types\ for\ test\ case\ definitions\ and\ the\ test\ execution\ harness\ API.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00032}00032\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00033}00033\ \textcolor{comment}{\ \ Based\ on\ original\ GSOC\ code\ by\ Markus\ Kauppila\ <markus.kauppila@gmail.com>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00034}00034\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00036}00036\ \textcolor{preprocessor}{\#ifndef\ SDL\_test\_h\_arness\_h}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00037}00037\ \textcolor{preprocessor}{\#define\ SDL\_test\_h\_arness\_h}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00039}00039\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{begin__code_8h}{begin\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00040}00040\ \textcolor{comment}{/*\ Set\ up\ for\ C\ function\ definitions,\ even\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00041}00041\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00042}00042\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00043}00043\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00046}00046\ \textcolor{comment}{/*\ !\ Definitions\ for\ test\ case\ structures\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00047}\mbox{\hyperlink{_s_d_l__test__harness_8h_a4404f2feb87e68e20e31bd86ec1728b1}{00047}}\ \textcolor{preprocessor}{\#define\ TEST\_ENABLED\ \ 1}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00048}\mbox{\hyperlink{_s_d_l__test__harness_8h_ac7b13b8aefdada941436332f7559e5f0}{00048}}\ \textcolor{preprocessor}{\#define\ TEST\_DISABLED\ 0}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00050}00050\ \textcolor{comment}{/*\ !\ Definition\ of\ all\ the\ possible\ test\ return\ values\ of\ the\ test\ case\ method\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00051}\mbox{\hyperlink{_s_d_l__test__harness_8h_ad1b0d362df8510a4a917442ae7173aa1}{00051}}\ \textcolor{preprocessor}{\#define\ TEST\_ABORTED\ \ \ \ \ \ \ \ -\/1}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00052}\mbox{\hyperlink{_s_d_l__test__harness_8h_a24c50cc9207eee59e73f95faff5ef07a}{00052}}\ \textcolor{preprocessor}{\#define\ TEST\_STARTED\ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00053}\mbox{\hyperlink{_s_d_l__test__harness_8h_aa1fcd18bba2a887390bb7e032f177716}{00053}}\ \textcolor{preprocessor}{\#define\ TEST\_COMPLETED\ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00054}\mbox{\hyperlink{_s_d_l__test__harness_8h_adc53d81b0aba42f8a5773a4bd1c3da88}{00054}}\ \textcolor{preprocessor}{\#define\ TEST\_SKIPPED\ \ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00056}00056\ \textcolor{comment}{/*\ !\ Definition\ of\ all\ the\ possible\ test\ results\ for\ the\ harness\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00057}\mbox{\hyperlink{_s_d_l__test__harness_8h_accbb9396b61c19b746505b685275ce82}{00057}}\ \textcolor{preprocessor}{\#define\ TEST\_RESULT\_PASSED\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00058}\mbox{\hyperlink{_s_d_l__test__harness_8h_a25cadd1b04d9f8f342919a53e2b984b7}{00058}}\ \textcolor{preprocessor}{\#define\ TEST\_RESULT\_FAILED\ \ \ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00059}\mbox{\hyperlink{_s_d_l__test__harness_8h_ab560e79979c20b68710cc24585a2f78f}{00059}}\ \textcolor{preprocessor}{\#define\ TEST\_RESULT\_NO\_ASSERT\ \ \ \ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00060}\mbox{\hyperlink{_s_d_l__test__harness_8h_aadce13b4d24fe4ac2b58578167e53846}{00060}}\ \textcolor{preprocessor}{\#define\ TEST\_RESULT\_SKIPPED\ \ \ \ \ \ \ \ \ \ \ \ \ 3}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00061}\mbox{\hyperlink{_s_d_l__test__harness_8h_aff94de0de0428e277e9c660d755adb1a}{00061}}\ \textcolor{preprocessor}{\#define\ TEST\_RESULT\_SETUP\_FAILURE\ \ \ \ \ \ \ 4}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00063}00063\ \textcolor{comment}{/*\ !<\ Function\ pointer\ to\ a\ test\ case\ setup\ function\ (run\ before\ every\ test)\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00064}\mbox{\hyperlink{_s_d_l__test__harness_8h_acf5b8d5c6dcbf946fdf7bdb1ceb03e45}{00064}}\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}}\ (*\mbox{\hyperlink{_s_d_l__test__harness_8h_acf5b8d5c6dcbf946fdf7bdb1ceb03e45}{SDLTest\_TestCaseSetUpFp}})(\textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00066}00066\ \textcolor{comment}{/*\ !<\ Function\ pointer\ to\ a\ test\ case\ function\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00067}\mbox{\hyperlink{_s_d_l__test__harness_8h_ae1a62d8f725d57dc95faddcc5409afbb}{00067}}\ \textcolor{keyword}{typedef}\ int\ (*\mbox{\hyperlink{_s_d_l__test__harness_8h_ae1a62d8f725d57dc95faddcc5409afbb}{SDLTest\_TestCaseFp}})(\textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00069}00069\ \textcolor{comment}{/*\ !<\ Function\ pointer\ to\ a\ test\ case\ teardown\ function\ (run\ after\ every\ test)\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00070}\mbox{\hyperlink{_s_d_l__test__harness_8h_a146292b699bf0c95e1c4bcfaced3b1dc}{00070}}\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a46df6112013cf583e82b25cebd5cb499}{void}}\ \ (*\mbox{\hyperlink{_s_d_l__test__harness_8h_a146292b699bf0c95e1c4bcfaced3b1dc}{SDLTest\_TestCaseTearDownFp}})(\textcolor{keywordtype}{void}\ *arg);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00075}\mbox{\hyperlink{struct_s_d_l_test___test_case_reference}{00075}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_s_d_l_test___test_case_reference}{SDLTest\_TestCaseReference}}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00076}00076\ \ \ \ \ \textcolor{comment}{/*\ !<\ Func2Stress\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00077}\mbox{\hyperlink{struct_s_d_l_test___test_case_reference_af9472f0c421a2845b540fc28fb30a3ef}{00077}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__test__harness_8h_ae1a62d8f725d57dc95faddcc5409afbb}{SDLTest\_TestCaseFp}}\ \mbox{\hyperlink{struct_s_d_l_test___test_case_reference_af9472f0c421a2845b540fc28fb30a3ef}{testCase}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00078}00078\ \ \ \ \ \textcolor{comment}{/*\ !<\ Short\ name\ (or\ function\ name)\ "{}Func2Stress"{}\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00079}\mbox{\hyperlink{struct_s_d_l_test___test_case_reference_a02bcd31636644ce291dae6520304a112}{00079}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{struct_s_d_l_test___test_case_reference_a02bcd31636644ce291dae6520304a112}{name}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00080}00080\ \ \ \ \ \textcolor{comment}{/*\ !<\ Long\ name\ or\ full\ description\ "{}This\ test\ pushes\ func2()\ to\ the\ limit."{}\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00081}\mbox{\hyperlink{struct_s_d_l_test___test_case_reference_a5bfe4df076e488b8773beab882f42614}{00081}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{struct_s_d_l_test___test_case_reference_a5bfe4df076e488b8773beab882f42614}{description}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00082}00082\ \ \ \ \ \textcolor{comment}{/*\ !<\ Set\ to\ TEST\_ENABLED\ or\ TEST\_DISABLED\ (test\ won't\ be\ run)\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00083}\mbox{\hyperlink{struct_s_d_l_test___test_case_reference_a15168c85e38cae7557b4beb477ef6f9a}{00083}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_s_d_l_test___test_case_reference_a15168c85e38cae7557b4beb477ef6f9a}{enabled}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00084}\mbox{\hyperlink{_s_d_l__test__harness_8h_ae02b9535633a86200d7bce94686d1545}{00084}}\ \}\ \mbox{\hyperlink{_s_d_l__test__harness_8h_ae02b9535633a86200d7bce94686d1545}{SDLTest\_TestCaseReference}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00089}\mbox{\hyperlink{struct_s_d_l_test___test_suite_reference}{00089}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_s_d_l_test___test_suite_reference}{SDLTest\_TestSuiteReference}}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00090}00090\ \ \ \ \ \textcolor{comment}{/*\ !<\ "{}PlatformSuite"{}\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00091}\mbox{\hyperlink{struct_s_d_l_test___test_suite_reference_a01b702b83dad3dc15cfe535554527418}{00091}}\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{struct_s_d_l_test___test_suite_reference_a01b702b83dad3dc15cfe535554527418}{name}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00092}00092\ \ \ \ \ \textcolor{comment}{/*\ !<\ The\ function\ that\ is\ run\ before\ each\ test.\ NULL\ skips.\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00093}\mbox{\hyperlink{struct_s_d_l_test___test_suite_reference_a8aa788b982efb93c93c2ab01202e0007}{00093}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__test__harness_8h_acf5b8d5c6dcbf946fdf7bdb1ceb03e45}{SDLTest\_TestCaseSetUpFp}}\ \mbox{\hyperlink{struct_s_d_l_test___test_suite_reference_a8aa788b982efb93c93c2ab01202e0007}{testSetUp}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00094}00094\ \ \ \ \ \textcolor{comment}{/*\ !<\ The\ test\ cases\ that\ are\ run\ as\ part\ of\ the\ suite.\ Last\ item\ should\ be\ NULL.\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00095}\mbox{\hyperlink{struct_s_d_l_test___test_suite_reference_a06d97ce5bcf9ceb1300cc4aa39c028d3}{00095}}\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_s_d_l_test___test_case_reference}{SDLTest\_TestCaseReference}}\ **\mbox{\hyperlink{struct_s_d_l_test___test_suite_reference_a06d97ce5bcf9ceb1300cc4aa39c028d3}{testCases}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00096}00096\ \ \ \ \ \textcolor{comment}{/*\ !<\ The\ function\ that\ is\ run\ after\ each\ test.\ NULL\ skips.\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00097}\mbox{\hyperlink{struct_s_d_l_test___test_suite_reference_ad66abaf20653fd7361d28c69f88ac702}{00097}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__test__harness_8h_a146292b699bf0c95e1c4bcfaced3b1dc}{SDLTest\_TestCaseTearDownFp}}\ \mbox{\hyperlink{struct_s_d_l_test___test_suite_reference_ad66abaf20653fd7361d28c69f88ac702}{testTearDown}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00098}\mbox{\hyperlink{_s_d_l__test__harness_8h_ae52f136004f974251df5cde2152fc5ad}{00098}}\ \}\ \mbox{\hyperlink{_s_d_l__test__harness_8h_ae52f136004f974251df5cde2152fc5ad}{SDLTest\_TestSuiteReference}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00110}\mbox{\hyperlink{_s_d_l__test__harness_8h_a44e422204aa15c9a33e17ea74b2442ab}{00110}}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{_s_d_l__test__harness_8h_a44e422204aa15c9a33e17ea74b2442ab}{SDLTest\_GenerateRunSeed}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_ab9c919755bde3b34349e23a32b4e0fa7}{length}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00123}\mbox{\hyperlink{_s_d_l__test__harness_8h_a4999be460499b1cb45e2b2b3bbb582b2}{00123}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__test__harness_8h_a4999be460499b1cb45e2b2b3bbb582b2}{SDLTest\_RunSuites}}(\mbox{\hyperlink{struct_s_d_l_test___test_suite_reference}{SDLTest\_TestSuiteReference}}\ *testSuites[],\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *userRunSeed,\ \mbox{\hyperlink{_s_d_l__stdinc_8h_ac006cf2bd55a42a9cc8ae9f123aa7e13}{Uint64}}\ userExecKey,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8bed50656d87c3eeed9d8f5e539c6b3e}{filter}},\ \textcolor{keywordtype}{int}\ testIterations);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00126}00126\ \textcolor{comment}{/*\ Ends\ C\ function\ definitions\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00127}00127\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00128}00128\ \}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00129}00129\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00130}00130\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{close__code_8h}{close\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00132}00132\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_test\_h\_arness\_h\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__test__harness_8h_source_l00134}00134\ \textcolor{comment}{/*\ vi:\ set\ ts=4\ sw=4\ expandtab:\ */}}
+
+\end{DoxyCode}

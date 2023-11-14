@@ -1,0 +1,108 @@
+\doxysection{SDL.\+h}
+\hypertarget{_s_d_l_8h_source}{}\label{_s_d_l_8h_source}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL.h}}
+\mbox{\hyperlink{_s_d_l_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00002}00002\ \textcolor{comment}{\ \ Simple\ DirectMedia\ Layer}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00003}00003\ \textcolor{comment}{\ \ Copyright\ (C)\ 1997-\/2023\ Sam\ Lantinga\ <slouken@libsdl.org>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00005}00005\ \textcolor{comment}{\ \ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00006}00006\ \textcolor{comment}{\ \ warranty.\ \ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00007}00007\ \textcolor{comment}{\ \ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00008}00008\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00009}00009\ \textcolor{comment}{\ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00010}00010\ \textcolor{comment}{\ \ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00011}00011\ \textcolor{comment}{\ \ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00013}00013\ \textcolor{comment}{\ \ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00014}00014\ \textcolor{comment}{\ \ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00015}00015\ \textcolor{comment}{\ \ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00016}00016\ \textcolor{comment}{\ \ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00017}00017\ \textcolor{comment}{\ \ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00018}00018\ \textcolor{comment}{\ \ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00019}00019\ \textcolor{comment}{\ \ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00020}00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00029}00029\ \textcolor{preprocessor}{\#ifndef\ SDL\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00030}00030\ \textcolor{preprocessor}{\#define\ SDL\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__main_8h}{SDL\_main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00033}00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__stdinc_8h}{SDL\_stdinc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00034}00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__assert_8h}{SDL\_assert.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00035}00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__atomic_8h}{SDL\_atomic.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00036}00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__audio_8h}{SDL\_audio.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00037}00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__clipboard_8h}{SDL\_clipboard.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00038}00038\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__cpuinfo_8h}{SDL\_cpuinfo.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00039}00039\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__endian_8h}{SDL\_endian.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00040}00040\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__error_8h}{SDL\_error.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00041}00041\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__events_8h}{SDL\_events.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00042}00042\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__filesystem_8h}{SDL\_filesystem.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00043}00043\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__gamecontroller_8h}{SDL\_gamecontroller.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00044}00044\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__guid_8h}{SDL\_guid.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00045}00045\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__haptic_8h}{SDL\_haptic.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00046}00046\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__hidapi_8h}{SDL\_hidapi.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00047}00047\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__hints_8h}{SDL\_hints.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00048}00048\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__joystick_8h}{SDL\_joystick.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00049}00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__loadso_8h}{SDL\_loadso.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00050}00050\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__log_8h}{SDL\_log.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00051}00051\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__messagebox_8h}{SDL\_messagebox.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00052}00052\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__metal_8h}{SDL\_metal.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00053}00053\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__mutex_8h}{SDL\_mutex.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00054}00054\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__power_8h}{SDL\_power.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00055}00055\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__render_8h}{SDL\_render.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00056}00056\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__rwops_8h}{SDL\_rwops.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00057}00057\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__sensor_8h}{SDL\_sensor.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00058}00058\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__shape_8h}{SDL\_shape.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00059}00059\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__system_8h}{SDL\_system.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00060}00060\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__thread_8h}{SDL\_thread.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00061}00061\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__timer_8h}{SDL\_timer.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00062}00062\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__version_8h}{SDL\_version.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00063}00063\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__video_8h}{SDL\_video.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00064}00064\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__locale_8h}{SDL\_locale.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00065}00065\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__misc_8h}{SDL\_misc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00067}00067\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{begin__code_8h}{begin\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00068}00068\ \textcolor{comment}{/*\ Set\ up\ for\ C\ function\ definitions,\ even\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00069}00069\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00070}00070\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00071}00071\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00073}00073\ \textcolor{comment}{/*\ As\ of\ version\ 0.5,\ SDL\ is\ loaded\ dynamically\ into\ the\ application\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00081}00081\ \textcolor{comment}{/*\ @\{\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00082}\mbox{\hyperlink{_s_d_l_8h_aadfaf3382d6e136b5944d1d5e7e50290}{00082}}\ \textcolor{preprocessor}{\#define\ SDL\_INIT\_TIMER\ \ \ \ \ \ \ \ \ \ 0x00000001u}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00083}\mbox{\hyperlink{_s_d_l_8h_abeceb02c19508655cb05cc8e64206333}{00083}}\ \textcolor{preprocessor}{\#define\ SDL\_INIT\_AUDIO\ \ \ \ \ \ \ \ \ \ 0x00000010u}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00084}\mbox{\hyperlink{_s_d_l_8h_afc988e510ed522628ffeb7c76f80c233}{00084}}\ \textcolor{preprocessor}{\#define\ SDL\_INIT\_VIDEO\ \ \ \ \ \ \ \ \ \ 0x00000020u\ \ }}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00085}\mbox{\hyperlink{_s_d_l_8h_ad6b47d785eaa00d9c48e6c1cff4aef4b}{00085}}\ \textcolor{preprocessor}{\#define\ SDL\_INIT\_JOYSTICK\ \ \ \ \ \ \ 0x00000200u\ \ }}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00086}\mbox{\hyperlink{_s_d_l_8h_adfd88189fec07574cae461b9dea75a85}{00086}}\ \textcolor{preprocessor}{\#define\ SDL\_INIT\_HAPTIC\ \ \ \ \ \ \ \ \ 0x00001000u}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00087}\mbox{\hyperlink{_s_d_l_8h_ac224a9aa4208de0e9b03948ff9b5fe0a}{00087}}\ \textcolor{preprocessor}{\#define\ SDL\_INIT\_GAMECONTROLLER\ 0x00002000u\ \ }}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00088}\mbox{\hyperlink{_s_d_l_8h_addad89db9e13b46ebcd46a0db8ba0382}{00088}}\ \textcolor{preprocessor}{\#define\ SDL\_INIT\_EVENTS\ \ \ \ \ \ \ \ \ 0x00004000u}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00089}\mbox{\hyperlink{_s_d_l_8h_a25711177b046dd1ccd2fcc2f123f117b}{00089}}\ \textcolor{preprocessor}{\#define\ SDL\_INIT\_SENSOR\ \ \ \ \ \ \ \ \ 0x00008000u}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00090}\mbox{\hyperlink{_s_d_l_8h_ab848174dfbc69cb2cc7bbf06a6e5c584}{00090}}\ \textcolor{preprocessor}{\#define\ SDL\_INIT\_NOPARACHUTE\ \ \ \ 0x00100000u\ \ }}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00091}\mbox{\hyperlink{_s_d_l_8h_a574afd93f30161d6e87449f675081fb5}{00091}}\ \textcolor{preprocessor}{\#define\ SDL\_INIT\_EVERYTHING\ (\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00092}00092\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_INIT\_TIMER\ |\ SDL\_INIT\_AUDIO\ |\ SDL\_INIT\_VIDEO\ |\ SDL\_INIT\_EVENTS\ |\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00093}00093\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_INIT\_JOYSTICK\ |\ SDL\_INIT\_HAPTIC\ |\ SDL\_INIT\_GAMECONTROLLER\ |\ SDL\_INIT\_SENSOR\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00094}00094\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ )}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00095}00095\ \textcolor{comment}{/*\ @\}\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00144}\mbox{\hyperlink{_s_d_l_8h_a8fc8d35348d7c74bad8392d776c937b8}{00144}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l_8h_a8fc8d35348d7c74bad8392d776c937b8}{SDL\_Init}}(\mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa9459b47e7388437191d2d9a69c10d98}{flags}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00161}\mbox{\hyperlink{_s_d_l_8h_adfbfddc0ec609b5e5e5cb1c89298e4db}{00161}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l_8h_adfbfddc0ec609b5e5e5cb1c89298e4db}{SDL\_InitSubSystem}}(\mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa9459b47e7388437191d2d9a69c10d98}{flags}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00183}\mbox{\hyperlink{_s_d_l_8h_a14e9091982e09097985e10e3ca65debb}{00183}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l_8h_a14e9091982e09097985e10e3ca65debb}{SDL\_QuitSubSystem}}(\mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa9459b47e7388437191d2d9a69c10d98}{flags}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00199}\mbox{\hyperlink{_s_d_l_8h_a04dc570990c697eed95681216801710d}{00199}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l_8h_a04dc570990c697eed95681216801710d}{SDL\_WasInit}}(\mbox{\hyperlink{_s_d_l__stdinc_8h_add440eff171ea5f55cb00c4a9ab8672d}{Uint32}}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa9459b47e7388437191d2d9a69c10d98}{flags}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00223}\mbox{\hyperlink{_s_d_l_8h_afdabaf714781099083592051f2d9ac11}{00223}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l_8h_afdabaf714781099083592051f2d9ac11}{SDL\_Quit}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00225}00225\ \textcolor{comment}{/*\ Ends\ C\ function\ definitions\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00226}00226\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00227}00227\ \}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00228}00228\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00229}00229\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{close__code_8h}{close\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00231}00231\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_h\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l_8h_source_l00233}00233\ \textcolor{comment}{/*\ vi:\ set\ ts=4\ sw=4\ expandtab:\ */}}
+
+\end{DoxyCode}

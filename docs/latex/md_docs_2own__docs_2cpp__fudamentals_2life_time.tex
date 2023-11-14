@@ -1,0 +1,96 @@
+\chapter{Life\+Time in CPP}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2life_time}{}\label{md_docs_2own__docs_2cpp__fudamentals_2life_time}\index{LifeTime in CPP@{LifeTime in CPP}}
+\label{md_docs_2own__docs_2cpp__fudamentals_2life_time_autotoc_md103}%
+\Hypertarget{md_docs_2own__docs_2cpp__fudamentals_2life_time_autotoc_md103}%
+
+
+
+\begin{DoxyItemize}
+\item Concept
+\item Example
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2life_time_autotoc_md104}{}\doxysection{\texorpdfstring{Concept}{Concept}}\label{md_docs_2own__docs_2cpp__fudamentals_2life_time_autotoc_md104}
+
+\begin{DoxyItemize}
+\item Lifetime in C++ is crucial for understanding resource management and avoiding issues like memory leaks or undefined behavior. Here\textquotesingle{}s a table that provides an overview\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Lifetime Type}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Code Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Usages}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Best Practices}}    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Lifetime Type}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Code Example}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Usages}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Best Practices}}    }\\\cline{1-5}
+\endhead
+{\bfseries{Automatic (Stack)}}   &Duration of a function call. Objects are automatically destroyed when they go out of scope.   &{\ttfamily int x = 10;}   &Local variables, function parameters, and references.   &Utilize for short-\/lived objects. Avoid returning pointers/references to them.    \\\cline{1-5}
+{\bfseries{Static}}   &Duration of the program. Initialized once and destroyed after {\ttfamily \doxylink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main()}} exits.   &{\ttfamily static int x = 10;}   &Persistent states within functions, class-\/level variables.   &Use judiciously to avoid global mutable state.    \\\cline{1-5}
+{\bfseries{Dynamic (Heap)}}   &Manually managed. Begins when memory is allocated and ends when it\textquotesingle{}s explicitly deallocated.   &{\ttfamily int\texorpdfstring{$\ast$}{*} p = new int(10); ... ; delete p;}   &Large objects, objects with uncertain lifetimes, or shared ownership.   &Prefer smart pointers ({\ttfamily std\+::unique\+\_\+ptr}, {\ttfamily std\+::shared\+\_\+ptr}) over raw pointers.    \\\cline{1-5}
+{\bfseries{Temporary}}   &Lives until the end of the full-\/expression in which they are created.   &{\ttfamily int x = \doxylink{_s_d_l__opengl__glext_8h_a7a611b28eaed9ea8dda79c38887b3f0e}{f()} + \doxylink{_s_d_l__opengl__glext_8h_a9cd653b1648845554169fbc3a3f6d37a}{g()};} (results of {\ttfamily \doxylink{_s_d_l__opengl__glext_8h_a7a611b28eaed9ea8dda79c38887b3f0e}{f()}} and {\ttfamily \doxylink{_s_d_l__opengl__glext_8h_a9cd653b1648845554169fbc3a3f6d37a}{g()}})   &Intermediate results in complex expressions.   &Be cautious when binding temporaries to references. Use {\ttfamily std\+::move} for efficiency.    \\\cline{1-5}
+{\bfseries{Thread Storage Duration}}   &Duration of a thread. Variables with this duration exist one-\/per-\/thread.   &{\ttfamily thread\+\_\+local int x = 10;}   &Variables that need to be isolated to a specific thread.   &Use when needing thread-\/specific singletons or caches.    \\\cline{1-5}
+{\bfseries{Reference}}   &References don\textquotesingle{}t have their own lifetime; they take on the lifetime of what they reference.   &{\ttfamily int\& ref = x;}   &When you need an alias to another object without a new memory location.   &Always ensure that the referred-\/to object outlives any references to it.    \\\cline{1-5}
+{\bfseries{Managed (Smart Pointers)}}   &Managed by smart pointers. The object\textquotesingle{}s lifetime ends when no more smart pointers point to it (or explicitly reset).   &{\ttfamily std\+::shared\+\_\+ptr\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} p = std\+::make\+\_\+shared\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>}(10);}   &When objects need to be shared among parts of code or need custom deleters.   &Always prefer smart pointers for dynamic allocation.   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{General Notes}}\+:
+
+
+\begin{DoxyItemize}
+\item For stack-\/allocated objects, the destructor is called automatically when the object goes out of scope.
+\item For dynamically allocated memory, always ensure to deallocate the memory after use.
+\item Smart pointers (like {\ttfamily std\+::unique\+\_\+ptr} and {\ttfamily std\+::shared\+\_\+ptr}) provide automatic management for dynamic memory, making it easier to manage lifetimes.
+\item Avoid dangling references and pointers. Always validate the lifetime of referred or pointed-\/to objects.
+\item Understand and leverage move semantics to transfer ownership without unnecessary copies, especially in modern C++ (C++11 and later).
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2life_time_autotoc_md105}{}\doxysection{\texorpdfstring{Example}{Example}}\label{md_docs_2own__docs_2cpp__fudamentals_2life_time_autotoc_md105}
+
+\begin{DoxyItemize}
+\item Assume we have the following
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_vector__2d}{testing\_string}}()\{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ ptr\ =\ \{\textcolor{stringliteral}{"{}Hello\ my\ Name\ is\ Michael"{}}\};}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ ptr;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Once we compile, we will get an error message says
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Cannot\ initialize\ return\ object\ of\ type\ \`{}char\ *`\ \ with\ an\ lvalue\ of\ type\ \`{}const\ char*`}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item The issues with this code are\+:
+\begin{DoxyItemize}
+\item Returning a Pointer to a String Literal\+: While string literals have static storage duration (they exist for the lifetime of the program), the main issue here is that you\textquotesingle{}re returning a char\texorpdfstring{$\ast$}{*} (non-\/const pointer) to a const char\texorpdfstring{$\ast$}{*} (pointer to const data). This can potentially lead to undefined behavior if someone tries to modify the content via the returned pointer.
+\item Mismatched Return Type\+: The function is declared to return char\texorpdfstring{$\ast$}{*} but you\textquotesingle{}re returning a const char\texorpdfstring{$\ast$}{*}. This breaks the const-\/correctness principle, and you\textquotesingle{}re basically allowing potential modification of immutable data.
+\end{DoxyItemize}
+\item To fix it\+:
+\begin{DoxyItemize}
+\item Correct the Return Type\+: Since string literals are immutable, you should return a pointer that reflects that immutability\+:
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_vector__2d}{testing\_string}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Hello\ my\ Name\ is\ Michael"{}};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+By doing this, you\textquotesingle{}re indicating that the string returned by the function should not be modified. 

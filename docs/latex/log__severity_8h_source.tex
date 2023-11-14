@@ -1,0 +1,104 @@
+\doxysection{log\+\_\+severity.\+h}
+\hypertarget{log__severity_8h_source}{}\label{log__severity_8h_source}\index{build/debug/vcpkg\_installed/arm64-\/osx/include/glog/log\_severity.h@{build/debug/vcpkg\_installed/arm64-\/osx/include/glog/log\_severity.h}}
+\mbox{\hyperlink{log__severity_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00001}00001\ \textcolor{comment}{//\ Copyright\ (c)\ 2007,\ Google\ Inc.}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00002}00002\ \textcolor{comment}{//\ All\ rights\ reserved.}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00003}00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00004}00004\ \textcolor{comment}{//\ Redistribution\ and\ use\ in\ source\ and\ binary\ forms,\ with\ or\ without}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00005}00005\ \textcolor{comment}{//\ modification,\ are\ permitted\ provided\ that\ the\ following\ conditions\ are}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00006}00006\ \textcolor{comment}{//\ met:}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00007}00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00008}00008\ \textcolor{comment}{//\ \ \ \ \ *\ Redistributions\ of\ source\ code\ must\ retain\ the\ above\ copyright}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00009}00009\ \textcolor{comment}{//\ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer.}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00010}00010\ \textcolor{comment}{//\ \ \ \ \ *\ Redistributions\ in\ binary\ form\ must\ reproduce\ the\ above}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00011}00011\ \textcolor{comment}{//\ copyright\ notice,\ this\ list\ of\ conditions\ and\ the\ following\ disclaimer}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00012}00012\ \textcolor{comment}{//\ in\ the\ documentation\ and/or\ other\ materials\ provided\ with\ the}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00013}00013\ \textcolor{comment}{//\ distribution.}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00014}00014\ \textcolor{comment}{//\ \ \ \ \ *\ Neither\ the\ name\ of\ Google\ Inc.\ nor\ the\ names\ of\ its}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00015}00015\ \textcolor{comment}{//\ contributors\ may\ be\ used\ to\ endorse\ or\ promote\ products\ derived\ from}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00016}00016\ \textcolor{comment}{//\ this\ software\ without\ specific\ prior\ written\ permission.}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00017}00017\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00018}00018\ \textcolor{comment}{//\ THIS\ SOFTWARE\ IS\ PROVIDED\ BY\ THE\ COPYRIGHT\ HOLDERS\ AND\ CONTRIBUTORS}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00019}00019\ \textcolor{comment}{//\ "{}AS\ IS"{}\ AND\ ANY\ EXPRESS\ OR\ IMPLIED\ WARRANTIES,\ INCLUDING,\ BUT\ NOT}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00020}00020\ \textcolor{comment}{//\ LIMITED\ TO,\ THE\ IMPLIED\ WARRANTIES\ OF\ MERCHANTABILITY\ AND\ FITNESS\ FOR}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00021}00021\ \textcolor{comment}{//\ A\ PARTICULAR\ PURPOSE\ ARE\ DISCLAIMED.\ IN\ NO\ EVENT\ SHALL\ THE\ COPYRIGHT}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00022}00022\ \textcolor{comment}{//\ OWNER\ OR\ CONTRIBUTORS\ BE\ LIABLE\ FOR\ ANY\ DIRECT,\ INDIRECT,\ INCIDENTAL,}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00023}00023\ \textcolor{comment}{//\ SPECIAL,\ EXEMPLARY,\ OR\ CONSEQUENTIAL\ DAMAGES\ (INCLUDING,\ BUT\ NOT}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00024}00024\ \textcolor{comment}{//\ LIMITED\ TO,\ PROCUREMENT\ OF\ SUBSTITUTE\ GOODS\ OR\ SERVICES;\ LOSS\ OF\ USE,}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00025}00025\ \textcolor{comment}{//\ DATA,\ OR\ PROFITS;\ OR\ BUSINESS\ INTERRUPTION)\ HOWEVER\ CAUSED\ AND\ ON\ ANY}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00026}00026\ \textcolor{comment}{//\ THEORY\ OF\ LIABILITY,\ WHETHER\ IN\ CONTRACT,\ STRICT\ LIABILITY,\ OR\ TORT}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00027}00027\ \textcolor{comment}{//\ (INCLUDING\ NEGLIGENCE\ OR\ OTHERWISE)\ ARISING\ IN\ ANY\ WAY\ OUT\ OF\ THE\ USE}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00028}00028\ \textcolor{comment}{//\ OF\ THIS\ SOFTWARE,\ EVEN\ IF\ ADVISED\ OF\ THE\ POSSIBILITY\ OF\ SUCH\ DAMAGE.}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00030}00030\ \textcolor{preprocessor}{\#ifndef\ BASE\_LOG\_SEVERITY\_H\_\_}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00031}00031\ \textcolor{preprocessor}{\#define\ BASE\_LOG\_SEVERITY\_H\_\_}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00033}00033\ \textcolor{comment}{//\ The\ recommended\ semantics\ of\ the\ log\ levels\ are\ as\ follows:}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00034}00034\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00035}00035\ \textcolor{comment}{//\ INFO:}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00036}00036\ \textcolor{comment}{//\ \ \ Use\ for\ state\ changes\ or\ other\ major\ events,\ or\ to\ aid\ debugging.}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00037}00037\ \textcolor{comment}{//\ WARNING:}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00038}00038\ \textcolor{comment}{//\ \ \ Use\ for\ undesired\ but\ relatively\ expected\ events,\ which\ may\ indicate\ a}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00039}00039\ \textcolor{comment}{//\ \ \ problem}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00040}00040\ \textcolor{comment}{//\ ERROR:}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00041}00041\ \textcolor{comment}{//\ \ \ Use\ for\ undesired\ and\ unexpected\ events\ that\ the\ program\ can\ recover\ from.}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00042}00042\ \textcolor{comment}{//\ \ \ All\ ERRORs\ should\ be\ actionable\ -\/\ it\ should\ be\ appropriate\ to\ file\ a\ bug}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00043}00043\ \textcolor{comment}{//\ \ \ whenever\ an\ ERROR\ occurs\ in\ production.}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00044}00044\ \textcolor{comment}{//\ FATAL:}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00045}00045\ \textcolor{comment}{//\ \ \ Use\ for\ undesired\ and\ unexpected\ events\ that\ the\ program\ cannot\ recover}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00046}00046\ \textcolor{comment}{//\ \ \ from.}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00048}00048\ \textcolor{comment}{//\ Variables\ of\ type\ LogSeverity\ are\ widely\ taken\ to\ lie\ in\ the\ range}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00049}00049\ \textcolor{comment}{//\ [0,\ NUM\_SEVERITIES-\/1].\ \ Be\ careful\ to\ preserve\ this\ assumption\ if}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00050}00050\ \textcolor{comment}{//\ you\ ever\ need\ to\ change\ their\ values\ or\ add\ a\ new\ severity.}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00051}\mbox{\hyperlink{log__severity_8h_a88e450ea80e6caaddd7d4ad0864b651d}{00051}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{log__severity_8h_a88e450ea80e6caaddd7d4ad0864b651d}{LogSeverity}};}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00053}\mbox{\hyperlink{log__severity_8h_aec61ff6c741224bbf1d230d40449aa30}{00053}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{log__severity_8h_af3c2db675e75f2074724f754d3cf7885}{GLOG\_INFO}}\ =\ 0,\ \mbox{\hyperlink{log__severity_8h_a060366d0d0ff85fce6de37e905fea54c}{GLOG\_WARNING}}\ =\ 1,\ \mbox{\hyperlink{log__severity_8h_aec61ff6c741224bbf1d230d40449aa30}{GLOG\_ERROR}}\ =\ 2,\ \mbox{\hyperlink{log__severity_8h_ac452c4c8ec1cbc24dd074e260aa0b617}{GLOG\_FATAL}}\ =\ 3,}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00054}\mbox{\hyperlink{log__severity_8h_a623d2ea68ef6922bf6c53bc28c5f190a}{00054}}\ \ \ \mbox{\hyperlink{log__severity_8h_a623d2ea68ef6922bf6c53bc28c5f190a}{NUM\_SEVERITIES}}\ =\ 4;}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00055}00055\ \textcolor{preprocessor}{\#ifndef\ GLOG\_NO\_ABBREVIATED\_SEVERITIES}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00056}00056\ \textcolor{preprocessor}{\#\ ifdef\ ERROR}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00057}00057\ \textcolor{preprocessor}{\#\ \ error\ ERROR\ macro\ is\ defined.\ Define\ GLOG\_NO\_ABBREVIATED\_SEVERITIES\ before\ including\ logging.h.\ See\ the\ document\ for\ detail.}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00058}00058\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00059}\mbox{\hyperlink{log__severity_8h_ab4a2cbab234914b320b7fae11b6e8cb9}{00059}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{log__severity_8h_ab4a2cbab234914b320b7fae11b6e8cb9}{INFO}}\ =\ \mbox{\hyperlink{log__severity_8h_af3c2db675e75f2074724f754d3cf7885}{GLOG\_INFO}},\ \mbox{\hyperlink{log__severity_8h_a50e5762f38854b37ee3e2851bc1bb0e7}{WARNING}}\ =\ \mbox{\hyperlink{log__severity_8h_a060366d0d0ff85fce6de37e905fea54c}{GLOG\_WARNING}},}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00060}\mbox{\hyperlink{log__severity_8h_ac9bcbe19995a8140cd4ec61773cd6e67}{00060}}\ \ \ \mbox{\hyperlink{log__severity_8h_ac9bcbe19995a8140cd4ec61773cd6e67}{ERROR}}\ =\ \mbox{\hyperlink{log__severity_8h_aec61ff6c741224bbf1d230d40449aa30}{GLOG\_ERROR}},\ \mbox{\hyperlink{log__severity_8h_acdd38e3c9f22f127d7776920e3079eda}{FATAL}}\ =\ \mbox{\hyperlink{log__severity_8h_ac452c4c8ec1cbc24dd074e260aa0b617}{GLOG\_FATAL}};}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00061}00061\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00063}00063\ \textcolor{comment}{//\ DFATAL\ is\ FATAL\ in\ debug\ mode,\ ERROR\ in\ normal\ mode}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00064}00064\ \textcolor{preprocessor}{\#ifdef\ NDEBUG}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00065}00065\ \textcolor{preprocessor}{\#define\ DFATAL\_LEVEL\ ERROR}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00066}00066\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00067}\mbox{\hyperlink{log__severity_8h_a8e90ad21d91c634c22b7bbaaee792283}{00067}}\ \textcolor{preprocessor}{\#define\ DFATAL\_LEVEL\ FATAL}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00068}00068\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00070}00070\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{export_8h_af43ac7f6f83169274a0db0eebf31c930}{GLOG\_EXPORT}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{log__severity_8h_a78a5e2ace5e354656f57a9f974ca8293}{LogSeverityNames}}[\mbox{\hyperlink{log__severity_8h_a623d2ea68ef6922bf6c53bc28c5f190a}{NUM\_SEVERITIES}}];}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00072}00072\ \textcolor{comment}{//\ NDEBUG\ usage\ helpers\ related\ to\ (RAW\_)DCHECK:}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00073}00073\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00074}00074\ \textcolor{comment}{//\ DEBUG\_MODE\ is\ for\ small\ !NDEBUG\ uses\ like}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00075}00075\ \textcolor{comment}{//\ \ \ if\ (DEBUG\_MODE)\ foo.CheckThatFoo();}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00076}00076\ \textcolor{comment}{//\ instead\ of\ substantially\ more\ verbose}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00077}00077\ \textcolor{comment}{//\ \ \ \#ifndef\ NDEBUG}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00078}00078\ \textcolor{comment}{//\ \ \ \ \ foo.CheckThatFoo();}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00079}00079\ \textcolor{comment}{//\ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00080}00080\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00081}00081\ \textcolor{comment}{//\ IF\_DEBUG\_MODE\ is\ for\ small\ !NDEBUG\ uses\ like}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00082}00082\ \textcolor{comment}{//\ \ \ IF\_DEBUG\_MODE(\ string\ error;\ )}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00083}00083\ \textcolor{comment}{//\ \ \ DCHECK(Foo(\&error))\ <<\ error;}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00084}00084\ \textcolor{comment}{//\ instead\ of\ substantially\ more\ verbose}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00085}00085\ \textcolor{comment}{//\ \ \ \#ifndef\ NDEBUG}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00086}00086\ \textcolor{comment}{//\ \ \ \ \ string\ error;}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00087}00087\ \textcolor{comment}{//\ \ \ \ \ DCHECK(Foo(\&error))\ <<\ error;}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00088}00088\ \textcolor{comment}{//\ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00089}00089\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00090}00090\ \textcolor{preprocessor}{\#ifdef\ NDEBUG}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00091}00091\ \textcolor{keyword}{enum}\ \{\ \mbox{\hyperlink{log__severity_8h_a385c44f6fb256e5716a2302a5b940388a224b1ac1c255111031af41d6c7ce01b6}{DEBUG\_MODE}}\ =\ 0\ \};}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00092}00092\ \textcolor{preprocessor}{\#define\ IF\_DEBUG\_MODE(x)}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00093}00093\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00094}\mbox{\hyperlink{log__severity_8h_a385c44f6fb256e5716a2302a5b940388a224b1ac1c255111031af41d6c7ce01b6}{00094}}\ \textcolor{keyword}{enum}\ \{\ \mbox{\hyperlink{log__severity_8h_a385c44f6fb256e5716a2302a5b940388a224b1ac1c255111031af41d6c7ce01b6}{DEBUG\_MODE}}\ =\ 1\ \};}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00095}\mbox{\hyperlink{log__severity_8h_a43c88650ac5edb6709072bfd728874c1}{00095}}\ \textcolor{preprocessor}{\#define\ IF\_DEBUG\_MODE(x)\ x}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00096}00096\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{log__severity_8h_source_l00098}00098\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ BASE\_LOG\_SEVERITY\_H\_\_}}
+
+\end{DoxyCode}

@@ -1,0 +1,87 @@
+\doxysection{SDL\+\_\+touch.\+h}
+\hypertarget{_s_d_l__touch_8h_source}{}\label{_s_d_l__touch_8h_source}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_touch.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_touch.h}}
+\mbox{\hyperlink{_s_d_l__touch_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00002}00002\ \textcolor{comment}{\ \ Simple\ DirectMedia\ Layer}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00003}00003\ \textcolor{comment}{\ \ Copyright\ (C)\ 1997-\/2023\ Sam\ Lantinga\ <slouken@libsdl.org>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00005}00005\ \textcolor{comment}{\ \ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00006}00006\ \textcolor{comment}{\ \ warranty.\ \ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00007}00007\ \textcolor{comment}{\ \ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00008}00008\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00009}00009\ \textcolor{comment}{\ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00010}00010\ \textcolor{comment}{\ \ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00011}00011\ \textcolor{comment}{\ \ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00013}00013\ \textcolor{comment}{\ \ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00014}00014\ \textcolor{comment}{\ \ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00015}00015\ \textcolor{comment}{\ \ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00016}00016\ \textcolor{comment}{\ \ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00017}00017\ \textcolor{comment}{\ \ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00018}00018\ \textcolor{comment}{\ \ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00019}00019\ \textcolor{comment}{\ \ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00020}00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00028}00028\ \textcolor{preprocessor}{\#ifndef\ SDL\_touch\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00029}00029\ \textcolor{preprocessor}{\#define\ SDL\_touch\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00031}00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__stdinc_8h}{SDL\_stdinc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__error_8h}{SDL\_error.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00033}00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__video_8h}{SDL\_video.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00035}00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{begin__code_8h}{begin\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00036}00036\ \textcolor{comment}{/*\ Set\ up\ for\ C\ function\ definitions,\ even\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00037}00037\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00038}00038\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00039}00039\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00041}\mbox{\hyperlink{_s_d_l__touch_8h_a10f5f86abe4ea8308a8706bd5d3b337a}{00041}}\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{_s_d_l__stdinc_8h_a2c1a61d5c466bb74680be0a8cc1b455d}{Sint64}}\ \mbox{\hyperlink{_s_d_l__touch_8h_a10f5f86abe4ea8308a8706bd5d3b337a}{SDL\_TouchID}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00042}\mbox{\hyperlink{_s_d_l__touch_8h_a5fa58141f78415ca09645af359ad2250}{00042}}\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{_s_d_l__stdinc_8h_a2c1a61d5c466bb74680be0a8cc1b455d}{Sint64}}\ \mbox{\hyperlink{_s_d_l__touch_8h_a5fa58141f78415ca09645af359ad2250}{SDL\_FingerID}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00044}\mbox{\hyperlink{_s_d_l__touch_8h_a63f6b605841f681e036a96d9b2790cff}{00044}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00045}00045\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00046}\mbox{\hyperlink{_s_d_l__touch_8h_a63f6b605841f681e036a96d9b2790cffae544a4f823bceaa24188c6ab960da300}{00046}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__touch_8h_a63f6b605841f681e036a96d9b2790cffae544a4f823bceaa24188c6ab960da300}{SDL\_TOUCH\_DEVICE\_INVALID}}\ =\ -\/1,}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00047}\mbox{\hyperlink{_s_d_l__touch_8h_a63f6b605841f681e036a96d9b2790cffab39ea53b15fce0d49c796c8ca5515863}{00047}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__touch_8h_a63f6b605841f681e036a96d9b2790cffab39ea53b15fce0d49c796c8ca5515863}{SDL\_TOUCH\_DEVICE\_DIRECT}},\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ touch\ screen\ with\ window-\/relative\ coordinates\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00048}\mbox{\hyperlink{_s_d_l__touch_8h_a63f6b605841f681e036a96d9b2790cffa0715f9019e2a5180a76eb3a8f90d4f5e}{00048}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__touch_8h_a63f6b605841f681e036a96d9b2790cffa0715f9019e2a5180a76eb3a8f90d4f5e}{SDL\_TOUCH\_DEVICE\_INDIRECT\_ABSOLUTE}},\ \textcolor{comment}{/*\ trackpad\ with\ absolute\ device\ coordinates\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00049}00049\ \ \ \ \ \mbox{\hyperlink{_s_d_l__touch_8h_a63f6b605841f681e036a96d9b2790cffad8c3585eabc32e6dcccc7726f4c99505}{SDL\_TOUCH\_DEVICE\_INDIRECT\_RELATIVE}}\ \ \textcolor{comment}{/*\ trackpad\ with\ screen\ cursor-\/relative\ coordinates\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00050}\mbox{\hyperlink{_s_d_l__touch_8h_a63f6b605841f681e036a96d9b2790cffad8c3585eabc32e6dcccc7726f4c99505}{00050}}\ \}\ \mbox{\hyperlink{_s_d_l__touch_8h_a63f6b605841f681e036a96d9b2790cff}{SDL\_TouchDeviceType}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00052}\mbox{\hyperlink{struct_s_d_l___finger}{00052}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_s_d_l___finger}{SDL\_Finger}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00053}00053\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00054}\mbox{\hyperlink{struct_s_d_l___finger_a3cec630146eeec5bd6299a9387a6f16a}{00054}}\ \ \ \ \ \mbox{\hyperlink{_s_d_l__touch_8h_a5fa58141f78415ca09645af359ad2250}{SDL\_FingerID}}\ \mbox{\hyperlink{struct_s_d_l___finger_a3cec630146eeec5bd6299a9387a6f16a}{id}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00055}\mbox{\hyperlink{struct_s_d_l___finger_ab91dfbd03c3215560457fef44e1c7755}{00055}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_s_d_l___finger_ab91dfbd03c3215560457fef44e1c7755}{x}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00056}\mbox{\hyperlink{struct_s_d_l___finger_a0a2c7a06ae641940111e03801c672cf9}{00056}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_s_d_l___finger_a0a2c7a06ae641940111e03801c672cf9}{y}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00057}\mbox{\hyperlink{struct_s_d_l___finger_a0ecb50c7fd699d59899ac60c941bdee6}{00057}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_s_d_l___finger_a0ecb50c7fd699d59899ac60c941bdee6}{pressure}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00058}\mbox{\hyperlink{_s_d_l__touch_8h_ab870bc362a74d92227b8bc9c9654d25e}{00058}}\ \}\ \mbox{\hyperlink{_s_d_l__touch_8h_ab870bc362a74d92227b8bc9c9654d25e}{SDL\_Finger}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00060}00060\ \textcolor{comment}{/*\ Used\ as\ the\ device\ ID\ for\ mouse\ events\ simulated\ with\ touch\ input\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00061}\mbox{\hyperlink{_s_d_l__touch_8h_ac24e2ec23c2ac1675fec8f327ef45efe}{00061}}\ \textcolor{preprocessor}{\#define\ SDL\_TOUCH\_MOUSEID\ ((Uint32)-\/1)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00063}00063\ \textcolor{comment}{/*\ Used\ as\ the\ SDL\_TouchID\ for\ touch\ events\ simulated\ with\ mouse\ input\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00064}\mbox{\hyperlink{_s_d_l__touch_8h_a014b4d4442ccb50ec471a7a6081b75d0}{00064}}\ \textcolor{preprocessor}{\#define\ SDL\_MOUSE\_TOUCHID\ ((Sint64)-\/1)}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00083}\mbox{\hyperlink{_s_d_l__touch_8h_a14a41a2964ddf868a180e42ccfd441d1}{00083}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__touch_8h_a14a41a2964ddf868a180e42ccfd441d1}{SDL\_GetNumTouchDevices}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00096}\mbox{\hyperlink{_s_d_l__touch_8h_af23f09dc79eace93cdc8dd770eed0d0a}{00096}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__touch_8h_a10f5f86abe4ea8308a8706bd5d3b337a}{SDL\_TouchID}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__touch_8h_af23f09dc79eace93cdc8dd770eed0d0a}{SDL\_GetTouchDevice}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a57f14e05b1900f16a2da82ade47d0c6d}{index}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00104}\mbox{\hyperlink{_s_d_l__touch_8h_a21e16f91980d0ae35cca3ce571ca50d3}{00104}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__touch_8h_a21e16f91980d0ae35cca3ce571ca50d3}{SDL\_GetTouchName}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a57f14e05b1900f16a2da82ade47d0c6d}{index}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00111}\mbox{\hyperlink{_s_d_l__touch_8h_acb47d9bf9103c6c039127cea040d89a7}{00111}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__touch_8h_a63f6b605841f681e036a96d9b2790cff}{SDL\_TouchDeviceType}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__touch_8h_acb47d9bf9103c6c039127cea040d89a7}{SDL\_GetTouchDeviceType}}(\mbox{\hyperlink{_s_d_l__touch_8h_a10f5f86abe4ea8308a8706bd5d3b337a}{SDL\_TouchID}}\ touchID);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00124}\mbox{\hyperlink{_s_d_l__touch_8h_a7dcd1494c8dd433b7ef7b24c2926e721}{00124}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__touch_8h_a7dcd1494c8dd433b7ef7b24c2926e721}{SDL\_GetNumTouchFingers}}(\mbox{\hyperlink{_s_d_l__touch_8h_a10f5f86abe4ea8308a8706bd5d3b337a}{SDL\_TouchID}}\ touchID);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00140}\mbox{\hyperlink{_s_d_l__touch_8h_a51f8b790d3c82f53215796d9a043ef90}{00140}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{struct_s_d_l___finger}{SDL\_Finger}}\ *\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__touch_8h_a51f8b790d3c82f53215796d9a043ef90}{SDL\_GetTouchFinger}}(\mbox{\hyperlink{_s_d_l__touch_8h_a10f5f86abe4ea8308a8706bd5d3b337a}{SDL\_TouchID}}\ touchID,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a57f14e05b1900f16a2da82ade47d0c6d}{index}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00142}00142\ \textcolor{comment}{/*\ Ends\ C\ function\ definitions\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00143}00143\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00144}00144\ \}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00145}00145\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00146}00146\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{close__code_8h}{close\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00148}00148\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_touch\_h\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__touch_8h_source_l00150}00150\ \textcolor{comment}{/*\ vi:\ set\ ts=4\ sw=4\ expandtab:\ */}}
+
+\end{DoxyCode}

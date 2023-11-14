@@ -1,0 +1,369 @@
+\chapter{Pointers and References in Depth}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references}{}\label{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references}\index{Pointers and References in Depth@{Pointers and References in Depth}}
+\label{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md159}%
+\Hypertarget{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md159}%
+ \hypertarget{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md160}{}\doxysection{\texorpdfstring{Pointer representation style}{Pointer representation style}}\label{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md160}
+All the way to declare the pointer focus on the \texorpdfstring{$\ast$}{*} position Also same for the reference and let me know who are using such way
+
+
+\begin{DoxyItemize}
+\item Pointers and references in C++ can be declared in various ways. Note that the position of the asterisk (\texorpdfstring{$\ast$}{*}) or ampersand (\&) is flexible and doesn\textquotesingle{}t change the meaning of the declaration. The following are all valid declarations of pointers\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}};}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}};}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ *\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}};}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item All these statements declare {\ttfamily p} as a pointer to {\ttfamily int}.
+\item For references, it is the same\+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\&\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe08814c2f72843fde4d8df41440d5a0}{r}}\ =\ \mbox{\hyperlink{class_vector__2d}{someInt}};}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \&\mbox{\hyperlink{_s_d_l__opengl_8h_abe08814c2f72843fde4d8df41440d5a0}{r}}\ =\ \mbox{\hyperlink{class_vector__2d}{someInt}};}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \&\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe08814c2f72843fde4d8df41440d5a0}{r}}\ =\ \mbox{\hyperlink{class_vector__2d}{someInt}};}
+
+\end{DoxyCode}
+
+
+All these statements declare {\ttfamily r} as a reference to {\ttfamily int}. As for which style to use, it\textquotesingle{}s mainly a matter of personal or team preference. The key is to be consistent throughout your codebase to avoid confusion. Some people prefer {\ttfamily int\texorpdfstring{$\ast$}{*} p} because it reads as "{}p is a pointer to an int"{}. Others prefer {\ttfamily int \texorpdfstring{$\ast$}{*}p} as it emphasizes that {\ttfamily \texorpdfstring{$\ast$}{*}p} is an int. The same applies to reference types. It\textquotesingle{}s worth noting that the position of the asterisk or ampersand doesn\textquotesingle{}t affect the actual behavior of the program. It\textquotesingle{}s purely a stylistic choice. However, when declaring multiple pointers or references in one line, the position does matter\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}*\ \mbox{\hyperlink{class_vector__2d}{p1}},\ \mbox{\hyperlink{class_vector__2d}{p2}};\ \textcolor{comment}{//\ p1\ is\ a\ pointer\ to\ int,\ but\ p2\ is\ just\ an\ int}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ *\mbox{\hyperlink{class_vector__2d}{p1}},\ *\mbox{\hyperlink{class_vector__2d}{p2}};\ \textcolor{comment}{//\ both\ p1\ and\ p2\ are\ pointers\ to\ int}}
+
+\end{DoxyCode}
+
+
+In this case, {\ttfamily int\texorpdfstring{$\ast$}{*} p1, p2;} might mislead someone to think that {\ttfamily p2} is also a pointer, which is not the case. Therefore, some coding guidelines recommend declaring each variable on a separate line to avoid such confusion.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md161}{}\doxysection{\texorpdfstring{Char pointer and char pointer to pointer in C++}{Char pointer and char pointer to pointer in C++}}\label{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md161}
+In C++, a "{}char pointer"{} and a "{}char pointer to pointer"{} (also known as a "{}pointer to char pointer"{} or "{}pointer to pointer to char"{}) are both concepts related to handling strings and arrays of characters.
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Char Pointer (char\texorpdfstring{$\ast$}{*})}}\+: A char pointer ({\ttfamily char\texorpdfstring{$\ast$}{*}}) is a pointer variable that holds the memory address of a single character or the first character of a sequence of characters (a string). It\textquotesingle{}s used to point to the memory location where a character or a series of characters are stored.
+\end{DoxyEnumerate}
+
+For example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str\ =\ \textcolor{stringliteral}{"{}Hello,\ World!"{}};\ \textcolor{comment}{//\ Points\ to\ the\ first\ character\ 'H'}}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_vector__2d}{ch}}\ =\ *str;\ \textcolor{comment}{//\ Dereferencing\ gets\ the\ first\ character\ 'H'}}
+
+\end{DoxyCode}
+
+
+Char pointers can be used to navigate through strings and perform various string-\/related operations using pointer arithmetic.
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Char Pointer to Pointer (char}}) or Pointer to Char Pointer\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: A char pointer to pointer ({\ttfamily char\textbackslash{}\texorpdfstring{$\ast$}{*}\textbackslash{}\texorpdfstring{$\ast$}{*}}) is a pointer variable that holds the memory address of another char pointer. Essentially, it\textquotesingle{}s a way of pointing to a char pointer. This can be useful when dealing with arrays of strings, like an array of C-\/style strings (char arrays), where each element is a char pointer.
+\end{DoxyEnumerate}
+
+For example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a358800951ab289d05276c793070136b7}{strings}}[]\ =\ \{\textcolor{stringliteral}{"{}Apple"{}},\ \textcolor{stringliteral}{"{}Banana"{}},\ \textcolor{stringliteral}{"{}Orange"{}}\};}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ \mbox{\hyperlink{class_vector__2d}{ptrToStr}}\ =\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a358800951ab289d05276c793070136b7}{strings}};\ \textcolor{comment}{//\ Points\ to\ the\ first\ element\ "{}Apple"{}}}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_vector__2d}{firstString}}\ =\ *\mbox{\hyperlink{class_vector__2d}{ptrToStr}};\ \textcolor{comment}{//\ Dereferencing\ gets\ "{}Apple"{}}}
+
+\end{DoxyCode}
+
+
+Char pointers to pointers are often used in situations where you need to manipulate or access a collection of strings or dynamically allocated memory, like when handling command-\/line arguments, parsing text files, or dynamic arrays of strings.
+
+Overall, both char pointers and char pointers to pointers are fundamental concepts in C++ that allow for efficient manipulation and management of strings and character data. However, when working in C++, it\textquotesingle{}s generally recommended to use {\ttfamily std\+::string} and modern string handling facilities provided by the C++ Standard Library, as they offer safer and more convenient ways to work with strings.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md162}{}\doxysection{\texorpdfstring{What are the uses of \mbox{[}$\,$\mbox{]} and \{\} in C++}{What are the uses of [] and \{\} in C++}}\label{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md162}
+In C++, both {\ttfamily \mbox{[}\mbox{]}} and {\ttfamily \{\}} have distinct uses and meanings.
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Square Brackets {\ttfamily \mbox{[}\mbox{]}}}}\+:
+\begin{DoxyItemize}
+\item {\bfseries{Array Declaration and Access}}\+: Square brackets are primarily used for declaring and accessing arrays. For example\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{numbers}}[5];\ \textcolor{comment}{//\ Declare\ an\ array\ of\ 5\ integers}}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{numbers}}[0]\ =\ 10;\ \textcolor{comment}{//\ Assign\ a\ value\ to\ the\ first\ element}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ =\ \mbox{\hyperlink{class_vector__2d}{numbers}}[2];\ \textcolor{comment}{//\ Access\ the\ third\ element}}
+
+\end{DoxyCode}
+
+\item {\bfseries{Indexing}}\+: Square brackets are also used for indexing elements in arrays and other container-\/like structures (like {\ttfamily std\+::vector} or {\ttfamily std\+::string})\+:
+
+{\ttfamily cpp std\+::string text = "{}\+Hello"{}; char third\+Char = text\mbox{[}2\mbox{]}; // Access the third character \textquotesingle{}l\textquotesingle{} }
+\end{DoxyItemize}
+\item {\bfseries{Curly Braces {\ttfamily \{\}}}}\+:
+\begin{DoxyItemize}
+\item {\bfseries{Initialization}}\+: Curly braces are often used for initializing various types of data, including arrays, structs, classes, and fundamental types\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{numbers}}[]\ =\ \{1,\ 2,\ 3,\ 4,\ 5\};\ \textcolor{comment}{//\ Initialize\ an\ integer\ array}}
+\DoxyCodeLine{std::string\ \mbox{\hyperlink{class_vector__2d}{greeting}}\{\textcolor{stringliteral}{"{}Hello,\ World!"{}}\};\ \textcolor{comment}{//\ Initialize\ a\ string}}
+
+\end{DoxyCode}
+
+\item {\bfseries{Initializer Lists}}\+: Curly braces can be used to create initializer lists, which can simplify the initialization of containers and user-\/defined types\+:
+
+{\ttfamily cpp std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} values = \{10, 20, 30\}; // Initialize a vector with values }
+\item {\bfseries{Uniform Initialization}}\+: Curly braces are part of the uniform initialization syntax, which provides a consistent way to initialize objects regardless of their type. This helps avoid ambiguity and narrowing conversion issues\+:
+
+{\ttfamily cpp int x\{5\}; // Initialize an integer using uniform initialization }
+\item {\bfseries{Aggregate Initialization}}\+: Curly braces can be used to initialize aggregate types (arrays and structs) by specifying values for their members\+:
+
+{\ttfamily cpp struct Point \{ int x; int y; \}; Point p = \{3, 7\}; // Initialize a Point struct }
+\item {\bfseries{Nested Initialization}}\+: Curly braces can be nested for nested structures or containers\+: {\ttfamily cpp std\+::vector\texorpdfstring{$<$}{<}std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>} matrix = \{\{1, 2\}, \{3, 4\}\}; // Initialize a 2D vector }
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+Both square brackets and curly braces have important roles in C++ programming and are used in various contexts for array handling, data initialization, and container manipulation. Understanding their specific uses will help you write more efficient and expressive code.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md163}{}\doxysection{\texorpdfstring{Double Pointers in CPP}{Double Pointers in CPP}}\label{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md163}
+In C++, a double pointer (or a pointer to a pointer) is essentially a pointer that points to another pointer, allowing for multiple levels of indirection.
+
+Double pointers can be used in several scenarios\+:
+
+
+\begin{DoxyEnumerate}
+\item Dynamic Memory Allocation\+: One of the main uses of double pointers is to dynamically allocate memory for a 2D array.
+\item Linked Data Structures\+: Double pointers can be helpful in more complex data structures, like trees or graphs. For instance, in a binary tree, double pointers can be used to handle the root node, so the entire tree can be modified if necessary.
+\item Function Arguments\+: If you want a function to change the value of a pointer passed to it, you need to pass a pointer to the pointer.
+\end{DoxyEnumerate}
+
+Here\textquotesingle{}s an example for each case\+:
+
+
+\begin{DoxyEnumerate}
+\item Dynamic Memory Allocation\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ **\mbox{\hyperlink{class_vector__2d}{array2D}}\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{int}*[\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a90d3e7e4182a9630993f640fa0443b0b}{row}}];}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a90d3e7e4182a9630993f640fa0443b0b}{row}};\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{array2D}}[i]\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{int}[\mbox{\hyperlink{class_vector__2d}{col}}];}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+In this example, {\ttfamily array2D} is a double pointer. It first points to an array of pointers, then each of these pointers points to an array of ints, creating a 2D array.
+
+
+\begin{DoxyEnumerate}
+\item Binary Tree\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{struct\ }\mbox{\hyperlink{class_vector__2d}{Node}}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{Node}}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a6358510bdde486b81c7951ee5c470ee4}{left}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{Node}}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a5ffadbbacc6b89cf6218bc43b384d3fe}{right}};}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{insert}}(\mbox{\hyperlink{class_vector__2d}{Node}}**\ \mbox{\hyperlink{class_vector__2d}{root}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}})\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (*\mbox{\hyperlink{class_vector__2d}{root}}\ ==\ \mbox{\hyperlink{begin__code_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ *\mbox{\hyperlink{class_vector__2d}{root}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_vector__2d}{Node}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (*root)-\/>data\ =\ \mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (*root)-\/>left\ =\ \mbox{\hyperlink{begin__code_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (*root)-\/>right\ =\ \mbox{\hyperlink{begin__code_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}}\ <\ (*root)-\/>data)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d}{insert}}(\&(*root)-\/>left,\ \mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}});}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d}{insert}}(\&(*root)-\/>right,\ \mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+In this example, {\ttfamily root} is a double pointer. The {\ttfamily insert} function can modify {\ttfamily root} so that it points to a new node, effectively changing the tree\textquotesingle{}s root.
+
+
+\begin{DoxyEnumerate}
+\item Function Arguments\+:
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{changePointer}}(\textcolor{keywordtype}{int}**\ ptr)\ \{}
+\DoxyCodeLine{\ \ \ \ *ptr\ =\ \textcolor{keyword}{new}\ int(10);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}*\ ptr\ =\ \mbox{\hyperlink{begin__code_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{changePointer}}(\&ptr);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ *ptr\ <<\ \mbox{\hyperlink{class_vector__2d}{endl}};\ \ \textcolor{comment}{//\ Output:\ 10}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{delete}\ ptr;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+In this example, the {\ttfamily change\+Pointer} function changes what {\ttfamily ptr} points to. Without a double pointer, this change would not be reflected outside the function.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md164}{}\doxysection{\texorpdfstring{More details}{More details}}\label{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md164}
+Assume we have {\ttfamily \{“first sentence”, “second sentence” \}} how to access this using pointer to pointer The structure you\textquotesingle{}re dealing with is an array of C-\/style strings, which is essentially an array of character arrays. In C++, we can access this using a pointer to a pointer. Here\textquotesingle{}s a simple breakdown\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Character}} ({\ttfamily char})\+: The smallest unit in this case, a single letter or symbol.
+\item {\bfseries{String}} ({\ttfamily char\texorpdfstring{$\ast$}{*}} or {\ttfamily char\mbox{[}\mbox{]}})\+: A series of characters, essentially a pointer to the first character.
+\item {\bfseries{Array of Strings}} ({\ttfamily char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}} or {\ttfamily char\texorpdfstring{$\ast$}{*}\mbox{[}\mbox{]}})\+: An array of pointers, where each pointer refers to a string.
+\end{DoxyItemize}
+
+You can think of {\ttfamily char\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}} as a "{}pointer to a pointer to a character"{}. Here\textquotesingle{}s how you could declare and use this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_vector__2d}{sentences}}[]\ =\ \{\textcolor{stringliteral}{"{}first\ sentence"{}},\ \textcolor{stringliteral}{"{}second\ sentence"{}}\};\ \ \textcolor{comment}{//\ Array\ of\ pointers\ to\ chars}}
+\DoxyCodeLine{\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}**\ ptr\ =\ \mbox{\hyperlink{class_vector__2d}{sentences}};\ \textcolor{comment}{//\ Pointer\ to\ the\ array\ of\ pointers}}
+
+\end{DoxyCode}
+
+
+To access individual strings, you can dereference {\ttfamily ptr}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::cout\ <<\ ptr[0];\ \textcolor{comment}{//\ Output:\ "{}first\ sentence"{}}}
+\DoxyCodeLine{std::cout\ <<\ ptr[1];\ \textcolor{comment}{//\ Output:\ "{}second\ sentence"{}}}
+
+\end{DoxyCode}
+
+
+To access individual characters, you can use double subscript\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::cout\ <<\ ptr[0][0];\ \textcolor{comment}{//\ Output:\ 'f'}}
+\DoxyCodeLine{std::cout\ <<\ ptr[1][0];\ \textcolor{comment}{//\ Output:\ 's'}}
+
+\end{DoxyCode}
+
+
+or dereference the pointer twice\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::cout\ <<\ **ptr;\ \textcolor{comment}{//\ Output:\ 'f'}}
+
+\end{DoxyCode}
+
+
+In the last example, {\ttfamily \texorpdfstring{$\ast$}{*}ptr} gives you the first string ("{}first sentence"{}), and {\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ptr} gives you the first character of the first string. Note that since these are C-\/style strings, they are null-\/terminated. That means the memory location after the last character of each string is a null character ({\ttfamily \textbackslash{}0}).\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md165}{}\doxysection{\texorpdfstring{What are the use cases of pointer to pointer in cpp}{What are the use cases of pointer to pointer in cpp}}\label{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md165}
+Pointers to pointers (or multi-\/level pointers) in C++ have several use cases\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Dynamic Memory Allocation for Multi-\/dimensional Arrays}}\+: Pointers to pointers are often used to dynamically allocate memory for multi-\/dimensional arrays. This is particularly useful when the array\textquotesingle{}s dimensions are not known at compile time.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ **\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a52f38e7d822a46377fde7a02708eedb1}{array}}\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{int}*[\mbox{\hyperlink{class_vector__2d}{rows}}];}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{class_vector__2d}{rows}};\ ++i)}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a52f38e7d822a46377fde7a02708eedb1}{array}}[i]\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{int}[\mbox{\hyperlink{class_vector__2d}{cols}}];}
+
+\end{DoxyCode}
+
+\item {\bfseries{Changing the Memory Address Pointed by a Pointer}}\+: If you want a function to change the memory address a pointer is pointing to, you would need to pass a pointer to the pointer.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d}{changePtr}}(\textcolor{keywordtype}{int}**\ \mbox{\hyperlink{class_vector__2d}{pp}})\{}
+\DoxyCodeLine{\ \ \ \ *\mbox{\hyperlink{class_vector__2d}{pp}}\ =\ \textcolor{keyword}{new}\ int(10);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}}\ =\ \textcolor{keyword}{new}\ int(5);}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{changePtr}}(\&\mbox{\hyperlink{_s_d_l__opengl__glext_8h_aa5367c14d90f462230c2611b81b41d23}{p}});}
+
+\end{DoxyCode}
+
+\item {\bfseries{Data Structures}}\+: Pointers to pointers are commonly used in more complex data structures. For example, in a binary tree, if you want to change the root of the tree, you would likely need a pointer to the pointer of the root. Similarly, in linked lists, if you need to insert a node at the beginning, you would need a pointer to the head pointer to change the head of the list.
+\item {\bfseries{Function Pointers}}\+: Pointers to function pointers are used in scenarios where there is a need to change the pointed function at runtime.
+\end{DoxyEnumerate}
+
+Remember, while pointers to pointers can be powerful, they can also lead to more complex code and potential errors, especially around memory management. So it\textquotesingle{}s important to use them judiciously.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md166}{}\doxysection{\texorpdfstring{How to create a pointer}{How to create a pointer}}\label{md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references_autotoc_md166}
+In C++, you can create a pointer in a number of ways. Here are some examples\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Pointer to an existing variable\+:}}
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{var}}\ =\ 10;}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ *ptr\ =\ \&\mbox{\hyperlink{class_vector__2d}{var}};\ \textcolor{comment}{//\ ptr\ now\ points\ to\ var}}
+
+\end{DoxyCode}
+
+
+In this case, {\ttfamily ptr} is a pointer to an integer and it\textquotesingle{}s assigned the address of {\ttfamily var} using the {\ttfamily \&} operator.
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Pointer to a dynamically allocated memory (heap memory)\+:}}
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ *ptr\ =\ \textcolor{keyword}{new}\ int(10);\ \textcolor{comment}{//\ ptr\ points\ to\ a\ new\ int\ initialized\ to\ 10}}
+
+\end{DoxyCode}
+
+
+Here, {\ttfamily new} operator allocates memory on the heap and returns the address of that memory.
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Pointer to an array\+:}}
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{arr}}[5]\ =\ \{1,\ 2,\ 3,\ 4,\ 5\};}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ *ptr\ =\ \mbox{\hyperlink{class_vector__2d}{arr}};\ \textcolor{comment}{//\ ptr\ points\ to\ the\ first\ element\ of\ arr}}
+
+\end{DoxyCode}
+
+
+Here, array {\ttfamily arr} decays to the pointer to its first element. You can move through the array using pointer arithmetic.
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Pointer to a C-\/style string (null-\/terminated character array)\+:}}
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ *ptr\ =\ \textcolor{stringliteral}{"{}Hello,\ world!"{}};}
+
+\end{DoxyCode}
+
+
+Here, {\ttfamily ptr} points to a string literal which is a character array.
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Pointer to pointer (double pointer)\+:}}
+\end{DoxyEnumerate}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{var}}\ =\ 10;}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ *ptr\ =\ \&\mbox{\hyperlink{class_vector__2d}{var}};}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ **\mbox{\hyperlink{class_vector__2d}{doublePtr}}\ =\ \&ptr;\ \textcolor{comment}{//\ doublePtr\ now\ points\ to\ ptr}}
+
+\end{DoxyCode}
+
+
+Here, {\ttfamily double\+Ptr} is a pointer to a pointer to an integer. These are some of the basic examples of using pointers in C++. Each case is used in different scenarios and can handle different types of data. The important part is to understand how they work and when each case is appropriate to use. 

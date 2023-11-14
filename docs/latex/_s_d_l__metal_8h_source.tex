@@ -1,0 +1,60 @@
+\doxysection{SDL\+\_\+metal.\+h}
+\hypertarget{_s_d_l__metal_8h_source}{}\label{_s_d_l__metal_8h_source}\index{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_metal.h@{/opt/homebrew/Cellar/sdl2/2.28.5/include/SDL2/SDL\_metal.h}}
+\mbox{\hyperlink{_s_d_l__metal_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00002}00002\ \textcolor{comment}{\ \ Simple\ DirectMedia\ Layer}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00003}00003\ \textcolor{comment}{\ \ Copyright\ (C)\ 1997-\/2023\ Sam\ Lantinga\ <slouken@libsdl.org>}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00005}00005\ \textcolor{comment}{\ \ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00006}00006\ \textcolor{comment}{\ \ warranty.\ \ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any\ damages}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00007}00007\ \textcolor{comment}{\ \ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00008}00008\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00009}00009\ \textcolor{comment}{\ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any\ purpose,}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00010}00010\ \textcolor{comment}{\ \ including\ commercial\ applications,\ and\ to\ alter\ it\ and\ redistribute\ it}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00011}00011\ \textcolor{comment}{\ \ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00013}00013\ \textcolor{comment}{\ \ 1.\ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you\ must\ not}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00014}00014\ \textcolor{comment}{\ \ \ \ \ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use\ this\ software}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00015}00015\ \textcolor{comment}{\ \ \ \ \ in\ a\ product,\ an\ acknowledgment\ in\ the\ product\ documentation\ would\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00016}00016\ \textcolor{comment}{\ \ \ \ \ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00017}00017\ \textcolor{comment}{\ \ 2.\ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and\ must\ not\ be}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00018}00018\ \textcolor{comment}{\ \ \ \ \ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00019}00019\ \textcolor{comment}{\ \ 3.\ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source\ distribution.}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00020}00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00028}00028\ \textcolor{preprocessor}{\#ifndef\ SDL\_metal\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00029}00029\ \textcolor{preprocessor}{\#define\ SDL\_metal\_h\_}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00031}00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_d_l__video_8h}{SDL\_video.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00033}00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{begin__code_8h}{begin\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00034}00034\ \textcolor{comment}{/*\ Set\ up\ for\ C\ function\ definitions,\ even\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00035}00035\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00036}00036\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00037}00037\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00044}\mbox{\hyperlink{_s_d_l__metal_8h_a0d6413e2d369fbf22f0a2e4ec15bf412}{00044}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{_s_d_l__metal_8h_a0d6413e2d369fbf22f0a2e4ec15bf412}{SDL\_MetalView}};}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00049}00049\ \textcolor{comment}{/*\ @\{\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00066}\mbox{\hyperlink{_s_d_l__metal_8h_a3dad1f90d67b2e72ec2f5bfc9e20f54c}{00066}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \mbox{\hyperlink{_s_d_l__metal_8h_a0d6413e2d369fbf22f0a2e4ec15bf412}{SDL\_MetalView}}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__metal_8h_a3dad1f90d67b2e72ec2f5bfc9e20f54c}{SDL\_Metal\_CreateView}}(\mbox{\hyperlink{_s_d_l__video_8h_a55a196c7d3b8497538632c79ae1e6392}{SDL\_Window}}\ *\ window);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00078}\mbox{\hyperlink{_s_d_l__metal_8h_a262167b535f38dd12f022df81fddb8f5}{00078}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__metal_8h_a262167b535f38dd12f022df81fddb8f5}{SDL\_Metal\_DestroyView}}(\mbox{\hyperlink{_s_d_l__metal_8h_a0d6413e2d369fbf22f0a2e4ec15bf412}{SDL\_MetalView}}\ view);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00087}\mbox{\hyperlink{_s_d_l__metal_8h_acb0b7609463a8ad97a694213eec68bdc}{00087}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__metal_8h_acb0b7609463a8ad97a694213eec68bdc}{SDL\_Metal\_GetLayer}}(\mbox{\hyperlink{_s_d_l__metal_8h_a0d6413e2d369fbf22f0a2e4ec15bf412}{SDL\_MetalView}}\ view);}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00102}\mbox{\hyperlink{_s_d_l__metal_8h_a57af6bc34b5686963397add6e383eb17}{00102}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{begin__code_8h_aa4c7a931f4a968f818b2a1b10a432185}{DECLSPEC}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{begin__code_8h_a81faf4ba0455dc75f2e0507eddb79401}{SDLCALL}}\ \mbox{\hyperlink{_s_d_l__metal_8h_a57af6bc34b5686963397add6e383eb17}{SDL\_Metal\_GetDrawableSize}}(\mbox{\hyperlink{_s_d_l__video_8h_a55a196c7d3b8497538632c79ae1e6392}{SDL\_Window}}*\ window,\ \textcolor{keywordtype}{int}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_afb1b07e1b25035d41d60fb2c03d507e6}{w}},}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ *\mbox{\hyperlink{_s_d_l__opengl__glext_8h_afa0fb1b5e976920c0abeff2dca3ed774}{h}});}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00105}00105\ \textcolor{comment}{/*\ @\}\ */}\textcolor{comment}{/*\ Metal\ support\ functions\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00107}00107\ \textcolor{comment}{/*\ Ends\ C\ function\ definitions\ when\ using\ C++\ */}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00108}00108\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00109}00109\ \}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00110}00110\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00111}00111\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{close__code_8h}{close\_code.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_s_d_l__metal_8h_source_l00113}00113\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SDL\_metal\_h\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

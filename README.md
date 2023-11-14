@@ -48,15 +48,6 @@
   - Create branching for each developer
   - Added the `CMakeList.txt` build the project in `debug` and `release` modes
 
-
-## To Do
-
-- [ ] How to connect to VGA, to boost and accelrate the work.
-- [ ] Mulit-threading and Async in C++.
-- [ ] Unit Testing for major Animation Engine.
-- [ ] Connect to orginzation developed extensions and libraries.
-- [ ] Doxagen for docuementation.
-
 ### Graphics Architecture Diagram:
 
 Currently under development is our engine's structure, which may still undergo
@@ -142,6 +133,7 @@ You will need several libraries for `development` mode including
 1. The `clang` complier which comes with the xcode pre-installed with the `xcode`.
 2. The `clangd` the language server, which is also pre-installed with the `xcode`.
 3. The `clang-format` for formatting your `C/C++` code using `brew install clang-format`.
+4. Installing `vcpkg` can be found [here](./docs/vcpkg_premier/vcpkg_fundamentals.md)
 
 ### Verfication
 

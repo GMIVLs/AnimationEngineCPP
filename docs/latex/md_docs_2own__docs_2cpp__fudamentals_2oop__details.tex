@@ -1,0 +1,522 @@
+\chapter{OOP in CPP -\/ Details}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2oop__details}{}\label{md_docs_2own__docs_2cpp__fudamentals_2oop__details}\index{OOP in CPP -\/ Details@{OOP in CPP -\/ Details}}
+\label{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md137}%
+\Hypertarget{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md137}%
+
+
+{\bfseries{Table of Contents}}
+
+
+\begin{DoxyItemize}
+\item OOP in CPP -\/ Details
+\begin{DoxyItemize}
+\item Content
+\begin{DoxyItemize}
+\item Method to create an object from a class
+\item Methods for creating class in CPP
+\item Common Code Practice
+\end{DoxyItemize}
+\item Demo
+\item Components and keywords Premier
+\item How to allow the constructor to accept assignment for x and y and if not then they will be zero?
+\item Typical Class with all possible keywords
+\item Static variable with class
+\item The Rule of 5 in Class
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md138}{}\doxysection{\texorpdfstring{Content}{Content}}\label{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md138}
+Object-\/oriented programming (OOP) is a programming paradigm that is based on the concept of "{}objects"{}. C++ is one of the most popular languages that supports OOP. Here\textquotesingle{}s a summary of the fundamental OOP concepts in C++\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Class and Object}}\+:
+\begin{DoxyItemize}
+\item {\bfseries{Class}}\+: A blueprint for creating objects. It encapsulates data and functions/methods that operate on the data.
+\item {\bfseries{Object}}\+: An instance of a class. It\textquotesingle{}s a self-\/contained unit that combines both data and the methods to manipulate that data.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{Dog}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{bark}}()\ \{\ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}}\ <<\ \textcolor{stringliteral}{"{}\ barks!"{}};\ \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{Dog}}\ \mbox{\hyperlink{class_vector__2d}{myDog}};}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{myDog}}.name\ =\ \textcolor{stringliteral}{"{}Buddy"{}};}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\item {\bfseries{Encapsulation}}\+:
+\begin{DoxyItemize}
+\item Bundling the data (attributes) and the methods (functions) that operate on the data into a single unit, i.\+e., class.
+\item Provides mechanisms to restrict the access of the object\textquotesingle{}s internal state using {\ttfamily public}, {\ttfamily private}, and {\ttfamily protected} access specifiers. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{Circle}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{private}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{radius}};}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{setRadius}}(\textcolor{keywordtype}{double}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe08814c2f72843fde4d8df41440d5a0}{r}})\ \{\ \mbox{\hyperlink{class_vector__2d}{radius}}\ =\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe08814c2f72843fde4d8df41440d5a0}{r}};\ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{getArea}}()\ \{\ \textcolor{keywordflow}{return}\ 3.14\ *\ \mbox{\hyperlink{class_vector__2d}{radius}}\ *\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{radius}};\ \}}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\item {\bfseries{Inheritance}}\+:
+\begin{DoxyItemize}
+\item Allows a class (derived/child class) to inherit attributes and methods from another class (base/parent class).
+\item Promotes reusability and establishes a relationship between the base and derived class.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{Animal}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{eat}}()\ \{\ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \textcolor{stringliteral}{"{}Eating"{}};\ \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{Dog}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_vector__2d}{Animal}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{bark}}()\ \{\ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \textcolor{stringliteral}{"{}Barking"{}};\ \}}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\item {\bfseries{Polymorphism}}\+:
+\begin{DoxyItemize}
+\item The ability of different classes to be treated as instances of the same class through inheritance.
+\item Two main types in C++\+:
+\begin{DoxyItemize}
+\item {\bfseries{Compile-\/time (Static)}}\+: Achieved by function overloading and operator overloading.
+\item {\bfseries{Run-\/time (Dynamic)}}\+: Achieved using function overriding (when derived class has a definition for one of the base class\textquotesingle{}s functions).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{Animal}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{sound}}()\ \{\ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \textcolor{stringliteral}{"{}Animal\ makes\ a\ sound"{}};\ \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{Dog}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_vector__2d}{Animal}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{sound}}()\textcolor{keyword}{\ override\ }\{\ \mbox{\hyperlink{class_vector__2d}{cout}}\ <<\ \textcolor{stringliteral}{"{}Dog\ barks"{}};\ \}}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries{Abstraction}}\+:
+\begin{DoxyItemize}
+\item Hiding complex reality while exposing only the necessary parts.
+\item Helps in reducing complexity and allows the programmer to focus on interactions at a higher level.
+\item Achieved in C++ using abstract classes and pure virtual functions. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{AbstractShape}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{area}}()\ =\ 0;\ \ \textcolor{comment}{//\ Pure\ virtual\ function}}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\item {\bfseries{Association, Aggregation, and Composition}}\+:
+\begin{DoxyItemize}
+\item Various ways to establish relationships between classes.
+\begin{DoxyItemize}
+\item {\bfseries{Association}}\+: A general binary relationship that describes an activity between two classes.
+\item {\bfseries{Aggregation}}\+: A special form of association, which represents an "{}ownership"{} relationship between two classes.
+\item {\bfseries{Composition}}\+: A strong form of aggregation. Represents a "{}death"{} relationship between two classes. If the parent class is deleted, then the child class will also be deleted.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries{Message Passing}}\+:
+\begin{DoxyItemize}
+\item Objects communicate with one another by sending and receiving information in the form of messages.
+\item In C++, this is done using methods (functions defined inside classes). 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{Dog}}\ \mbox{\hyperlink{class_vector__2d}{myDog}};}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{myDog}}.bark();\ \ \textcolor{comment}{//\ Sending\ a\ 'bark'\ message\ to\ myDog\ object.}}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md139}{}\doxysubsection{\texorpdfstring{Method to create an object from a class}{Method to create an object from a class}}\label{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md139}
+
+\begin{DoxyItemize}
+\item Creating objects from a defined class in C++ can be done in various ways. Here\textquotesingle{}s a table listing some of the common ways to create an object, including those involving the {\ttfamily explicit} keyword\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-3}
+\endhead
+{\bfseries{Stack Allocation}}   &Objects are created on the stack.   &{\ttfamily Class\+Name obj;}    \\\cline{1-3}
+{\bfseries{Heap Allocation}}   &Objects are created on the heap using {\ttfamily new}.   &{\ttfamily Class\+Name\texorpdfstring{$\ast$}{*} obj = new Class\+Name();}    \\\cline{1-3}
+{\bfseries{With Arguments (Constructor)}}   &Using a parameterized constructor.   &{\ttfamily Class\+Name \doxylink{_s_d_l__opengl__glext_8h_a0c0d4701a6c89f4f7f0640715d27ab26}{obj(arg1, arg2)};}    \\\cline{1-3}
+{\bfseries{Copy Constructor}}   &Create an object as a copy of another object.   &{\ttfamily Class\+Name obj2(obj1);}    \\\cline{1-3}
+{\bfseries{Move Constructor}}   &Transfers ownership of resources from one object to another.   &{\ttfamily Class\+Name obj2(std\+::move(obj1));}    \\\cline{1-3}
+{\bfseries{Uniform Initialization (since C++11)}}   &Using curly braces for initialization.   &{\ttfamily Class\+Name obj\{\};} or {\ttfamily Class\+Name obj\{arg1, arg2\};}    \\\cline{1-3}
+{\bfseries{Initializer List (since C++11)}}   &Initialize with an initializer list (if supported).   &{\ttfamily std\+::vector\texorpdfstring{$<$}{<}int\texorpdfstring{$>$}{>} vec = \{1, 2, 3\};}    \\\cline{1-3}
+{\bfseries{Copy Assignment}}   &Assigning the value of one object to another.   &{\ttfamily obj2 = obj1;}    \\\cline{1-3}
+{\bfseries{Move Assignment}}   &Transfer resources from one object to another via assignment.   &{\ttfamily obj2 = std\+::move(obj1);}    \\\cline{1-3}
+{\bfseries{Explicit Constructor}}   &Constructor that can\textquotesingle{}t be used for implicit conversions.   &{\ttfamily explicit Class\+Name(int a);} and {\ttfamily Class\+Name \doxylink{_s_d_l__opengl__glext_8h_a0c0d4701a6c89f4f7f0640715d27ab26}{obj(5)};} but NOT {\ttfamily Class\+Name obj = 5;}   \\\cline{1-3}
+\end{longtabu}
+
+
+
+\begin{DoxyItemize}
+\item When using the {\ttfamily explicit} keyword with constructors, it prevents the compiler from using that constructor for implicit conversions. This is useful to avoid unintended or surprising type conversions.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md140}{}\doxysubsection{\texorpdfstring{Methods for creating class in CPP}{Methods for creating class in CPP}}\label{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md140}
+
+\begin{DoxyItemize}
+\item Classes are fundamental in C++, allowing for the creation of user-\/defined data types. Here\textquotesingle{}s an overview of various ways to define and utilize classes, including commonly associated keywords\+:
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Method}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Example}}    }\\\cline{1-3}
+\endhead
+{\bfseries{Basic Class}}   &The simplest way to define a class.   &{\ttfamily class My\+Class \{ public\+: int x; \};}    \\\cline{1-3}
+{\bfseries{Private Members}}   &By default, members are private in a class. Useful for encapsulation.   &{\ttfamily class My\+Class \{ int x; public\+: int get\+X() \{ return x; \} \};}    \\\cline{1-3}
+{\bfseries{Public Members}}   &Accessible from outside the class.   &{\ttfamily class My\+Class \{ public\+: int x; \};}    \\\cline{1-3}
+{\bfseries{Protected Members}}   &Accessible by subclasses and the class itself, but not outside.   &{\ttfamily class My\+Class \{ protected\+: int x; \};}    \\\cline{1-3}
+{\bfseries{Constructors}}   &Special methods to initialize the object.   &{\ttfamily class My\+Class \{ public\+: My\+Class() \{ x = 0; \} int x; \};}    \\\cline{1-3}
+{\bfseries{Destructors}}   &Special methods called when the object is destroyed.   &{\ttfamily class My\+Class \{ public\+: \texorpdfstring{$\sim$}{\string~}\+My\+Class() \{ /\texorpdfstring{$\ast$}{*} cleanup code \texorpdfstring{$\ast$}{*}/ \} \};}    \\\cline{1-3}
+{\bfseries{Static Members}}   &Members shared by all instances of the class.   &{\ttfamily class My\+Class \{ public\+: static int x; \}; int My\+Class\+::x = 0;}    \\\cline{1-3}
+{\bfseries{Const Members}}   &Methods that do not modify any member variables.   &{\ttfamily class My\+Class \{ public\+: int get\+Value() const \{ return x; \} int x; \};}    \\\cline{1-3}
+{\bfseries{Friend Functions}}   &Functions that can access private and protected members of the class.   &{\ttfamily class My\+Class \{ friend void friend\+Function(My\+Class \&obj); private\+: int x; \};}    \\\cline{1-3}
+{\bfseries{Nested Classes}}   &A class defined inside another class.   &{\ttfamily class Outer \{ class Inner \{ int y; \}; \};}    \\\cline{1-3}
+{\bfseries{Inheritance}}   &Allows a class to inherit members from another class.   &{\ttfamily class Base \{ \}; class Derived \+: public Base \{ \};}    \\\cline{1-3}
+{\bfseries{Virtual Functions}}   &Functions meant to be overridden in derived classes. Enables polymorphism.   &{\ttfamily class Base \{ public\+: virtual void \doxylink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func()}; \}; class Derived \+: public Base \{ void \doxylink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func()} override; \};}    \\\cline{1-3}
+{\bfseries{Pure Virtual \& Abstract Classes}}   &If a class contains at least one pure virtual function, it becomes abstract and cannot be instantiated.   &{\ttfamily class Abstract\+Base \{ public\+: virtual void \doxylink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func()} = 0; \};}    \\\cline{1-3}
+{\bfseries{Final Keyword}}   &Prevents a class from being derived from or a virtual function from being overridden.   &{\ttfamily class Final\+Class final \{ \}; class Base \{ virtual void \doxylink{_s_d_l__opengl__glext_8h_a18ae3ab36a07e388833b568cfdfa90c8}{func()} final; \};}    \\\cline{1-3}
+{\bfseries{Explicit Constructors}}   &Prevents unwanted implicit conversions.   &{\ttfamily class My\+Class \{ public\+: explicit My\+Class(int a); \};}   \\\cline{1-3}
+\end{longtabu}
+
+
+{\bfseries{Notes}}\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Encapsulation}}\+: One of the key features of classes, allowing data (attributes) and functions (methods) to be bundled together. Using private and protected members helps in achieving this.
+\item {\bfseries{Polymorphism}}\+: Through the use of virtual functions, C++ enables dynamic polymorphism where the correct function related to the derived class object is called even when accessed using a base class pointer/reference.
+\item {\bfseries{Inheritance}}\+: Allows for creating a new class that is based on an existing class. The new class inherits attributes and behavior (methods) from the existing class.
+\item {\bfseries{Friend Functions}}\+: Though it breaks the encapsulation principle, it\textquotesingle{}s sometimes useful for operator overloading or certain specific scenarios where an external function needs to access the private members.
+\item {\bfseries{Explicit Constructors}}\+: Useful to avoid accidental type conversions that might lead to bugs.
+\end{DoxyItemize}
+
+When designing classes in C++, always aim for strong encapsulation, clear interfaces, and prefer composition over inheritance when extending functionalities.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md141}{}\doxysubsection{\texorpdfstring{Common Code Practice}{Common Code Practice}}\label{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md141}
+
+\begin{DoxyItemize}
+\item When you create a class you must provide a {\ttfamily consturctor} and {\ttfamily destructor}, but why?
+\begin{DoxyItemize}
+\item Its important when you create an object on stack, the destructor will not be called, but if you want create your object on the {\ttfamily heap}, then you must free its memeory.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md142}{}\doxysection{\texorpdfstring{Demo}{Demo}}\label{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md142}
+
+\begin{DoxyItemize}
+\item The following code shows that allocation on the heap should be always accompanied by a {\ttfamily destructor} which will free the object in memeory once it goes out of the scope.
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{Entity}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ std::string\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{object\_name}};}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{Entity}}(std::string\ \mbox{\hyperlink{class_vector__2d}{object\_name}})\ :\ \mbox{\hyperlink{class_vector__2d}{object\_name}}(\mbox{\hyperlink{class_vector__2d}{object\_name}})\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Created\ Entity:"{}}\ <<\ \mbox{\hyperlink{class_vector__2d}{object\_name}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ This\ destructor\ is\ called\ once\ we\ go\ out\ of\ the\ scope}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{\string~Entity}}()\ \{\ std::cout\ <<\ \textcolor{stringliteral}{"{}Destroyed\ Entity:"{}}\ <<\ \mbox{\hyperlink{class_vector__2d}{object\_name}}\ <<\ std::endl;\ \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{argc}},\ \textcolor{keywordtype}{char}\ *argv[])\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ create\ enitity\ object\ on\ the\ stack}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{Entity}}\ \mbox{\hyperlink{class_vector__2d}{e1}}(\textcolor{stringliteral}{"{}e1"{}});\ \textcolor{comment}{//\ create\ entity\ object\ on\ the\ heap}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{Entity}}\ *\mbox{\hyperlink{class_vector__2d}{e2}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_vector__2d}{Entity}}(\textcolor{stringliteral}{"{}e2"{}});\ \textcolor{comment}{//\ You\ can\ also\ use\ Entity*\ e2\ =\ new\ Entity(std::string("{}e2"{}));}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ std::cin.get();}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md143}{}\doxysection{\texorpdfstring{Components and keywords Premier}{Components and keywords Premier}}\label{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md143}
+Here\textquotesingle{}s a relatively contrived class that showcases a variety of C++ keywords commonly used in class definitions\+: Now, let\textquotesingle{}s create a table explaining the various keywords used\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Keyword}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Code Practices \& Usages}}    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Keyword}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Description}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{Common Code Practices \& Usages}}    }\\\cline{1-3}
+\endhead
+{\ttfamily class}   &Declares a class type.   &Class names typically start with an uppercase letter.    \\\cline{1-3}
+{\ttfamily private}   &Access modifier; members declared {\ttfamily private} cannot be accessed outside of the class.   &Default access level for class members; used to encapsulate and protect data.    \\\cline{1-3}
+{\ttfamily public}   &Access modifier; members declared {\ttfamily public} can be accessed from any function.   &Used for member functions and data members that need to be accessed outside the class.    \\\cline{1-3}
+{\ttfamily explicit}   &Specifies that a constructor or conversion function doesn\textquotesingle{}t allow implicit conversions.   &Prevents unintended type conversions, especially useful for constructors that take one argument.    \\\cline{1-3}
+{\ttfamily friend}   &Gives a function or another class access to private and protected members of the class.   &Used sparingly; when necessary, allows external functions/classes to interact with private/protected data.    \\\cline{1-3}
+{\ttfamily noexcept}   &Specifies that a function doesn\textquotesingle{}t throw exceptions.   &Provides a guarantee about exception safety, useful for move constructors/assignment operators.    \\\cline{1-3}
+{\ttfamily operator=}   &Overloads the assignment operator.   &Enables custom behavior when assigning objects.   \\\cline{1-3}
+\end{longtabu}
+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Note\+:}} The above class and table only cover a subset of C++ keywords related to class definitions. There are many other C++ keywords and class-\/related features not shown here.
+\end{DoxyItemize}\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md144}{}\doxysection{\texorpdfstring{How to allow the constructor to accept assignment for x and y and if not then they will be zero?}{How to allow the constructor to accept assignment for x and y and if not then they will be zero?}}\label{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md144}
+You can modify the constructor of the {\ttfamily Vector2D} class to accept default arguments which would be {\ttfamily 0} in case the user doesn\textquotesingle{}t provide any. Here\textquotesingle{}s how to do it\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{Vector2D}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{T}}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}},\ \mbox{\hyperlink{_s_d_l__opengl_8h_a1675d9d7bb68e1657ff028643b4037e3}{y}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{Vector2D}}(\mbox{\hyperlink{class_vector__2d}{T}}\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}\ =\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{T}}(),\ \mbox{\hyperlink{class_vector__2d}{T}}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a1675d9d7bb68e1657ff028643b4037e3}{y}}\ =\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{T}}())\ :\ \mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}(\mbox{\hyperlink{_s_d_l__opengl_8h_abe1577120f1766eff913e9a74879f373}{x}}),\ \mbox{\hyperlink{_s_d_l__opengl_8h_a1675d9d7bb68e1657ff028643b4037e3}{y}}(\mbox{\hyperlink{_s_d_l__opengl_8h_a1675d9d7bb68e1657ff028643b4037e3}{y}})\ \{\}\ \ \textcolor{comment}{//\ Constructor\ with\ default\ arguments}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ remaining\ class\ methods...}}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+
+
+Now you can create {\ttfamily Vector2D} objects in several ways\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{Vector2D<float>}}\ \mbox{\hyperlink{class_vector__2d}{vec1}};\ \ \textcolor{comment}{//\ x\ and\ y\ are\ 0.0f}}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{Vector2D<float>}}\ \mbox{\hyperlink{class_vector__2d}{vec2}}(1.2f);\ \ \textcolor{comment}{//\ x\ is\ 1.2f,\ y\ is\ 0.0f}}
+\DoxyCodeLine{\mbox{\hyperlink{class_vector__2d}{Vector2D<float>}}\ \mbox{\hyperlink{class_vector__2d}{vec3}}(1.2f,\ 3.4f);\ \ \textcolor{comment}{//\ x\ is\ 1.2f,\ y\ is\ 3.4f}}
+
+\end{DoxyCode}
+
+
+In the code above, {\ttfamily T()} is used to provide a default value for the type {\ttfamily T}. For numeric types like {\ttfamily int}, {\ttfamily float}, {\ttfamily double} etc., {\ttfamily T()} gives {\ttfamily 0} or {\ttfamily \doxylink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{0.\+0f}} etc. It gives an empty string for {\ttfamily std\+::string}, and so on. It\textquotesingle{}s essentially the same as default-\/constructing an instance of the type {\ttfamily T}.\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md145}{}\doxysection{\texorpdfstring{Typical Class with all possible keywords}{Typical Class with all possible keywords}}\label{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md145}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{MyClass}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{AnotherClass}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Friend\ function}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{AccessPrivateDataOfMyClass}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{MyClass}}\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a0c0d4701a6c89f4f7f0640715d27ab26}{obj}});}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{MyClass}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{private}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{privateData}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Constructor\ with\ default\ argument}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{MyClass}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}}\ =\ 0)\ :\ \mbox{\hyperlink{class_vector__2d}{privateData}}(\mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}})\ \{\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Copy\ constructor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{MyClass}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{MyClass}}\&\ \mbox{\hyperlink{class_vector__2d}{other}})\ :\ \mbox{\hyperlink{class_vector__2d}{privateData}}(\mbox{\hyperlink{class_vector__2d}{other}}.\mbox{\hyperlink{class_vector__2d}{privateData}})\ \{\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Move\ constructor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{MyClass}}(\mbox{\hyperlink{class_vector__2d}{MyClass}}\&\&\ \mbox{\hyperlink{class_vector__2d}{other}})\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{noexcept}}\ :\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{privateData}}(\mbox{\hyperlink{class_vector__2d}{other}}.privateData)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d}{other}}.privateData\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Explicit\ constructor}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{MyClass}}(\textcolor{keywordtype}{double}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}})\ :\ \mbox{\hyperlink{class_vector__2d}{privateData}}(\mbox{\hyperlink{class_vector__2d}{static\_cast}}<int>(\mbox{\hyperlink{_s_d_l__opengl_8h_a740d7f00b044f54a556c7208e01f9f02}{data}}))\ \{\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Destructor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{\string~MyClass}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Destructor\ called"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Copy\ assignment\ operator}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{MyClass}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{MyClass}}\&\ \mbox{\hyperlink{class_vector__2d}{other}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&\mbox{\hyperlink{class_vector__2d}{other}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d}{privateData}}\ =\ \mbox{\hyperlink{class_vector__2d}{other}}.privateData;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Move\ assignment\ operator}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{MyClass}}\&\ operator=(\mbox{\hyperlink{class_vector__2d}{MyClass}}\&\&\ \mbox{\hyperlink{class_vector__2d}{other}})\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&\mbox{\hyperlink{class_vector__2d}{other}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d}{privateData}}\ =\ \mbox{\hyperlink{class_vector__2d}{other}}.privateData;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d}{other}}.privateData\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Friend\ function\ (declared\ in\ AnotherClass)}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{AnotherClass::AccessPrivateDataOfMyClass}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{MyClass}}\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a0c0d4701a6c89f4f7f0640715d27ab26}{obj}});}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{AnotherClass::AccessPrivateDataOfMyClass}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{MyClass}}\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a0c0d4701a6c89f4f7f0640715d27ab26}{obj}})\ \{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Private\ data:\ "{}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a0c0d4701a6c89f4f7f0640715d27ab26}{obj}}.privateData\ <<\ std::endl;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{MyClass}}\ \mbox{\hyperlink{class_vector__2d}{obj1}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{MyClass}}\ \mbox{\hyperlink{class_vector__2d}{obj2}}(10);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{MyClass}}\ \mbox{\hyperlink{class_vector__2d}{obj3}}\ =\ \mbox{\hyperlink{class_vector__2d}{obj2}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{MyClass}}\ \mbox{\hyperlink{class_vector__2d}{obj4}}(std::move(\mbox{\hyperlink{class_vector__2d}{obj3}}));}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{MyClass}}\ \mbox{\hyperlink{class_vector__2d}{obj5}}(3.5);\ \ \textcolor{comment}{//\ This\ will\ call\ the\ explicit\ constructor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{AnotherClass::AccessPrivateDataOfMyClass}}(\mbox{\hyperlink{class_vector__2d}{obj2}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md146}{}\doxysection{\texorpdfstring{Static variable with class}{Static variable with class}}\label{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md146}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{Employee}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{private}:}
+\DoxyCodeLine{\ \ \ \ std::string\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a58c2a664503e14ffb8f21012aabff3e9}{id}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_s_d_l__opengl_8h_a619bc20e8198de3bd3f3d7fc34de66b2}{count}};\ \ \textcolor{comment}{//\ Static\ variable\ to\ count\ the\ number\ of\ Employee\ objects}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{Employee}}(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_vector__2d}{empName}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_vector__2d}{empId}})\ :\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}}(\mbox{\hyperlink{class_vector__2d}{empName}}),\ \mbox{\hyperlink{class_vector__2d}{id}}(\mbox{\hyperlink{class_vector__2d}{empId}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_d_l__opengl_8h_a619bc20e8198de3bd3f3d7fc34de66b2}{count}}++;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Destructor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{\string~Employee}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_d_l__opengl_8h_a619bc20e8198de3bd3f3d7fc34de66b2}{count}}-\/-\/;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Method\ to\ display\ employee\ information}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{displayInfo}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Employee\ ID:\ "{}}\ <<\ \textcolor{keywordtype}{id}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Employee\ Name:\ "{}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a8e1a4ccadfc12dbf9a8e411d68adfe8e}{name}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Static\ method\ to\ display\ the\ number\ of\ Employee\ objects}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{displayCount}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Total\ employees:\ "{}}\ <<\ \mbox{\hyperlink{_s_d_l__opengl_8h_a619bc20e8198de3bd3f3d7fc34de66b2}{count}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ Employee::count\ =\ 0;\ \ \textcolor{comment}{//\ Initialize\ the\ static\ variable}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{Employee}}\ \mbox{\hyperlink{class_vector__2d}{e1}}(\textcolor{stringliteral}{"{}Alice"{}},\ 101);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{Employee}}\ \mbox{\hyperlink{class_vector__2d}{e2}}(\textcolor{stringliteral}{"{}Bob"{}},\ 102);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{e1}}.displayInfo();}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{e2}}.displayInfo();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{Employee::displayCount}}();\ \ \textcolor{comment}{//\ Display\ total\ number\ of\ Employee\ objects}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md147}{}\doxysection{\texorpdfstring{The Rule of 5 in Class}{The Rule of 5 in Class}}\label{md_docs_2own__docs_2cpp__fudamentals_2oop__details_autotoc_md147}
+The Rule of 5 is a guideline in C++ programming that suggests that if a class defines any of the following, it should define all five of them to ensure resource management is handled correctly and predictably\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Destructor}}\+: Cleans up resources when an object is destroyed.
+\item {\bfseries{Copy Constructor}}\+: Constructs a new object as a copy of an existing object.
+\item {\bfseries{Copy Assignment Operator}}\+: Assigns the contents of an existing object to another object.
+\item {\bfseries{Move Constructor}}\+: Constructs a new object by acquiring the resources of an existing object, instead of copying them.
+\item {\bfseries{Move Assignment Operator}}\+: Assigns the resources of an existing object to another object, instead of copying them.
+\end{DoxyEnumerate}
+
+Here\textquotesingle{}s a simplified example of the Rule of 5 in modern C++\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector__2d}{RuleOfFive}}\ \{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}*\ str;\ \ \textcolor{comment}{//\ Resource:\ dynamically-\/allocated\ string}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{RuleOfFive}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a26942fd2ed566ef553eae82d2c109c8f}{val}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ str\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[\mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{strlen}}(\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a26942fd2ed566ef553eae82d2c109c8f}{val}})\ +\ 1];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{strcpy}}(str,\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a26942fd2ed566ef553eae82d2c109c8f}{val}});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Destructor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{\string~RuleOfFive}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ str;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Copy\ Constructor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{RuleOfFive}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{RuleOfFive}}\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ str\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[\mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{strlen}}(\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}}.str)\ +\ 1];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{strcpy}}(str,\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}}.str);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Copy\ Assignment\ Operator}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{RuleOfFive}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector__2d}{RuleOfFive}}\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ ==\ \&\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \ \textcolor{comment}{//\ self-\/assignment\ guard}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ str;\ \ \textcolor{comment}{//\ clean\ up\ existing\ resources}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ str\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[\mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{strlen}}(\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}}.str)\ +\ 1];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{strcpy}}(str,\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}}.str);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Move\ Constructor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{RuleOfFive}}(\mbox{\hyperlink{class_vector__2d}{RuleOfFive}}\&\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}})\ \mbox{\hyperlink{class_vector__2d_a6d09fb691e01f179efcbef03bef13b9c}{noexcept}}\ :\ str(\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}}.str)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}}.str\ =\ \textcolor{keyword}{nullptr};\ \ \textcolor{comment}{//\ source\ gives\ up\ ownership}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Move\ Assignment\ Operator}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{RuleOfFive}}\&\ operator=(\mbox{\hyperlink{class_vector__2d}{RuleOfFive}}\&\&\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}})\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ ==\ \&\mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \ \textcolor{comment}{//\ self-\/assignment\ guard}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ str;\ \ \textcolor{comment}{//\ clean\ up\ existing\ resources}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ str\ =\ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}}.str;\ \ \textcolor{comment}{//\ acquire\ resources\ from\ source}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_d_l__opengl__glext_8h_a633906574fe6e39b7f2840bed0e49832}{source}}.str\ =\ \textcolor{keyword}{nullptr};\ \ \textcolor{comment}{//\ source\ gives\ up\ ownership}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_make_c_x_x_compiler_id_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{RuleOfFive}}\ \mbox{\hyperlink{class_vector__2d}{obj1}}(\textcolor{stringliteral}{"{}Hello"{}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{RuleOfFive}}\ \mbox{\hyperlink{class_vector__2d}{obj2}}\ =\ \mbox{\hyperlink{class_vector__2d}{obj1}};\ \ \textcolor{comment}{//\ invokes\ copy\ constructor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{RuleOfFive}}\ \mbox{\hyperlink{class_vector__2d}{obj3}}(\textcolor{stringliteral}{"{}World"{}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_vector__2d}{obj3}}\ =\ std::move(\mbox{\hyperlink{class_vector__2d}{obj1}});\ \ \textcolor{comment}{//\ invokes\ move\ assignment\ operator}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+In this example\+:
+
+
+\begin{DoxyItemize}
+\item The {\bfseries{constructor}} allocates memory for {\ttfamily str} and copies the input string into it.
+\item The {\bfseries{destructor}} deallocates the memory to prevent memory leaks.
+\item The {\bfseries{copy constructor}} and {\bfseries{copy assignment operator}} make deep copies of the source object to ensure each object has its own copy of the resource.
+\item The {\bfseries{move constructor}} and {\bfseries{move assignment operator}} transfer ownership of the resource from the source object to the target object, without making a copy. This is more efficient when the source object will no longer be used. 
+\end{DoxyItemize}
