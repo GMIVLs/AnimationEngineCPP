@@ -14,9 +14,9 @@ var searchData=
   ['and_20references_20in_20depth_11',['Pointers and References in Depth',['../md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references.html',1,'']]],
   ['and_20rvalue_12',['Lvalue and Rvalue',['../md_docs_2own__docs_2cpp__fudamentals_2lvalue__and__rvalue.html',1,'']]],
   ['and_20stack_13',['Heap and Stack',['../md_docs_2own__docs_2cpp__fudamentals_2heap__and__stack.html',1,'']]],
-  ['and_20style_14',['Coding Formatting and Style',['../md_docs_2own__docs_2coding__formatting__style_2_r_e_a_d_m_e.html',1,'']]],
+  ['and_20style_14',['Coding Formatting and Style',['../md_docs_2own__docs_2coding__formatting__style_2formatter__style.html',1,'']]],
   ['and_20tricks_15',['CMake Tips and Tricks',['../md_docs_2own__docs_2make__and__cmake__premier_2cmakes__tips__and__tricks.html',1,'']]],
-  ['animation_20engine_20cpp_16',['Animation Engine CPP',['../md__r_e_a_d_m_e.html',1,'']]],
+  ['animation_20engine_20cpp_16',['Animation Engine CPP',['../index.html',1,'']]],
   ['args_20to_20methods_20and_20functions_17',['Passing args to methods and functions',['../md_docs_2own__docs_2cpp__fudamentals_2passing__args__to__method__and__functions.html',1,'']]],
   ['array_20in_20cpp_18',['Lists and Array in CPP',['../md_docs_2own__docs_2cpp__fudamentals_2list__and__arrays.html',1,'']]]
 ];

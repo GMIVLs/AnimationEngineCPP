@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AnimationEngineCPP: Main Page</title>
+<title>AnimationEngineCPP: Animation Engine CPP</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,10 +69,163 @@ $(function() {
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">AnimationEngineCPP Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Animation Engine CPP </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a> <a href="https://github.com/Ghasak/AnimationEngineCPP/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue" alt="MIT License" class="inline"/></a> <a href="https://www.libsdl.org"><img src="https://img.shields.io/badge/SDL-2.0-yellow" alt="SDL2.0" class="inline"/></a> <a href="https://clang.llvm.org/docs/ClangFormat.html"><img src="https://img.shields.io/badge/clang--format-formatter-red" alt="Static Badge" class="inline"/></a> <a href="https://github.com/wkusnierczyk/make"><img src="https://img.shields.io/badge/make-C%2B%2B%20Build%20Systems-blue" alt="Static Badge" class="inline"/></a> <a href="https://github.com/ninja-build/ninja"><img src="https://img.shields.io/badge/Ninja-C%2B%2B%20Build%20Systems-red" alt="Static Badge" class="inline"/></a></p>
+<hr  />
+<p><img src="https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&amp;logo=c&amp;logoColor=white" alt="C" style="pointer-events: none;" class="inline"/> <img src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&amp;logo=c%2B%2B&amp;logoColor=white" alt="C++" style="pointer-events: none;" class="inline"/> <img src="https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&amp;logo=cmake&amp;logoColor=white" alt="CMake" style="pointer-events: none;" class="inline"/> <img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&amp;logo=git&amp;logoColor=white" alt="Git" style="pointer-events: none;" class="inline"/> <img src="https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&amp;logo=gnu-bash&amp;logoColor=white" alt="Shell Script" style="pointer-events: none;" class="inline"/> <img src="https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&amp;logo=macos&amp;logoColor=F0F0F0" alt="macOS" class="inline"/></p>
+<ul>
+<li>ChangingLog<ul>
+<li>Graphics Architecture Diagram:</li>
+</ul>
+</li>
+<li>Prerequisites<ul>
+<li>Fundamental</li>
+<li>Graphics libraries</li>
+<li>development</li>
+<li>Verfication</li>
+</ul>
+</li>
+<li>Running while in progress</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md270"></a>
+ChangingLog</h1>
+<ul>
+<li><code>2023-11-14 23:00</code>: Migrated to the GMIVLs</li>
+<li><code>2023-10-22 21:38</code>: Added <code>glog</code> library using vcpkg.</li>
+<li><code>2023-09-29 00:00</code>: Loading image is possible now:<ul>
+<li>[x] merge the <code><a class="el" href="class_vector__2d.html#a6d09fb691e01f179efcbef03bef13b9c">cpp_habits.md</a></code> done by M,</li>
+<li>[x] and updating the <code><a class="el" href="class_vector__2d.html#a6d09fb691e01f179efcbef03bef13b9c">CMakeList.txt</a></code> for <code>SDL_image</code> extension.</li>
+<li>[x] documentation updated for several data structures in <code>C++</code>.</li>
+</ul>
+</li>
+<li><code>2023-09-03 12:48</code>: Starting documentation for the tips and tricks in <code>CPP</code>.</li>
+<li><code>2023-07-16 22:29</code>:<ul>
+<li>[x] Adding script to download dependencies.</li>
+<li>[x] Provoid documentation for the building the project.<ul>
+<li>[x] Create the <code><a class="el" href="class_vector__2d.html#a6d09fb691e01f179efcbef03bef13b9c">CMakeList.txt</a></code> for <code>SDL2</code> and all the attached dependencies.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>2023-07-15 02:30</code><ul>
+<li>Create the base for the animation engine in CPP</li>
+<li>Create branching for each developer</li>
+<li>Added the <code><a class="el" href="class_vector__2d.html#a6d09fb691e01f179efcbef03bef13b9c">CMakeList.txt</a></code> build the project in <code>debug</code> and <code>release</code> modes</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md271"></a>
+Graphics Architecture Diagram:</h2>
+<p>Currently under development is our engine's structure, which may still undergo modifications.</p>
+<div class="fragment"><div class="line">┌───────────────────────────────────────────────────────────┐</div>
+<div class="line">│           ┌1.──────┐ ┌2.──────┐ ┌3.──────┐                │</div>
+<div class="line">│           │ Physics│ │ Math   │ │ stats  │                │</div>
+<div class="line">│           │ Module │ │ Module │ │ Module │                │</div>
+<div class="line">│           └─────┬──* └─────┬──* └─────┬──*                │</div>
+<div class="line">│                 │          ▼          │                   │</div>
+<div class="line">│                 │     ┌4.───────┐     │                   │</div>
+<div class="line">│                 │     │ Particle│◀────┘                   │</div>
+<div class="line">│                 └────▶│ Module  │                         │</div>
+<div class="line">│                       └─────┬───*                         │</div>
+<div class="line">│                             │                             │</div>
+<div class="line">│                             ▼                             │</div>
+<div class="line">│                     ┌5.───────────┐                       │</div>
+<div class="line">│                     │   Motion    │                       │</div>
+<div class="line">│                     │    Module   │                       │</div>
+<div class="line">│                     └─────────────*                       │</div>
+<div class="line">│                            │                              │</div>
+<div class="line">│           ┌6.───────────┐  │   ┌7.───────────┐            │</div>
+<div class="line">│           │  Utilities  │  │   │   Platform  │            │</div>
+<div class="line">│           │    Module   │  │   │    Module   │            │</div>
+<div class="line">│           └─────┬───────*  ▼   └─────────────*            │</div>
+<div class="line">│                 │    ┌8.───────────┐     │                │</div>
+<div class="line">│                 └──▶ │ Experiments │     │                │</div>
+<div class="line">│                      │    Module   │◀────┘                │</div>
+<div class="line">│                      └─────┬───────*                      │</div>
+<div class="line">│                            ▼                              │</div>
+<div class="line">│                 ┌───────────────────────┐                 │</div>
+<div class="line">│                 │       `2d` Canvus     │                 │</div>
+<div class="line">│                 │    Graphics Display   │                 │</div>
+<div class="line">│                 └───────────────────────*                 │</div>
+<div class="line">│ 2D - graphics architecture                                │</div>
+<div class="line">└───────────────────────────────────────────────────────────┘</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md272"></a>
+Prerequisites</h1>
+<h2><a class="anchor" id="autotoc_md273"></a>
+Fundamental</h2>
+<p>If you have a fresh MacBook without any development tools installed, including Xcode, you'll need the following to compile C/C++ code:</p>
+<ul>
+<li>Command Line Tools (CLT) for Xcode: This provides a standalone version of the compiler and essential tools without the need for the full Xcode IDE. It includes: clang: The C, C++, and Objective-C compiler. lldb: The debugger.</li>
+<li>Essential system headers and libraries.</li>
+</ul>
+<div class="fragment"><div class="line">Copy code</div>
+<div class="line">xcode-select --install</div>
+</div><!-- fragment --><ul>
+<li>Homebrew (Optional but Recommended): While not strictly necessary for compiling C/C++ code, Homebrew is a package manager for macOS that makes it easy to install various software and libraries. It can be very useful if you need external libraries for your projects. To install Homebrew, you can use:</li>
+</ul>
+<div class="fragment"><div class="line">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</div>
+</div><!-- fragment --><ul>
+<li>CMake (Optional): If you want to use CMake as a build system (as in your previous examples), you'd need to install CMake. With Homebrew, it's as easy</li>
+</ul>
+<div class="fragment"><div class="line">brew install cmake</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md274"></a>
+Graphics libraries</h2>
+<ul>
+<li>Run the script <code>./tools/fetch_dependencies_if_not_existed_macOS.sh</code> to get the <code>SDL2</code> and its extensions up and running.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md275"></a>
+development</h2>
+<p>You will need several libraries for <code>development</code> mode including</p>
+<ol type="1">
+<li>The <code>clang</code> complier which comes with the xcode pre-installed with the <code>xcode</code>.</li>
+<li>The <code>clangd</code> the language server, which is also pre-installed with the <code>xcode</code>.</li>
+<li>The <code>clang-format</code> for formatting your <code>C/C++</code> code using <code>brew install clang-format</code>.</li>
+<li>Installing <code>vcpkg</code> can be found <a class="el" href="vcpkg__fundamentals_8md.html">here</a></li>
+</ol>
+<h2><a class="anchor" id="autotoc_md276"></a>
+Verfication</h2>
+<ol type="1">
+<li>Checking the <code>sdl2</code> headers</li>
+</ol>
+<div class="fragment"><div class="line">/opt/homebrew/Cellar/sdl2/2.28.3/bin/sdl2-config --cflags</div>
+<div class="line">-I/opt/homebrew/Cellar/sdl2/2.28.3/include/SDL2 -D_THREAD_SAFE</div>
+</div><!-- fragment --><ol type="1">
+<li>Checking the <code>sdl2</code> and all other extenstions installed</li>
+</ol>
+<div class="fragment"><div class="line">brew info sdl2</div>
+<div class="line">brew info sdl_image</div>
+<div class="line">brew info sdl_gfx</div>
+</div><!-- fragment --><p>or</p>
+<div class="fragment"><div class="line">sdl2-config --version</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md277"></a>
+Running while in progress</h1>
+<ul>
+<li>Using the <code>fswatch</code>cli, while changing any code in the <code>src</code> and save, it will be load and run the command from <code>Makefile</code>.</li>
+</ul>
+<div class="fragment"><div class="line">fswatch -o src/ | xargs -n1 -I{} make all</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md278"></a>
+Debugger in Emacs</h1>
+<p>Adding the following:</p>
+<ol type="1">
+<li>Assume you have installed already the <code>cpptools</code> which we here are using the <code>nvim</code> original setup for the <code>lldb-mi</code>.</li>
+<li>Later on, I was able to successfully utilize it by running the command <code>dap-debug-edit-template</code> first. However, before doing so, you will notice that I am using the <b>lldb-mi</b> extension from the <code>cpptools</code> package installed via <code>mason</code> from: <code>~/.local/share/nvim/mason/packages/cpptools/extension</code>. Any <code>lldb-mi</code> should work fine for debugging in <code>spacemacs</code>.</li>
+</ol>
+<div class="fragment"><div class="line">(dap-register-debug-template</div>
+<div class="line"> &quot;cpptools::Run Configuration-GHASAKII&quot;</div>
+<div class="line"> (list :type &quot;cppdbg&quot;</div>
+<div class="line">       :request &quot;launch&quot;</div>
+<div class="line">       :name &quot;cpptools::Run Configuration&quot;</div>
+<div class="line">       :miDebuggerPath (expand-file-name &quot;.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/lldb-mi/bin/lldb-mi&quot; &quot;~&quot;)</div>
+<div class="line">       :MIMode &quot;gdb&quot;</div>
+<div class="line">       :program &quot;${workspaceFolder}/build/debug/main&quot;  ;; Refer to your binary here</div>
+<div class="line">       :cwd &quot;${workspaceFolder}&quot;))</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md279"></a>
+Documentations</h1>
+<p>I am using in terminal a tool called <a href="https://github.com/aitjcize/cppman">cppman</a>, which give us the ability to navigate between C++98/11/14/17 and 20 manual pages of the standard library. </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

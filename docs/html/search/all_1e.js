@@ -45,7 +45,7 @@ var searchData=
   ['verbose_5fmotion_42',['VERBOSE_MOTION',['../_s_d_l__test__common_8h.html#a18ad33843bc9ddfb1cc5162e91f29e27',1,'SDL_test_common.h']]],
   ['verbose_5frender_43',['VERBOSE_RENDER',['../_s_d_l__test__common_8h.html#a7bdcd39423e8261d05407ab758feb037',1,'SDL_test_common.h']]],
   ['verbose_5fvideo_44',['VERBOSE_VIDEO',['../_s_d_l__test__common_8h.html#ab5d2ba75c3cd702f1a269c406902ddcb',1,'SDL_test_common.h']]],
-  ['verfication_45',['Verfication',['../md__r_e_a_d_m_e.html#autotoc_md276',1,'']]],
+  ['verfication_45',['Verfication',['../index.html#autotoc_md276',1,'']]],
   ['version_46',['version',['../struct_s_d_l___sys_w_minfo.html#ac3a70af022d4849e9ff546595e94627f',1,'SDL_SysWMinfo::version'],['../struct_s_d_l___sys_w_mmsg.html#a95f9aae58d18ee8fac556416b322a5fb',1,'SDL_SysWMmsg::version'],['../struct_s_d_l___palette.html#a5b8d45519f6850a32f13f1602ce37a8e',1,'SDL_Palette::version'],['../struct_s_d_l___virtual_joystick_desc.html#a0235964235067e3b18a7c50708e585a7',1,'SDL_VirtualJoystickDesc::version']]],
   ['versionstring_47',['VersionString',['../namespace_g_f_l_a_g_s___n_a_m_e_s_p_a_c_e.html#a02a85c40905e662ed9e9528c681bcf16',1,'GFLAGS_NAMESPACE']]],
   ['vertexbuffercount_48',['vertexBufferCount',['../_s_d_l__opengl__glext_8h.html#adf6236901377ba62829dd63e7334eafc',1,'SDL_opengl_glext.h']]],

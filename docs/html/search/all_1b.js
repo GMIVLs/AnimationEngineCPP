@@ -2911,7 +2911,7 @@ var searchData=
   ['structures_20types_2908',['C++ Data Structures Types',['../md_docs_2own__docs_2cpp__fudamentals_2cpp__data__structures.html',1,'']]],
   ['strucuture_2909',['Project Strucuture',['../md_docs_2own__docs_2dev___planning_2working__plan.html#autotoc_md216',1,'']]],
   ['studying_2910',['Data Strcutures and Algorithms for LeetCode Studying',['../md_docs_2own__docs_2books_2data__structures__and__algorithms.html',1,'']]],
-  ['style_2911',['style',['../md_docs_2own__docs_2coding__formatting__style_2_r_e_a_d_m_e.html',1,'Coding Formatting and Style'],['../md_docs_2own__docs_2coding__formatting__style_2_r_e_a_d_m_e.html#autotoc_md9',1,'For coding style'],['../md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references.html#autotoc_md160',1,'Pointer representation style']]],
+  ['style_2911',['style',['../md_docs_2own__docs_2coding__formatting__style_2formatter__style.html',1,'Coding Formatting and Style'],['../md_docs_2own__docs_2coding__formatting__style_2formatter__style.html#autotoc_md9',1,'For coding style'],['../md_docs_2own__docs_2cpp__fudamentals_2pointers__and__references.html#autotoc_md160',1,'Pointer representation style']]],
   ['sub_2912',['sub',['../classvector2d.html#a1ded1f41eb164be5fbbe5bd77311c973',1,'vector2d::sub()'],['../class_vector__2d.html#a54bae41b3138a39d0d5917099c7af019',1,'Vector_2d::sub()']]],
   ['subsystem_2913',['subsystem',['../struct_s_d_l___sys_w_mmsg.html#a7c3900af5ea797f1318fc77ee0ecd11b',1,'SDL_SysWMmsg::subsystem'],['../struct_s_d_l___sys_w_minfo.html#a438b6a06ab3ee417293c7b7fc5a23855',1,'SDL_SysWMinfo::subsystem']]],
   ['summary_2914',['Summary',['../md_docs_2own__docs_2vcpkg__premier_2vcpkg__how__it__works.html#autotoc_md260',1,'']]],

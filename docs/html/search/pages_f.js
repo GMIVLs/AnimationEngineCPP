@@ -14,5 +14,5 @@ var searchData=
   ['string_20premier_20in_20cpp_20in_20depth_11',['String premier in CPP - In depth',['../md_docs_2own__docs_2cpp__fudamentals_2string__premier__in__depth.html',1,'']]],
   ['structures_20types_12',['C++ Data Structures Types',['../md_docs_2own__docs_2cpp__fudamentals_2cpp__data__structures.html',1,'']]],
   ['studying_13',['Data Strcutures and Algorithms for LeetCode Studying',['../md_docs_2own__docs_2books_2data__structures__and__algorithms.html',1,'']]],
-  ['style_14',['Coding Formatting and Style',['../md_docs_2own__docs_2coding__formatting__style_2_r_e_a_d_m_e.html',1,'']]]
+  ['style_14',['Coding Formatting and Style',['../md_docs_2own__docs_2coding__formatting__style_2formatter__style.html',1,'']]]
 ];
