@@ -99,6 +99,7 @@ doxygen --version
 
 ## Reference
 
-- [Getting starting with doxygen](https://www.doxygen.nl/manual/starting.html)
+- [getting starting with doxygen](https://www.doxygen.nl/manual/starting.html)
+- [doxygen config stylesheet](https://www.doxygen.nl/manual/config.html#cfg_html_stylesheet)
 - [docblocks](https://www.doxygen.nl/manual/docblocks.html)
-- [Doxygen - Documentation for your program - Avery](https://www.youtube.com/watch?v=44Ja2X_fzv4)
+- [doxygen - Documentation for your program - Avery](https://www.youtube.com/watch?v=44Ja2X_fzv4)

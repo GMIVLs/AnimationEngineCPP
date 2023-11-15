@@ -90,25 +90,28 @@ clean:
 clean_dependencies:
 	@rm -rf ./dependencies
 
-# docs_gen:
-# 	# Generate the doxygen documentation
-# 	doxygen dconfig ./build/debug/${BINARY_NAME}
-# 	sed -i 's/pdflatex /pdflatex -interaction=nonstopmode /g' ./docs/latex/Makefile
-
+#############################################
+# You will need doxygen to be installed,
+# Also you will need bison v. >=3.8
+#############################################
 docs_gen:
 	doxygen dconfig ./build/debug/$(BINARY_NAME)
 	if [ "$$(uname)" = "Darwin" ]; then \
-		sed -i '' 's/pdflatex /pdflatex -interaction=nonstopmode /g' ./docs/latex/Makefile; \
+		echo "Running sed -> Darwin ..."; \
+		sed -i '' -e 's/pdflatex/pdflatex -interaction=nonstopmode/g' ./docs/latex/Makefile; \
 	else \
-		sed -i 's/pdflatex /pdflatex -interaction=nonstopmode /g' ./docs/latex/Makefile; \
+		echo "Running sed -> Linux ..."; \
+		sed -i 's/pdflatex/pdflatex -interaction=nonstopmode/g' ./docs/latex/Makefile; \
 	fi
 
-
-doc_show:
+# To show our documents
+docs_show:
 	open ./docs/html/index.html
 
-
-
+docs_manual: docs_gen
+	$(MAKE) -C ./docs/latex/
+	sleep 50
+	open ./docs/latex/refman.pdf
 
 help:
 	@echo "\033[35m ********************************************************\033[0m"
@@ -130,6 +133,8 @@ help:
 	@echo "\033[32m   make clean                     \033[0m   - clean build and other artifacts"
 	@echo "\033[32m   make clean_dependencies        \033[0m   - clean dependencies, mainly sdl2 library"
 	@echo "\033[32m   make help                      \033[0m   - show this help message"
+	@echo "\033[32m   make docs_gen                  \033[0m   - documentation generator using doxygen"
+	@echo "\033[32m   make docs_show                 \033[0m   - documentation live preview"
 	@echo ""
 	@echo "NOTE: Run Command - will not be maintained, as the project will grow later"
 	@echo "\033[35m ********************************************************\033[0m"
