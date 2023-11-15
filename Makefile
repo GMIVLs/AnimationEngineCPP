@@ -96,13 +96,14 @@ clean_dependencies:
 #############################################
 docs_gen:
 	doxygen dconfig ./build/debug/$(BINARY_NAME)
-	if [ "$$(uname)" = "Darwin" ]; then \
-		echo "Running sed -> Darwin ..."; \
-		sed -i '' -e 's/pdflatex/pdflatex -interaction=nonstopmode/g' ./docs/latex/Makefile; \
-	else \
-		echo "Running sed -> Linux ..."; \
-		sed -i 's/pdflatex/pdflatex -interaction=nonstopmode/g' ./docs/latex/Makefile; \
-	fi
+	# Not necessary as I added LATEX_BATCHMODE=YES to the dconfig file
+	# if [ "$$(uname)" = "Darwin" ]; then \
+	# 	echo "Running sed -> Darwin ..."; \
+	# 	sed -i '' -e 's/pdflatex/pdflatex -interaction=nonstopmode/g' ./docs/latex/Makefile; \
+	# else \
+	# 	echo "Running sed -> Linux ..."; \
+	# 	sed -i 's/pdflatex/pdflatex -interaction=nonstopmode/g' ./docs/latex/Makefile; \
+	# fi
 
 # To show our documents
 docs_show:
