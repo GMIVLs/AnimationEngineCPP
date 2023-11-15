@@ -13,6 +13,9 @@ compile_commands.json
 .cache/
 dependencies
 src/logs/
+docs/latex
+docs/html
+
 # Compiled Object files
 *.slo
 *.lo

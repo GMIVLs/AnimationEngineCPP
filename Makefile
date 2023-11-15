@@ -90,6 +90,25 @@ clean:
 clean_dependencies:
 	@rm -rf ./dependencies
 
+# docs_gen:
+# 	# Generate the doxygen documentation
+# 	doxygen dconfig ./build/debug/${BINARY_NAME}
+# 	sed -i 's/pdflatex /pdflatex -interaction=nonstopmode /g' ./docs/latex/Makefile
+
+docs_gen:
+	doxygen dconfig ./build/debug/$(BINARY_NAME)
+	if [ "$$(uname)" = "Darwin" ]; then \
+		sed -i '' 's/pdflatex /pdflatex -interaction=nonstopmode /g' ./docs/latex/Makefile; \
+	else \
+		sed -i 's/pdflatex /pdflatex -interaction=nonstopmode /g' ./docs/latex/Makefile; \
+	fi
+
+
+doc_show:
+	open ./docs/html/index.html
+
+
+
 
 help:
 	@echo "\033[35m ********************************************************\033[0m"
