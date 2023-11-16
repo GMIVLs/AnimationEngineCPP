@@ -203,3 +203,4 @@ pages of the standard library.
 - ADDING TESTING -04
 - ADDING TESTING -05
 - ADDING TESTING -06
+- ADDING TESTING -07
