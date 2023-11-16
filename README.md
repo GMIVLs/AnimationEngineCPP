@@ -196,15 +196,3 @@ Adding the following:
 I am using in terminal a tool called [cppman](https://github.com/aitjcize/cppman), which give us the ability to navigate between C++98/11/14/17 and 20 manual
 pages of the standard library.
 
-- ADDING TESTING -01
-- ADDING TESTING -02
-- ADDING TESTING -03
-- ADDING TESTING -04
-- ADDING TESTING -05
-- ADDING TESTING -06
-- ADDING TESTING -07
-- ADDING TESTING -08
-- ADDING TESTING -09
-- ADDING TESTING -10
-- ADDING TESTING -11 - I have added here more text - by me GH
-- ADDING TESTING -14 - I have added here more text - by me GH
