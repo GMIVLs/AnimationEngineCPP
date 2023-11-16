@@ -193,9 +193,6 @@ Adding the following:
 
 ## Documentations
 
-I am using in terminal a tool called [cppman](https://github.com/aitjcize/cppman), which give us the ability to navigate between C++98/11/14/17 and 20 manual
-pages of the standard library.
-
-
-testing- adding more details here
-
+I am using in terminal a tool called
+[cppman](https://github.com/aitjcize/cppman), which give us the ability to
+navigate between C++98/11/14/17 and 20 manual pages of the standard library.
