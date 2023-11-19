@@ -13,7 +13,6 @@
 
 static bool OUTPUT_TYPE_ANIMATION = false;
 
-void my_testing_function_for_doxygen(int& a, int& b);
 
 int main(int argc, char* argv[]) {
     // Get the PROJECT_DIR environment variable value
@@ -114,19 +113,7 @@ int main(int argc, char* argv[]) {
         LOG(INFO) << RED << new_my_vector << RESET;
     }
 
-    int k1 = 10;
-    int k2 = 20;
-    my_testing_function_for_doxygen(k1, k2);
 
     return 0;
 }
 
-/*! \brief Brief description.
- *         Brief description continued.
- *
- *  Detailed description starts here.
- */
-void my_testing_function_for_doxygen(int& a, int& b) {
-    std::cout << "The doxygen function test for a and b " << a << "+" << b << " = " << a + b
-              << std::endl;
-}

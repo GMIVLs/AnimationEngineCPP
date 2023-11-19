@@ -6,6 +6,7 @@
 ##################################################
 # Variables
 BINARY_NAME=main
+BINARY_TEST_NAME=my_test
 NUMBER_CORES=8
 SDL2_DIR = $(HOMEBREW_DIR)/sdl2/2.28.5
 SDL2_IMAGE_DIR = $(HOMEBREW_DIR)/sdl2_image/2.6.3_2
@@ -44,8 +45,19 @@ release_using_ninja: link_compile_commands
 		-B ./build/release
 	/opt/homebrew/bin/ninja -j${NUMBER_CORES} -C build/release
 	./build/release/$(BINARY_NAME)
-
-
+# -------------------------------------------------------------------------
+test:
+	cmake -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Test \
+	-DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
+	-DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja \
+	-G Ninja -S . -B ./build/test
+	/opt/homebrew/bin/ninja -j${NUMBER_CORES} -C ./build/test
+	if [ -L compile_commands.json ]; then \
+		rm -f compile_commands.json; \
+	fi
+	ln -s build/test/compile_commands.json compile_commands.json
+	./build/test/tests/$(BINARY_TEST_NAME)
+# -------------------------------------------------------------------------
 # For the clangd language server integration
 link_compile_commands:
 	if [ -L compile_commands.json ]; then \
