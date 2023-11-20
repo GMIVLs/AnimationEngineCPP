@@ -1,4 +1,6 @@
 # Adapted from https://cliutils.gitlab.io/modern-cmake/chapters/projects/submodule.html
+# This will recursively download and update the submodules that you ahve in the dependencies.
+# All submodules should be included there using (git submodule add <repo_name> dependencies/repo_name)
 find_package(Git QUIET)
 if(GIT_FOUND)
     option(UPDATE_SUBMODULES "Check submodules during build" ON)

@@ -49,7 +49,7 @@ release_using_ninja: link_compile_commands
 #                      TESTING (GOOGLE TEST MODULE)
 # -------------------------------------------------------------------------
 test:
-	if [ -n "$(BINARY_TEST_NAME)" ] && [ -f "./build/test/tests/$(BINARY_TEST_NAME)" ]; then \
+	@if [ -n "$(BINARY_TEST_NAME)" ] && [ -f "./build/test/tests/$(BINARY_TEST_NAME)" ]; then \
 		./build/test/tests/$(BINARY_TEST_NAME); \
 	else \
 		cmake -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Test \
