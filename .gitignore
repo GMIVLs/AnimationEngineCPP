@@ -11,7 +11,11 @@ compile_commands.json
 .envrc
 *.pdf
 .cache/
-dependencies
+dependencies/sdl2/*
+dependencies/sdl2_gfx/*
+dependencies/sdl2_ttf/*
+dependencies/sdl2_image/*
+
 src/logs/
 docs/latex
 docs/html

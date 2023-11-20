@@ -19,3 +19,4 @@ TEST(TestTopic3, ChekcingVector){
     EXPECT_EQ(v.get_x(), 1012);
     EXPECT_EQ(v.get_y(), 121);
 }
+

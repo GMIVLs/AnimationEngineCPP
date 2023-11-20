@@ -1,8 +1,11 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.16..3.24)
 project(AnimationEngineCPP CXX)
 # Set compiler flags
 set(CMAKE_CXX_STANDARD 17)
 
+
+# Update the submodules here
+include(cmake/UpdateSubmodules.cmake)
 ######################################
 # Adding googletest for testing
 # Rest of dependencies are managed with vckpkg

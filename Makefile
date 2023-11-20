@@ -46,17 +46,24 @@ release_using_ninja: link_compile_commands
 	/opt/homebrew/bin/ninja -j${NUMBER_CORES} -C build/release
 	./build/release/$(BINARY_NAME)
 # -------------------------------------------------------------------------
+#                      TESTING (GOOGLE TEST MODULE)
+# -------------------------------------------------------------------------
 test:
-	cmake -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Test \
-	-DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
-	-DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja \
-	-G Ninja -S . -B ./build/test
-	/opt/homebrew/bin/ninja -j${NUMBER_CORES} -C ./build/test
-	if [ -L compile_commands.json ]; then \
-		rm -f compile_commands.json; \
+	if [ -n "$(BINARY_TEST_NAME)" ] && [ -f "./build/test/tests/$(BINARY_TEST_NAME)" ]; then \
+		./build/test/tests/$(BINARY_TEST_NAME); \
+	else \
+		cmake -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Test \
+		-DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
+		-DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja \
+		-G Ninja -S . -B ./build/test; \
+		/opt/homebrew/bin/ninja -j${NUMBER_CORES} -C ./build/test; \
+		if [ -L compile_commands.json ]; then \
+			rm -f compile_commands.json; \
+		fi; \
+		ln -s build/test/compile_commands.json compile_commands.json; \
+		./build/test/tests/$(BINARY_TEST_NAME); \
 	fi
-	ln -s build/test/compile_commands.json compile_commands.json
-	./build/test/tests/$(BINARY_TEST_NAME)
+
 # -------------------------------------------------------------------------
 # For the clangd language server integration
 link_compile_commands:
@@ -148,6 +155,7 @@ help:
 	@echo "\033[32m   make help                      \033[0m   - show this help message"
 	@echo "\033[32m   make docs_gen                  \033[0m   - documentation generator using doxygen"
 	@echo "\033[32m   make docs_show                 \033[0m   - documentation live preview"
+	@echo "\033[32m   make test                      \033[0m   - Run all tests in [tests] module"
 	@echo ""
 	@echo "NOTE: Run Command - will not be maintained, as the project will grow later"
 	@echo "\033[35m ********************************************************\033[0m"
