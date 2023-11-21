@@ -3,9 +3,9 @@
 ## Make flags - most common
 
 - When using make, the -j 8 flag specifies that up to 8 jobs (or commands) should
-be run simultaneously, which can speed up the build process on multi-core
-systems. In addition to the -j flag, there are several other flags and options
-that can be useful depending on your needs:
+  be run simultaneously, which can speed up the build process on multi-core
+  systems. In addition to the -j flag, there are several other flags and options
+  that can be useful depending on your needs:
 
 ```sh
 -k or --keep-going: Continue as much as possible after encountering an error. This can be useful when you want to see all the errors in one go, rather than fixing one at a time.

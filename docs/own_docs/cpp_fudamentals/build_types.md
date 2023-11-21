@@ -1,5 +1,17 @@
 # Build Type in CPP
+
 keyword: static, dynamic, framework
+
+1. git subdirectory ( my favourite method!) with a script for fetching and
+   update (similar to googletest library)
+2. Using vckpg and find_package in CMakeLists.txt (similar to golog::golog
+   library)
+3. Manually connect them inside CMakeLists.txt using the direct path to the
+   include and lib files (SDL2)
+4. Pass all the definition to the run command using the flags of clang++ , see
+   Makefile the command run
+5. Using a manual bash/zsh script (automate) the download of the libraries
+   (similar to what we did with SDL2)
 
 Here's a table that compares dynamic libraries and static libraries in various aspects:
 
@@ -134,7 +146,7 @@ offering a structure and foundation for building applications.
    Apple devices with the power of Swift.
 3. **Desktop Development**: Qt is a free and open-source widget toolkit for
    creating GUIs as well as cross-platform applications that run on various
-software and hardware platforms.
+   software and hardware platforms.
 
 ### Using Frameworks in CMakeLists.txt
 
@@ -165,7 +177,7 @@ g++ main.cpp -F /path/to/framework/directory -framework MyFramework -o my_app
 ```
 
 - In the above, `-F` specifies the path to search for frameworks and
-`-framework` is used to link against a specific framework.
+  `-framework` is used to link against a specific framework.
 
 ### Features, Usages, and Common Practices for Frameworks:
 
@@ -190,6 +202,6 @@ g++ main.cpp -F /path/to/framework/directory -framework MyFramework -o my_app
 | **SceneKit/SpriteKit** | Graphics rendering and animation infrastructure for creating 3D (SceneKit) and 2D (SpriteKit) graphics. | Game development and 3D/2D graphics on macOS/iOS.                      |
 
 - Frameworks serve as a foundational layer or a scaffold upon which developers
-build their applications. They provide a consistent and structured way to build
-applications, enabling developers to focus on the unique aspects of their
-application rather than the repetitive or common functionalities.
+  build their applications. They provide a consistent and structured way to build
+  applications, enabling developers to focus on the unique aspects of their
+  application rather than the repetitive or common functionalities.
