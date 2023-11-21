@@ -21,6 +21,7 @@ include(cmake/UpdateSubmodules.cmake)
 # and direct linking in ./src/CMakeLists.txt (e.g., SDL2)
 add_subdirectory(dependencies)
 
+
 ######################################
 #   WHICH BUILD (BINARY vs TEST)
 ######################################
@@ -31,6 +32,9 @@ if (BUILD_TESTS)
 # ------------------------------------
 # Running the test module
 # ------------------------------------
+    # Enable testing for this project
+    include(CTest)
+    # Add the test directory with its own CMakeLists.txt
     add_subdirectory(tests)
 else()
 # ------------------------------------

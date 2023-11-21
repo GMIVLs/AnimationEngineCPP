@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
-#include "../src/lib/veclib/include/vector2d.h"
+//#include "../src/lib/veclib/include/vector2d.h"
+#include "vector2d.h"
 
 namespace {
 int GetMeaningOfLife() { return 42; }

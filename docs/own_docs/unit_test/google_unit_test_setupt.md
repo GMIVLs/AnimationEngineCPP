@@ -10,9 +10,10 @@
         * [1.1.3 CMakeLists at source directory](#113-cmakelists-at-source-directory)
     * [1.1.3 CMakeLists at tests directory](#113-cmakelists-at-tests-directory)
     * [1.2 Makefile at the Root Directory](#12-makefile-at-the-root-directory)
+    * [1.3 cmake directory](#13-cmake-directory)
+* [REFERENCES](#references)
 
 <!-- vim-markdown-toc -->
-
 
 ## METHODs OF INTEGRATING GTEST
 
@@ -42,10 +43,10 @@ We download the `gtest` from the following [link](https://github.com/google/goog
         ┌─────────────────────────────────────────┐
         │                     │                   │
         ▼                     ▼                   ▼
-1.───────────────┐    2.───────────────┐    3.───────────────┐
-│ dependencies   │    │  source (src)  │    │      tests     │
-│ CMakeLists.txt │    │ CMakeLists.txt │    │ CMakeLists.txt │
-└────────────────*    └────────────────*    └────────────────*
+1.───────────────┐    2.───────────────┐    3.───────────────┐   4.───────────────┐
+│ dependencies   │    │  source (src)  │    │      tests     │   │     cmake      │
+│ CMakeLists.txt │    │ CMakeLists.txt │    │ CMakeLists.txt │   │ CMakeLists.txt │
+└────────────────*    └────────────────*    └────────────────*   └────────────────*
 
 
 ```
@@ -290,3 +291,17 @@ test:
 	./build/test/tests/$(BINARY_TEST_NAME)
 
 ```
+
+### 1.3 cmake directory
+
+We added also a `cmake` directory which has the `UpdateSubmodules.cmake` file
+that recursively will search for all the git-submodules based on the
+`.gitmodule` file, and then list all of them then update them accordingly. For
+example the library `googletest` is now a git-submodule which is fetched and
+updated directlry during the build, without a neeed to care about the
+dependencies is now a git-submodule which is fetched and updated directlry
+during the build, without a neeed to care about the dependencies
+
+## REFERENCES
+
+- [Introduction to testing with googletest](https://github.com/cpp-for-yourself/lectures-and-homeworks/blob/main/lectures/googletest.md)

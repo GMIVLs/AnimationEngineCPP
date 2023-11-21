@@ -49,7 +49,7 @@ add_executable(main ${SOURCES})
   list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
   # -----------------------------
 
-  # You can add (-Werror, -Wc++11-extensions), but it will make the complier more restrictive.
+  # You can add (-Werror, -Wc++11-extensions), However, this will make the compiler more restrictive.
   set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -g")
   set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
 

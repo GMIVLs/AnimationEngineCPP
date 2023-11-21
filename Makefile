@@ -45,12 +45,14 @@ release_using_ninja: link_compile_commands
 		-B ./build/release
 	/opt/homebrew/bin/ninja -j${NUMBER_CORES} -C build/release
 	./build/release/$(BINARY_NAME)
+
 # -------------------------------------------------------------------------
 #                      TESTING (GOOGLE TEST MODULE)
+#      ./build/test/tests/$(BINARY_TEST_NAME);deprecated in favor of ctest \
 # -------------------------------------------------------------------------
 test:
 	@if [ -n "$(BINARY_TEST_NAME)" ] && [ -f "./build/test/tests/$(BINARY_TEST_NAME)" ]; then \
-		./build/test/tests/$(BINARY_TEST_NAME); \
+		GTEST_COLOR=1 ctest --test-dir build/test/ --output-on-failure -j${NUMBER_CORES}; \
 	else \
 		cmake -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Test \
 		-DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
@@ -61,9 +63,8 @@ test:
 			rm -f compile_commands.json; \
 		fi; \
 		ln -s build/test/compile_commands.json compile_commands.json; \
-		./build/test/tests/$(BINARY_TEST_NAME); \
+		GTEST_COLOR=1 ctest --test-dir build/test/ --output-on-failure -j${NUMBER_CORES}; \
 	fi
-
 # -------------------------------------------------------------------------
 # For the clangd language server integration
 link_compile_commands:
