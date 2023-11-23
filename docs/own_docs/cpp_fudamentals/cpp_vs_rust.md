@@ -30,3 +30,74 @@ Both languages provide powerful features, but Rust's system is more rigid in
 order to provide stronger compile-time guarantees regarding memory safety. C++
 offers more flexibility but requires developers to be more disciplined to avoid
 memory issues.
+
+## Syntax Inconsistency 
+For the programming language we are dealing usually in C++ with, function declaration, definition and calling. while `rust` usually the designers decided to combine the declaration with the definition as they didnt include the headerfile concept for the Rust. 
+I have noticed that C++ comparing same code to Rust that C++ function calling has unconsistency compared to Rust. Lets see the code 
+
+```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+
+// Function declaration
+std::string my_function_test_01(std::string& my_string, std::vector<float>& v);
+
+int main() {
+    std::string str = "open.ai";
+    std::vector<float> vec = {12.13, 32.3};
+    
+    std::string result = my_function_test_01(str, vec);
+    std::cout << result << std::endl;
+
+    return 0;
+}
+
+// Function definition
+std::string my_function_test_01(std::string& my_string, std::vector<float>& v) {
+    std::string s = "open.ai";
+    if (my_string == s && !v.empty()) {
+        return "[PASS]:: The test is passed as the string is equal ...";
+    }
+
+    return "[NOT PASS]:: The test is not passed as the string is equal ...";
+}
+```
+The identical code in `rust` is:
+```rust
+Let me show you Rust code
+fn main() {
+    let str = String::from("open.ai");
+    let vec = vec![12.13, 32.3];
+
+    let result = my_function_test_01(&str, &vec);
+    println!("{}", result);
+}
+
+fn my_function_test_01(my_string: &String, v: &Vec<f32>) -> String {
+    let s = String::from("open.ai");
+    if my_string == &s && !v.is_empty() {
+        return String::from("[PASS]:: The test is passed as the string is equal ...");
+    }
+
+    String::from("[NOT PASS]:: The test is not passed as the string is equal ...")
+}
+
+```
+If we compare here `C++` vs `Rust`: for this part (function call only):
+
+```
+#CPP
+std::string result = my_function_test_01(str, vec);
+#RUST
+let result = my_function_test_01(&str, &vec);
+```
+We conclude the following: 
+I have check:
+In C++, references are a sort of alias to an existing variable. They don't require the use of any special symbols when being passed to a function. this is part of the C++ syntax!! which means, you don't need to specify the (&), the compiler will know that!,
+and
+Here, str and vec are passed directly to the function, and inside the function, any changes to my_string or v will affect str and vec, respectively.
+
+So, We have two rules
+	1.	Passing by references (in the function definition)-> Use the variable_name itself and it will knows to take the address for you (complier).
+	2.	Passing by pointer (inn the function definition) -> Use the &variable_name to refer to the address of the variable itself.
