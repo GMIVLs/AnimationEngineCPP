@@ -39,7 +39,7 @@ if(BUILD_TESTS)
                  ${CMAKE_SOURCE_DIR}/dependencies/sdl2_image/include/SDL2
             glog::glog
             GTest::gtest_main
-
+            ${CMAKE_SOURCE_DIR}/dependencies/veclib/build/Release/include/
     )
 
   target_link_libraries(
@@ -48,6 +48,7 @@ if(BUILD_TESTS)
             ${CMAKE_SOURCE_DIR}/dependencies/sdl2_image/lib/libSDL2_image.dylib
             glog::glog
             GTest::gtest_main
+            ${CMAKE_SOURCE_DIR}/dependencies/veclib/build/Release/lib/libvector2d.a
     )
     include(GoogleTest)
     gtest_discover_tests(my_test)

@@ -21,7 +21,6 @@ include(cmake/UpdateSubmodules.cmake)
 # and direct linking in ./src/CMakeLists.txt (e.g., SDL2)
 add_subdirectory(dependencies)
 
-
 ######################################
 #   WHICH BUILD (BINARY vs TEST)
 ######################################

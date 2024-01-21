@@ -171,7 +171,8 @@ fswatch -o src/ | xargs -n1 -I{} make all
 
 Adding the following:
 
-1. Assume you have installed already the `cpptools` which we here are using the `nvim` original setup for the `lldb-mi`.
+1. Assume you have installed already the `cpptools` which we here are using the
+   `nvim` original setup for the `lldb-mi`.
 2. Later on, I was able to successfully utilize it by running the command
    `dap-debug-edit-template` first. However, before doing so, you will notice that
    I am using the **lldb-mi** extension from the `cpptools` package installed via

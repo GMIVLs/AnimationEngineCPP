@@ -34,6 +34,8 @@ add_executable(main ${SOURCES})
                  ${CMAKE_SOURCE_DIR}/dependencies/sdl2_image/include/SDL2
             glog::glog
             GTest::gtest_main
+            ${CMAKE_SOURCE_DIR}/dependencies/veclib/build/Release/include/
+
     )
   # Link libraries
   target_link_libraries(
@@ -42,6 +44,7 @@ add_executable(main ${SOURCES})
             ${CMAKE_SOURCE_DIR}/dependencies/sdl2_image/lib/libSDL2_image.dylib
             glog::glog
             GTest::gtest_main
+            ${CMAKE_SOURCE_DIR}/dependencies/veclib/build/Release/lib/libvector2d.a
     )
 
 

@@ -20,17 +20,17 @@ OUTPUT = build/debug/${BINARY_NAME}
 all: debug_using_ninja
 
 debug: link_compile_commands
-	cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake  -S . -B build/debug
+	@cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake  -S . -B build/debug
 	$(MAKE) -j $(NUMBER_CORES) -C build/debug
 	./build/debug/$(BINARY_NAME)
 
 release: link_compile_commands
-	cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake  -S . -B build/release
+	@cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake  -S . -B build/release
 	$(MAKE) -j $(NUMBER_CORES) build/release
 	./build/debug/$(BINARY_NAME)
 
 debug_using_ninja: link_compile_commands
-	cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja \
+	@cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja \
 		-DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
 		-G Ninja -S . \
 		-B ./build/debug
@@ -39,7 +39,7 @@ debug_using_ninja: link_compile_commands
 
 
 release_using_ninja: link_compile_commands
-	cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja \
+	@cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja \
 		-DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
 		-G Ninja -S . \
 		-B ./build/release
@@ -68,10 +68,10 @@ test:
 # -------------------------------------------------------------------------
 # For the clangd language server integration
 link_compile_commands:
-	if [ -L compile_commands.json ]; then \
+	@if [ -L compile_commands.json ]; then \
 		rm -f compile_commands.json; \
 	fi
-	ln -s build/debug/compile_commands.json compile_commands.json
+	@ln -s build/debug/compile_commands.json compile_commands.json
 
 # Run Command - will not be maintained, as the project will grow later
 run: $(OUTPUT)

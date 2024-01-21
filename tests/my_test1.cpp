@@ -16,7 +16,7 @@ TEST(TestTopic2, ChekcingAgain){
 }
 
 TEST(TestTopic3, ChekcingVector){
-    vector2d<int> v = vector2d<int>(1012, 121);
+    immutable::vector2d<int> v = immutable::vector2d<int>(1012, 121);
     EXPECT_EQ(v.get_x(), 1012);
     EXPECT_EQ(v.get_y(), 121);
 }

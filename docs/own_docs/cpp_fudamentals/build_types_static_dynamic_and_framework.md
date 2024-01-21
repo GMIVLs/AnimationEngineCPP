@@ -30,7 +30,6 @@ keyword: static, dynamic, framework
 <!-- markdown-toc end -->
 
 
-
 - Here's a table that compares dynamic libraries and static libraries in various aspects:
 
 | **Aspect**                     | **Dynamic Library**                                                                                                | **Static Library**                                                                                  |

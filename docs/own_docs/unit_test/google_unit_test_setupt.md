@@ -196,7 +196,7 @@ of the `cmake` in the `src/CMakelists.txt`. But, it will not look into the
   - You can remove the log (we dont need this)
   - You can remove the `SDL2` as well.
   - Then, you should specify only the files in the `src` individually rather thant the `files(GLOBAL)` as shown below, otherwise, it will not link as it not be seen by the build
-  ```
+  ```cpp
       file(GLOB_RECURSE SOURCES ./*.cpp            # For define all curernt tests/*.cpp
                                 ../src/lib/*.cpp   # For define all the source files excpet main.cpp
       )

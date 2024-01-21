@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
-#include "../src/lib/veclib/include/vector2d.h"
+//#include "../src/lib/veclib/include/vector2d.h"
+#include "vector2d.h"
 
 namespace {
 int GetMeaningOfLife() { return 42; }
@@ -12,7 +13,7 @@ TEST(TestTopic, TrivialEquality){
 
 TEST(TestTopic, MoreEqualityTests){
     ASSERT_EQ(GetMeaningOfLife(), 0) << "[ERROR]:: oh no!!, a mistake";
-    vector2d<float> v = vector2d<float>(12.3, 32.43);
+    immutable::vector2d<float> v = immutable::vector2d<float>(1012, 121);
     EXPECT_FLOAT_EQ(v.get_x(), 12.3);
     EXPECT_FLOAT_EQ(v.get_y(), 32.43);
 }

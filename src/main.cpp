@@ -1,18 +1,17 @@
-#include "lib/veclib/include/vector2d.h"
+#include <vector.h>
+#include <vector2d.h>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <cstdlib>
-#include <iostream>
 #include <glog/logging.h>
 #include <string>
-#include <vector>
+#include <iostream>
 
 #define RED "\033[1;31m"
 #define BLUE "\033[1;32m"
 #define RESET "\033[0m"
 
-static bool OUTPUT_TYPE_ANIMATION = false;
-
+static bool OUTPUT_TYPE_ANIMATION = true;
 
 int main(int argc, char* argv[]) {
     // Get the PROJECT_DIR environment variable value
@@ -45,6 +44,7 @@ int main(int argc, char* argv[]) {
         }
         // Construct the path to the image
         std::string imagePath = std::string(projectDir) + "/assets/M01.png";
+        std::cout << imagePath << std::endl;
         SDL_Texture* texture = IMG_LoadTexture(renderer, imagePath.c_str());
         if (!texture) {
             SDL_Log("Unable to create texture from image! SDL_image Error: %s\n", IMG_GetError());
@@ -78,42 +78,15 @@ int main(int argc, char* argv[]) {
     // Vector_2d<double> my_vector = Vector_2d(10.0, 10.0);
     double a = 10.0;
     double b = 20.0;
-    vector2d<double> my_vector(a, b);
+    immutable::vector2d<double> v(a, b);
+    v.display();
 
-    for (size_t i = 0; i < 10; i++) {
-        a = a + i;
-        b = b + i;
-        my_vector.display();
-    }
-    // Initialize Google's logging library.
-    google::InitGoogleLogging(argv[0]);
-    // Ensure this is a directory path, not a file path
-    if (!projectDir) {
-        std::cerr << "PROJECT_DIR environment variable is not set." << std::endl;
-        return 1;
-    }
-    std::string logDirPath = std::string(projectDir) + "/src/logs";
-    std::cout << "Log directory: " << logDirPath << std::endl;
-    // Set logging flags
-    FLAGS_alsologtostderr = 1;
-    FLAGS_log_dir = logDirPath.c_str();
-    for (size_t i = 0; i < 3; i++) {
-        LOG(INFO) << RED << __DATE__ << BLUE << " Value of i -> " << RESET << i;
-        // LOG(WARNING) << "Value of i -> " << i;
-        // LOG(ERROR) << "Value of i -> " << i;
-    }
-
-    vector2d<int> my_vector_2{0, 0};
-    vector2d<int> new_my_vector = vector2d<int>(0, 0);
-
-    for (size_t i = 0; i < 10; i++) {
-        int k = i + 10;
-        new_my_vector.set_x(i);
-        new_my_vector.set_y(k);
-        LOG(INFO) << RED << new_my_vector << RESET;
-    }
-
+    /* for (size_t i = 0; i < 10; i++) { */
+    /*     int k = i + 10; */
+    /*     new_my_vector.set_x(i); */
+    /*     new_my_vector.set_y(k); */
+    /*     LOG(INFO) << RED << new_my_vector << RESET; */
+    /* } */
 
     return 0;
 }
-
