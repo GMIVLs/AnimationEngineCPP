@@ -72,3 +72,17 @@ const char* testing_string() {
 ```
 
 By doing this, you're indicating that the string returned by the function should not be modified.
+
+
+
+Assuming that we comprehend the duration of the current goal for our current
+approach to handle all types of theoretical work from home,
+
+Could we also work on the right way once we arrive home and achieve all the goals and handle all the current ideas.
+
+
+
+
+Upon arriving home and achieving all our goals while handling all current ideas,
+let us also ensure that we are following proper grammar and spelling to improve
+the overall quality of our work.

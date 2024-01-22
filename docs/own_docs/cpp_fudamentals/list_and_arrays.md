@@ -1,15 +1,24 @@
 # Lists and Array in CPP
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
 
-<!-- vim-markdown-toc Marked -->
+- [Lists and Array in CPP](#lists-and-array-in-cpp)
+    - [Intro - methods for creating arrays](#intro---methods-for-creating-arrays)
+    - [How to loop over a list-array-vector](#how-to-loop-over-a-list-array-vector)
+    - [C++ Standard Library for Several Containers](#c-standard-library-for-several-containers)
+    - [How to create an array in C++](#how-to-create-an-array-in-c)
+    - [what is {} for element storing is it a set or array or what](#what-is--for-element-storing-is-it-a-set-or-array-or-what)
+    - [Declare an array](#declare-an-array)
+    - [More in depth](#more-in-depth)
+        - [Key Points](#key-points)
+        - [Q1: For std::vector should I add the keyword “new” or it will managed automatically? Can you give me the common coding practice?](#q1-for-stdvector-should-i-add-the-keyword-new-or-it-will-managed-automatically-can-you-give-me-the-common-coding-practice)
+        - [Example Usage of `std::vector`](#example-usage-of-stdvector)
+        - [Key Points:](#key-points)
+    - [Table for Similar memory managed containers](#table-for-similar-memory-managed-containers)
+        - [Key Points:](#key-points-1)
 
-* [Intro - methods for creating arrays](#intro---methods-for-creating-arrays)
-* [How to loop over a list-array-vector](#how-to-loop-over-a-list-array-vector)
-* [C++ Standard Library for Several Containers](#c++-standard-library-for-several-containers)
-* [How to create an array in C++](#how-to-create-an-array-in-c++)
-* [what is {} for element storing is it a set or array or what](#what-is-{}-for-element-storing-is-it-a-set-or-array-or-what)
-* [Declare an array](#declare-an-array)
+<!-- markdown-toc end -->
 
-<!-- vim-markdown-toc -->
 
 ## Intro - methods for creating arrays
 
@@ -252,3 +261,129 @@ are some common ones:
    ```
 
 Each of these methods has its use cases, advantages, and drawbacks. Which one you choose depends on the requirements of your specific application.
+
+## More in depth
+
+Constructing arrays or lists in C++ can be done in various ways, each
+with different implications for memory allocation and management. Below is a
+table illustrating different methods of constructing arrays and lists, including
+stack and heap allocations, using built-in arrays, pointers, dynamic arrays, and
+C++ Standard Library containers like `std::vector` and `std::array`.
+
+| Method                         | Declaration Example                                                            | Storage Location | Description                                                                                                                                                    |
+| ------------------------------ | ------------------------------------------------------------------------------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Static Array                   | `int arr[5] = {1, 2, 3, 4, 5};`                                                | Stack            | Fixed-size array. Size must be known at compile-time.                                                                                                          |
+| Dynamic Array (C-Style)        | `int* arr = new int[5];`                                                       | Heap             | Dynamically allocated array. Size can be determined at runtime. Requires manual memory management with `new[]` and `delete[]`.                                 |
+| std::vector                    | `std::vector<int> vec = {1, 2, 3, 4, 5};`                                      | Heap             | Dynamic size array, part of the C++ Standard Library. Automatically manages memory.                                                                            |
+| std::array                     | `std::array<int, 5> arr = {1, 2, 3, 4, 5};`                                    | Stack            | Fixed-size array, part of the C++ Standard Library. Offers benefits of standard containers (like iterators). Size must be known at compile-time.               |
+| Array via Pointer              | `int* arr = new int[5]{1, 2, 3, 4, 5};`                                        | Heap             | Pointer to a dynamically allocated array. Allows for runtime determination of size. Requires manual memory management.                                         |
+| C-Style String (as char array) | `char arr[] = "Hello";`                                                        | Stack            | Character array initialized with a string literal.                                                                                                             |
+| std::initializer_list          | `std::initializer_list<int> il = {1, 2, 3, 4, 5};`                             | Stack            | Allows creation of an array-like object with a fixed set of values. Often used in function parameter passing.                                                  |
+| std::list                      | `std::list<int> lst = {1, 2, 3, 4, 5};`                                        | Heap             | Part of the C++ Standard Library, representing a doubly-linked list. Offers efficient insertions and deletions at any position.                                |
+| Multidimensional Array         | `int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};`                                      | Stack            | A static multidimensional array. Fixed sizes for each dimension must be known at compile-time.                                                                 |
+| Dynamic Multidimensional Array | `int** arr = new int*[2];` for rows, then for each row: `arr[i] = new int[3];` | Heap             | A dynamically allocated multidimensional array. Allows different sizes for each row and runtime size determination. Requires complex manual memory management. |
+
+### Key Points
+
+- **Static vs Dynamic**: Static arrays (`int arr[5];`) are allocated on the
+  stack, have fixed size, and are automatically managed. Dynamic arrays (`new int[5];`) are allocated on the heap, can have variable size, but require
+  manual memory management.
+- **Standard Library Containers**: Containers like `std::vector` and `std::list`
+  handle memory management automatically and provide additional functionality
+  over built-in arrays.
+- **Use Cases**: The choice between these methods depends on the specific
+  requirements of your application, such as the need for dynamic resizing
+  (`std::vector`), fixed size (`std::array`, static array), or specific data
+  structure behavior (like `std::list` for linked lists).
+- **Memory Management**: Always be mindful of memory management, especially with
+  dynamic allocation to avoid memory leaks and other related issues.
+
+### Q1: For std::vector should I add the keyword “new” or it will managed automatically? Can you give me the common coding practice?
+
+When using `std::vector` in C++, you do not need to use the `new` keyword. The
+memory management for `std::vector` is handled automatically. `std::vector`
+internally manages a dynamically allocated array to store its elements and
+automatically handles resizing and reallocation as needed.
+
+Here's the common coding practice for using `std::vector`:
+
+### Example Usage of `std::vector`
+
+```cpp
+#include <vector>
+#include <iostream>
+
+int main() {
+    // Declare and initialize a vector
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    // Add an element to the end
+    vec.push_back(6);
+    // Access elements
+    std::cout << "First element: " << vec[0] << std::endl;
+    // Iterate over the vector
+    for (int i : vec) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+    return 0;
+}
+```
+
+### Key Points:
+
+1. **No `new` Required**: The `std::vector` object is declared like a regular
+   variable. Its constructor handles the allocation of its internal array.
+2. **Automatic Memory Management**: `std::vector` automatically manages the
+   memory of its internal array. It deallocates the memory when the vector goes
+   out of scope or is explicitly destroyed.
+3. **Dynamic Resizing**: `std::vector` automatically resizes itself as elements
+   are added or removed. Methods like `push_back()` and `erase()` are used for
+   these operations.
+4. **Random Access**: Elements in a `std::vector` can be accessed directly using
+   the subscript operator `[]`.
+5. **Iteration**: You can iterate over the elements of a `std::vector` using a
+   range-based for loop or iterators.
+6. **Custom Types**: `std::vector` can store objects of any type, including
+   user-defined types.
+
+- Using `std::vector` is recommended over plain arrays or dynamic arrays in most
+  cases because of its flexibility and the fact that it eliminates many of the
+  common errors associated with manual memory management.
+
+## Table for Similar memory managed containers
+
+Make a table for data containers like vector which will be managed automatically
+without a need for dellocate and no require to use “new” when creating them.
+Certainly! Here's a table summarizing various data containers in C++ that are
+managed automatically, where you don't need to deal with manual memory
+allocation or deallocation, and there's no requirement to use `new` when
+creating instances of these containers.
+
+
+| Container         | Description                                                                                            | Declaration Example                            | Key Characteristics                                                     |
+|-------------------|--------------------------------------------------------------------------------------------------------|------------------------------------------------|-------------------------------------------------------------------------|
+| `std::vector`     | Dynamic array that can resize itself as needed.                                                        | `std::vector<int> vec = {1, 2, 3, 4, 5};`      | Random access, dynamic resizing, contiguous storage.                   |
+| `std::list`       | Doubly-linked list allowing efficient insertion and removal from anywhere in the list.                  | `std::list<int> lst = {1, 2, 3, 4, 5};`        | Efficient insertions and deletions, non-contiguous storage.            |
+| `std::deque`      | Double-ended queue allowing insertion and removal at both ends.                                        | `std::deque<int> dq = {1, 2, 3, 4, 5};`        | Random access, efficient insertions/removals at both ends.             |
+| `std::array`      | Fixed-size array, wrapper around plain array with added standard container functionality.              | `std::array<int, 5> arr = {1, 2, 3, 4, 5};`    | Fixed size, stack allocated, random access.                            |
+| `std::forward_list` | Singly-linked list allowing efficient insertion and removal from the front.                          | `std::forward_list<int> fl = {1, 2, 3, 4, 5};` | Efficient insertions and deletions at the front, non-contiguous storage.|
+| `std::set`        | Collection of unique elements, automatically ordered.                                                  | `std::set<int> st = {5, 3, 1, 4, 2};`          | Unique elements, ordered, efficient lookup and insertion.              |
+| `std::map`        | Collection of key-value pairs, automatically ordered by keys, keys are unique.                         | `std::map<int, std::string> mp;`               | Unique keys, ordered by keys, direct element access via keys.          |
+| `std::unordered_set` | Collection of unique elements, hashed into unordered buckets.                                        | `std::unordered_set<int> us = {5, 3, 1, 4, 2};` | Unique elements, unordered, efficient in terms of average speed.       |
+| `std::unordered_map` | Collection of key-value pairs, hashed into unordered buckets, keys are unique.                       | `std::unordered_map<int, std::string> um;`     | Unique keys, unordered, direct element access via keys, fast average speed. |
+| `std::stack`      | Adapts a container to provide stack (LIFO) operations.                                                  | `std::stack<int> stk;`                         | Provides stack operations, can adapt various container types.          |
+| `std::queue`      | Adapts a container to provide queue (FIFO) operations.                                                  | `std::queue<int> que;`                         | Provides queue operations, can adapt various container types.          |
+| `std::priority_queue` | Adapts a container to provide priority queue operations, with elements sorted by priority.          | `std::priority_queue<int> pq;`                 | Elements sorted by priority, efficient access to largest element.      |
+
+### Key Points:
+
+- **Automatic Memory Management**: All these containers handle memory allocation
+  and deallocation automatically.
+- **No `new` Required**: Instances of these containers can be declared like
+  regular variables.
+- **Versatility and Safety**: These containers offer a safe and versatile way to
+  handle collections of elements, each suited for specific needs (like
+  `std::list` for frequent insertions/deletions, `std::vector` for random
+  access, etc.).
+- **Standard Library Integration**: Being part of the C++ Standard Library,
+  these containers integrate well with other standard features and algorithms.

@@ -3,12 +3,45 @@
 ## Content
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-
 **Table of Contents**
 
 - [String premier in CPP - In depth](#string-premier-in-cpp---in-depth)
-  - [Content](#content)
-  - [Types of string - Commonly used](#types-of-string---commonly-used)
+    - [Content](#content)
+    - [String in cpp all methods](#string-in-cpp-all-methods)
+        - [**Construction**:](#construction)
+        - [**Element Access**:](#element-access)
+        - [**Modifiers**:](#modifiers)
+        - [**Capacity**:](#capacity)
+        - [**Operations**:](#operations)
+        - [**Relational Operators**:](#relational-operators)
+        - [**Iterators**:](#iterators)
+        - [**Numeric Conversions**:](#numeric-conversions)
+        - [**Allocator**:](#allocator)
+        - [**Member Constants**:](#member-constants)
+        - [Common Usage Patterns:](#common-usage-patterns)
+    - [Explain the char and sting lateral in general](#explain-the-char-and-sting-lateral-in-general)
+        - [Character Literals:](#character-literals)
+            - [Wide and Unicode Character Literals:](#wide-and-unicode-character-literals)
+        - [String Literals:](#string-literals)
+            - [Raw String Literals:](#raw-string-literals)
+            - [Wide and Unicode String Literals:](#wide-and-unicode-string-literals)
+        - [Distinction Between String Literals and `std::string`:](#distinction-between-string-literals-and-stdstring)
+    - [Types of string - Commonly used](#types-of-string---commonly-used)
+    - [More details](#more-details)
+    - [String Array](#string-array)
+    - [Libraries dealing with string](#libraries-dealing-with-string)
+    - [What is char\* argv[] is there another way to declare this ?](#what-is-char-argv-is-there-another-way-to-declare-this-)
+    - [Can you loop over these both show me an example ?](#can-you-loop-over-these-both-show-me-an-example-)
+        - [More Examples](#more-examples)
+        - [More Examples](#more-examples-1)
+    - [Example](#example)
+    - [String Style in CPP](#string-style-in-cpp)
+        - [Key Points](#key-points)
+        - [Q1: For c-style string (pointer) I thought we need the keyword “new” to determine if it is on heap or stack?](#q1-for-c-style-string-pointer-i-thought-we-need-the-keyword-new-to-determine-if-it-is-on-heap-or-stack)
+        - [Q2: other memeory managed containers in C++](#q2-other-memeory-managed-containers-in-c)
+        - [Key Points:](#key-points)
+        - [Q3: What others similar to this](#q3-what-others-similar-to-this)
+        - [Key Points:](#key-points-1)
 
 <!-- markdown-toc end -->
 
@@ -405,8 +438,7 @@ array of the arguments themselves as C-style strings.
 
 ## Can you loop over these both show me an example ?
 
-Sure, here's an example of how you can loop over `argv` using either `char*
-argv[]` or `char** argv`. Both examples do exactly the same thing: they print
+Sure, here's an example of how you can loop over `argv` using either `char* argv[]` or `char** argv`. Both examples do exactly the same thing: they print
 each command-line argument on a separate line.
 
 1. Using `char* argv[]`:
@@ -573,3 +605,133 @@ std::string* myFunction(std::string* my_str) {
     return my_str;
 }
 ```
+
+## String Style in CPP
+
+Creating a table to illustrate different ways to declare and store text
+(strings) in C++ is a great idea for understanding the various options, each
+with its pros and cons. The table below covers different methods, including
+declarations on the stack, heap, using C-style strings, character arrays,
+pointers, references, and the standard C++ `std::string` class.
+
+| Method                        | Declaration Example                                          | Storage Location | Description                                                                                                                                      |
+| ----------------------------- | ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| C-Style String (Array)        | `char str[] = "Hello";`                                      | Stack            | A simple array of characters. The size is fixed to the array length.                                                                             |
+| C-Style String (Pointer)      | `char* str = "Hello";`                                       | Heap             | A pointer to a string literal. The string is stored in a read-only section of memory.                                                            |
+| std::string                   | `std::string str = "Hello";`                                 | Stack            | Dynamic size string, part of the C++ Standard Library. Memory for the actual content is managed automatically and usually allocated on the heap. |
+| Character Array               | `char str[6] = {'H', 'e', 'l', 'l', 'o', '\0'};`             | Stack            | Fixed-size array of characters. Must manually include a null terminator.                                                                         |
+| Dynamic C-Style String        | `char* str = new char[6];`                                   | Heap             | Dynamically allocated array of characters. Requires manual memory management with `new` and `delete`.                                            |
+| String via Pointer            | `std::string* str = new std::string("Hello");`               | Heap             | A pointer to a dynamically allocated `std::string`. Requires manual memory management.                                                           |
+| String Reference              | `std::string& strRef = str;`                                 | Stack            | A reference to an existing `std::string` object. Does not allocate new storage but provides another way to access an existing string.            |
+| String Literal (C++11 Onward) | `auto str = "Hello";`                                        | Stack            | String literal with automatic type deduction. Deduced as `const char*`.                                                                          |
+| std::array of char            | `std::array<char, 6> str = {'H', 'e', 'l', 'l', 'o', '\0'};` | Stack            | Fixed-size array of characters provided by the C++ Standard Library. Offers benefits of standard container (like iterators).                     |
+| std::vector of char           | `std::vector<char> str = {'H', 'e', 'l', 'l', 'o', '\0'};`   | Stack            | Dynamic array of characters, size can change at runtime. The actual data is stored on the heap, but the vector object itself is on the stack.    |
+
+### Key Points
+
+- **C-Style Strings** are simple but lack safety and convenience features of C++ strings.
+- **std::string** is the preferred way in modern C++ due to its flexibility and built-in memory management.
+- **Dynamic Allocation** (`new`, `delete`) is powerful but requires careful memory management.
+- **References** provide an alternative way to access strings without copying but do not allocate memory themselves.
+- **Containers** like `std::vector` and `std::array` offer more functionality and safety compared to plain arrays.
+
+It's important to choose the right type of string representation based on your
+application's needs, considering factors like memory management, performance,
+and ease of use.
+
+### Q1: For c-style string (pointer) I thought we need the keyword “new” to determine if it is on heap or stack?
+
+You are correct in your understanding about the use of the `new` keyword for
+dynamic memory allocation (heap) in C++. However, the distinction is slightly
+different in the context of C-style strings (character pointers). Let's clarify
+this:
+
+1. **C-Style String (Pointer to String Literal)**: When you declare a C-style string as a pointer to a string literal, like this:
+
+   ```cpp
+   const char* str = "Hello";
+   ```
+
+   The pointer `str` itself is stored on the stack, but it points to a string
+   literal, which is stored in a read-only section of the memory (not typically
+   considered part of the heap or stack). This memory is managed by the system,
+   and you don't need to (and shouldn't) deallocate it.
+
+2. **Dynamic C-Style String (Using `new`)**: When you dynamically allocate memory for a C-style string using `new`, like this:
+   ```cpp
+   char* str = new char[6];
+   strcpy(str, "Hello");
+   ```
+   In this case, `str` is still a pointer stored on the stack, but it points to
+   memory allocated on the heap. This memory must be managed manually, which
+   means you should use `delete[]` to deallocate it when it's no longer needed.
+
+So, the key distinction is where the actual character data is stored and how
+it's managed:
+
+- **String Literal**: Stored in a read-only section, managed by the system.
+- **Dynamically Allocated**: Stored on the heap, managed manually using `new`
+  and `delete`.
+
+### Q2: other memeory managed containers in C++
+
+Here's a table summarizing various C++ containers and classes that manage memory
+automatically, where manual memory management using `new` and `delete` is not
+necessary.
+
+| Container/Class         | Description                                                 | Declaration Example                      | Key Characteristics                                                                      |
+| ----------------------- | ----------------------------------------------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `std::string`           | Represents a dynamic array of characters.                   | `std::string str = "Hello";`             | Automatically manages memory for string operations, dynamic resizing.                    |
+| `std::wstring`          | Wide character string, similar to `std::string`.            | `std::wstring wstr = L"Hello";`          | Used for wide character strings, dynamic resizing.                                       |
+| `std::basic_string`     | Template class for strings of arbitrary character types.    | `std::basic_string<char> str = "Hello";` | Basis for `std::string` and `std::wstring`.                                              |
+| `std::ostringstream`    | Output string stream for string manipulation.               | `std::ostringstream oss;`                | Useful for converting numbers and other types to strings.                                |
+| `std::istringstream`    | Input string stream for string manipulation.                | `std::istringstream iss("123");`         | Useful for parsing strings into numbers or other types.                                  |
+| `std::stringstream`     | String stream for both input and output operations.         | `std::stringstream ss;`                  | Combines input and output stream functionalities for strings.                            |
+| `std::shared_ptr`       | Smart pointer for shared ownership of an object.            | `std::shared_ptr<int> ptr(new int(10));` | Manages memory for dynamically allocated objects, shared ownership.                      |
+| `std::unique_ptr`       | Smart pointer for unique ownership of an object.            | `std::unique_ptr<int> ptr(new int(10));` | Manages memory for dynamically allocated objects, unique ownership.                      |
+| `std::weak_ptr`         | Weak reference to an object managed by `std::shared_ptr`.   | `std::weak_ptr<int> wptr;`               | Does not own the object, used to break cycles in `std::shared_ptr`.                      |
+| `std::optional` (C++17) | Represents an optional value.                               | `std::optional<int> opt = 5;`            | Holds either a value or nothing, useful for return types where no value may be returned. |
+| `std::variant` (C++17)  | Type-safe union for holding one of several specified types. | `std::variant<int, float> var = 10;`     | Can hold one of several types, only one at a time.                                       |
+| `std::any` (C++17)      | Container for an instance of any type.                      | `std::any a = 10;`                       | Can hold a value of any type.                                                            |
+
+### Key Points:
+
+- **Automatic Memory Management**: These classes handle memory allocation and
+  deallocation automatically.
+- **Ease of Use**: They simplify code by eliminating the need for manual memory
+  management.
+- **Safety**: They reduce the risk of memory-related errors such as leaks or
+  dangling pointers.
+- **Versatility**: They offer a range of functionalities, from string
+  manipulation to smart pointers and type-safe unions.
+
+### Q3: What others similar to this
+
+Aside from the containers, classes, and strings mentioned in the previous
+tables, C++ provides several other features and standard library components that
+manage memory automatically and do not require explicit use of the `new`
+keyword. These features enhance code safety, readability, and maintainability.
+
+Here's a table summarizing these additional C++ features:
+
+| Feature/Component               | Description                                                                                | Example Usage                                 | Key Characteristics                                                        |
+| ------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------- | -------------------------------------------------------------------------- |
+| Function-local Static Variables | Variables declared `static` inside a function maintain their state between function calls. | `static int counter = 0; counter++;`          | Preserved between calls, initialized only once, no manual management.      |
+| Automatic (Stack) Variables     | Variables declared within a function scope without `new`.                                  | `int var = 42;`                               | Automatically allocated and deallocated with the function scope.           |
+| Range-based For Loop            | Simplifies iterating over containers or arrays.                                            | `for (auto& elem : container) { /*...*/ }`    | Eliminates the need for manual indexing or iterators.                      |
+| Lambda Expressions              | Anonymous function objects, useful for inline functions.                                   | `[&](int x) { return x * x; }`                | Can capture local variables and have automatic lifetime management.        |
+| `auto` Keyword                  | Automatic type deduction for variables.                                                    | `auto var = funcReturningComplexType();`      | Simplifies code, especially with complex types like iterators.             |
+| Return Value Optimization (RVO) | Compiler optimization that eliminates unnecessary copying of objects.                      | `MyClass func() { MyClass obj; return obj; }` | Automatically applied by the compiler, reduces overhead.                   |
+| Standard Algorithms             | Functions in the `<algorithm>` header for common operations.                               | `std::sort(begin(vec), end(vec));`            | Provides a wide range of functionalities without manual memory management. |
+| Smart Containers in Libraries   | Containers in third-party libraries that manage memory automatically.                      | `boost::circular_buffer<int> buffer(10);`     | Libraries like Boost provide additional smart containers.                  |
+
+### Key Points:
+
+- **Automated Management**: These features manage their lifecycle automatically, reducing the risk of memory leaks or dangling pointers.
+- **Ease of Use and Safety**: They simplify C++ programming by reducing the need for manual memory management and improving code safety.
+- **Modern C++ Practices**: Embracing these features aligns with modern C++ best practices, emphasizing safety, readability, and efficiency.
+
+C++'s standard library and language features provide a rich set of tools that
+handle many of the complexities of memory and resource management, allowing
+developers to focus more on the business logic and high-level design of their
+applications.
