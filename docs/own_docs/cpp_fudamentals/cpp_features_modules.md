@@ -1,5 +1,21 @@
 # Features in Modern CPP
 
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+- [Features in Modern CPP](#features-in-modern-cpp)
+    - [Modules](#modules)
+        - [Example_1](#example_1)
+        - [Example 2](#example-2)
+        - [Key Differences](#key-differences)
+    - [Relative Path vs Absolute Path in Calling](#relative-path-vs-absolute-path-in-calling)
+        - [Makefile Setup](#makefile-setup)
+        - [Source Code](#source-code)
+        - [Using CMake](#using-cmake)
+
+<!-- markdown-toc end -->
+
+
 ## Modules
 
 In modern C++, the module concept is an alternative to header files. Instead of
@@ -122,7 +138,6 @@ Syntax: Modules use export module for definition and import for using them, repl
   aiming to address many of the longstanding issues associated with the
   preprocessor and header files.
 
-
 As of my last update in April 2023, Clang, the compiler front-end for the C,
 C++, and Objective-C programming languages, does have support for C++20 modules,
 which includes support for the module feature. However, the extent of this
@@ -147,3 +162,73 @@ To check the current status of module support in Clang on a Mac, you can refer
 to the official Clang documentation or community resources for the most recent
 updates. Keep in mind that as the C++ standard evolves, compiler support for
 features like modules will also continue to evolve and improve.
+
+## Relative Path vs Absolute Path in Calling
+
+Creating paths relative to the root directory of your project is a common and
+good practice in C++ projects, and it's often the preferred approach over
+absolute paths for reasons of portability and maintainability.
+
+To implement this, you typically set up your build system (like CMake, Makefile,
+etc.) to include the project root directory in the list of include directories.
+This way, you can use paths relative to the project root in your `#include`
+statements, which effectively makes them "absolute" with respect to your
+project, but not your filesystem. This approach keeps the advantages of relative
+paths while providing a clear and consistent way to include files from anywhere
+in your project.
+
+Here's an example of how you can do this in a Makefile and in your source code:
+
+### Makefile Setup
+
+In your Makefile, you can add a flag to your compiler call to include the root directory:
+
+```makefile
+# Example Makefile
+CXX = g++
+CXXFLAGS = -I/path/to/your/project/root -std=c++17 # Add the project root directory
+
+# Define your build targets and rules here
+```
+
+### Source Code
+
+Now, in your source code, you can include headers using paths relative to the
+project root. For example:
+
+```cpp
+// src/main.cpp
+#include "concepts/my_add_function/add.hpp"
+
+int main() {
+    // Your code here
+}
+```
+
+```cpp
+// src/concepts/my_add_function/add.cpp
+#include "concepts/my_logging/my_logging.hpp"
+
+// Implementation of add function
+```
+
+In this setup, even though the include statements look like relative paths, they
+are effectively relative to your project's root directory, thanks to the `-I`
+compiler flag in the Makefile.
+
+### Using CMake
+
+If you're using CMake, you can achieve a similar setup by using `target_include_directories` in your CMakeLists.txt file:
+
+```cmake
+# Example CMakeLists.txt
+cmake_minimum_required(VERSION 3.10)
+project(MyProject)
+
+# Add the project root directory to the include path
+include_directories(${CMAKE_SOURCE_DIR})
+
+# Define your targets and add source files
+```
+
+This approach maintains the flexibility and portability of your project while allowing a more organized and readable way of including files.
