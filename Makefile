@@ -108,7 +108,11 @@ clean:
 		compile_commands.json .idea cmake-build-debug
 
 clean_dependencies:
-	@rm -rf ./dependencies
+	@rm -rf ./dependencies/sdl2/ \
+	./dependencies/sdl2_gfx/\
+	./dependencies/sdl2_ttf/\
+	./dependencies/sdl2_image/\
+	./dependencies/googletest/
 
 #############################################
 # You will need doxygen to be installed,
