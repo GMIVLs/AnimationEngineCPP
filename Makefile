@@ -8,8 +8,8 @@
 BINARY_NAME=main
 BINARY_TEST_NAME=my_test
 NUMBER_CORES=8
-SDL2_DIR = $(HOMEBREW_DIR)/sdl2/2.28.5
-SDL2_IMAGE_DIR = $(HOMEBREW_DIR)/sdl2_image/2.6.3_2
+SDL2_DIR = $(HOMEBREW_DIR)/sdl2/2.30.7
+SDL2_IMAGE_DIR = $(HOMEBREW_DIR)/sdl2_image/2.8.2_1
 SOURCES = src/main.cpp src/lib/veclib/lib/vector2d.cpp ./src/lib/veclib/lib/vect.cpp
 OUTPUT = build/debug/${BINARY_NAME}
 
