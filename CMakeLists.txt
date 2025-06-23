@@ -1,10 +1,23 @@
 ######################################
 #     BASICS CONFIGURATION CMAKE
 ######################################
-cmake_minimum_required(VERSION 3.16..3.24)
+cmake_minimum_required(VERSION 3.16...3.25)
 project(AnimationEngineCPP CXX)
+if(POLICY CMP0074)
+    cmake_policy(SET CMP0074 NEW)
+endif()
+
 # Set compiler flags
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Suppress developer/deprecation warnings if necessary
+set(CMAKE_SUPPRESS_DEVELOPER_WARNINGS 1)
+
+# Explicitly set policies for compatibility
+if(POLICY CMP0074)
+    cmake_policy(SET CMP0074 NEW)
+endif()
 
 ######################################
 # Update the submodules here

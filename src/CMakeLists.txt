@@ -17,6 +17,7 @@ if(APPLE)
 ## vcpkg libraries - Logging header
 find_package(glog CONFIG REQUIRED)
 
+
 # Setting my compling command for clangd language server, offer jump to
 # definition,
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -52,8 +53,8 @@ add_executable(main ${SOURCES})
   list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
   # -----------------------------
 
-  # You can add (-Werror, -Wc++11-extensions), However, this will make the compiler more restrictive.
-  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -g")
+  # You can add (-Werror, -Wc++11-extensions, -Wunused-parameter ), However, this will make the compiler more restrictive.
+  set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -Wno-unused-parameter -g")
   set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
 
 endif()

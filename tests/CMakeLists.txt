@@ -58,8 +58,8 @@ if(BUILD_TESTS)
     # --------------------------------------------------------------------
     set(CMAKE_BUILD_TYPE Test CACHE STRING "Set the build type to Test" FORCE)
     # Define flags for Test build
-    set(CMAKE_CXX_FLAGS_TEST "${CMAKE_CXX_FLAGS_TEST} -Wall -Wextra -g")
-    set(CMAKE_C_FLAGS_TEST "${CMAKE_C_FLAGS_TEST} -Wall -Wextra -g")
+    set(CMAKE_CXX_FLAGS_TEST "${CMAKE_CXX_FLAGS_TEST} -Wall -Wextra Wunused-parameter -g")
+    set(CMAKE_C_FLAGS_TEST "${CMAKE_C_FLAGS_TEST} -Wall -Wextra Wunused-parameter -g")
     # Check if we are using the Test build
     if(CMAKE_BUILD_TYPE STREQUAL "Test")
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_TEST}")

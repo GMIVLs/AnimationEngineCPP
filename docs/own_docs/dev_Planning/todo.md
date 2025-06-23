@@ -18,16 +18,16 @@
 #### 1.2.1 Computional vector
 
 - [x] Finish from your previous constructed class.
-  - [ ] length : length of a vector in given units.
-  - [ ] magnitude : (i.e., similar to length)
-  - [ ] normalize : (vector lentgh = 1 unit)
-  - [ ] rotate : (accept rotation)
-  - [ ] dot product: (scalar value)
-  - [ ] orthogonal : (the perpendicular component vector of a given 2d vector)
-  - [ ] projection : (the horizontal component vector of a given 2d vector)
-  - [ ] transition : (moving) (moving a vector **origin** from point A to point B)
-  - [ ] refelction : given a vector angle create the refelection.
-  - [ ] need for vector print operator (<<).
+  - [x] length : length of a vector in given units.
+  - [x] magnitude : (i.e., similar to length)
+  - [x] normalize : (vector lentgh = 1 unit)
+  - [x] rotate : (accept rotation)
+  - [x] dot product: (scalar value)
+  - [x] orthogonal : (the perpendicular component vector of a given 2d vector)
+  - [x] projection : (the horizontal component vector of a given 2d vector)
+  - [x] transition : (moving) (moving a vector **origin** from point A to point B)
+  - [x] refelction : given a vector angle create the refelection.
+  - [x] need for vector print operator (<<).
 
 ##### 1.2.1.1 Requirements
 

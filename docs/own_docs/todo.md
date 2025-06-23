@@ -14,23 +14,23 @@ The following
 
 #### Basics Topics:
 
-✅ Package manager ( in CPP, `vcpkg`, or `conan`, `Basel` ..etc.)
-✅ Packing and modularity (how to organize your project into files and folders)
-✅ How to use the Language server protocols (LSP including: syntax highlighting, `linting`, jump to definition, hover on definition, ..etc.
-✅ Run time vs compilation time with all flags (for debugging language, for scripting like python or javascript you just need to know the commands to run your project)
-✅ Unit testing
-✅ Logging (log messages)
-✅ Error handling/Catching
-✅ Coding formatting
-✅ Debugging and debugging adapter connection
-✅ The language programming frameworks
-✅ The language fundamentals: I/O, loops, conditions, data primitive types, data containers (list, array ..etc.) ..etc.
-✅ External Packages to accomplish the assigned task, how to wire them to your project
+- [x] Package manager ( in CPP, `vcpkg`, or `conan`, `Basel` ..etc.)
+- [x] Packing and modularity (how to organize your project into files and folders)
+- [x] How to use the Language server protocols (LSP including: syntax highlighting, `linting`, jump to definition, hover on definition, ..etc.
+- [x] Run time vs compilation time with all flags (for debugging language, for scripting like python or javascript you just need to know the commands to run your project)
+- [x] Unit testing
+- [x] Logging (log messages)
+- [x] Error handling/Catching
+- [x] Coding formatting
+- [x] Debugging and debugging adapter connection
+- [x] The language programming frameworks
+- [x] The language fundamentals: I/O, loops, conditions, data primitive types, data containers (list, array ..etc.) ..etc.
+- [x] External Packages to accomplish the assigned task, how to wire them to your project
 
 #### ADVANCED TOPICS:
 
-✅ Asynchronous programming
-✅ Multi-threading and Multi-processing
-✅ Generic/templates, interfaces and traits ..etc.
-✅ SQL-ORM, Core and working with databases
-✅ Building responsive server with RESTful APIs (using HTTPs protocol with the method GET, POST ..etc)
+- [x] Asynchronous programming
+- [x] Multi-threading and Multi-processing
+- [x] Generic/templates, interfaces and traits ..etc.
+- [x] SQL-ORM, Core and working with databases
+- [x] Building responsive server with RESTful APIs (using HTTPs protocol with the method GET, POST ..etc)

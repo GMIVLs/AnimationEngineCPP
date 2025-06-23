@@ -8,7 +8,7 @@
 BINARY_NAME=main
 BINARY_TEST_NAME=my_test
 NUMBER_CORES=8
-SDL2_DIR = $(HOMEBREW_DIR)/sdl2/2.30.7
+SDL2_DIR = $(HOMEBREW_DIR)/sdl2/2.32.2
 SDL2_IMAGE_DIR = $(HOMEBREW_DIR)/sdl2_image/2.8.2_1
 SOURCES = src/main.cpp src/lib/veclib/lib/vector2d.cpp ./src/lib/veclib/lib/vect.cpp
 OUTPUT = build/debug/${BINARY_NAME}
@@ -30,10 +30,11 @@ release: link_compile_commands
 	./build/debug/$(BINARY_NAME)
 
 debug_using_ninja: link_compile_commands
-	@cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja \
+	@cmake -DCMAKE_BUILD_TYPE=Debug \
+		-DCMAKE_MAKE_PROGRAM=/opt/homebrew/bin/ninja \
+		-DCMAKE_OSX_SYSROOT=$(shell xcrun --sdk macosx --show-sdk-path) \
 		-DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
-		-G Ninja -S . \
-		-B ./build/debug
+		-G Ninja -S . -B ./build/debug
 	/opt/homebrew/bin/ninja -j${NUMBER_CORES} -C build/debug
 	./build/debug/$(BINARY_NAME)
 

@@ -2,16 +2,18 @@
 #include <vector2d.h>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <cstddef>
 #include <cstdlib>
 #include <glog/logging.h>
 #include <string>
 #include <iostream>
+#include <vector>
 
-#define RED "\033[1;31m"
-#define BLUE "\033[1;32m"
+#define RED "\033[1;31m" #define BLUE "\033[1;32m"
 #define RESET "\033[0m"
 
 static bool OUTPUT_TYPE_ANIMATION = true;
+void my_string_function(std::string&, std::vector<float>&);
 
 int main(int argc, char* argv[]) {
     // Get the PROJECT_DIR environment variable value
@@ -81,12 +83,7 @@ int main(int argc, char* argv[]) {
     immutable::vector2d<double> v(a, b);
     v.display();
 
-    /* for (size_t i = 0; i < 10; i++) { */
-    /*     int k = i + 10; */
-    /*     new_my_vector.set_x(i); */
-    /*     new_my_vector.set_y(k); */
-    /*     LOG(INFO) << RED << new_my_vector << RESET; */
-    /* } */
+
 
     return 0;
 }

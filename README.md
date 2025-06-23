@@ -158,6 +158,63 @@ or
 sdl2-config --version
 ```
 
+## SDL2 Version Verfication
+
+You want to check the **installed version of SDL2** on macOS using
+`pkgconf` (installed via Homebrew), and keep everything **portable**,
+**clean**, and **non-hardcoded**. Here's exactly how to do that:
+
+---
+
+### ✅ **1. Get SDL2 version using `pkgconf`**
+
+```bash
+pkgconf --modversion sdl2
+```
+
+This outputs something like:
+
+```sh
+2.28.4
+```
+
+✅ No hardcoded paths — relies on `PKG_CONFIG_PATH`, which `brew` sets up properly if you're using their shell environment.
+
+---
+
+### 🛠 **2. Want more details? (optional)**
+
+```bash
+pkgconf --cflags --libs sdl2
+```
+
+Gives you the compiler flags and linker flags you'd use, e.g.:
+
+```
+-I/opt/homebrew/include/SDL2 -D_THREAD_SAFE
+-L/opt/homebrew/lib -lSDL2
+```
+
+Still no hardcoded assumptions — `pkgconf` pulls from its environment.
+
+---
+
+### ✅ **3. Check which `.pc` file is being used**
+
+To be 100% certain which `.pc` (pkg-config) file is being read:
+
+```bash
+pkgconf --debug sdl2
+```
+
+This will show which `.pc` files it’s scanning and which one it picked.
+
+---
+
+Let me know if you also want to check for SDL2_image, SDL2_mixer, etc. — same trick works for those too.
+
+---
+
 ## Running while in progress
 
 - Using the `fswatch`cli, while changing any code in the `src` and save, it
@@ -179,7 +236,7 @@ Adding the following:
    `mason` from: `~/.local/share/nvim/mason/packages/cpptools/extension`. Any
    `lldb-mi` should work fine for debugging in `spacemacs`.
 
-```lisp
+```lua
 (dap-register-debug-template
  "cpptools::Run Configuration-GHASAKII"
  (list :type "cppdbg"
@@ -192,11 +249,26 @@ Adding the following:
 
 ```
 
+## vcpkg Config file
+
+We obtained the `builtin-baseline` from the following
+
+```sh
+
+cd /path/to/vcpkg
+git log --format="%H" -n 1
+```
+
+- You can format the manifest file using
+
+```sh
+vcpkg format-manifest --all
+```
+
 ## Documentations
 
 I am using in terminal a tool called
 [cppman](https://github.com/aitjcize/cppman), which give us the ability to
 navigate between C++98/11/14/17 and 20 manual pages of the standard library.
+
 - Adding new thing
-
-
